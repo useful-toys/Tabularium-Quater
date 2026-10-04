@@ -1,14 +1,18 @@
 # Tabularium
 
-O Tabularium é um formato para documentar produtos de software em Markdown, numa única fonte organizada em células de conceitos, escrita numa gramática simples o bastante para ser verificada por programa e mantida por pessoas e por agentes de IA. Os documentos que outras abordagens pedem, como a visão e os casos de uso do RUP, as histórias de usuário dos métodos ágeis, os cenários do BDD e o diagrama de contexto do C4, entre muitos outros, deixam de ser escritos e passam a ser gerados a partir dela.
+O Tabularium é um formato para documentar produtos de software em Markdown, numa única fonte da verdade organizada em células de conceitos, escrita numa gramática simples o bastante para ser verificada deterministicamente por programa e mantida por pessoas e por agentes de IA. Os documentos que outras abordagens pedem, como a visão e os casos de uso do RUP, as histórias de usuário dos métodos ágeis, os cenários do BDD e o diagrama de contexto do C4, entre muitos outros, deixam de ser escritos e passam a ser gerados a partir dela.
 
 Este README é uma explicação derivada da própria definição normativa do formato, que está em [`specs/`](specs/), escrita no próprio formato. Em caso de divergência, vale o que está lá. Os identificadores entre parênteses, como (TRM-R7), apontam para a regra de origem.
 
 ## A ideia central: a célula de conceitos
 
-Tudo no formato gira em torno da **célula de conceitos**, ou só **célula**: uma coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a especificação afirma sobre ela e que não pertence a nenhuma outra. Pedido, Cliente, Produto, Política de privacidade.
+As metodologias tradicionais organizam a documentação por tipo de informação: um documento para o glossário, outro para as regras de negócio, outro para os casos de uso, outro para o modelo de dados. Quem quer saber tudo sobre o Pedido precisa percorrer todos eles, e cada mudança num documento precisa ser sincronizada em vários lugares e outros documentos.
 
-Cada célula tem um único bloco, e tudo o que se sabe sobre ela mora ali: o que é, de que é feita, as regras que valem sobre ela, o que acontece com ela, o que os atores fazem com ela e o que veem dela. Não há uma seção de regras, outra de casos de uso e outra de glossário: há células, cada uma completa no seu lugar.
+O Tabularium faz o contrário. Tudo no formato gira em torno da **célula de conceitos**, ou só **célula**: uma coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a especificação afirma sobre ela e que não pertence a nenhuma outra. Pedido, Cliente, Produto, etc.
+
+Cada célula tem um único bloco e é praticamente autocontida. Tudo o que se sabe sobre ela mora ali: o que é, de que é feita, as regras que valem sobre ela, o que acontece com ela, o que os atores fazem com ela e o que veem dela. O que a liga ao resto são apenas as referências a outras células e as reações aos eventos que elas produzem. Não há uma seção de regras, outra de casos de uso e outra de glossário: há células, cada uma completa no seu lugar.
+
+Este é o ganho principal: quem lê uma célula encontra ali tudo o que a especificação afirma sobre ela, sem precisar reunir pedaços espalhados por outros documentos. Só ficam fora as definições dos termos de outras células que ela cita. Para a pessoa que quer aprender o sistema, isso é didático, porque cada assunto se aprende num lugar só. Para o agente de IA, é econômico: ele obtém o que precisa lendo a célula, em vez de abrir vários documentos, e usa melhor o seu contexto.
 
 Disso decorre quase todo o resto:
 
