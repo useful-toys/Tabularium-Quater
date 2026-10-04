@@ -3,14 +3,14 @@ As **Linhas** de um bloco: o que cada uma afirma, quem age, a que **Eventos** re
 
 ## Linguagem
 - reação: **Regra** iniciada por `Ao **Evento**:`; mora no bloco da **Célula** que reage
+- afirmação: **Linha** que pode ser verificada no produto; de papel R, Q, C, V, T ou J ⟸ [D18]
 
 ## Linha  `LIN`
-Item da **lista única** de um bloco; com **Identificador**, é uma afirmação citável.
+Item da **lista única** de um bloco; com **Identificador**, é citável.
 - 0..1 **Identificador**
-- afirmação: texto
 - implementada: sim | não
 - evento: Linha retirada
-- [x] LIN-R1  Uma **afirmação** por linha com **Identificador**
+- [x] LIN-R1  Linha com **Identificador** afirma uma só coisa
 - [x] LIN-R2  Cada linha pertence a uma só **Célula**, mesmo quando envolve várias
 - [x] LIN-R3  Correção de redação mantém o **Identificador**; mudança de significado retira a linha e cria outra
 - [ ] LIN-R4  Linha R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não · erro
@@ -47,24 +47,28 @@ Código que torna uma **Linha** citável.
 - [x] LAP-R6  Lápide `removida` nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado
 - [x] LAP-R7  Lápide `movida` tem a mesma marca da **Linha** para onde aponta
 - [x] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
-- [ ] LAP-R9  Lápide `[x]` que nenhuma **Referência** e nenhuma **Decisão** cita pode ser podada; o **Identificador** dela continua sem voltar
+- [ ] LAP-R9  Lápide `[x]` que nenhuma **Referência** cita pode ser podada; o **Identificador** dela continua sem voltar ⟸ [D07]
 - [ ] LAP-C1  Podar as lápides
   - exige: lápide marcada `[x]`
-  - exige: nenhuma **Referência** nem **Decisão** a cita
+  - exige: nenhuma **Referência** a cita
   - a lápide sai do bloco
   - o **Controle de versão** continua guardando o **Identificador** podado
 
 ## Referência  `REF`
 Citação, em um lugar, de algo definido em outro.
-- forma: `[CÓDIGO]` para **Linha**, `**Nome**` para **Termo**, `⟵ [Pnn]` para **Pergunta**
+- forma: `[CÓDIGO]` para **Linha**, `**Nome**` para **Termo**, `⟵ [Pnn]` para **Pergunta**, `⟸ [Dnn]` para **Decisão**
 - [ ] REF-R1  Toda referência resolve para algo definido · erro
 - [x] REF-R2  Ao **Termo renomeado**: toda referência ao **Termo** passa a usar o novo nome
 - [x] REF-R3  removida
 - [ ] REF-R4  Referência a **Linha** não leva link no texto; as definições de link são geradas
 - [x] REF-R5  Ao **Pergunta respondida**: as referências a ela saem das **Linhas** na mesma mudança
-- [x] REF-R6  A **Especificação** não cita **Decisões**; cada decisão cita os **Identificadores** das **Linhas** que governa
-- [ ] REF-R7  **Identificador** citado por uma **Decisão** existe na **Especificação**, como **Linha** ou **Lápide** · erro
-- [x] REF-R8  Uma **Linha** pode ser citada por várias **Decisões**, e uma decisão pode citar várias linhas
+- [x] REF-R6  removida
+- [x] REF-R7  removida
+- [x] REF-R8  removida
+- [ ] REF-R9  Qualquer item de lista cita **Decisões** com `⟸ [Dnn]` no fim, várias separadas por vírgula; uma decisão pode ser citada por vários itens ⟸ [D09, D16]
+- [ ] REF-R10  A **Decisão** não cita os itens que a citam ⟸ [D09]
+- [ ] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
+- [ ] REF-R12  Ordem das marcas no fim de um item: **severidade**, `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão**, antes do `:` final
 
 ## Pergunta  `PER`
 Lacuna conhecida da **Especificação**, ainda sem resposta.
@@ -85,7 +89,7 @@ Lacuna conhecida da **Especificação**, ainda sem resposta.
   - no **Arquivo de perguntas**, com o próximo número livre
 - [x] PER-C2  Responder uma pergunta
   - a pergunta sai do **Arquivo de perguntas**
-  - resposta que precisa de justificativa vira **Decisão**
+  - resposta que precisa de justificativa vira **Decisão**: o **enunciado** vira a **questão**, e as **opções** não escolhidas, as **alternativas descartadas**
 
 ## Arquivo de perguntas  `APG`
 Arquivo com as **Perguntas** abertas da **Especificação**, uma por item, em ordem de número.
@@ -140,7 +144,7 @@ Algo que um **Ator** pode fazer e que altera estado; papel C.
 - especializa **Linha**
 - 0..N **Critério**
 - [x] CAP-R1  Pertence à **Célula** que altera
-- [ ] CAP-R2  Capacidade que altera mais de uma **Célula** mora numa só; as outras reagem a um **Evento** dela
+- [ ] CAP-R2  Capacidade que altera mais de uma **Célula** mora numa só; as outras reagem a um **Evento** dela ⟸ [D05]
 
 ## Visão  `VIS`
 Algo que um **Ator** pode ver, sem alterar nada; papel V.

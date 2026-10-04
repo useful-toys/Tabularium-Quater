@@ -1,5 +1,5 @@
 # Organização
-Como a **Especificação** se divide em arquivos e **Áreas**, e o que o **Verificador** checa e gera a partir dela.
+Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Verificador** checa e gera a partir dela, e como se guardam as **Decisões**.
 
 ## Linguagem
 - externo: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto**
@@ -19,7 +19,7 @@ Conjunto de arquivos Markdown que descreve um produto inteiro e é a fonte únic
 - [x] ESP-R5  Histórico, justificativas e explicações didáticas ficam fora do texto
 - [x] ESP-R6  O texto descreve só o que foi comprometido; ideias ficam no **Rastreador** até amadurecerem
 - [ ] ESP-R7  Títulos organizam os blocos em hierarquia, com profundidade livre; dentro do bloco não há subtítulos, e a profundidade dos sub-itens é livre
-- [ ] ESP-R8  Uma especificação descreve um só produto, com uma só linguagem; significados de um **Termo** que não se conciliam indicam dois produtos, cada um com a sua especificação
+- [ ] ESP-R8  Uma especificação descreve um só produto, com uma só linguagem; significados de um **Termo** que não se conciliam indicam dois produtos, cada um com a sua especificação ⟸ [D06]
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
   - o **Índice** da **Área** diz o que ela usa de fora
 
@@ -79,7 +79,7 @@ Programa que checa a **Especificação** e produz as partes geradas, sem interpr
 - [ ] VRF-R2  **Severidade** erro bloqueia a mudança; alerta pede revisão
 - [ ] VRF-R3  Toda checagem é sintática
 - [ ] VRF-R4  Checa toda **Regra** terminada em `· erro` ou `· alerta`; a marca é a **severidade**
-- [ ] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui
+- [ ] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui ⟸ [D01]
 - [ ] VRF-V1  Ver as violações da **Especificação**
   - cada violação cita o **Identificador** da **Regra** violada e a **severidade**
 - [ ] VRF-C1  Gerar as partes derivadas
@@ -88,10 +88,11 @@ Programa que checa a **Especificação** e produz as partes geradas, sem interpr
   - **Glossário**
   - lista de dados que identificam pessoas, a partir dos **Atributos** marcados **pessoal**
   - definições de link das **Referências** a **Linhas** [REF-R4]
+  - índice de cada pasta de **Decisões**, com **Decisão.código**, **questão**, **resolução** e os itens que citam cada uma ⟸ [D19]
 
 ## Índice  `IND`
 Seção gerada no topo de uma **Área** com o que ela usa de outras áreas.
-- conteúdo: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui, de **Perguntas** que tocam a área e de **Linhas** da área citadas por **Decisões**, com os nomes de todas as que citam cada uma
+- conteúdo: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui e de **Perguntas** que tocam a área
 - [ ] IND-R1  Nunca é editado à mão · erro
 - [ ] IND-R2  Começa com `<!-- gerado; não editar -->`
 
@@ -105,7 +106,45 @@ Documento produzido a partir da **Especificação** para um público ou uma fina
 - [x] DER-R1  É descartável: nunca é editado nem citado como fonte
 - [x] DER-R2  Cada afirmação cita o **Identificador** ou o **Termo** de origem
 - [x] DER-R3  Afirmação sem origem é invenção de quem gerou ou lacuna da **Especificação**
-- [ ] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Verificador**
-- [ ] DER-R5  Guardá-lo sob **Controle de versão** é escolha de quem adota, que assume a divergência; mantê-lo em dia não cabe ao formato
+- [ ] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Verificador** ⟸ [D02]
+- [ ] DER-R5  Guardá-lo sob **Controle de versão** cabe a quem adota, que assume a divergência; mantê-lo em dia não cabe ao formato ⟸ [D03]
 - [ ] DER-V1 · leitor  Ler um documento derivado
   - cada afirmação leva a sua origem
+
+## Decisão  `DEC`
+Justificativa de um ponto não óbvio do produto, guardada fora da **Especificação** e lida só sob demanda.
+- código: **Código de decisão**; identidade; único; imutável
+- questão: texto terminado em `?`
+- resolução: uma frase, que responde à **questão**
+- contexto: texto
+- alternativas descartadas: outras respostas à **questão**, cada uma com o motivo
+- consequências: o que se ganha e o que se aceita
+- alterações: entradas com data e uma linha, da mais recente para a mais antiga, na seção `Histórico` ⟸ [D14]
+- arquivo: em `decisoes/_produto/` ou em `decisoes/` seguido do nome de uma **Área**; o nome é o **código**, `-`, um nome curto e `.md`
+- [ ] DEC-R1  Título: a **questão** e o **código**, como `` # Quem vê um pedido?  `D07` ``; a **resolução** vem logo abaixo · erro ⟸ [D13]
+- [ ] DEC-R2  Depois da **resolução**, uma lista com `Contexto`, `Alternativas descartadas` e `Consequências`, nesta ordem, e a seção `Histórico` por último · erro
+- [ ] DEC-R3  Responde a uma só **questão**; as **alternativas descartadas** são outras respostas a ela ⟸ [D12]
+- [ ] DEC-R4  **Resolução** que se pode reverter em parte são duas decisões
+- [ ] DEC-R5  Registra-se quando havia ao menos uma alternativa plausível; nasce na mesma mudança que o item que a cita ⟸ [D21]
+- [ ] DEC-R6  **Questão** nova cria decisão nova; só se edita uma decisão quando a mesma questão ganha outra **resolução**
+- [ ] DEC-R7  Ao mudar a **resolução**, a anterior vai para as **alternativas descartadas** e as **alterações** ganham uma entrada
+- [ ] DEC-R8  **Código** em sequência única para o produto; código já usado não volta · erro ⟸ [D10]
+- [ ] DEC-R9  Mora na pasta da **Área** cujos itens mais a citam; citada só pelo **Arquivo de produto**, em `_produto` · alerta ⟸ [D11]
+- [ ] DEC-R10  Mudar de pasta não muda o **código**
+- [ ] DEC-R11  Usa os **Termos** da **Especificação**, sem negrito ⟸ [D17]
+- [ ] DEC-R12  Um item do corpo pode citar outra decisão, com a mesma **Referência** `⟸ [Dnn]` ⟸ [D20]
+- [ ] DEC-R13  Decisão que nenhum item da **Especificação** e nenhuma outra decisão cita é órfã, e permanece até a limpeza · alerta ⟸ [D15]
+- [ ] DEC-R14  **Resolução** com mais de uma frase, ou com ponto e vírgula, indica mais de uma decisão · alerta
+- [ ] DEC-R15  Decisão com mais de 25 linhas indica mais de uma decisão · alerta
+- [ ] DEC-R16  Mais de 5 **alterações** indicam **resoluções** acumuladas · alerta
+- [ ] DEC-R17  O texto da decisão nunca é escrito na **Especificação**
+- [ ] DEC-C1  Registrar uma decisão
+  - com o próximo **código** livre
+  - ao menos um item passa a citá-la
+- [ ] DEC-C2  Rever a **resolução** de uma decisão
+  - conforme [DEC-R7]
+- [ ] DEC-C3  Limpar as decisões órfãs
+  - exige: decisão órfã, conforme [DEC-R13]
+  - o arquivo é apagado
+  - decisão que só a apagada citava também é apagada
+  - o **Controle de versão** continua guardando o **código**

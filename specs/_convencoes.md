@@ -6,7 +6,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `_convencoes.md`: esta legenda
 - `_produto.md`: o que vale para o produto inteiro; lido antes das áreas; inclui os externos, sistemas ou organizações que alguma regra pressupõe
 - `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional
-- `decisoes/<area>/`, fora desta pasta: pequenas decisões em anotações densas, uma por arquivo, só as vigentes; cada uma cita os identificadores das linhas que governa; a especificação não as cita
+- `decisoes/_produto/` e `decisoes/<area>/`, fora desta pasta: pequenas decisões, uma por arquivo, lidas só sob demanda; os itens da especificação as citam, e elas não citam de volta
 - `<area>.md`: uma área; lida em qualquer ordem
 - `<area>/`: área dividida; `_area.md` traz as seções anteriores às células
 
@@ -49,8 +49,21 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - R terminada em `:` seguida de tabela: tabela de decisão
 - critério iniciado por `exige:`: pré-condição; por `se …:`: fluxo alternativo ou exceção; sem prefixo: resultado
 - `· erro` ou `· alerta` no fim de uma R: regra checada por programa, com a severidade
+- afirmação: linha que pode ser verificada no produto; papéis R, Q, C, V, T e J
 - `⟵ [P04]` no fim da linha: linha provisória, à espera da pergunta P04; respondida a pergunta, a marca sai
+- `⟸ [D07]` ou `⟸ [D07, D12]` no fim de um item de lista: decisões que o fundamentam; a frase de definição e as lápides não citam
+- ordem das marcas no fim de um item: `· erro` ou `· alerta`, depois `⟸ [Dnn]`, depois `⟵ [Pnn]`
 - `- [ ] PED-R7  removida`: lápide de uma linha retirada; passa a `[x]` quando o produto deixa de ter o comportamento
 - `- [x] PED-C3  movida → [ENT-C1]`: lápide de uma linha que mudou de célula; tem a marca da linha nova, que herda a da antiga
 - lápide `[x]` que nada mais cita pode ser podada; o número dela continua sem voltar
 - `<!-- gerado; não editar -->`: seção gerada por programa; documentos derivados, como visão, casos de uso e manual, são redigidos por agente e ficam fora desta pasta
+
+## Decisões
+- arquivo: `D07-nome-curto.md`; o código `Dnn` é único no produto e nunca volta
+- título: a questão, terminada em `?`, e o código, como `` # Quem vê um pedido?  `D07` ``
+- logo abaixo: a resolução, em uma frase
+- lista: `Contexto`, `Alternativas descartadas`, `Consequências`, nesta ordem; depois a seção `Histórico`, com data e uma linha por alteração
+- uma decisão responde a uma só questão; as alternativas descartadas são outras respostas a ela
+- um item do corpo pode citar outra decisão com `⟸ [Dnn]`
+- usa os termos da especificação, sem negrito
+- `README.md` de cada pasta de decisões: índice gerado por programa

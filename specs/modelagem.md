@@ -23,7 +23,7 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
 - [ ] CEL-R2  A **definição** vem logo após o título · erro
 - [ ] CEL-R3  Depois da **definição**, uma **lista única** nesta ordem: **modelo**, **Linhas** `evento:`, R, Q, C, V, T · erro
 - [x] CEL-R4  removida
-- [x] CEL-R5  Efeito sobre outra célula é uma **reação** no bloco dessa outra célula
+- [x] CEL-R5  Efeito sobre outra célula é uma **reação** no bloco dessa outra célula ⟸ [D04]
 - [x] CEL-R6  removida
 - [ ] CEL-R7  Célula com mais de 40 **Linhas** indica que são duas células · alerta
 - [x] CEL-R8  Célula não tem estado de implementação; quem o tem são as suas **Linhas** com **Identificador**
