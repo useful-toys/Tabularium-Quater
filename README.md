@@ -16,10 +16,10 @@ Este é o ganho principal: quem lê uma célula encontra ali tudo o que a especi
 
 Disso decorre quase todo o resto:
 
-- **A célula é dona das suas afirmações.** Cada linha pertence a uma única célula. Quando algo numa célula afeta outra, o efeito é escrito na afetada, e quem lê um bloco vê tudo o que pode acontecer com ela.
-- **As células se agrupam por relação, não por tipo.** Áreas reúnem uma célula central e as que dependem dela, e essa proximidade é medida, não apenas declarada.
+- **A célula é dona das suas afirmações.** Uma célula é composta por afirmações, e cada afirmação pertence a uma única célula. Quando algo numa célula afeta outra, o efeito é escrito na afetada, e quem lê um bloco vê tudo o que pode acontecer com ela.
+- **As células se agrupam por relação, não por tipo.** Células fortemente relacionadas ficam juntas num mesmo arquivo, chamado **área**: uma célula central e as que dependem dela. Essa proximidade é medida, não apenas declarada.
 - **As células evoluem.** Uma célula pode se dividir, se fundir, virar atributo ou nascer de um; as afirmações e seus identificadores sobrevivem a qualquer reagrupamento.
-- **Os documentos tradicionais são vistas sobre as células.** Glossário, regras de negócio e casos de uso são extraídos dos blocos, e não escritos à parte.
+- **Os documentos tradicionais são vistas sobre as células.** Glossário, regras de negócio e casos de uso são extraídos das células, e não escritos à parte.
 
 ## Valores
 
