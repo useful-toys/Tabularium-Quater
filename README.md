@@ -34,31 +34,34 @@ Disso decorre quase todo o resto:
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
 10. **Fundamentada em decisões.** As pequenas decisões por trás das afirmações ficam em anotações densas à parte, por área e tipo de especificação, e citam as linhas que governam.
 11. **Explícita sobre lacunas.** Dúvidas sobre o que foi comprometido viram perguntas abertas, versionadas junto do texto, em vez de serem preenchidas por suposição.
-12. **Não técnica.** Descreve o produto como o negócio o vê; a arquitetura é outro documento.
+12. **Não técnica.** Descreve o que o sistema é e o que ele faz para o negócio, sem entrar em questões técnicas, que começam no documento de arquitetura. Também não documenta o negócio em si, isto é, como ele funciona sem o sistema.
 13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização; agentes leem só a área de que precisam e seguem regras explícitas.
 
-## Diferenciais em relação a RUP, BDD e DDD
+## Diferenciais em relação a RUP, ágil, BDD e DDD
 
-RUP, BDD e DDD são abordagens amplas de processo, de prática e de modelagem. A comparação abaixo trata só de como cada uma documenta o produto. O Tabularium é compatível com as três e aproveita ideias de todas.
+RUP, os métodos ágeis, BDD e DDD são abordagens amplas de processo, de prática e de modelagem. A comparação abaixo trata só de como cada uma documenta o produto. O Tabularium é compatível com as quatro e aproveita ideias de todas.
 
-| Aspecto | RUP | BDD | DDD | Tabularium |
-| --- | --- | --- | --- | --- |
-| Unidade de organização | Artefato por tipo: visão, casos de uso, regras, especificação suplementar | Funcionalidade e cenário | Contexto delimitado, ligado a modelo e equipe | Célula de conceitos, agrupada em áreas por relação medida |
-| Onde está tudo sobre uma coisa do domínio | Espalhado por vários artefatos | Espalhado por cenários de várias funcionalidades | No modelo e no código; a documentação é informal | Num único bloco |
-| Redundância | Alta: casos de uso remetem a regras, glossário repete o modelo | Alta: contexto repetido a cada cenário | Baixa no código, sem controle na documentação | Proibida e verificada |
-| Forma do texto | Modelos de documento em prosa | Dado/Quando/Então | Diagramas e conversa | Lista densa com gramática fixa |
-| Verificação automática | Não há | Do sistema, pelos cenários executáveis; não da documentação | Não há | Da própria especificação |
-| Outros documentos | Cada artefato escrito à mão | Relatórios de execução | Não há | Todos gerados da fonte |
-| Justificativas | Diluídas nos documentos, quando existem | Raramente registradas | Ficam na conversa | Pequenas decisões em anotações densas à parte, que citam as linhas que governam |
-| Lacunas | Implícitas | Cartões vermelhos do Example Mapping, fora do texto | Ficam na conversa | Perguntas abertas versionadas e linhas provisórias marcadas |
-| Agentes de IA | Não trata | Não trata | Não trata | Instruções próprias e gramática que um agente consegue seguir |
+Usar o formato Tabularium para guardar a especificação não impede que a equipe adote a metodologia de sua preferência para amadurecer o entendimento do problema de negócio que a aplicação vai atender.
 
-O que o formato aproveita de cada uma, e o que recusa de forma deliberada:
+| Aspecto | RUP | Ágil | BDD | DDD | Tabularium |
+| --- | --- | --- | --- | --- | --- |
+| Unidade de organização | Artefato por tipo: visão, casos de uso, regras, especificação suplementar | História de usuário, num backlog | Funcionalidade e cenário | Contexto delimitado, ligado a modelo e equipe | Célula de conceitos, agrupada em áreas por relação medida |
+| Onde está tudo sobre uma coisa do domínio | Espalhado por vários artefatos | Espalhado por histórias de várias iterações; o estado atual do produto não está escrito | Espalhado por cenários de várias funcionalidades | No modelo e no código; a documentação é informal | Num único bloco |
+| Redundância | Alta: casos de uso remetem a regras, glossário repete o modelo | Alta: histórias novas se sobrepõem às antigas | Alta: contexto repetido a cada cenário | Baixa no código, sem controle na documentação | Proibida e verificada |
+| Forma do texto | Modelos de documento em prosa | "Como…, quero…, para…" e critérios de aceite | Dado/Quando/Então | Diagramas e conversa | Lista densa com gramática fixa |
+| Verificação automática | Não há | Não há | Do sistema, pelos cenários executáveis; não da documentação | Não há | Da própria especificação |
+| Outros documentos | Cada artefato escrito à mão | Escritos à mão, quando existem | Relatórios de execução | Não há | Todos gerados da fonte |
+| Justificativas | Diluídas nos documentos, quando existem | Ficam na conversa | Raramente registradas | Ficam na conversa | Pequenas decisões em anotações densas à parte, que citam as linhas que governam |
+| Lacunas | Implícitas | Tratadas na conversa, durante o refinamento | Cartões vermelhos do Example Mapping, fora do texto | Ficam na conversa | Perguntas abertas versionadas e linhas provisórias marcadas |
+| Agentes de IA | Não trata | Não trata | Não trata | Não trata | Instruções próprias e gramática que um agente consegue seguir |
+
+O que o formato Tabularium aproveita de cada uma, e o que recusa de forma deliberada:
 
 | Origem | Aproveitado | Recusado |
 | --- | --- | --- |
 | DDD | Linguagem ubíqua, eventos e reações, separação entre fazer e ver | Contextos delimitados com linguagem própria, que pertencem à arquitetura |
 | BDD | Exemplos como ferramenta de descoberta, perguntas abertas (do Example Mapping), testes que citam identificadores | A notação Dado/Quando/Então na fonte, por ser prolixa; ela vira documento derivado |
+| Ágil | História como capacidade com ator e objetivo, critérios de aceite, backlog fora da especificação até o compromisso | A história como registro permanente: ela descreve uma mudança, não o estado do produto |
 | RUP | Problema no propósito, partes interessadas como externos, pré-condições e fluxos alternativos nos critérios, FURPS+ como lista de revisão | A organização por tipo de artefato e os fluxos passo a passo |
 
 ## Organização dos arquivos

@@ -4,7 +4,8 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 ## Propósito
 - Problema: **Especificações** espalhadas em documentos por tipo repetem informação, divergem entre si e não podem ser verificadas por programa
 - Público: quem especifica produtos e quer extrair da **Especificação** os demais documentos
-- Não técnico: descreve o produto como o negócio o vê; a arquitetura é outro documento
+- Não técnico: descreve o que o sistema é e o que faz para o negócio; as questões técnicas começam no documento de arquitetura
+- Não é documentação do negócio: como o negócio funciona sem o sistema fica fora
 - Diferencial: tudo o que se sabe sobre uma **Célula** mora num só bloco
 - Diferencial: cada afirmação existe uma vez e é citável por **Identificador**
 - Diferencial: pequenas **Decisões** ficam em anotações densas à parte, que citam as **Linhas** que governam, sem sobrecarregar a **Especificação**
