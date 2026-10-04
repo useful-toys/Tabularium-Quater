@@ -24,10 +24,10 @@ Disso decorre quase todo o resto:
 ## Valores
 
 1. **Organizada por células de conceitos.** Cada célula reúne, num único bloco, os conceitos que um elemento do produto governa: suas definições, regras e políticas. As células se agrupam em áreas por relação forte, medida, e nunca por tipo de informação.
-2. **Densa.** Uma afirmação por linha. A única prosa é a frase que define cada célula; explicações e exemplos ficam nos documentos derivados.
-3. **Hierárquica.** Quatro níveis fixos: arquivo, bloco, item e critério. Não há terceiro nível de título.
+2. **Densa.** Evita-se ao máximo a formatação e a separação em seções: o significado vem da posição no texto. A redação é objetiva e sucinta, pode usar símbolos e notações convencionadas, e não diz o que não precisa ser dito. Cada linha traz uma afirmação, e a única prosa é a frase que define cada célula; explicações e exemplos ficam nos documentos derivados.
+3. **Hierárquica.** A estrutura vem de títulos, que organizam os blocos, e de sub-itens, que detalham as linhas. A profundidade de ambos é livre: usa-se a que o conteúdo pedir.
 4. **Fonte única da verdade.** Descreve só o que foi comprometido, e cada afirmação verificável diz se está implementada ou não. Ideias, histórico e justificativas ficam fora.
-5. **Sem redundância.** Cada termo e cada regra são escritos uma vez. Índices, mapas e glossário são gerados, nunca escritos à mão.
+5. **Sem redundância.** Cada termo e cada regra são escritos uma vez. Índices, mapas, glossários e tudo o mais que é derivável são gerados por programa, de forma determinística e mecânica, e nunca mantidos manualmente, nem por pessoas nem por agentes de IA.
 6. **Linguagem ubíqua.** Um termo, um significado, em todo o projeto. Sinônimos proibidos são declarados e verificados.
 7. **Base para extrair outros documentos.** Visão, glossário, casos de uso, regras de negócio, cenários de teste e manuais são derivados, gerados a partir da fonte e com a origem de cada afirmação.
 8. **Verificável por programa.** A gramática é fixa para que um programa cheque a especificação sem interpretar o texto.
@@ -131,7 +131,7 @@ O título traz o nome e a sigla da célula. Logo abaixo vem a frase de definiç�
 2. **Eventos:** linhas `evento:`, com os fatos que a célula produz e aos quais alguma outra célula reage.
 3. **Linhas com identificador,** na ordem dos papéis: R, Q, C, V, T.
 
-Não há subtítulos dentro do bloco. A letra do identificador já diz o papel da linha, e um subtítulo repetiria essa informação.
+Não há subtítulos dentro do bloco. A letra do identificador já diz o papel da linha, e um subtítulo repetiria essa informação. Títulos de vários níveis servem só para organizar os blocos em hierarquia.
 
 Cada linha R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não (LIN-R4). Não há estado parcial: uma linha cumprida em parte está agregada demais e deve ser dividida (LIN-R5). Só fatos verificáveis levam marca. A célula não tem estado (CEL-R8), e as jornadas estão implementadas quando todas as linhas que citam estão (JOR-R4). Para um agente que vai implementar, o trabalho pendente é simplesmente o conjunto das linhas `[ ]`.
 

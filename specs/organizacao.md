@@ -14,10 +14,11 @@ Conjunto de arquivos Markdown que descreve um produto inteiro e é a fonte únic
 - evento: Especificação alterada
 - [x] ESP-R1  removida
 - [x] ESP-R2  A única prosa é a **definição** de cada **Célula**
-- [ ] ESP-R3  Títulos: `#` para o arquivo e `##` para o bloco; não há nível 3 · erro
+- [x] ESP-R3  removida
 - [x] ESP-R4  Ordem de leitura: **Arquivo de convenções**, **Arquivo de produto**, qualquer **Área**
 - [x] ESP-R5  Histórico, justificativas e explicações didáticas ficam fora do texto
 - [x] ESP-R6  O texto descreve só o que foi comprometido; ideias ficam no **Rastreador** até amadurecerem
+- [ ] ESP-R7  Títulos organizam os blocos em hierarquia, com profundidade livre; dentro do bloco não há subtítulos, e a profundidade dos sub-itens é livre
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
   - o **Índice** da **Área** diz o que ela usa de fora
 

@@ -11,7 +11,8 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `<area>/`: área dividida; `_area.md` traz as seções anteriores às células
 
 ## Estrutura
-- `#` arquivo · `##` bloco · item de lista · critério (sub-item); não há `###`
+- `#` arquivo · título de bloco · item de lista · critério (sub-item)
+- títulos organizam os blocos em hierarquia, com profundidade livre; dentro do bloco não há subtítulos; a profundidade dos sub-itens é livre
 - célula de conceitos, ou só célula: coisa do domínio, com tudo o que se afirma sobre ela e que não pertence a nenhuma outra
 - bloco de célula: título com nome e sigla (`` ## Pedido  `PED` ``), frase de definição, lista única
 - ordem da lista: modelo (linhas sem identificador), linhas `evento:`, R, Q, C, V, T

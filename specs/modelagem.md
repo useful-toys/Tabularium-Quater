@@ -3,7 +3,7 @@ As **Células** do produto, seus **Atributos** e os **Termos** que os nomeiam.
 
 ## Linguagem
 - modelo: **Linhas** sem **Identificador** no início do bloco de uma **Célula**; descrevem o que ela é
-- lista única: a lista de **Linhas** de um bloco, sem subtítulos, com no máximo dois níveis
+- lista única: a lista de **Linhas** de um bloco, sem subtítulos
 - identidade: qualificador; distingue uma instância das outras e torna a **Célula** uma **entidade**
 - único: qualificador; o valor não se repete entre instâncias
 - imutável: qualificador; o valor não muda depois de criado
