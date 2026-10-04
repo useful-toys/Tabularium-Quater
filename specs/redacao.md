@@ -47,6 +47,12 @@ Código que torna uma **Linha** citável.
 - [x] LAP-R6  Lápide `removida` nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado
 - [x] LAP-R7  Lápide `movida` tem a mesma marca da **Linha** para onde aponta
 - [x] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
+- [ ] LAP-R9  Lápide `[x]` que nenhuma **Referência** e nenhuma **Decisão** cita pode ser podada; o **Identificador** dela continua sem voltar
+- [ ] LAP-C1  Podar as lápides
+  - exige: lápide marcada `[x]`
+  - exige: nenhuma **Referência** nem **Decisão** a cita
+  - a lápide sai do bloco
+  - o **Controle de versão** continua guardando o **Identificador** podado
 
 ## Referência  `REF`
 Citação, em um lugar, de algo definido em outro.
@@ -134,6 +140,7 @@ Algo que um **Ator** pode fazer e que altera estado; papel C.
 - especializa **Linha**
 - 0..N **Critério**
 - [x] CAP-R1  Pertence à **Célula** que altera
+- [ ] CAP-R2  Capacidade que altera mais de uma **Célula** mora numa só; as outras reagem a um **Evento** dela
 
 ## Visão  `VIS`
 Algo que um **Ator** pode ver, sem alterar nada; papel V.

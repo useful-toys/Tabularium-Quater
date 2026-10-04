@@ -19,14 +19,14 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 - Se a resposta não está escrita, diga que é uma lacuna da especificação. Não deduza regras de exemplos, de nomes ou do que "costuma ser". Se a lacuna já tem pergunta aberta, cite-a.
 - Ao citar uma linha que termina em `⟵ [Pnn]`, avise que ela é provisória.
 - O estado de implementação está na marca de cada linha: `[x]` cumprida por inteiro, `[ ]` não cumprida. Não há estado parcial. Jornadas estão implementadas quando todas as linhas que citam estão.
-- A especificação não contém histórico, justificativas nem ideias. Justificativas estão em `decisoes/`, fora desta pasta, em anotações que citam os identificadores das linhas que governam; abra-as só quando precisar do porquê. Ideias ficam no rastreador.
+- A especificação não contém histórico, justificativas nem ideias. Justificativas estão em `decisoes/<area>/`, fora desta pasta, uma decisão por arquivo, só as vigentes, cada uma citando os identificadores das linhas que governa; abra-as só quando precisar do porquê. Ideias ficam no rastreador.
 
 ## Ao alterar
 
 ### Regras que nunca se quebram
 
-1. Nunca renumere um identificador e nunca reutilize um número. O próximo número é o maior já usado para aquela sigla e papel, mais um, contando os que viraram lápide. Siglas de células extintas ou fundidas também não voltam.
-2. Para retirar uma linha com identificador, troque-a por uma lápide no mesmo lugar: `- [ ] PED-R7  removida`. Para mudá-la de célula, crie a linha na nova dona e deixe `- [x] PED-C3  movida → [ENT-C1]` no lugar antigo. Nunca apague o identificador.
+1. Nunca renumere um identificador e nunca reutilize um número. O próximo número é o maior já usado para aquela sigla e papel, mais um, contando os que viraram lápide e os de lápides já podadas, que o controle de versão guarda. Siglas de células extintas ou fundidas também não voltam.
+2. Para retirar uma linha com identificador, troque-a por uma lápide no mesmo lugar: `- [ ] PED-R7  removida`. Para mudá-la de célula, crie a linha na nova dona e deixe `- [x] PED-C3  movida → [ENT-C1]` no lugar antigo. Nunca apague o identificador ao retirar ou mover. Lápides só saem pela poda, que o usuário pede quando acha oportuno: sai a lápide `[x]` que nenhuma linha e nenhuma decisão cita, e o número dela continua sem voltar.
 3. Nunca edite seções marcadas `<!-- gerado; não editar -->`, como o Índice das áreas e o glossário. Elas são refeitas por programa.
 4. Defina cada termo uma única vez, sem negrito, no lugar que o tipo de termo pede. Em cada item de lista, frase de definição ou fileira de tabela, escreva em negrito a primeira menção de cada termo; as seguintes, no mesmo item, ficam sem negrito. Não contam como menção: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula dentro do seu bloco. Nunca use um sinônimo que aparece tachado no fim de uma definição, como em `(~~valor, montante~~)`.
 5. Uma afirmação por linha. A única prosa é a frase de definição de cada célula.
@@ -40,7 +40,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 | O que | Onde |
 | --- | --- |
 | Atributo, estado, cardinalidade, derivado | Linha sem identificador no topo do bloco da célula: `nome: tipo; qualificadores` |
-| Algo que um ator faz e que altera estado | C no bloco da célula que ela altera |
+| Algo que um ator faz e que altera estado | C no bloco da célula que ela altera; se altera mais de uma, mora numa só e as outras reagem a um evento dela |
 | Algo que um ator vê, sem alterar nada (inclui exportar e copiar) | V no bloco da célula exibida |
 | Condição de aceite de uma C ou V | Sub-item dela, sem identificador: `exige:` para pré-condição, `se …:` para alternativa ou exceção, sem prefixo para resultado |
 | Regra que vale sempre | R no bloco da célula sobre a qual ela fala; termine com `· erro` ou `· alerta` se um programa deve checá-la |
@@ -64,6 +64,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Decidir se algo é célula:** pare no primeiro teste com resposta sim. É algo que um ator faz ou vê: capacidade ou visão. Uma sequência de ações: jornada. Um fato que provoca reação: evento. Quem age: ator. Algo fora do produto que uma regra pressupõe: externo. Um valor sem identidade: tipo de valor. Característica, estado ou cálculo de outra coisa: atributo. Um agrupamento de células: área. Algo sobre o qual há o que afirmar e que não pertence a nenhuma outra coisa: célula. Nenhum desses: termo na linguagem da área.
 - **Criar uma célula:** escolha uma sigla de 2 a 5 letras nunca usada; escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem fixa.
 - **Mover uma linha para outra célula:** crie a linha na nova dona, com o próximo número da sigla dela e a mesma marca; no lugar antigo, deixe a lápide `movida → [NOVO]`. O comportamento não mudou, então nada fica pendente.
+- **Podar lápides:** só a pedido. Para cada lápide `[x]`, procure o identificador na especificação e em `decisoes/`; se nada o cita, apague a lápide. Lápides `[ ]` e lápides citadas ficam.
 - **Dividir uma célula:** crie a célula nova e mova para ela as linhas que lhe pertencem.
 - **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da definição da que a absorveu; a sigla da absorvida não volta.
 - **Rebaixar ou promover:** uma célula sem linhas com identificador vira atributo ou termo; um atributo que ganha atributos ou regras próprias vira célula, e o modelo de origem passa a citá-la.
@@ -75,7 +76,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 
 ### Depois de alterar
 
-- Rode o verificador, se o projeto tiver um, e corrija os erros antes de concluir.
+- Rode o verificador, se o projeto tiver um, e corrija os erros antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
 - Sem verificador, confira ao menos: identificadores novos únicos e na sequência; nenhuma referência `[ID]` ou `⟵ [Pnn]` quebrada; nenhuma decisão citando identificador inexistente; nenhuma pergunta sem linha que a cite e sem `sobre:`; nenhum termo definido duas vezes; nenhum termo em negrito sem definição; primeira menção de cada termo em negrito; linhas na ordem fixa; nenhuma seção gerada editada.
 - Resuma a mudança listando os identificadores criados, alterados e retirados, e os termos criados ou renomeados.
 
@@ -97,7 +98,7 @@ Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma 
 - Suportabilidade: plataformas, navegadores, manutenção, configuração
 - Restrições: de projeto, de implementação, de interface, físicas, legais
 
-Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem linha com identificador e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem dono natural (falta uma célula); linha que cita outra célula mais do que a própria (mover a linha); duas células citadas quase sempre juntas, uma só pela outra (fundir).
+Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem linha com identificador e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem dono natural (falta uma célula); linha que cita outra célula mais do que a própria (mover a linha); duas células citadas quase sempre juntas, uma só pela outra (fundir); bloco com muitas lápides `[x]` que nada cita (podar).
 
 Confira também se toda regra motivada por uma organização de fora (um órgão regulador, um parceiro, um titular de direitos) tem essa organização em `Externos`.
 
@@ -111,9 +112,11 @@ Confira também se toda regra motivada por uma organização de fora (um órgão
 
 ## Ao gerar documentos derivados
 
+- Documentos derivados são redigidos por você. O Índice das áreas, o mapa entre áreas e o glossário não são: saem do verificador, e você não os escreve à mão.
 - Gere a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
 - Cite a origem de cada afirmação.
 - Documentos tradicionais saem assim: visão, de `Propósito`, atores, externos e fora de escopo; glossário, das definições; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.
 - Caso de uso: ator e objetivo vêm da C; pré-condições, dos critérios `exige:`; fluxos alternativos e exceções, dos critérios `se …:`; pós-condições, dos critérios sem prefixo; efeitos em outras células, das reações; sequência entre capacidades, das jornadas. Não invente passos de interface.
 - Liste no fim as afirmações que precisaram de algo que não está na especificação: são lacunas a levar ao dono da área.
 - Nunca grave um documento derivado dentro desta pasta, nem copie dele de volta para a especificação.
+- Guardar um documento derivado sob controle de versão é escolha da equipe. Se ele já existe e a especificação mudou, gere-o de novo em vez de emendá-lo.

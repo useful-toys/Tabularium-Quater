@@ -6,7 +6,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `_convencoes.md`: esta legenda
 - `_produto.md`: o que vale para o produto inteiro; lido antes das áreas; inclui os externos, sistemas ou organizações que alguma regra pressupõe
 - `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional
-- `decisoes/`, fora desta pasta: pequenas decisões em anotações densas, que citam os identificadores das linhas que governam; a especificação não as cita
+- `decisoes/<area>/`, fora desta pasta: pequenas decisões em anotações densas, uma por arquivo, só as vigentes; cada uma cita os identificadores das linhas que governa; a especificação não as cita
 - `<area>.md`: uma área; lida em qualquer ordem
 - `<area>/`: área dividida; `_area.md` traz as seções anteriores às células
 
@@ -52,4 +52,5 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `⟵ [P04]` no fim da linha: linha provisória, à espera da pergunta P04; respondida a pergunta, a marca sai
 - `- [ ] PED-R7  removida`: lápide de uma linha retirada; passa a `[x]` quando o produto deixa de ter o comportamento
 - `- [x] PED-C3  movida → [ENT-C1]`: lápide de uma linha que mudou de célula; tem a marca da linha nova, que herda a da antiga
-- `<!-- gerado; não editar -->`: seção gerada por programa
+- lápide `[x]` que nada mais cita pode ser podada; o número dela continua sem voltar
+- `<!-- gerado; não editar -->`: seção gerada por programa; documentos derivados, como visão, casos de uso e manual, são redigidos por agente e ficam fora desta pasta

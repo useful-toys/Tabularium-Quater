@@ -1,6 +1,10 @@
 # Tabularium
 
-O Tabularium é um formato para documentar produtos de software em Markdown, numa única fonte da verdade organizada em células de conceitos, escrita numa gramática simples o bastante para ser verificada deterministicamente por programa e mantida por pessoas e por agentes de IA. Os documentos que outras abordagens pedem, como a visão e os casos de uso do RUP, as histórias de usuário dos métodos ágeis, os cenários do BDD e o diagrama de contexto do C4, entre muitos outros, deixam de ser escritos e passam a ser gerados a partir dela.
+O Tabularium é um formato para documentar produtos de software em Markdown, numa única fonte da verdade organizada em células de conceitos, escrita numa gramática simples o bastante para ser verificada deterministicamente por programa e mantida por pessoas e por agentes de IA. Os documentos que outras abordagens pedem, como a visão e os casos de uso do RUP, as histórias de usuário dos métodos ágeis, os cenários do BDD e o diagrama de contexto do C4, entre muitos outros, deixam de ser escritos à mão e passam a ser derivados dela: as partes mecânicas, por programa; os documentos redigidos, por um agente de IA.
+
+O formato é para equipes de desenvolvimento e sustentação de software, da análise à implementação, em uso pessoal ou numa organização. Qualquer um pode adotá-lo.
+
+> **Estado: experimental.** O formato está em aprendizado e, por ora, visa produtos pequenos. O que existe hoje é a definição do formato, em [`specs/`](specs/), e as instruções para agentes. O verificador, as skills de geração e a pasta `decisoes/` ainda não existem: onde este README os descreve, descreve o que o formato pretende. Duas aplicações reais, Iconula e Abditum, serão especificadas no formato, cada uma em repositório próprio de exemplo, para pôr a ideia à prova.
 
 Este README é uma explicação derivada da própria definição normativa do formato, que está em [`specs/`](specs/), escrita no próprio formato. Em caso de divergência, vale o que está lá. Os identificadores entre parênteses, como (TRM-R7), apontam para a regra de origem.
 
@@ -16,10 +20,10 @@ Este é o ganho principal: quem lê uma célula encontra ali tudo o que a especi
 
 Disso decorre quase todo o resto:
 
-- **A célula é dona das suas afirmações.** Uma célula é composta por afirmações, e cada afirmação pertence a uma única célula. Quando algo numa célula afeta outra, o efeito é escrito na afetada, e quem lê um bloco vê tudo o que pode acontecer com ela.
+- **A célula é dona das suas afirmações.** Uma célula é composta por afirmações, e cada afirmação pertence a uma única célula. Quando algo numa célula afeta outra, o efeito é escrito na afetada, e quem lê um bloco vê tudo o que pode acontecer com ela. O custo fica do outro lado: quem lê a célula que produz o fato não vê ali quem reage a ele, e encontra essa lista no Índice gerado da área.
 - **As células se agrupam por relação, não por tipo.** Células fortemente relacionadas ficam juntas num mesmo arquivo, chamado **área**: uma célula central e as que dependem dela. Essa proximidade é medida, não apenas declarada.
 - **As células evoluem.** Uma célula pode se dividir, se fundir, virar atributo ou nascer de um; as afirmações e seus identificadores sobrevivem a qualquer reagrupamento.
-- **Os documentos tradicionais são vistas sobre as células.** Glossário, regras de negócio e casos de uso são extraídos das células, e não escritos à parte.
+- **Os documentos tradicionais são vistas sobre as células.** Glossário, regras de negócio e casos de uso são derivados das células, e não escritos à parte.
 
 ## Valores
 
@@ -27,30 +31,32 @@ Disso decorre quase todo o resto:
 2. **Densa.** Evita-se ao máximo a formatação e a separação em seções: o significado vem da posição no texto. A redação é objetiva e sucinta, pode usar símbolos e notações convencionadas, e não diz o que não precisa ser dito. Cada linha traz uma afirmação, e a única prosa é a frase que define cada célula; explicações e exemplos ficam nos documentos derivados.
 3. **Hierárquica.** A estrutura vem de títulos, que organizam os blocos, e de sub-itens, que detalham as linhas. A profundidade de ambos é livre: usa-se a que o conteúdo pedir.
 4. **Fonte única da verdade.** Descreve só o que foi comprometido, e cada afirmação verificável diz se está implementada ou não. Ideias, histórico e justificativas ficam fora.
-5. **Sem redundância.** Cada termo e cada regra são escritos uma vez. Índices, mapas, glossários e tudo o mais que é derivável são gerados por programa, de forma determinística e mecânica, e nunca mantidos manualmente, nem por pessoas nem por agentes de IA.
-6. **Linguagem ubíqua.** Um termo, um significado, em todo o projeto. Sinônimos proibidos são declarados e verificados.
-7. **Base para extrair outros documentos.** Visão, glossário, casos de uso, regras de negócio, cenários de teste e manuais são derivados, gerados a partir da fonte e com a origem de cada afirmação.
+5. **Sem redundância.** Cada termo e cada regra são escritos uma vez. Índices, mapas, glossários e tudo o mais que se deriva mecanicamente são gerados por programa, de forma determinística, e nunca mantidos manualmente, nem por pessoas nem por agentes de IA.
+6. **Linguagem ubíqua.** Um termo, um significado, em todo o produto. Sinônimos proibidos são declarados e verificáveis.
+7. **Base para extrair outros documentos.** Visão, casos de uso, regras de negócio, cenários de teste e manuais são derivados: redigidos por um agente de IA a partir da fonte, por um prompt especializado, e com a origem de cada afirmação.
 8. **Verificável por programa.** A gramática é fixa para que um programa cheque a especificação sem interpretar o texto.
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
-10. **Fundamentada em decisões.** As pequenas decisões por trás das afirmações ficam em anotações densas à parte, por área e tipo de especificação, e citam as linhas que governam.
+10. **Fundamentada em decisões.** As pequenas decisões por trás das afirmações ficam em anotações densas à parte, por área, e citam as linhas que governam.
 11. **Explícita sobre lacunas.** Dúvidas sobre o que foi comprometido viram perguntas abertas, versionadas junto do texto, em vez de serem preenchidas por suposição.
 12. **Não técnica.** Descreve o que o sistema é e o que ele faz para o negócio, sem entrar em questões técnicas, que começam no documento de arquitetura. Também não documenta o negócio em si, isto é, como ele funciona sem o sistema.
-13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização; agentes leem só a área de que precisam e seguem regras explícitas.
+13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização por quem conhece a legenda; agentes leem só a área de que precisam e seguem regras explícitas.
 
 ## Diferenciais em relação a RUP, ágil, BDD e DDD
 
 RUP, os métodos ágeis, BDD e DDD são abordagens amplas de processo, de prática e de modelagem. A comparação abaixo trata só de como cada uma documenta o produto. O Tabularium é compatível com as quatro e aproveita ideias de todas.
 
-Usar o formato Tabularium para guardar a especificação não impede que a equipe adote a metodologia de sua preferência para amadurecer o entendimento do problema de negócio que a aplicação vai atender.
+Usar o formato Tabularium para guardar a especificação não impede que a equipe adote a metodologia de sua preferência para amadurecer o entendimento do problema de negócio que a aplicação vai atender. O formato também não define, por ora, como uma mudança na especificação é proposta, revisada e aceita: isso fica com o processo da equipe.
+
+Na tabela, a coluna do Tabularium descreve o que o formato pretende; o que já existe está no aviso do início.
 
 | Aspecto | RUP | Ágil | BDD | DDD | Tabularium |
 | --- | --- | --- | --- | --- | --- |
 | Unidade de organização | Artefato por tipo: visão, casos de uso, regras, especificação suplementar | História de usuário, num backlog | Funcionalidade e cenário | Contexto delimitado, ligado a modelo e equipe | Célula de conceitos, agrupada em áreas por relação medida |
 | Onde está tudo sobre uma coisa do domínio | Espalhado por vários artefatos | Espalhado por histórias de várias iterações; o estado atual do produto não está escrito | Espalhado por cenários de várias funcionalidades | No modelo e no código; a documentação é informal | Num único bloco |
-| Redundância | Alta: casos de uso remetem a regras, glossário repete o modelo | Alta: histórias novas se sobrepõem às antigas | Alta: contexto repetido a cada cenário | Baixa no código, sem controle na documentação | Proibida e verificada |
+| Redundância | Alta: casos de uso remetem a regras, glossário repete o modelo | Alta: histórias novas se sobrepõem às antigas | Alta: contexto repetido a cada cenário | Baixa no código, sem controle na documentação | Proibida, e verificável por programa |
 | Forma do texto | Modelos de documento em prosa | "Como…, quero…, para…" e critérios de aceite | Dado/Quando/Então | Diagramas e conversa | Lista densa com gramática fixa |
 | Verificação automática | Não há | Não há | Do sistema, pelos cenários executáveis; não da documentação | Não há | Da própria especificação |
-| Outros documentos | Cada artefato escrito à mão | Escritos à mão, quando existem | Relatórios de execução | Não há | Todos gerados da fonte |
+| Outros documentos | Cada artefato escrito à mão | Escritos à mão, quando existem | Relatórios de execução | Não há | Derivados da fonte: índices e glossário por programa, os demais redigidos por agente de IA |
 | Justificativas | Diluídas nos documentos, quando existem | Ficam na conversa | Raramente registradas | Ficam na conversa | Pequenas decisões em anotações densas à parte, que citam as linhas que governam |
 | Lacunas | Implícitas | Tratadas na conversa, durante o refinamento | Cartões vermelhos do Example Mapping, fora do texto | Ficam na conversa | Perguntas abertas versionadas e linhas provisórias marcadas |
 | Agentes de IA | Não trata | Não trata | Não trata | Não trata | Instruções próprias e gramática que um agente consegue seguir |
@@ -61,7 +67,7 @@ O Tabularium adota ideias de cada uma dessas abordagens e deixa outras de fora, 
 | --- | --- | --- |
 | RUP | Começar a descrição do produto pelo problema que ele resolve. Registrar as organizações e os sistemas de fora que influenciam as regras. Descrever cada ação do usuário com suas pré-condições e exceções. Usar a lista FURPS+ para revisar se falta algum requisito de qualidade. | Um documento para cada tipo de informação, porque isso espalha o mesmo assunto por vários lugares. Casos de uso escritos como passos numerados, porque ficam longos e repetem as regras. |
 | Ágil | Descrever cada ação dizendo quem a faz e o que quer alcançar, com critérios de aceite. Manter as ideias ainda não aprovadas fora da especificação, num backlog. | Guardar as histórias como documentação do produto. Cada história descreve uma mudança pedida num certo momento; juntas, elas não mostram como o produto é hoje. |
-| BDD | Usar exemplos concretos para descobrir regras. Registrar por escrito as dúvidas que aparecem. Fazer cada teste citar a regra que ele verifica. | Escrever a especificação em Dado/Quando/Então. A notação é longa e repete o contexto a cada cenário; no Tabularium, os cenários são gerados a partir da especificação. |
+| BDD | Usar exemplos concretos para descobrir regras. Registrar por escrito as dúvidas que aparecem. Fazer cada teste citar a regra que ele verifica. | Escrever a especificação em Dado/Quando/Então. A notação é longa e repete o contexto a cada cenário; no Tabularium, os cenários são derivados da especificação. |
 | DDD | Um vocabulário único, usado por todos, com um só significado por termo. Registrar os fatos importantes do domínio e o que acontece em consequência de cada um. Separar o que o usuário faz do que ele apenas consulta. | Dividir o produto em contextos, cada um com vocabulário próprio. Essa divisão é uma decisão de arquitetura, e o Tabularium mantém um vocabulário só para o produto inteiro. |
 
 ## Organização dos arquivos
@@ -74,7 +80,8 @@ specs/
   _produto.md        o que vale para o produto inteiro
   _perguntas.md      perguntas abertas (opcional)
   <area>.md          uma área: coleção de células de conceitos fortemente relacionadas; um arquivo por área
-decisoes/            pequenas decisões em anotações densas, por área e tipo de especificação (fora da especificação)
+decisoes/
+  <area>/            pequenas decisões em anotações densas, uma por arquivo (fora da especificação)
 ```
 
 Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, as perguntas abertas que a tocam e quais linhas têm decisões.
@@ -100,7 +107,7 @@ Para classificar um item, para-se no primeiro teste com resposta sim (CEL-R9):
 | Há algo a afirmar sobre ela que não pertence a nenhuma outra? | Célula |
 | Nenhum dos anteriores | Termo na linguagem da área |
 
-Uma tela não é célula: é um conjunto de visões. Uma capacidade ou visão sem dono natural revela uma célula que falta (CEL-R10).
+Uma tela não é célula: é um conjunto de visões. Uma capacidade ou visão sem dono natural revela uma célula que falta (CEL-R10). Uma capacidade que altera mais de uma célula mora numa só, e as outras reagem a um evento dela (CAP-R2).
 
 ## O bloco de célula
 
@@ -170,6 +177,8 @@ A lápide nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportame
 
 Uma correção de redação mantém o identificador e a marca. Uma mudança de significado retira a linha e cria outra (LIN-R3), que nasce `[ ]`: a lápide e a linha nova ficam pendentes até o produto acompanhar, e o agente enxerga a mudança sem precisar comparar versões. Mover uma célula de uma área para outra não muda nenhum identificador (ARE-R3).
 
+Lápides acumuladas viram ruído e pesam contra a densidade. Por isso podem ser podadas, quando quem mantém a especificação achar oportuno: sai a lápide `[x]` que nenhuma linha e nenhuma decisão ainda cita (LAP-R9). O número dela continua sem voltar, e quem o lembra é o controle de versão.
+
 ## Linguagem ubíqua
 
 Cada termo é definido uma única vez, sem negrito, no lugar mais específico que o comporta (TRM-R1):
@@ -185,7 +194,7 @@ Cada termo é definido uma única vez, sem negrito, no lugar mais específico qu
 
 Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o verificador acusa quem os usar.
 
-Não existe glossário escrito à mão. Ele é gerado juntando todas as definições, cada uma com o tipo de termo e o lugar de origem.
+Não existe glossário escrito à mão. Ele é gerado por programa, juntando todas as definições, cada uma com o tipo de termo e o lugar de origem.
 
 ## Atributos
 
@@ -228,7 +237,7 @@ Um **Produto** e a quantidade dele dentro de um **Pedido**.
 - [x] PGC-R1  Parcelamento só acima do valor mínimo da loja
 ```
 
-As cardinalidades são `1`, `0..1`, `0..N` e `1..N`, e em associações substituem o qualificador `opcional`. Cada relação é declarada numa só das duas células; o outro lado, quando importa, vai em `inverso:` (ATR-R9). Um caso particular sem linhas próprias não é especialização, e sim o valor de um atributo (CEL-R19). Com as relações declaradas assim, o diagrama de domínio é gerado, nunca desenhado à mão.
+As cardinalidades são `1`, `0..1`, `0..N` e `1..N`, e em associações substituem o qualificador `opcional`. Cada relação é declarada numa só das duas células; o outro lado, quando importa, vai em `inverso:` (ATR-R9). Um caso particular sem linhas próprias não é especialização, e sim o valor de um atributo (CEL-R19). Com as relações declaradas assim, o diagrama de domínio é derivado, nunca desenhado à mão.
 
 ## Eventos e reações
 
@@ -242,7 +251,7 @@ Quando algo que acontece numa célula afeta outra, o efeito é escrito na célul
 - [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
 ```
 
-Quem lê o bloco do Pedido vê tudo o que pode acontecer com ele, inclusive o que vem de fora. Um evento só existe se alguma regra reage a ele (EVT-R2), o que evita listar toda mudança de estado. Eventos são fatos do domínio, não mensagens do sistema: a arquitetura decide como realizá-los.
+Quem lê o bloco do Pedido vê tudo o que pode acontecer com ele, inclusive o que vem de fora. Quem lê o bloco do Cliente não vê o que a exclusão provoca: essa visão inversa, de quem reage a cada evento, está no Índice gerado. Um evento só existe se alguma regra reage a ele (EVT-R2), o que evita listar toda mudança de estado. Eventos são fatos do domínio, não mensagens do sistema: a arquitetura decide como realizá-los.
 
 ## Onde mora cada regra
 
@@ -271,7 +280,7 @@ Quando uma linha muda de dono, ela ganha o identificador da nova célula e herda
 - [x] PED-C3  movida → [ENT-C1]
 ```
 
-Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14). O verificador sinaliza, como alerta, quando reagrupar: célula grande demais, célula sem linhas próprias, linha que cita mais outra célula do que a sua, duas células que só aparecem juntas. A decisão continua sendo de quem escreve.
+Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14). O verificador deve sinalizar, como alerta, quando reagrupar: célula grande demais, célula sem linhas próprias, linha que cita mais outra célula do que a sua, duas células que só aparecem juntas. A decisão continua sendo de quem escreve.
 
 ## Atores, externos e jornadas
 
@@ -285,7 +294,7 @@ Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14
 
 Uma área é um arquivo que agrupa células fortemente relacionadas. Ela se forma em torno de uma **célula central** e das células que dependem principalmente dela (ARE-R8). Área é só organização: não tem sigla, não redefine termos, e mover uma célula entre áreas não muda nenhum identificador.
 
-A proximidade lógica é medida, não apenas declarada. Para cada célula, contam-se as referências feitas e recebidas, por área. Uma célula que troca mais referências com outra área do que com a sua é candidata a mudar de lugar (ARE-R9). Ao escrever a especificação do próprio formato, essa medição revelou uma área inteira que existia por afinidade temática, sem relação real entre suas células, e uma redundância escondida na lista de checagens do verificador.
+A proximidade lógica é medida, não apenas declarada. Para cada célula, contam-se as referências feitas e recebidas, por área. Uma célula que troca mais referências com outra área do que com a sua é candidata a mudar de lugar (ARE-R9). Ao escrever a especificação do próprio formato, essa medição, feita ainda sem o verificador, revelou uma área inteira que existia por afinidade temática, sem relação real entre suas células, e uma redundância escondida na lista de checagens do verificador.
 
 ## Perguntas abertas
 
@@ -303,25 +312,28 @@ Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é jus
 
 | O quê | Onde fica | Como se liga |
 | --- | --- | --- |
-| Justificativas | `decisoes/`, em anotações densas por área e tipo de especificação; só se abre quando se quer o porquê | A decisão cita os identificadores das linhas que embasa; uma linha pode ter várias decisões, e a especificação não cita nenhuma |
+| Justificativas | `decisoes/<area>/`, em anotações densas, uma por arquivo; só se abre quando se quer o porquê | A decisão cita os identificadores das linhas que embasa; uma linha pode ter várias decisões, e a especificação não cita nenhuma |
 | Ideias e pedidos não comprometidos | Rastreador | Viram linhas `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
 | Explicações e exemplos | Documentos derivados | Cada afirmação cita sua origem |
 
+Cada decisão é um arquivo com um cabeçalho curto, que diz o tema, a escolha numa frase, quando vale a pena abri-la e os identificadores das linhas que governa, e um corpo em lista com o contexto, as alternativas descartadas e as consequências. A pasta só guarda decisões vigentes: a que deixa de valer é apagada, e o controle de versão guarda o passado.
+
 ## Verificação e geração
 
-A gramática é fixa para que um programa, o **Verificador**, consiga checar a especificação sem interpretar o texto (VRF-R3). As regras que ele checa terminam com a severidade, `· erro` ou `· alerta` (VRF-R4): identificadores únicos e nunca reaproveitados, referências que resolvem, termos definidos uma única vez, primeira menção em negrito, eventos com reação, tabelas de decisão completas, linhas na ordem certa, perguntas citadas ou com `sobre:`, áreas coesas e blocos dentro do tamanho.
+A gramática é fixa para que um programa, o **Verificador**, consiga checar a especificação sem interpretar o texto (VRF-R3). Ele ainda não existe. Será um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro de uma skill: o agente o executa e lê a saída, mas não o substitui (VRF-R5). As regras que ele vai checar terminam com a severidade, `· erro` ou `· alerta` (VRF-R4): identificadores únicos e nunca reaproveitados, referências que resolvem, termos definidos uma única vez, primeira menção em negrito, eventos com reação, tabelas de decisão completas, linhas na ordem certa, perguntas citadas ou com `sobre:`, áreas coesas e blocos dentro do tamanho.
 
-O mesmo programa gera o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais e as definições de link.
+O mesmo programa vai gerar o que se deriva mecanicamente: o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais e as definições de link. Essas partes são sempre iguais para a mesma especificação.
 
 ## Documentos derivados
 
-Os documentos tradicionais são gerados, nunca editados, e cada afirmação cita o identificador ou o termo de origem (DER-R1, DER-R2). Uma afirmação sem origem é invenção de quem gerou ou lacuna da especificação, e as duas descobertas são úteis.
+Os documentos tradicionais são outra classe: são redigidos por um agente de IA a partir da especificação, com um prompt especializado para cada documento (DER-R4). Nunca são editados à mão, e cada afirmação cita o identificador ou o termo de origem (DER-R1, DER-R2). Uma afirmação sem origem é invenção de quem gerou ou lacuna da especificação, e as duas descobertas são úteis.
+
+Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de versão é escolha da equipe, que assume o risco de ficarem defasados; ela pode também automatizar a regeração a cada mudança na especificação. Propagar essas atualizações não é responsabilidade do formato (DER-R5).
 
 | Documento | De onde sai |
 | --- | --- |
 | Visão | `Propósito`, atores, externos e fora de escopo |
-| Glossário | Todas as definições |
 | Modelo de domínio | Linhas de modelo e relações entre células |
 | Catálogo de regras de negócio | Todas as R |
 | Especificação suplementar | As Q e as regras globais |
@@ -339,11 +351,15 @@ O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especi
 2. Escreva `_produto.md`: o problema, os atores e as primeiras áreas.
 3. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões, cada linha verificável marcada `[x]` ou `[ ]`.
 4. Registre em `_perguntas.md` as dúvidas sobre o que foi comprometido, em vez de chutar. Ideias vão para o rastreador.
-5. Rode o verificador a cada mudança e acompanhe os alertas de coesão.
+5. Confira cada mudança pela lista de `AGENTS.md`. Quando o verificador existir, rode-o a cada mudança e acompanhe os alertas de coesão.
 
 ## Limites e cuidados
 
-- **O verificador é parte do formato, não um acessório.** Sem ele, as regras de unicidade, de referência e de coesão dependem de disciplina, que não sobrevive a muitos autores.
+- **As afirmações deste README ainda são hipóteses.** As duas aplicações de exemplo vão pôr à prova: se a célula basta ao agente para uma tarefa; se um agente descobre e entende a aplicação com facilidade; se um novato aprende o sistema, pela fonte e pelos derivados; se o formato sem prosa comporta tudo o que um produto real precisa dizer; se a proximidade medida aponta agrupamentos melhores; e se é fácil exportar para outros documentos. Que as linhas `[ ]` conduzem uma implementação é intenção, e não está entre as hipóteses em teste.
+- **O verificador é parte do formato, não um acessório.** Sem ele, as regras de unicidade, de referência e de coesão dependem de disciplina, que não sobrevive a muitos autores. Enquanto ele não existir, é assim que o formato funciona.
+- **Um produto, uma linguagem.** Uma especificação descreve um só produto, com um significado por termo (ESP-R8). Quando dois significados legítimos do mesmo termo não se conciliam, são dois produtos, cada um com a sua especificação.
+- **A marca `[x]` vale o cuidado de quem a mantém.** Ela precisa ser atualizada a cada evolução do código, e o formato ainda não diz o que prova que continua verdadeira. Numa especificação guardada longe do código, como nos repositórios de exemplo, as marcas são um retrato datado.
+- **O trabalho em equipe ainda não está resolvido.** O formato não trata, por ora, de dois autores que criam o mesmo identificador em paralelo, nem de quem do negócio aprova uma mudança e sobre qual texto.
 - **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato são os documentos derivados. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser gerados, nunca copiados.
 - **O formato não substitui a conversa.** Ele registra decisões de produto, mas não as toma. As perguntas abertas existem justamente para que a especificação mostre o que ainda não foi decidido.
 - **A justificativa de cada escolha deste formato deveria estar em `decisoes/`.** Este README resume algumas delas, mas, pelas regras do próprio formato, esse é o lugar errado para guardá-las.

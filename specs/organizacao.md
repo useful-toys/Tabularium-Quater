@@ -19,6 +19,7 @@ Conjunto de arquivos Markdown que descreve um produto inteiro e é a fonte únic
 - [x] ESP-R5  Histórico, justificativas e explicações didáticas ficam fora do texto
 - [x] ESP-R6  O texto descreve só o que foi comprometido; ideias ficam no **Rastreador** até amadurecerem
 - [ ] ESP-R7  Títulos organizam os blocos em hierarquia, com profundidade livre; dentro do bloco não há subtítulos, e a profundidade dos sub-itens é livre
+- [ ] ESP-R8  Uma especificação descreve um só produto, com uma só linguagem; significados de um **Termo** que não se conciliam indicam dois produtos, cada um com a sua especificação
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
   - o **Índice** da **Área** diz o que ela usa de fora
 
@@ -78,6 +79,7 @@ Programa que checa a **Especificação** e produz as partes geradas, sem interpr
 - [ ] VRF-R2  **Severidade** erro bloqueia a mudança; alerta pede revisão
 - [ ] VRF-R3  Toda checagem é sintática
 - [ ] VRF-R4  Checa toda **Regra** terminada em `· erro` ou `· alerta`; a marca é a **severidade**
+- [ ] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui
 - [ ] VRF-V1  Ver as violações da **Especificação**
   - cada violação cita o **Identificador** da **Regra** violada e a **severidade**
 - [ ] VRF-C1  Gerar as partes derivadas
@@ -89,7 +91,7 @@ Programa que checa a **Especificação** e produz as partes geradas, sem interpr
 
 ## Índice  `IND`
 Seção gerada no topo de uma **Área** com o que ela usa de outras áreas.
-- conteúdo: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui, de **Perguntas** que tocam a área e de **Linhas** da área citadas por **Decisões**, com os códigos de todas as que citam cada uma
+- conteúdo: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui, de **Perguntas** que tocam a área e de **Linhas** da área citadas por **Decisões**, com os nomes de todas as que citam cada uma
 - [ ] IND-R1  Nunca é editado à mão · erro
 - [ ] IND-R2  Começa com `<!-- gerado; não editar -->`
 
@@ -103,5 +105,7 @@ Documento produzido a partir da **Especificação** para um público ou uma fina
 - [x] DER-R1  É descartável: nunca é editado nem citado como fonte
 - [x] DER-R2  Cada afirmação cita o **Identificador** ou o **Termo** de origem
 - [x] DER-R3  Afirmação sem origem é invenção de quem gerou ou lacuna da **Especificação**
+- [ ] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Verificador**
+- [ ] DER-R5  Guardá-lo sob **Controle de versão** é escolha de quem adota, que assume a divergência; mantê-lo em dia não cabe ao formato
 - [ ] DER-V1 · leitor  Ler um documento derivado
   - cada afirmação leva a sua origem
