@@ -28,7 +28,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 1. Nunca renumere um identificador e nunca reutilize um número. O próximo número é o maior já usado para aquela sigla e papel, mais um, contando os que viraram lápide. Siglas de células extintas ou fundidas também não voltam.
 2. Para retirar uma linha com identificador, troque-a por uma lápide no mesmo lugar: `- [ ] PED-R7  removida`. Para mudá-la de célula, crie a linha na nova dona e deixe `- [x] PED-C3  movida → [ENT-C1]` no lugar antigo. Nunca apague o identificador.
 3. Nunca edite seções marcadas `<!-- gerado; não editar -->`, como o Índice das áreas e o glossário. Elas são refeitas por programa.
-4. Defina cada termo uma única vez, sem negrito, no lugar que o tipo de termo pede. Em cada item de lista, frase de definição ou fileira de tabela, escreva em negrito a primeira menção de cada termo; as seguintes, no mesmo item, ficam sem negrito. Não contam como menção: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula dentro do seu bloco. Nunca use um termo listado em `não usar`.
+4. Defina cada termo uma única vez, sem negrito, no lugar que o tipo de termo pede. Em cada item de lista, frase de definição ou fileira de tabela, escreva em negrito a primeira menção de cada termo; as seguintes, no mesmo item, ficam sem negrito. Não contam como menção: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula dentro do seu bloco. Nunca use um sinônimo que aparece tachado no fim de uma definição, como em `(~~valor, montante~~)`.
 5. Uma afirmação por linha. A única prosa é a frase de definição de cada célula.
 6. Não escreva histórico, justificativas, ideias, exemplos didáticos nem explicações. Se a mudança precisa de um porquê, peça uma decisão. Uma ideia ainda não comprometida vai para o rastreador, nunca para a especificação nem para `_perguntas.md`.
 7. Não acrescente nada que não foi pedido: nem regras "óbvias", nem critérios extras, nem eventos sem reação.
@@ -65,7 +65,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Criar uma célula:** escolha uma sigla de 2 a 5 letras nunca usada; escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem fixa.
 - **Mover uma linha para outra célula:** crie a linha na nova dona, com o próximo número da sigla dela e a mesma marca; no lugar antigo, deixe a lápide `movida → [NOVO]`. O comportamento não mudou, então nada fica pendente.
 - **Dividir uma célula:** crie a célula nova e mova para ela as linhas que lhe pertencem.
-- **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, liste-o em `não usar` na que a absorveu; a sigla da absorvida não volta.
+- **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da definição da que a absorveu; a sigla da absorvida não volta.
 - **Rebaixar ou promover:** uma célula sem linhas com identificador vira atributo ou termo; um atributo que ganha atributos ou regras próprias vira célula, e o modelo de origem passa a citá-la.
 - **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo e acrescente a área na tabela de áreas de `_produto.md`, com a célula central.
 - **Mover uma célula de área:** mova o bloco inteiro; os identificadores não mudam.

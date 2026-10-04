@@ -90,7 +90,7 @@ Valor sem **identidade** usado por **Atributos**, como uma contagem ou um códig
 ## Termo  `TRM`
 Palavra ou expressão com significado definido uma única vez na **Especificação**.
 - nome: texto que não se repete na **Especificação**, exceto nome de **Atributo**, que não se repete na sua **Célula**
-- não usar: sinônimos proibidos, como sub-item da **definição**; opcional
+- não usar: sinônimos proibidos, tachados e entre parênteses no fim da linha que define o termo, como `(~~valor, montante~~)`; opcional
 - evento: Termo renomeado
 - [x] TRM-R1  Lugar de definição por tipo de termo:
 

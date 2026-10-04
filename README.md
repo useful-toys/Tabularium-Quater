@@ -55,14 +55,14 @@ Usar o formato Tabularium para guardar a especificação não impede que a equip
 | Lacunas | Implícitas | Tratadas na conversa, durante o refinamento | Cartões vermelhos do Example Mapping, fora do texto | Ficam na conversa | Perguntas abertas versionadas e linhas provisórias marcadas |
 | Agentes de IA | Não trata | Não trata | Não trata | Não trata | Instruções próprias e gramática que um agente consegue seguir |
 
-O que o formato Tabularium aproveita de cada uma, e o que recusa de forma deliberada:
+O Tabularium adota ideias de cada uma dessas abordagens e deixa outras de fora, de propósito:
 
-| Origem | Aproveitado | Recusado |
+| Abordagem | O que o Tabularium adota | O que não adota, e por quê |
 | --- | --- | --- |
-| DDD | Linguagem ubíqua, eventos e reações, separação entre fazer e ver | Contextos delimitados com linguagem própria, que pertencem à arquitetura |
-| BDD | Exemplos como ferramenta de descoberta, perguntas abertas (do Example Mapping), testes que citam identificadores | A notação Dado/Quando/Então na fonte, por ser prolixa; ela vira documento derivado |
-| Ágil | História como capacidade com ator e objetivo, critérios de aceite, backlog fora da especificação até o compromisso | A história como registro permanente: ela descreve uma mudança, não o estado do produto |
-| RUP | Problema no propósito, partes interessadas como externos, pré-condições e fluxos alternativos nos critérios, FURPS+ como lista de revisão | A organização por tipo de artefato e os fluxos passo a passo |
+| RUP | Começar a descrição do produto pelo problema que ele resolve. Registrar as organizações e os sistemas de fora que influenciam as regras. Descrever cada ação do usuário com suas pré-condições e exceções. Usar a lista FURPS+ para revisar se falta algum requisito de qualidade. | Um documento para cada tipo de informação, porque isso espalha o mesmo assunto por vários lugares. Casos de uso escritos como passos numerados, porque ficam longos e repetem as regras. |
+| Ágil | Descrever cada ação dizendo quem a faz e o que quer alcançar, com critérios de aceite. Manter as ideias ainda não aprovadas fora da especificação, num backlog. | Guardar as histórias como documentação do produto. Cada história descreve uma mudança pedida num certo momento; juntas, elas não mostram como o produto é hoje. |
+| BDD | Usar exemplos concretos para descobrir regras. Registrar por escrito as dúvidas que aparecem. Fazer cada teste citar a regra que ele verifica. | Escrever a especificação em Dado/Quando/Então. A notação é longa e repete o contexto a cada cenário; no Tabularium, os cenários são gerados a partir da especificação. |
+| DDD | Um vocabulário único, usado por todos, com um só significado por termo. Registrar os fatos importantes do domínio e o que acontece em consequência de cada um. Separar o que o usuário faz do que ele apenas consulta. | Dividir o produto em contextos, cada um com vocabulário próprio. Essa divisão é uma decisão de arquitetura, e o Tabularium mantém um vocabulário só para o produto inteiro. |
 
 ## Organização dos arquivos
 
@@ -73,7 +73,7 @@ specs/
   _convencoes.md     legenda do formato; igual em todo projeto
   _produto.md        o que vale para o produto inteiro
   _perguntas.md      perguntas abertas (opcional)
-  <area>.md          uma área por arquivo
+  <area>.md          uma área: coleção de células de conceitos fortemente relacionadas; um arquivo por área
 decisoes/            pequenas decisões em anotações densas, por área e tipo de especificação (fora da especificação)
 ```
 
@@ -112,8 +112,7 @@ Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades 
 - pertence a 1 **Cliente**; inverso: 0..N
 - número: texto; identidade; único; imutável
 - situação: aberto | aguardando pagamento | pago | enviado | cancelado; inicial: aberto
-- total: dinheiro; derivado; soma de preço × quantidade dos **Itens de pedido**
-  - não usar: valor, montante
+- total: dinheiro; derivado; soma de preço × quantidade dos **Itens de pedido** (~~valor, montante~~)
 - evento: Pedido pago
 - [x] PED-R1  Visível só ao **Cliente** dono e ao **Atendente**
 - [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
@@ -184,7 +183,7 @@ Cada termo é definido uma única vez, sem negrito, no lugar mais específico qu
 | Ator ou externo | `Atores` ou `Externos` em `_produto.md` |
 | Qualquer outro termo | Seção `Linguagem` da área |
 
-Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Sinônimos proibidos ficam junto da definição (`não usar: valor`), e o verificador acusa quem os usar.
+Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o verificador acusa quem os usar.
 
 Não existe glossário escrito à mão. Ele é gerado juntando todas as definições, cada uma com o tipo de termo e o lugar de origem.
 

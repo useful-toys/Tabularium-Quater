@@ -42,6 +42,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `[PED-R1]`: referência a identificador
 - `**Termo**`: referência a termo, na primeira menção de cada item, frase de definição ou fileira de tabela; definições não levam negrito
 - não são menções: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula no seu bloco
+- `(~~valor, montante~~)` no fim da linha que define um termo: sinônimos que não devem ser usados
 - `**Célula.atributo**`: referência a atributo cujo nome se repete em outra célula
 - `· ator` logo após o identificador: ator da linha, quando não é o padrão
 - `Ao **Evento**:` no início de uma R: reação a um evento
