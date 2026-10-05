@@ -79,7 +79,7 @@ specs/
   _convencoes.md     legenda do formato; igual em todo projeto
   _produto.md        o que vale para o produto inteiro
   _perguntas.md      perguntas abertas (opcional)
-  _contadores.md     maior número já usado em cada sequência
+  _contadores.md     maior número já usado em cada sequência, com o nome da última alocação
   <area>.md          uma área: coleção de células de conceitos fortemente relacionadas; um arquivo por área
   decisoes/          decisões relevantes, uma por arquivo; lidas só sob demanda
     AGENTS.md        instruções para agentes sobre decisões
@@ -170,6 +170,10 @@ Isso é tudo o que é preciso para gerar um caso de uso completo, sem a prolixid
 ## Identificadores, lápides e citação
 
 Toda linha com papel tem um identificador no formato `SIGLA-PN`: a sigla da célula, a letra do papel e um número sequencial. `PED-C2` é a segunda capacidade do Pedido. Os identificadores nunca são renumerados, e um número usado nunca volta (IDT-R2).
+
+O maior número já usado em cada sequência fica escrito em `_contadores.md`, um item por sigla e papel, um para as perguntas e um para as decisões. Cada item traz o número e um nome curto da última alocação, como `- PED-R  8  pago-nao-edita`. Alocar é usar o número guardado mais um e atualizar o item na mesma mudança (CTD-R5).
+
+Isso serve a dois fins. O número continua conhecido depois que lápides são podadas e decisões são limpas. E, quando duas pessoas alocam o mesmo número em paralelo, cada uma escreve um nome curto diferente no mesmo item, e o controle de versão acusa o conflito. Sem o nome curto as duas escreveriam a mesma linha, e a duplicata entraria em silêncio; é o que aconteceria com duas decisões de mesmo código, que são arquivos diferentes (CTD-R7). Quem entra depois renumera o que colidiu: um número só deixa de poder mudar quando entra na linha principal (CTD-R6).
 
 Uma linha retirada vira **lápide** no mesmo lugar, para que as referências antigas continuem resolvendo (LAP-R1):
 

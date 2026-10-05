@@ -52,13 +52,14 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 ## Arquivo de contadores  `CTD`
 Arquivo que guarda o maior número já usado em cada sequência da **Especificação**, para que nenhum volte.
 - arquivo: `_contadores.md`; imutável
-- seções: `Siglas`, `Perguntas`, `Decisões`, nesta ordem
-- [ ] CTD-R1  `Siglas` tem um item por **Sigla de célula** já usada, em ordem alfabética, com o maior número já usado em cada **Letra de papel**
-- [ ] CTD-R2  `Perguntas` e `Decisões` guardam o maior **Código de pergunta** e o maior **Código de decisão** já usados
+- seções: `Identificadores`, `Perguntas`, `Decisões`, nesta ordem
+- [ ] CTD-R1  `Identificadores` tem um item por **Sigla de célula** e **Letra de papel** já usadas, em ordem alfabética, com o maior número já usado e um nome curto da última alocação
+- [ ] CTD-R2  `Perguntas` e `Decisões` têm um item cada, com o maior **Código de pergunta** e o maior **Código de decisão** já usados e um nome curto da última alocação
 - [ ] CTD-R3  Um número guardado só cresce, e uma **Sigla de célula** nunca sai, mesmo extinta · erro
 - [ ] CTD-R4  Nenhum **Identificador**, **Código de pergunta** ou **Código de decisão** da **Especificação** passa do número guardado · erro
-- [ ] CTD-R5  Alocar é usar o número guardado mais um e atualizá-lo na mesma mudança ⟸ [D22]
+- [ ] CTD-R5  Alocar é usar o número guardado mais um e, na mesma mudança, atualizar o número e o nome curto ⟸ [D22]
 - [ ] CTD-R6  Código alocado fora da linha principal do **Controle de versão** é provisório, e quem entra depois renumera o que colidir; depois de entrar, nunca é renumerado ⟸ [D23]
+- [ ] CTD-R7  O nome curto serve só para que duas alocações do mesmo número, feitas em paralelo, escrevam itens diferentes e conflitem ⟸ [D22]
 
 ## Área  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.

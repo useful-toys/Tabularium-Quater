@@ -21,7 +21,7 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 
 1. Uma decisão responde a uma só questão. Questão nova cria decisão nova; nunca acrescente uma segunda resolução a uma decisão existente.
 2. Só edite a resolução quando a mesma questão ganha outra resposta.
-3. Nunca reutilize um código. O próximo é o que `_contadores.md`, na pasta da especificação, guarda em `Decisões`, mais um; atualize o contador na mesma mudança. Um código que ainda não entrou na linha principal é provisório: se outra mudança entrou antes com o mesmo código, renumere o seu, no arquivo e nos itens que o citam.
+3. Nunca reutilize um código. O próximo é o que `_contadores.md`, na pasta da especificação, guarda em `Decisões`, mais um. Na mesma mudança, atualize ali o número e o nome curto, que é o nome do arquivo da decisão sem o código. Um código que ainda não entrou na linha principal é provisório: se outra mudança entrou antes com o mesmo código, renumere o seu, no arquivo e nos itens que o citam.
 4. Só registre uma decisão quando havia ao menos uma alternativa plausível. Não invente alternativas nem motivos: se o porquê não foi dito, pergunte.
 5. A ligação é de mão única. Na especificação entra só a marca `⟸ [Dnn]` no fim do item; o texto da decisão nunca entra em área nem em `_produto.md`, e a decisão não cita os itens que a citam.
 6. Use os termos da especificação, sem negrito. Nunca use um sinônimo proibido.

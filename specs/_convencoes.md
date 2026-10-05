@@ -6,7 +6,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `_convencoes.md`: esta legenda
 - `_produto.md`: o que vale para o produto inteiro; lido antes das áreas; inclui os externos, sistemas ou organizações que alguma regra pressupõe
 - `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional
-- `_contadores.md`: maior número já usado por sigla e papel, por pergunta e por decisão; só cresce; alocar é usar o número guardado mais um e atualizá-lo
+- `_contadores.md`: um item por sequência, como `- PED-R  8  pago-nao-edita`: o maior número já usado e um nome curto da última alocação; o número só cresce; alocar é usar o número guardado mais um e atualizar o item
 - `decisoes/`: decisões relevantes, uma por arquivo, lidas só sob demanda; tem a sua própria legenda e as suas instruções para agentes; os itens da especificação as citam, e elas não citam de volta
 - `<area>.md`: uma área; lida em qualquer ordem
 - `<area>/`: área dividida; `_area.md` traz as seções anteriores às células
