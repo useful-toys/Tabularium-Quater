@@ -5,7 +5,8 @@ Não nesta versão.
   - Definir o fluxo de propostas, revisões e tipos de mudança, como na versão anterior do formato: é processo pesado antes de o formato estar provado
 - Consequências
   - Ganha: o formato trata só de como a especificação é escrita
-  - Aceita: ficam sem regra os identificadores criados em paralelo por dois autores e a aprovação pelo negócio
+  - Aceita: fica sem regra quem do negócio aprova uma mudança, e sobre qual texto
 
 ## Histórico
+- 2026-10-04: os códigos alocados em paralelo ganharam regra própria e saíram do que se aceita
 - 2026-10-04: decisão criada

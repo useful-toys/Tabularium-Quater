@@ -8,7 +8,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - Não é documentação do negócio: como o negócio funciona sem o sistema fica fora
 - Diferencial: tudo o que se sabe sobre uma **Célula** mora num só bloco
 - Diferencial: cada afirmação existe uma vez e é citável por **Identificador**
-- Diferencial: pequenas **Decisões** ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação**
+- Diferencial: as **Decisões** relevantes ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação**
 - Diferencial: legível por pessoas sem renderização e econômica para agentes de IA, que leem só a **Área** de que precisam
 - Diferencial: um programa, o **Verificador**, checa a **Especificação** e gera o **Índice**, o **Glossário** e o **Mapa entre áreas**, sem interpretar o texto
 - Diferencial: os **Documentos derivados** são redigidos por agente de IA a partir da **Especificação**, com a origem de cada afirmação
@@ -42,7 +42,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 ## Externos
 - Controle de versão · histórico
   - guarda: todas as versões dos arquivos
-  - fornece: os **Identificadores** e os **Códigos de decisão** que já existiram
+  - fornece: a linha principal, a partir da qual nenhum código é renumerado
 - LGPD · lei geral de proteção de dados
   - impõe: identificar os dados **pessoais** tratados pelo produto
 - Rastreador · ideias

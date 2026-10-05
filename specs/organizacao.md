@@ -10,6 +10,7 @@ Conjunto de arquivos Markdown que descreve um produto inteiro e é a fonte únic
 - 1 **Arquivo de convenções**
 - 1 **Arquivo de produto**
 - 0..1 **Arquivo de perguntas**
+- 1 **Arquivo de contadores**
 - 1..N **Área**
 - evento: Especificação alterada
 - [x] ESP-R1  removida
@@ -47,6 +48,17 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 - [x] APR-R6  A relação entre **Áreas** não é escrita aqui; é o **Mapa entre áreas** gerado
 - [x] APR-R7  `Propósito` começa pelo problema que o produto resolve
 - [x] APR-R8  Cada **externo** diz, em sub-itens, o que guarda, fornece, recebe ou impõe
+
+## Arquivo de contadores  `CTD`
+Arquivo que guarda o maior número já usado em cada sequência da **Especificação**, para que nenhum volte.
+- arquivo: `_contadores.md`; imutável
+- seções: `Siglas`, `Perguntas`, `Decisões`, nesta ordem
+- [ ] CTD-R1  `Siglas` tem um item por **Sigla de célula** já usada, em ordem alfabética, com o maior número já usado em cada **Letra de papel**
+- [ ] CTD-R2  `Perguntas` e `Decisões` guardam o maior **Código de pergunta** e o maior **Código de decisão** já usados
+- [ ] CTD-R3  Um número guardado só cresce, e uma **Sigla de célula** nunca sai, mesmo extinta · erro
+- [ ] CTD-R4  Nenhum **Identificador**, **Código de pergunta** ou **Código de decisão** da **Especificação** passa do número guardado · erro
+- [ ] CTD-R5  Alocar é usar o número guardado mais um e atualizá-lo na mesma mudança ⟸ [D22]
+- [ ] CTD-R6  Código alocado fora da linha principal do **Controle de versão** é provisório, e quem entra depois renumera o que colidir; depois de entrar, nunca é renumerado ⟸ [D23]
 
 ## Área  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.
@@ -112,7 +124,7 @@ Documento produzido a partir da **Especificação** para um público ou uma fina
   - cada afirmação leva a sua origem
 
 ## Decisão  `DEC`
-Justificativa de um ponto não óbvio do produto, guardada fora da **Especificação** e lida só sob demanda.
+Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas** e do **Arquivo de produto** e lida só sob demanda.
 - código: **Código de decisão**; identidade; único; imutável
 - questão: texto terminado em `?`
 - resolução: uma frase, que responde à **questão**
@@ -137,7 +149,8 @@ Justificativa de um ponto não óbvio do produto, guardada fora da **Especifica�
 - [ ] DEC-R14  **Resolução** com mais de uma frase, ou com ponto e vírgula, indica mais de uma decisão · alerta
 - [ ] DEC-R15  Decisão com mais de 25 linhas indica mais de uma decisão · alerta
 - [ ] DEC-R16  Mais de 5 **alterações** indicam **resoluções** acumuladas · alerta
-- [ ] DEC-R17  O texto da decisão nunca é escrito na **Especificação**
+- [ ] DEC-R17  O texto da decisão nunca é escrito em **Área** nem no **Arquivo de produto**
+- [ ] DEC-R18  A pasta `decisoes/` fica junto dos arquivos da **Especificação** e tem legenda e instruções para agentes próprias, `_convencoes.md` e `AGENTS.md`, iguais em todos os projetos
 - [ ] DEC-C1  Registrar uma decisão
   - com o próximo **código** livre
   - ao menos um item passa a citá-la
@@ -147,4 +160,4 @@ Justificativa de um ponto não óbvio do produto, guardada fora da **Especifica�
   - exige: decisão órfã, conforme [DEC-R13]
   - o arquivo é apagado
   - decisão que só a apagada citava também é apagada
-  - o **Controle de versão** continua guardando o **código**
+  - o **Arquivo de contadores** impede que o **código** volte

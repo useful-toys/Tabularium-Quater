@@ -6,7 +6,8 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `_convencoes.md`: esta legenda
 - `_produto.md`: o que vale para o produto inteiro; lido antes das áreas; inclui os externos, sistemas ou organizações que alguma regra pressupõe
 - `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional
-- `decisoes/_produto/` e `decisoes/<area>/`, fora desta pasta: pequenas decisões, uma por arquivo, lidas só sob demanda; os itens da especificação as citam, e elas não citam de volta
+- `_contadores.md`: maior número já usado por sigla e papel, por pergunta e por decisão; só cresce; alocar é usar o número guardado mais um e atualizá-lo
+- `decisoes/`: decisões relevantes, uma por arquivo, lidas só sob demanda; tem a sua própria legenda e as suas instruções para agentes; os itens da especificação as citam, e elas não citam de volta
 - `<area>.md`: uma área; lida em qualquer ordem
 - `<area>/`: área dividida; `_area.md` traz as seções anteriores às células
 
@@ -38,7 +39,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 
 ## Marcas
 - `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: linha R, Q, C, V ou T, implementada por inteiro ou não; não há estado parcial; J e linhas de modelo não levam marca
-- `SIGLA-PN`: identificador; P é o papel, N o número; números e siglas nunca voltam
+- `SIGLA-PN`: identificador; P é o papel, N o número; números e siglas nunca voltam; fora da linha principal do controle de versão, um número recém-alocado ainda pode ser trocado se colidir
 - `[PED-R1]`: referência a identificador
 - `**Termo**`: referência a termo, na primeira menção de cada item, frase de definição ou fileira de tabela; definições não levam negrito
 - não são menções: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula no seu bloco
@@ -57,13 +58,3 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `- [x] PED-C3  movida → [ENT-C1]`: lápide de uma linha que mudou de célula; tem a marca da linha nova, que herda a da antiga
 - lápide `[x]` que nada mais cita pode ser podada; o número dela continua sem voltar
 - `<!-- gerado; não editar -->`: seção gerada por programa; documentos derivados, como visão, casos de uso e manual, são redigidos por agente e ficam fora desta pasta
-
-## Decisões
-- arquivo: `D07-nome-curto.md`; o código `Dnn` é único no produto e nunca volta
-- título: a questão, terminada em `?`, e o código, como `` # Quem vê um pedido?  `D07` ``
-- logo abaixo: a resolução, em uma frase
-- lista: `Contexto`, `Alternativas descartadas`, `Consequências`, nesta ordem; depois a seção `Histórico`, com data e uma linha por alteração
-- uma decisão responde a uma só questão; as alternativas descartadas são outras respostas a ela
-- um item do corpo pode citar outra decisão com `⟸ [Dnn]`
-- usa os termos da especificação, sem negrito
-- `README.md` de cada pasta de decisões: índice gerado por programa

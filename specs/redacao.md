@@ -52,7 +52,7 @@ Código que torna uma **Linha** citável.
   - exige: lápide marcada `[x]`
   - exige: nenhuma **Referência** a cita
   - a lápide sai do bloco
-  - o **Controle de versão** continua guardando o **Identificador** podado
+  - o **Arquivo de contadores** impede que o número volte
 
 ## Referência  `REF`
 Citação, em um lugar, de algo definido em outro.

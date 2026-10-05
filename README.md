@@ -4,7 +4,7 @@ O Tabularium é um formato para documentar produtos de software em Markdown, num
 
 O formato é para equipes de desenvolvimento e sustentação de software, da análise à implementação, em uso pessoal ou numa organização. Qualquer um pode adotá-lo.
 
-> **Estado: experimental.** O formato está em aprendizado e, por ora, visa produtos pequenos. O que existe hoje é a definição do formato, em [`specs/`](specs/), as instruções para agentes e as decisões do próprio formato, em [`decisoes/`](decisoes/). O verificador e as skills de geração ainda não existem: onde este README os descreve, descreve o que o formato pretende. Duas aplicações reais, Iconula e Abditum, serão especificadas no formato, cada uma em repositório próprio de exemplo, para pôr a ideia à prova.
+> **Estado: experimental.** O formato está em aprendizado e, por ora, visa produtos pequenos. O que existe hoje é a definição do formato, em [`specs/`](specs/), as instruções para agentes e as decisões do próprio formato, em [`specs/decisoes/`](specs/decisoes/). O verificador e as skills de geração ainda não existem: onde este README os descreve, descreve o que o formato pretende. Duas aplicações reais, Iconula e Abditum, serão especificadas no formato, cada uma em repositório próprio de exemplo, para pôr a ideia à prova.
 
 Este README é uma explicação derivada da própria definição normativa do formato, que está em [`specs/`](specs/), escrita no próprio formato. Em caso de divergência, vale o que está lá. Os identificadores entre parênteses, como (TRM-R7), apontam para a regra de origem.
 
@@ -36,7 +36,7 @@ Disso decorre quase todo o resto:
 7. **Base para extrair outros documentos.** Visão, casos de uso, regras de negócio, cenários de teste e manuais são derivados: redigidos por um agente de IA a partir da fonte, por um prompt especializado, e com a origem de cada afirmação.
 8. **Verificável por programa.** A gramática é fixa para que um programa cheque a especificação sem interpretar o texto.
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
-10. **Fundamentada em decisões.** As pequenas decisões por trás das afirmações ficam em anotações densas à parte, lidas só sob demanda. O item fundamentado leva apenas uma marca curta que aponta para a decisão.
+10. **Fundamentada em decisões.** As decisões relevantes por trás das afirmações ficam em anotações densas à parte, lidas só sob demanda. O item fundamentado leva apenas uma marca curta que aponta para a decisão.
 11. **Explícita sobre lacunas.** Dúvidas sobre o que foi comprometido viram perguntas abertas, versionadas junto do texto, em vez de serem preenchidas por suposição.
 12. **Não técnica.** Descreve o que o sistema é e o que ele faz para o negócio, sem entrar em questões técnicas, que começam no documento de arquitetura. Também não documenta o negócio em si, isto é, como ele funciona sem o sistema.
 13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização por quem conhece a legenda; agentes leem só a área de que precisam e seguem regras explícitas.
@@ -57,7 +57,7 @@ Na tabela, a coluna do Tabularium descreve o que o formato pretende; o que já e
 | Forma do texto | Modelos de documento em prosa | "Como…, quero…, para…" e critérios de aceite | Dado/Quando/Então | Diagramas e conversa | Lista densa com gramática fixa |
 | Verificação automática | Não há | Não há | Do sistema, pelos cenários executáveis; não da documentação | Não há | Da própria especificação |
 | Outros documentos | Cada artefato escrito à mão | Escritos à mão, quando existem | Relatórios de execução | Não há | Derivados da fonte: índices e glossário por programa, os demais redigidos por agente de IA |
-| Justificativas | Diluídas nos documentos, quando existem | Ficam na conversa | Raramente registradas | Ficam na conversa | Pequenas decisões em anotações densas à parte, citadas pelo item que fundamentam |
+| Justificativas | Diluídas nos documentos, quando existem | Ficam na conversa | Raramente registradas | Ficam na conversa | Decisões relevantes em anotações densas à parte, citadas pelo item que fundamentam |
 | Lacunas | Implícitas | Tratadas na conversa, durante o refinamento | Cartões vermelhos do Example Mapping, fora do texto | Ficam na conversa | Perguntas abertas versionadas e linhas provisórias marcadas |
 | Agentes de IA | Não trata | Não trata | Não trata | Não trata | Instruções próprias e gramática que um agente consegue seguir |
 
@@ -79,10 +79,13 @@ specs/
   _convencoes.md     legenda do formato; igual em todo projeto
   _produto.md        o que vale para o produto inteiro
   _perguntas.md      perguntas abertas (opcional)
+  _contadores.md     maior número já usado em cada sequência
   <area>.md          uma área: coleção de células de conceitos fortemente relacionadas; um arquivo por área
-decisoes/            pequenas decisões, uma por arquivo (fora da especificação)
-  _produto/          as que só _produto.md cita
-  <area>/            as que os itens da área mais citam
+  decisoes/          decisões relevantes, uma por arquivo; lidas só sob demanda
+    AGENTS.md        instruções para agentes sobre decisões
+    _convencoes.md   legenda das decisões; igual em todo projeto
+    _produto/        as que só _produto.md cita
+    <area>/          as que os itens da área mais citam
 ```
 
 Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
@@ -178,7 +181,7 @@ A lápide nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportame
 
 Uma correção de redação mantém o identificador e a marca. Uma mudança de significado retira a linha e cria outra (LIN-R3), que nasce `[ ]`: a lápide e a linha nova ficam pendentes até o produto acompanhar, e o agente enxerga a mudança sem precisar comparar versões. Mover uma célula de uma área para outra não muda nenhum identificador (ARE-R3).
 
-Lápides acumuladas viram ruído e pesam contra a densidade. Por isso podem ser podadas, quando quem mantém a especificação achar oportuno: sai a lápide `[x]` que nenhuma linha ainda cita (LAP-R9). O número dela continua sem voltar, e quem o lembra é o controle de versão.
+Lápides acumuladas viram ruído e pesam contra a densidade. Por isso podem ser podadas, quando quem mantém a especificação achar oportuno: sai a lápide `[x]` que nenhuma linha ainda cita (LAP-R9). O número dela continua sem voltar, e quem o lembra é `_contadores.md`.
 
 ## Linguagem ubíqua
 
@@ -309,11 +312,11 @@ Dúvidas que surgem sobre o que já foi comprometido ficam em `_perguntas.md`, u
 
 Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é justamente a falta de uma linha, a pergunta diz sobre qual célula é (`sobre: **Entrega**`), e nunca as duas coisas (PER-R4). Não existe estado "respondida": responder é apagar a pergunta e, na mesma mudança, tirar a marca das linhas que a citavam (REF-R5). Se a resposta precisar de justificativa, vira uma decisão: o enunciado passa a ser a questão, e as opções não escolhidas, as alternativas descartadas.
 
-## O que fica fora da especificação
+## O que fica fora das células
 
 | O quê | Onde fica | Como se liga |
 | --- | --- | --- |
-| Justificativas | `decisoes/`, uma decisão por arquivo; só se abre quando se quer o porquê | O item fundamentado termina com `⟸ [Dnn]`; a decisão não cita de volta |
+| Justificativas | `specs/decisoes/`, uma decisão por arquivo; só se abre quando se quer o porquê | O item fundamentado termina com `⟸ [Dnn]`; a decisão não cita de volta |
 | Ideias e pedidos não comprometidos | Rastreador | Viram linhas `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
 | Explicações e exemplos | Documentos derivados | Cada afirmação cita sua origem |
@@ -343,7 +346,7 @@ O título é uma **questão**, terminada em `?`, com o código da decisão. A fr
 
 A fronteira de uma decisão é a questão: uma decisão responde a uma só, e as alternativas descartadas são outras respostas a ela (DEC-R3). Se uma alternativa responde a outra questão, ou se dá para reverter só uma parte da resolução, são duas decisões. Por isso uma questão nova sempre cria uma decisão nova, e só se edita uma decisão quando a mesma questão ganha outra resolução (DEC-R6). O verificador deve alertar quando a resolução tem mais de uma frase, quando o arquivo passa de 25 linhas e quando o Histórico passa de 5 entradas; os dois números são provisórios.
 
-Registra-se uma decisão quando havia ao menos uma alternativa plausível, na mesma mudança que o item que ela fundamenta (DEC-R5). O código `Dnn` é uma sequência única para o produto e nunca volta. A pasta `decisoes/` espelha a especificação: a decisão mora na pasta da área cujos itens mais a citam, ou em `_produto/`, e mudar de pasta não muda o código (DEC-R9, DEC-R10). Cada pasta tem um índice gerado por programa, com o código, a questão, a resolução e quem cita cada decisão.
+Registra-se uma decisão quando havia ao menos uma alternativa plausível, na mesma mudança que o item que ela fundamenta (DEC-R5). O código `Dnn` é uma sequência única para o produto e nunca volta. A pasta `specs/decisoes/` espelha a especificação e tem a sua própria legenda e as suas instruções para agentes, para que quem não vai mexer em decisões não precise lê-las (DEC-R18): a decisão mora na pasta da área cujos itens mais a citam, ou em `_produto/`, e mudar de pasta não muda o código (DEC-R9, DEC-R10). Cada pasta tem um índice gerado por programa, com o código, a questão, a resolução e quem cita cada decisão.
 
 Uma decisão pode citar outra, com a mesma marca, quando o contexto de uma é a resolução da outra. A decisão que ninguém mais cita permanece até uma limpeza feita sob demanda, a mesma que poda as lápides (DEC-R13).
 
@@ -375,8 +378,8 @@ O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especi
 
 ## Como começar
 
-1. Copie `AGENTS.md` e `_convencoes.md` para a pasta `specs/` do seu projeto, sem alterar.
-2. Escreva `_produto.md`: o problema, os atores e as primeiras áreas.
+1. Copie `AGENTS.md` e `_convencoes.md` para a pasta `specs/` do seu projeto, e os dois arquivos de mesmo nome de `specs/decisoes/` para `specs/decisoes/`, sem alterar.
+2. Escreva `_produto.md`: o problema, os atores e as primeiras áreas. Crie `_contadores.md` e atualize-o a cada número alocado.
 3. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões, cada linha verificável marcada `[x]` ou `[ ]`.
 4. Registre em `_perguntas.md` as dúvidas sobre o que foi comprometido, em vez de chutar. Ideias vão para o rastreador.
 5. Confira cada mudança pela lista de `AGENTS.md`. Quando o verificador existir, rode-o a cada mudança e acompanhe os alertas de coesão.
@@ -387,7 +390,7 @@ O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especi
 - **O verificador é parte do formato, não um acessório.** Sem ele, as regras de unicidade, de referência e de coesão dependem de disciplina, que não sobrevive a muitos autores. Enquanto ele não existir, é assim que o formato funciona.
 - **Um produto, uma linguagem.** Uma especificação descreve um só produto, com um significado por termo (ESP-R8). Quando dois significados legítimos do mesmo termo não se conciliam, são dois produtos, cada um com a sua especificação.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Ela precisa ser atualizada a cada evolução do código, e o formato ainda não diz o que prova que continua verdadeira. Numa especificação guardada longe do código, como nos repositórios de exemplo, as marcas são um retrato datado.
-- **O trabalho em equipe ainda não está resolvido.** O formato não trata, por ora, de dois autores que criam o mesmo identificador em paralelo, nem de quem do negócio aprova uma mudança e sobre qual texto.
+- **O trabalho em equipe ainda não está resolvido.** A colisão de números alocados em paralelo aparece como conflito em `_contadores.md`, mas só se quem altera mantiver o arquivo em dia; sem o verificador, nada confere isso. O formato também não trata, por ora, de quem do negócio aprova uma mudança e sobre qual texto.
 - **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato são os documentos derivados. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser gerados, nunca copiados.
 - **O formato não substitui a conversa.** Ele registra decisões de produto, mas não as toma. As perguntas abertas existem justamente para que a especificação mostre o que ainda não foi decidido.
-- **A justificativa de cada escolha deste formato deveria estar em `decisoes/`.** As mais recentes já estão lá. As anteriores ainda só aparecem resumidas neste README, que, pelas regras do próprio formato, é o lugar errado para guardá-las.
+- **A justificativa de cada escolha deste formato deveria estar em `specs/decisoes/`.** As mais recentes já estão lá. As anteriores ainda só aparecem resumidas neste README, que, pelas regras do próprio formato, é o lugar errado para guardá-las.
