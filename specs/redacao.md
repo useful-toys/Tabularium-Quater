@@ -12,9 +12,9 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 - evento: Linha retirada
 - [x] LIN-R1  Linha com **Identificador** afirma uma só coisa
 - [x] LIN-R2  Cada linha pertence a uma só **Célula**, mesmo quando envolve várias
-- [x] LIN-R3  Correção de redação mantém o **Identificador**; mudança de significado retira a linha e cria outra
-- [ ] LIN-R4  Linha R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não · erro
-- [x] LIN-R5  Não há estado parcial; linha cumprida em parte é agregada demais e deve ser dividida
+- [x] LIN-R3  Correção de redação mantém o **Identificador**; mudança de significado retira a linha e cria outra ⟸ [D58]
+- [ ] LIN-R4  Linha R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não · erro ⟸ [D61, D64]
+- [x] LIN-R5  Não há estado parcial; linha cumprida em parte é agregada demais e deve ser dividida ⟸ [D62]
 - [x] LIN-R6  removida
 - [x] LIN-R7  Linha de **modelo** não tem marca de implementação
 - [ ] LIN-R8  Linha que cita outra **Célula** mais do que a própria é candidata a mudar de dono · alerta
@@ -27,23 +27,23 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 
 ## Identificador  `IDT`
 Código que torna uma **Linha** citável.
-- código: **Código de identificador**; identidade; único; imutável
+- código: **Código de identificador**; identidade; único; imutável ⟸ [D55]
 - sigla: **Sigla de célula**
 - papel: **Letra de papel**
 - número: inteiro sequencial por sigla e papel
 - [ ] IDT-R1  Código válido e **único** na **Especificação** · erro
-- [ ] IDT-R2  Nunca é renumerado; número já usado não volta · erro
+- [ ] IDT-R2  Nunca é renumerado; número já usado não volta · erro ⟸ [D56]
 - [x] IDT-R3  A sigla é a da **Célula** dona da **Linha**, ou `PRD` no **Arquivo de produto**
 
 ## Lápide  `LAP`
 **Linha** que ocupa o lugar de uma linha que foi retirada, para que as **Referências** antigas continuem resolvendo.
 - especializa **Linha**
 - forma: `- [ ] CÓDIGO  removida`, para **Linha** retirada, ou `- [x] CÓDIGO  movida → [NOVO]`, para linha que mudou de dono
-- [x] LAP-R1  Ao **Linha retirada**: o **Identificador** vira lápide no mesmo lugar
+- [x] LAP-R1  Ao **Linha retirada**: o **Identificador** vira lápide no mesmo lugar ⟸ [D57]
 - [x] LAP-R2  Lápide nunca volta a ser **Linha**
 - [ ] LAP-R3  **Referência** a lápide continua válida, mas indica texto a revisar · alerta
 - [x] LAP-R4  removida
-- [x] LAP-R5  **Linha** que muda de **Célula** dona ganha **Identificador** da nova dona e deixa no lugar antigo a lápide `movida → [NOVO]`
+- [x] LAP-R5  **Linha** que muda de **Célula** dona ganha **Identificador** da nova dona e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
 - [x] LAP-R6  Lápide `removida` nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado
 - [x] LAP-R7  Lápide `movida` tem a mesma marca da **Linha** para onde aponta
 - [x] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
@@ -65,7 +65,7 @@ Citação, em um lugar, de algo definido em outro.
 - [x] REF-R6  removida
 - [x] REF-R7  removida
 - [x] REF-R8  removida
-- [ ] REF-R9  Qualquer item de lista cita **Decisões** com `⟸ [Dnn]` no fim, várias separadas por vírgula; uma decisão pode ser citada por vários itens ⟸ [D09, D16]
+- [ ] REF-R9  Qualquer item de lista cita **Decisões** com `⟸ [Dnn]` no fim, várias separadas por vírgula; uma decisão pode ser citada por vários itens ⟸ [D09, D16, D67]
 - [ ] REF-R10  A **Decisão** não cita os itens que a citam ⟸ [D09]
 - [ ] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
 - [ ] REF-R12  Ordem das marcas no fim de um item: **severidade**, `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão**, antes do `:` final
@@ -78,13 +78,13 @@ Lacuna conhecida da **Especificação**, ainda sem resposta.
 - sobre: 0..1 **Célula**
 - evento: Pergunta respondida
 - [ ] PER-R1  Código já usado não volta · erro
-- [x] PER-R2  **Linha** provisória termina com `⟵ [Pnn]`
-- [x] PER-R3  A pergunta não lista as **Linhas** que a citam
+- [x] PER-R2  **Linha** provisória termina com `⟵ [Pnn]` ⟸ [D65]
+- [x] PER-R3  A pergunta não lista as **Linhas** que a citam ⟸ [D65]
 - [x] PER-R4  **sobre** só existe quando nenhuma **Linha** cita a pergunta
 - [ ] PER-R5  Pergunta sem **sobre** e sem **Linha** que a cite · erro
-- [x] PER-R6  Estar no **Arquivo de perguntas** é estar aberta; não há estado de respondida
+- [x] PER-R6  Estar no **Arquivo de perguntas** é estar aberta; não há estado de respondida ⟸ [D66]
 - [x] PER-R7  Responde o **Dono de área** da **Área** afetada
-- [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta
+- [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta ⟸ [D60]
 - [x] PER-C1  Abrir uma pergunta
   - no **Arquivo de perguntas**, com o próximo número livre
 - [x] PER-C2  Responder uma pergunta
@@ -103,7 +103,7 @@ Fato do produto, no particípio, ao qual alguma **Regra** reage.
 - nome: texto no particípio; único
 - produtora: 1 **Célula**
 - [x] EVT-R1  Não é uma mensagem do sistema; a arquitetura decide como realizá-lo
-- [ ] EVT-R2  Só existe se ao menos uma **reação** o cita · erro
+- [ ] EVT-R2  Só existe se ao menos uma **reação** o cita · erro ⟸ [D40]
 - [x] EVT-R3  Transição de estado cita o evento que a dispara, como `aguardando pagamento → pago: ao **Pagamento confirmado**`
 
 ## Regra  `REG`
@@ -123,12 +123,12 @@ Afirmação sempre verdadeira sobre uma **Célula**, independente de ação de u
 | combinação de condições | **Tabela de decisão** |
 | outra | R sem marca |
 
-- [x] REG-R2  Regra não leva rótulo de tipo; o tipo vem do lugar e da forma
+- [x] REG-R2  Regra não leva rótulo de tipo; o tipo vem do lugar e da forma ⟸ [D37]
 
 ## Tabela de decisão  `TDD`
 **Regra** escrita como tabela que dá um resultado para cada combinação de condições.
 - especializa **Regra**
-- [x] TDD-R1  É uma R terminada em `:` e seguida da tabela; a tabela inteira responde pelo **Identificador**
+- [x] TDD-R1  É uma R terminada em `:` e seguida da tabela; a tabela inteira responde pelo **Identificador** ⟸ [D38]
 - [x] TDD-R2  Colunas de condição à esquerda; de resultado, à direita
 - [ ] TDD-R3  Cada combinação de condições aparece exatamente uma vez · erro
 - [x] TDD-R4  `qualquer` vale para todos os valores de uma condição
@@ -156,9 +156,9 @@ Algo que um **Ator** pode ver, sem alterar nada; papel V.
 Condição para considerar atendida uma **Capacidade** ou uma **Visão**, escrita como sub-item dela.
 - [x] CRT-R1  Não tem **Identificador**
 - [x] CRT-R2  Critério que precisa ser citado sozinho vira **Regra**
-- [x] CRT-R3  Critério iniciado por `exige:` é pré-condição
-- [x] CRT-R4  Critério iniciado por `se …:` é fluxo alternativo ou exceção
-- [x] CRT-R5  Critério sem prefixo é resultado
+- [x] CRT-R3  Critério iniciado por `exige:` é pré-condição ⟸ [D39]
+- [x] CRT-R4  Critério iniciado por `se …:` é fluxo alternativo ou exceção ⟸ [D39]
+- [x] CRT-R5  Critério sem prefixo é resultado ⟸ [D39]
 
 ## Declaração  `DCL`
 O que um texto do produto afirma, sem implicar comportamento; papel T.
@@ -179,9 +179,9 @@ Quem age sobre o produto, definido pelo acesso que tem, e não pelo estado em qu
 - nome: texto; único
 - acesso: o que pode ver e fazer
 - padrão: sim | não
-- [x] ATO-R1  **Linha** C ou V sem marca de ator é do ator **padrão**
+- [x] ATO-R1  **Linha** C ou V sem marca de ator é do ator **padrão** ⟸ [D42]
 - [ ] ATO-R2  Marca de ator logo após o **Identificador**: `·` e o nome de um ator declarado, em minúsculas · erro
-- [x] ATO-R3  Estado de quem age não cria ator; fica no **modelo** da **Célula**
+- [x] ATO-R3  Estado de quem age não cria ator; fica no **modelo** da **Célula** ⟸ [D41]
 - [x] ATO-R4  O tempo, quando dispara **Regras** por prazo, é declarado como ator
 - [ ] ATO-R5  **Regra** marcada `· tempo` contém um prazo com número e unidade · erro
 - [ ] ATO-R6  Há exatamente um **Ator** padrão na **Especificação** · erro

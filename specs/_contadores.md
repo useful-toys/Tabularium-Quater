@@ -53,4 +53,4 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - P  0
 
 ## Decisões
-- D  23  renumerar-antes-de-entrar
+- D  75  instrucoes-para-agentes

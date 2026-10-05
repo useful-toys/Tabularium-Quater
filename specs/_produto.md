@@ -4,9 +4,9 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 ## Propósito
 - Problema: **Especificações** espalhadas em documentos por tipo repetem informação, divergem entre si e não podem ser verificadas por programa
 - Público: quem especifica produtos e quer extrair da **Especificação** os demais documentos
-- Não técnico: descreve o que o sistema é e o que faz para o negócio; os assuntos técnicos começam no documento de arquitetura
+- Não técnico: descreve o que o sistema é e o que faz para o negócio; os assuntos técnicos começam no documento de arquitetura ⟸ [D74]
 - Não é documentação do negócio: como o negócio funciona sem o sistema fica fora
-- Diferencial: tudo o que se sabe sobre uma **Célula** mora num só bloco
+- Diferencial: tudo o que se sabe sobre uma **Célula** mora num só bloco ⟸ [D24]
 - Diferencial: cada afirmação existe uma vez e é citável por **Identificador**
 - Diferencial: as **Decisões** relevantes ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação**
 - Diferencial: legível por pessoas sem renderização e econômica para agentes de IA, que leem só a **Área** de que precisam
@@ -27,7 +27,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 
 ## Tipos comuns
 - Sigla de célula: texto; de 2 a 5 letras maiúsculas
-- Letra de papel: R | Q | C | V | T | J
+- Letra de papel: R | Q | C | V | T | J ⟸ [D36]
 - Código de identificador: texto; **Sigla de célula**, `-`, **Letra de papel** e número inteiro a partir de 1
 - Código de pergunta: texto; `P` e número inteiro a partir de 1
 - Código de decisão: texto; `D` e número inteiro a partir de 1
@@ -45,11 +45,11 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
   - fornece: a linha principal, a partir da qual nenhum código é renumerado
 - LGPD · lei geral de proteção de dados
   - impõe: identificar os dados **pessoais** tratados pelo produto
-- Rastreador · ideias
+- Rastreador · ideias ⟸ [D60]
   - guarda: ideias e pedidos ainda não comprometidos, até amadurecerem
 
 ## Regras globais
-- [x] PRD-Q1  O texto se lê sem renderização e se renderiza nos editores e forjas comuns
+- [x] PRD-Q1  O texto se lê sem renderização e se renderiza nos editores e forjas comuns ⟸ [D73]
 - [x] PRD-Q2  O texto está no idioma do produto especificado
 
 ## Fora de escopo
