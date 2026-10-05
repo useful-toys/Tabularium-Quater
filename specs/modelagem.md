@@ -26,7 +26,7 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
 - [x] CEL-R5  Efeito sobre outra célula é uma **reação** no bloco dessa outra célula ⟸ [D04]
 - [x] CEL-R6  removida
 - [ ] CEL-R7  Célula com mais de 40 **Linhas** indica que são duas células · alerta
-- [x] CEL-R8  Célula não tem estado de implementação; quem o tem são as suas **Linhas** com **Identificador** ⟸ [D63]
+- [x] CEL-R8  Célula não tem estado de implementação; quem o tem são as suas **afirmações** ⟸ [D63]
 - [x] CEL-R9  O que é cada item, pelo primeiro teste com resposta sim ⟸ [D25, D26]:
 
 | Primeiro teste com sim | É |
@@ -43,7 +43,7 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
 | nenhuma | **Termo** na linguagem da **Área** |
 
 - [x] CEL-R10  **Capacidade** ou **Visão** sem dono natural indica uma célula que falta
-- [ ] CEL-R11  Célula sem **Linha** com **Identificador** e com no máximo uma linha de **modelo** é candidata a **Atributo** ou **Termo** · alerta
+- [ ] CEL-R11  Célula sem **afirmação** e com no máximo uma **Linha** de **modelo** é candidata a **Atributo** ou **Termo** · alerta
 - [x] CEL-R12  **Atributo** que ganha atributos ou **Regras** próprias vira célula
 - [ ] CEL-R13  Duas células citadas quase sempre juntas, uma delas só pela outra, são candidatas a fusão · alerta
 - [ ] CEL-R14  **Sigla de célula** extinta ou fundida nunca volta · erro
@@ -60,7 +60,7 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
   - as **Linhas** da célula absorvida são movidas, conforme [LAP-R5]
   - o nome da absorvida vira **não usar** na que a absorveu, se for sinônimo
 - [x] CEL-C3  Rebaixar uma célula a **Atributo** ou **Termo** ⟸ [D27]
-  - exige: nenhuma **Linha** com **Identificador** no bloco
+  - exige: nenhuma **afirmação** no bloco
 - [x] CEL-C4  Promover um **Atributo** a célula ⟸ [D27]
   - o **Atributo** sai do **modelo** de origem, que passa a citar a célula nova
 - [x] CEL-V1 · leitor  Ver tudo o que se sabe de uma célula no seu bloco
@@ -72,7 +72,7 @@ Característica de uma **Célula** como o negócio a vê, escrita como **Linha**
 - qualificadores: zero ou mais, separados por `;`; opcional
 - [x] ATR-R1  Forma: `nome: tipo; qualificadores`
 - [x] ATR-R2  removida
-- [ ] ATR-R3  Entra só se o usuário o vê, ou se alguma **Linha** com **Identificador** depende dele · alerta ⟸ [D46]
+- [ ] ATR-R3  Entra só se o usuário o vê, ou se alguma **afirmação** depende dele · alerta ⟸ [D46]
 - [x] ATR-R4  Códigos internos, datas de auditoria e chaves técnicas não entram
 - [x] ATR-R5  Formato, máscara e tamanho máximo não entram
 - [ ] ATR-R6  **Atributo** cujo tipo é uma **Célula** é uma associação e leva a **Cardinalidade** antes da célula · erro

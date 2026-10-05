@@ -28,12 +28,12 @@ Disso decorre quase todo o resto:
 ## Valores
 
 1. **Organizada por células de conceitos.** Cada célula reúne, num único bloco, os conceitos que um elemento do produto governa: suas definições, regras e políticas. As células se agrupam em áreas por relação forte, medida, e nunca por tipo de informação.
-2. **Densa.** Evita-se ao máximo a formatação e a separação em seções: o significado vem da posição no texto. A redação é objetiva e sucinta, pode usar símbolos e notações convencionadas, e não diz o que não precisa ser dito. Cada linha traz uma afirmação, e a única prosa é a frase que define cada célula; explicações e exemplos ficam nos documentos derivados.
+2. **Densa.** Evita-se ao máximo a formatação e a separação em seções: o significado vem da posição no texto. A redação é objetiva e sucinta, pode usar símbolos e notações convencionadas, e não diz o que não precisa ser dito. Cada linha diz uma só coisa, e a única prosa é a frase que define cada célula; explicações e exemplos ficam nos documentos derivados.
 3. **Hierárquica.** A estrutura vem de títulos, que organizam os blocos, e de sub-itens, que detalham as linhas. A profundidade de ambos é livre: usa-se a que o conteúdo pedir.
-4. **Fonte única da verdade.** Descreve só o que foi comprometido, e cada afirmação verificável diz se está implementada ou não. Ideias, histórico e justificativas ficam fora.
+4. **Fonte única da verdade.** Descreve só o que foi comprometido, e cada afirmação diz se está implementada ou não. Ideias, histórico e justificativas ficam fora.
 5. **Sem redundância.** Cada termo e cada regra são escritos uma vez. Índices, mapas, glossários e tudo o mais que se deriva mecanicamente são gerados por programa, de forma determinística, e nunca mantidos manualmente, nem por pessoas nem por agentes de IA.
 6. **Linguagem ubíqua.** Um termo, um significado, em todo o produto. Sinônimos proibidos são declarados e verificáveis.
-7. **Base para extrair outros documentos.** Visão, casos de uso, regras de negócio, cenários de teste e manuais são derivados: redigidos por um agente de IA a partir da fonte, por um prompt especializado, e com a origem de cada afirmação.
+7. **Base para extrair outros documentos.** Visão, casos de uso, regras de negócio, cenários de teste e manuais são derivados: redigidos por um agente de IA a partir da fonte, por um prompt especializado, e com a origem de cada frase.
 8. **Verificável por programa.** A gramática é fixa para que um programa cheque a especificação sem interpretar o texto.
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
 10. **Fundamentada em decisões.** As decisões relevantes por trás das afirmações ficam em anotações densas à parte, lidas só sob demanda. O item fundamentado leva apenas uma marca curta que aponta para a decisão.
@@ -142,13 +142,13 @@ O título traz o nome e a sigla da célula. Logo abaixo vem a frase de definiç�
 
 1. **Modelo:** as linhas sem identificador. Descrevem atributos, pertencimentos, estados e valores derivados.
 2. **Eventos:** linhas `evento:`, com os fatos que a célula produz e aos quais alguma outra célula reage.
-3. **Linhas com identificador,** na ordem dos papéis: R, Q, C, V, T.
+3. **Afirmações,** as linhas verificáveis no produto, na ordem dos papéis: R, Q, C, V, T.
 
 Não há subtítulos dentro do bloco. A letra do identificador já diz o papel da linha, e um subtítulo repetiria essa informação. Títulos de vários níveis servem só para organizar os blocos em hierarquia.
 
-Cada linha R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não (LIN-R4). Não há estado parcial: uma linha cumprida em parte está agregada demais e deve ser dividida (LIN-R5). Só fatos verificáveis levam marca. A célula não tem estado (CEL-R8), e as jornadas estão implementadas quando todas as linhas que citam estão (JOR-R4). Para um agente que vai implementar, o trabalho pendente é simplesmente o conjunto das linhas `[ ]`.
+Cada afirmação R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não (LIN-R4). Não há estado parcial: uma afirmação cumprida em parte está agregada demais e deve ser dividida (LIN-R5). Só fatos verificáveis levam marca. A célula não tem estado (CEL-R8), e as jornadas estão implementadas quando todas as afirmações que citam estão (JOR-R4). Para um agente que vai implementar, o trabalho pendente é simplesmente o conjunto das afirmações `[ ]`.
 
-## Papéis de linha
+## Papéis das afirmações
 
 | Papel | Significa |
 | --- | --- |
@@ -169,13 +169,13 @@ Isso é tudo o que é preciso para gerar um caso de uso completo, sem a prolixid
 
 ## Identificadores, lápides e citação
 
-Toda linha com papel tem um identificador no formato `SIGLA-PN`: a sigla da célula, a letra do papel e um número sequencial. `PED-C2` é a segunda capacidade do Pedido. Os identificadores nunca são renumerados, e um número usado nunca volta (IDT-R2).
+Toda afirmação tem um identificador no formato `SIGLA-PN`: a sigla da célula, a letra do papel e um número sequencial. `PED-C2` é a segunda capacidade do Pedido. Os identificadores nunca são renumerados, e um número usado nunca volta (IDT-R2).
 
 O maior número já usado em cada sequência fica escrito em `_contadores.md`, um item por sigla e papel, um para as perguntas e um para as decisões. Cada item traz o número e um nome curto da última alocação, como `- PED-R  8  pago-nao-edita`. Alocar é usar o número guardado mais um e atualizar o item na mesma mudança (CTD-R5).
 
 Isso serve a dois fins. O número continua conhecido depois que lápides são podadas e decisões são limpas. E, quando duas pessoas alocam o mesmo número em paralelo, cada uma escreve um nome curto diferente no mesmo item, e o controle de versão acusa o conflito. Sem o nome curto as duas escreveriam a mesma linha, e a duplicata entraria em silêncio; é o que aconteceria com duas decisões de mesmo código, que são arquivos diferentes (CTD-R7). Quem entra depois renumera o que colidiu: um número só deixa de poder mudar quando entra na linha principal (CTD-R6).
 
-Uma linha retirada vira **lápide** no mesmo lugar, para que as referências antigas continuem resolvendo (LAP-R1):
+Uma afirmação retirada vira **lápide** no mesmo lugar, para que as referências antigas continuem resolvendo (LAP-R1):
 
 ```markdown
 - [ ] PED-R7  removida
@@ -183,7 +183,7 @@ Uma linha retirada vira **lápide** no mesmo lugar, para que as referências ant
 
 A lápide nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado (LAP-R4).
 
-Uma correção de redação mantém o identificador e a marca. Uma mudança de significado retira a linha e cria outra (LIN-R3), que nasce `[ ]`: a lápide e a linha nova ficam pendentes até o produto acompanhar, e o agente enxerga a mudança sem precisar comparar versões. Mover uma célula de uma área para outra não muda nenhum identificador (ARE-R3).
+Uma correção de redação mantém o identificador e a marca. Uma mudança de significado retira a afirmação e cria outra (LIN-R3), que nasce `[ ]`: a lápide e a afirmação nova ficam pendentes até o produto acompanhar, e o agente enxerga a mudança sem precisar comparar versões. Mover uma célula de uma área para outra não muda nenhum identificador (ARE-R3).
 
 Lápides acumuladas viram ruído e pesam contra a densidade. Por isso podem ser podadas, quando quem mantém a especificação achar oportuno: sai a lápide `[x]` que nenhuma linha ainda cita (LAP-R9). O número dela continua sem voltar, e quem o lembra é `_contadores.md`.
 
@@ -282,17 +282,17 @@ A **tabela de decisão** é uma R terminada em `:` e seguida de uma tabela, com 
 
 As células são a forma de organizar o conhecimento, e o conhecimento muda. À medida que a especificação cresce, uma célula pode se dividir, se fundir com outra, ser rebaixada a atributo, ser promovida a partir de um atributo ou mudar de área. O que precisa ser estável não é o agrupamento, e sim as afirmações e suas identidades.
 
-Quando uma linha muda de dono, ela ganha o identificador da nova célula e herda a marca de implementação, porque o comportamento não mudou. No lugar antigo fica uma lápide que redireciona as referências (LAP-R5, LAP-R7):
+Quando uma afirmação muda de dono, ela ganha o identificador da nova célula e herda a marca de implementação, porque o comportamento não mudou. No lugar antigo fica uma lápide que redireciona as referências (LAP-R5, LAP-R7):
 
 ```markdown
 - [x] PED-C3  movida → [ENT-C1]
 ```
 
-Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14). O verificador deve sinalizar, como alerta, quando reagrupar: célula grande demais, célula sem linhas próprias, linha que cita mais outra célula do que a sua, duas células que só aparecem juntas. A decisão continua sendo de quem escreve.
+Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14). O verificador deve sinalizar, como alerta, quando reagrupar: célula grande demais, célula sem linhas próprias, afirmação que cita mais outra célula do que a sua, duas células que só aparecem juntas. A decisão continua sendo de quem escreve.
 
 ## Atores, externos e jornadas
 
-**Atores** são definidos pelo acesso que têm, não pelo estado em que estão. Um deles é o padrão; as linhas dos demais levam uma marca logo após o identificador, como `· atendente` (ATO-R1, ATO-R2).
+**Atores** são definidos pelo acesso que têm, não pelo estado em que estão. Um deles é o padrão; as afirmações dos demais levam uma marca logo após o identificador, como `· atendente` (ATO-R1, ATO-R2).
 
 **Externos** são sistemas ou organizações fora do produto que alguma regra pressupõe: um provedor de identidade, um órgão regulador, o titular de direitos sobre um conteúdo. Cada um diz o que guarda, fornece, recebe ou impõe (APR-R8).
 
@@ -321,13 +321,13 @@ Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é jus
 | O quê | Onde fica | Como se liga |
 | --- | --- | --- |
 | Justificativas | `specs/decisoes/`, uma decisão por arquivo; só se abre quando se quer o porquê | O item fundamentado termina com `⟸ [Dnn]`; a decisão não cita de volta |
-| Ideias e pedidos não comprometidos | Rastreador | Viram linhas `[ ]` quando comprometidos |
+| Ideias e pedidos não comprometidos | Rastreador | Viram afirmações `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
-| Explicações e exemplos | Documentos derivados | Cada afirmação cita sua origem |
+| Explicações e exemplos | Documentos derivados | Cada frase cita sua origem |
 
 ## Decisões
 
-O formato das decisões é parte do Tabularium, mas o texto delas nunca entra numa célula, numa área ou em `_produto.md`: ali seria ruído. O que entra é só uma marca no fim do item fundamentado, como o `⟸ [D07]` do exemplo do Pedido (REF-R9). Qualquer item de lista pode levar a marca: uma linha com identificador, uma linha de modelo, um evento, um item de `_produto.md`. Um item pode citar várias decisões, `⟸ [D07, D12]`, e uma decisão pode ser citada por vários itens. A decisão não cita de volta (REF-R10).
+O formato das decisões é parte do Tabularium, mas o texto delas nunca entra numa célula, numa área ou em `_produto.md`: ali seria ruído. O que entra é só uma marca no fim do item fundamentado, como o `⟸ [D07]` do exemplo do Pedido (REF-R9). Qualquer item de lista pode levar a marca: uma afirmação, uma linha de modelo, um evento, um item de `_produto.md`. Um item pode citar várias decisões, `⟸ [D07, D12]`, e uma decisão pode ser citada por vários itens. A decisão não cita de volta (REF-R10). Uma afirmação que muda de célula leva consigo as suas citações (REF-R13).
 
 Uma decisão é um arquivo assim:
 
@@ -362,7 +362,7 @@ O mesmo programa vai gerar o que se deriva mecanicamente: o Índice de cada áre
 
 ## Documentos derivados
 
-Os documentos tradicionais são outra classe: são redigidos por um agente de IA a partir da especificação, com um prompt especializado para cada documento (DER-R4). Nunca são editados à mão, e cada afirmação cita o identificador ou o termo de origem (DER-R1, DER-R2). Uma afirmação sem origem é invenção de quem gerou ou lacuna da especificação, e as duas descobertas são úteis.
+Os documentos tradicionais são outra classe: são redigidos por um agente de IA a partir da especificação, com um prompt especializado para cada documento (DER-R4). Nunca são editados à mão, e cada frase cita o identificador ou o termo de origem (DER-R1, DER-R2). Uma frase sem origem é invenção de quem gerou ou lacuna da especificação, e as duas descobertas são úteis.
 
 Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de versão é escolha da equipe, que assume o risco de ficarem defasados; ela pode também automatizar a regeração a cada mudança na especificação. Propagar essas atualizações não é responsabilidade do formato (DER-R5).
 
@@ -384,13 +384,13 @@ O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especi
 
 1. Copie `AGENTS.md` e `_convencoes.md` para a pasta `specs/` do seu projeto, e os dois arquivos de mesmo nome de `specs/decisoes/` para `specs/decisoes/`, sem alterar.
 2. Escreva `_produto.md`: o problema, os atores e as primeiras áreas. Crie `_contadores.md` e atualize-o a cada número alocado.
-3. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões, cada linha verificável marcada `[x]` ou `[ ]`.
+3. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões, cada afirmação marcada `[x]` ou `[ ]`.
 4. Registre em `_perguntas.md` as dúvidas sobre o que foi comprometido, em vez de chutar. Ideias vão para o rastreador.
 5. Confira cada mudança pela lista de `AGENTS.md`. Quando o verificador existir, rode-o a cada mudança e acompanhe os alertas de coesão.
 
 ## Limites e cuidados
 
-- **As afirmações deste README ainda são hipóteses.** As duas aplicações de exemplo vão pôr à prova: se a célula basta ao agente para uma tarefa; se um agente descobre e entende a aplicação com facilidade; se um novato aprende o sistema, pela fonte e pelos derivados; se o formato sem prosa comporta tudo o que um produto real precisa dizer; se a proximidade medida aponta agrupamentos melhores; e se é fácil exportar para outros documentos. Que as linhas `[ ]` conduzem uma implementação é intenção, e não está entre as hipóteses em teste.
+- **As afirmações deste README ainda são hipóteses.** As duas aplicações de exemplo vão pôr à prova: se a célula basta ao agente para uma tarefa; se um agente descobre e entende a aplicação com facilidade; se um novato aprende o sistema, pela fonte e pelos derivados; se o formato sem prosa comporta tudo o que um produto real precisa dizer; se a proximidade medida aponta agrupamentos melhores; e se é fácil exportar para outros documentos. Que as afirmações `[ ]` conduzem uma implementação é intenção, e não está entre as hipóteses em teste.
 - **O verificador é parte do formato, não um acessório.** Sem ele, as regras de unicidade, de referência e de coesão dependem de disciplina, que não sobrevive a muitos autores. Enquanto ele não existir, é assim que o formato funciona.
 - **Um produto, uma linguagem.** Uma especificação descreve um só produto, com um significado por termo (ESP-R8). Quando dois significados legítimos do mesmo termo não se conciliam, são dois produtos, cada um com a sua especificação.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Ela precisa ser atualizada a cada evolução do código, e o formato ainda não diz o que prova que continua verdadeira. Numa especificação guardada longe do código, como nos repositórios de exemplo, as marcas são um retrato datado.

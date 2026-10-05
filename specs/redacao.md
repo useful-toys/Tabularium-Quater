@@ -9,21 +9,21 @@ As **Linhas** de um bloco: o que cada uma afirma, quem age, a que **Eventos** re
 Item da **lista única** de um bloco; com **Identificador**, é citável.
 - 0..1 **Identificador**
 - implementada: sim | não
-- evento: Linha retirada
-- [x] LIN-R1  Linha com **Identificador** afirma uma só coisa
+- evento: Afirmação retirada
+- [x] LIN-R1  Uma **afirmação** diz uma só coisa
 - [x] LIN-R2  Cada linha pertence a uma só **Célula**, mesmo quando envolve várias
-- [x] LIN-R3  Correção de redação mantém o **Identificador**; mudança de significado retira a linha e cria outra ⟸ [D58]
-- [ ] LIN-R4  Linha R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não · erro ⟸ [D61, D64]
-- [x] LIN-R5  Não há estado parcial; linha cumprida em parte é agregada demais e deve ser dividida ⟸ [D62]
+- [x] LIN-R3  Correção de redação mantém o **Identificador**; mudança de significado retira a **afirmação** e cria outra ⟸ [D58]
+- [ ] LIN-R4  **Afirmação** de papel R, Q, C, V ou T começa com `[x]` se o produto a cumpre por inteiro, ou `[ ]` se não · erro ⟸ [D61, D64]
+- [x] LIN-R5  Não há estado parcial; **afirmação** cumprida em parte é agregada demais e deve ser dividida ⟸ [D62]
 - [x] LIN-R6  removida
 - [x] LIN-R7  Linha de **modelo** não tem marca de implementação
-- [ ] LIN-R8  Linha que cita outra **Célula** mais do que a própria é candidata a mudar de dono · alerta
-- [x] LIN-R9  Linha nova nasce `[ ]`, exceto a movida, que herda a marca
-- [x] LIN-C1  Acrescentar uma linha com **Identificador**
+- [ ] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de dono · alerta
+- [x] LIN-R9  **Afirmação** nova nasce `[ ]`, exceto a movida, que herda a marca
+- [x] LIN-C1  Acrescentar uma **afirmação**
   - no bloco da **Célula** dona, na posição do seu papel
   - com o próximo número livre, conforme [IDT-R2]
-- [x] LIN-C2  Retirar uma linha
-- [x] LIN-C3  Corrigir a redação de uma linha
+- [x] LIN-C2  Retirar uma **afirmação**
+- [x] LIN-C3  Corrigir a redação de uma **afirmação**
 
 ## Identificador  `IDT`
 Código que torna uma **Linha** citável.
@@ -36,16 +36,16 @@ Código que torna uma **Linha** citável.
 - [x] IDT-R3  A sigla é a da **Célula** dona da **Linha**, ou `PRD` no **Arquivo de produto**
 
 ## Lápide  `LAP`
-**Linha** que ocupa o lugar de uma linha que foi retirada, para que as **Referências** antigas continuem resolvendo.
+**Linha** que ocupa o lugar de uma **afirmação** que foi retirada, para que as **Referências** antigas continuem resolvendo.
 - especializa **Linha**
-- forma: `- [ ] CÓDIGO  removida`, para **Linha** retirada, ou `- [x] CÓDIGO  movida → [NOVO]`, para linha que mudou de dono
-- [x] LAP-R1  Ao **Linha retirada**: o **Identificador** vira lápide no mesmo lugar ⟸ [D57]
-- [x] LAP-R2  Lápide nunca volta a ser **Linha**
+- forma: `- [ ] CÓDIGO  removida`, para **afirmação** retirada, ou `- [x] CÓDIGO  movida → [NOVO]`, para a que mudou de dono
+- [x] LAP-R1  Ao **Afirmação retirada**: o **Identificador** vira lápide no mesmo lugar ⟸ [D57]
+- [x] LAP-R2  Lápide nunca volta a ser **afirmação**
 - [ ] LAP-R3  **Referência** a lápide continua válida, mas indica texto a revisar · alerta
 - [x] LAP-R4  removida
-- [x] LAP-R5  **Linha** que muda de **Célula** dona ganha **Identificador** da nova dona e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
+- [x] LAP-R5  **Afirmação** que muda de **Célula** dona ganha **Identificador** da nova dona e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
 - [x] LAP-R6  Lápide `removida` nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado
-- [x] LAP-R7  Lápide `movida` tem a mesma marca da **Linha** para onde aponta
+- [x] LAP-R7  Lápide `movida` tem a mesma marca da **afirmação** para onde aponta
 - [x] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
 - [ ] LAP-R9  Lápide `[x]` que nenhuma **Referência** cita pode ser podada; o **Identificador** dela continua sem voltar ⟸ [D07]
 - [ ] LAP-C1  Podar as lápides
@@ -69,6 +69,7 @@ Citação, em um lugar, de algo definido em outro.
 - [ ] REF-R10  A **Decisão** não cita os itens que a citam ⟸ [D09]
 - [ ] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
 - [ ] REF-R12  Ordem das marcas no fim de um item: **severidade**, `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão**, antes do `:` final
+- [ ] REF-R13  **Afirmação** que muda de **Célula** leva consigo as suas citações de **Decisão**
 
 ## Pergunta  `PER`
 Lacuna conhecida da **Especificação**, ainda sem resposta.
@@ -96,7 +97,8 @@ Arquivo com as **Perguntas** abertas da **Especificação**, uma por item, em or
 - arquivo: `_perguntas.md`; opcional
 - [x] APG-R1  Lista plana, sem agrupamento; a **Área** de cada **Pergunta** é derivável
 - [x] APG-R2  Guarda só a **Pergunta** e as opções; a discussão fica fora
-- [x] APG-R3  As **Perguntas** ficam neste arquivo ou num **Rastreador**, nunca nos dois
+- [x] APG-R3  removida
+- [ ] APG-R4  As **Perguntas** ficam só neste arquivo, nunca num **Rastreador** ⟸ [D76]
 
 ## Evento  `EVT`
 Fato do produto, no particípio, ao qual alguma **Regra** reage.
@@ -107,7 +109,7 @@ Fato do produto, no particípio, ao qual alguma **Regra** reage.
 - [x] EVT-R3  Transição de estado cita o evento que a dispara, como `aguardando pagamento → pago: ao **Pagamento confirmado**`
 
 ## Regra  `REG`
-Afirmação sempre verdadeira sobre uma **Célula**, independente de ação de um **Ator**; papel R.
+**Afirmação** sempre verdadeira sobre uma **Célula**, independente de ação de um **Ator**; papel R.
 - especializa **Linha**
 - [x] REG-R1  Lugar de cada tipo de regra:
 
@@ -171,15 +173,15 @@ Sequência de **Capacidades** e **Visões** cuja ordem é escolha de produto; pa
 - especializa **Linha**
 - [x] JOR-R1  Só no **Arquivo de produto**
 - [x] JOR-R2  Forma: `PRD-Jn  Nome: [ID] → [ID] → …`
-- [ ] JOR-R3  Só cita **Linhas** C e V · erro
-- [x] JOR-R4  Jornada não tem marca; está implementada quando todas as **Linhas** que cita estão
+- [ ] JOR-R3  Só cita **afirmações** de papel C e V · erro
+- [x] JOR-R4  Jornada não tem marca; está implementada quando todas as **afirmações** que cita estão
 
 ## Ator  `ATO`
 Quem age sobre o produto, definido pelo acesso que tem, e não pelo estado em que está.
 - nome: texto; único
 - acesso: o que pode ver e fazer
 - padrão: sim | não
-- [x] ATO-R1  **Linha** C ou V sem marca de ator é do ator **padrão** ⟸ [D42]
+- [x] ATO-R1  **Afirmação** de papel C ou V sem marca de ator é do ator **padrão** ⟸ [D42]
 - [ ] ATO-R2  Marca de ator logo após o **Identificador**: `·` e o nome de um ator declarado, em minúsculas · erro
 - [x] ATO-R3  Estado de quem age não cria ator; fica no **modelo** da **Célula** ⟸ [D41]
 - [x] ATO-R4  O tempo, quando dispara **Regras** por prazo, é declarado como ator

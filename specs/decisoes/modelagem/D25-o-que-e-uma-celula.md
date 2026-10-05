@@ -5,7 +5,7 @@ Haver algo a afirmar sobre ela que não pertence a nenhuma outra.
   - O que agrupa as informações relacionadas: descreve o efeito, não o critério, e telas e áreas também agrupam
   - O que tem bloco próprio: definição circular, pois bloco é o que uma célula tem
 - Consequências
-  - Ganha: um critério objetivo, que é ser dona de linhas
+  - Ganha: um critério objetivo, que é ser dona de afirmações
   - Aceita: casos de fronteira que exigem julgamento e mudam com o tempo
 
 ## Histórico

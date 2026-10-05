@@ -3,7 +3,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 
 ## Identificadores
 - AGT-R  2  descreve-procedimentos-conflito
-- APG-R  3  perguntas-ficam-neste
+- APG-R  4  perguntas-so-neste
 - APR-R  8  cada-externo-diz
 - ARE-C  2  dividir-area-duas
 - ARE-R  10  area-com-mais
@@ -38,7 +38,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - PRD-J  4  responder-pergunta-per
 - PRD-Q  2  texto-esta-idioma
 - QUA-R  2  qualidade-sobre-celula
-- REF-R  12  ordem-das-marcas
+- REF-R  13  afirmacao-leva-citacoes
 - REG-R  2  regra-nao-leva
 - TDD-R  4  qualquer-vale-para
 - TIP-R  1  usado-por-so
@@ -53,4 +53,4 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - P  0
 
 ## Decisões
-- D  75  instrucoes-para-agentes
+- D  76  perguntas-no-arquivo

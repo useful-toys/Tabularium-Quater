@@ -40,7 +40,7 @@ Legenda que ensina a ler e escrever no formato, igual em todos os projetos.
 Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célula**.
 - arquivo: `_produto.md`; imutável
 - seções: `Propósito`, `Áreas`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias
-- [x] APR-R1  Sigla das **Linhas** com **Identificador**: `PRD`
+- [x] APR-R1  Sigla das **afirmações**: `PRD`
 - [x] APR-R2  Tudo o que um **Documento derivado** precisaria afirmar sobre o conjunto, e não se deduz das **Áreas**, mora aqui
 - [x] APR-R3  **Regra** global que cita uma **Célula** pertence ao bloco dessa célula
 - [x] APR-R4  **Externo** visível ao usuário leva nome; o invisível, só o papel
@@ -117,12 +117,12 @@ Lista gerada de quais **Áreas** usam **Termos** e reagem a **Eventos** de quais
 ## Documento derivado  `DER`
 Documento produzido a partir da **Especificação** para um público ou uma finalidade, como um manual ou um plano de testes.
 - [x] DER-R1  É descartável: nunca é editado nem citado como fonte ⟸ [D71]
-- [x] DER-R2  Cada afirmação cita o **Identificador** ou o **Termo** de origem
-- [x] DER-R3  Afirmação sem origem é invenção de quem gerou ou lacuna da **Especificação**
+- [x] DER-R2  Cada frase cita o **Identificador** ou o **Termo** de origem
+- [x] DER-R3  Frase sem origem é invenção de quem gerou ou lacuna da **Especificação**
 - [ ] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Verificador** ⟸ [D02]
 - [ ] DER-R5  Guardá-lo sob **Controle de versão** cabe a quem adota, que assume a divergência; mantê-lo em dia não cabe ao formato ⟸ [D03]
 - [ ] DER-V1 · leitor  Ler um documento derivado
-  - cada afirmação leva a sua origem
+  - cada frase leva a sua origem
 
 ## Decisão  `DEC`
 Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas** e do **Arquivo de produto** e lida só sob demanda.

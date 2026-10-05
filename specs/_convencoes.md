@@ -17,6 +17,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - célula de conceitos, ou só célula: coisa do domínio, com tudo o que se afirma sobre ela e que não pertence a nenhuma outra
 - bloco de célula: título com nome e sigla (`` ## Pedido  `PED` ``), frase de definição, lista única
 - ordem da lista: modelo (linhas sem identificador), linhas `evento:`, R, Q, C, V, T
+- afirmação: linha que pode ser verificada no produto; papéis R, Q, C, V, T e J
 - seções de uma área, antes das células: Índice (gerado), Linguagem, Tipos
 
 ## Papéis
@@ -38,23 +39,22 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - relações são conceituais: como o negócio vê o domínio, não como os dados são guardados
 
 ## Marcas
-- `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: linha R, Q, C, V ou T, implementada por inteiro ou não; não há estado parcial; J e linhas de modelo não levam marca
+- `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: afirmação R, Q, C, V ou T, implementada por inteiro ou não; não há estado parcial; J e linhas de modelo não levam marca
 - `SIGLA-PN`: identificador; P é o papel, N o número; números e siglas nunca voltam; fora da linha principal do controle de versão, um número recém-alocado ainda pode ser trocado se colidir
 - `[PED-R1]`: referência a identificador
 - `**Termo**`: referência a termo, na primeira menção de cada item, frase de definição ou fileira de tabela; definições não levam negrito
 - não são menções: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula no seu bloco
 - `(~~valor, montante~~)` no fim da linha que define um termo: sinônimos que não devem ser usados
 - `**Célula.atributo**`: referência a atributo cujo nome se repete em outra célula
-- `· ator` logo após o identificador: ator da linha, quando não é o padrão
+- `· ator` logo após o identificador: ator da afirmação, quando não é o padrão
 - `Ao **Evento**:` no início de uma R: reação a um evento
 - R terminada em `:` seguida de tabela: tabela de decisão
 - critério iniciado por `exige:`: pré-condição; por `se …:`: fluxo alternativo ou exceção; sem prefixo: resultado
-- `· erro` ou `· alerta` no fim de uma R: regra checada por programa, com a severidade
-- afirmação: linha que pode ser verificada no produto; papéis R, Q, C, V, T e J
+- `· erro` ou `· alerta` depois do texto de uma R: regra checada por programa, com a severidade
 - `⟵ [P04]` no fim da linha: linha provisória, à espera da pergunta P04; respondida a pergunta, a marca sai
-- `⟸ [D07]` ou `⟸ [D07, D12]` no fim de um item de lista: decisões que o fundamentam; a frase de definição e as lápides não citam
+- `⟸ [D07]` ou `⟸ [D07, D12]` no fim de um item de lista: decisões que o fundamentam; a frase de definição e as lápides não citam; a afirmação que muda de célula leva as citações consigo
 - ordem das marcas no fim de um item: `· erro` ou `· alerta`, depois `⟸ [Dnn]`, depois `⟵ [Pnn]`
-- `- [ ] PED-R7  removida`: lápide de uma linha retirada; passa a `[x]` quando o produto deixa de ter o comportamento
-- `- [x] PED-C3  movida → [ENT-C1]`: lápide de uma linha que mudou de célula; tem a marca da linha nova, que herda a da antiga
+- `- [ ] PED-R7  removida`: lápide de uma afirmação retirada; passa a `[x]` quando o produto deixa de ter o comportamento
+- `- [x] PED-C3  movida → [ENT-C1]`: lápide de uma afirmação que mudou de célula; tem a marca da afirmação nova, que herda a da antiga
 - lápide `[x]` que nada mais cita pode ser podada; o número dela continua sem voltar
 - `<!-- gerado; não editar -->`: seção gerada por programa; documentos derivados, como visão, casos de uso e manual, são redigidos por agente e ficam fora desta pasta
