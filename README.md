@@ -4,7 +4,29 @@ O Tabularium é um formato para documentar produtos de software em Markdown, num
 
 O formato é para equipes de desenvolvimento e sustentação de software, da análise à implementação, em uso pessoal ou numa organização. Qualquer um pode adotá-lo.
 
-> **Estado: experimental.** O formato está em aprendizado e, por ora, visa produtos pequenos. O que existe hoje é a definição do formato, em [`specs/`](specs/), as instruções para agentes e as decisões do próprio formato, em [`specs/decisoes/`](specs/decisoes/). O verificador e as skills de geração ainda não existem: onde este README os descreve, descreve o que o formato pretende. Duas aplicações reais, Iconula e Abditum, serão especificadas no formato, cada uma em repositório próprio de exemplo, para pôr a ideia à prova.
+## Instalar e atualizar
+
+É preciso ter o Node.js, na versão 18 ou mais recente, e um agente de IA que rode skills.
+
+Para instalar:
+
+1. Na raiz do seu repositório, instale a skill de instalação:
+
+   ```bash
+   npx skills add useful-toys/Tabularium-Quater
+   ```
+
+2. Peça ao agente para rodar a skill `tabularium-instalar`. Ela cria `specs/` e `specs/decisoes/`, copia para lá as instruções para agentes e a legenda do formato, e cria `specs/_produto.md` e `specs/_contadores.md` a partir de modelos.
+3. Preencha `specs/_produto.md`, que nasce com textos de exemplo, e siga por [Como começar](#como-começar).
+
+Para atualizar:
+
+1. Peça ao agente para rodar a skill `tabularium-instalar` de novo. Ela sobrescreve as instruções para agentes e a legenda com a versão mais recente e mantém os arquivos que são seus.
+2. Se o formato mudou, a skill lista o que a sua especificação precisa ajustar e espera o seu aceite antes de alterá-la.
+
+A versão instalada é sempre a mais recente da linha principal deste repositório; não há como escolher outra.
+
+> **Estado: experimental.** O formato está em aprendizado e, por ora, visa produtos pequenos. O que existe hoje é a definição do formato, em [`specs/`](specs/), as instruções para agentes, as decisões do próprio formato, em [`specs/decisoes/`](specs/decisoes/), e a skill de instalação. O verificador e as skills de geração ainda não existem: onde este README os descreve, descreve o que o formato pretende. Duas aplicações reais, Iconula e Abditum, serão especificadas no formato, cada uma em repositório próprio de exemplo, para pôr a ideia à prova.
 
 Este README é uma explicação derivada da própria definição normativa do formato, que está em [`specs/`](specs/), escrita no próprio formato. Em caso de divergência, vale o que está lá. Os identificadores entre parênteses, como (TRM-R7), apontam para a regra de origem.
 
@@ -382,8 +404,8 @@ O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especi
 
 ## Como começar
 
-1. Copie `AGENTS.md` e `_convencoes.md` para a pasta `specs/` do seu projeto, e os dois arquivos de mesmo nome de `specs/decisoes/` para `specs/decisoes/`, sem alterar.
-2. Escreva `_produto.md`: o problema, os atores e as primeiras áreas. Crie `_contadores.md` e atualize-o a cada número alocado.
+1. Instale o formato no seu repositório, conforme [Instalar e atualizar](#instalar-e-atualizar).
+2. Escreva `_produto.md`: o problema, os atores e as primeiras áreas. Atualize `_contadores.md` a cada número alocado.
 3. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões, cada afirmação marcada `[x]` ou `[ ]`.
 4. Registre em `_perguntas.md` as dúvidas sobre o que foi comprometido, em vez de chutar. Ideias vão para o rastreador.
 5. Confira cada mudança pela lista de `AGENTS.md`. Quando o verificador existir, rode-o a cada mudança e acompanhe os alertas de coesão.

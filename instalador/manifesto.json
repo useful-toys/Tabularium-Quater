@@ -1,0 +1,12 @@
+{
+  "genericos": [
+    "specs/AGENTS.md",
+    "specs/_convencoes.md",
+    "specs/decisoes/AGENTS.md",
+    "specs/decisoes/_convencoes.md"
+  ],
+  "modelos": [
+    "specs/_contadores.md",
+    "specs/_produto.md"
+  ]
+}
