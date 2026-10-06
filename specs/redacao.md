@@ -46,9 +46,9 @@ Código que torna uma **Linha** citável.
 - [x] LAP-R5  **Afirmação** que muda de **Célula** dona ganha **Identificador** da nova dona e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
 - [x] LAP-R6  Lápide `removida` nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado
 - [x] LAP-R7  Lápide `movida` tem a mesma marca da **afirmação** para onde aponta
-- [x] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
-- [ ] LAP-R9  Lápide `[x]` que nenhuma **Referência** cita pode ser podada; o **Identificador** dela continua sem voltar ⟸ [D07]
-- [ ] LAP-C1  Podar as lápides
+- [ ] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
+- [x] LAP-R9  Lápide `[x]` que nenhuma **Referência** cita pode ser podada; o **Identificador** dela continua sem voltar ⟸ [D07]
+- [x] LAP-C1  Podar as lápides
   - exige: lápide marcada `[x]`
   - exige: nenhuma **Referência** a cita
   - a lápide sai do bloco
@@ -65,11 +65,11 @@ Citação, em um lugar, de algo definido em outro.
 - [x] REF-R6  removida
 - [x] REF-R7  removida
 - [x] REF-R8  removida
-- [ ] REF-R9  Qualquer item de lista cita **Decisões** com `⟸ [Dnn]` no fim, várias separadas por vírgula; uma decisão pode ser citada por vários itens ⟸ [D09, D16, D67]
-- [ ] REF-R10  A **Decisão** não cita os itens que a citam ⟸ [D09]
-- [ ] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
+- [x] REF-R9  Qualquer item de lista cita **Decisões** com `⟸ [Dnn]` no fim, várias separadas por vírgula; uma decisão pode ser citada por vários itens ⟸ [D09, D16, D67]
+- [x] REF-R10  A **Decisão** não cita os itens que a citam ⟸ [D09]
+- [x] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
 - [ ] REF-R12  Ordem das marcas no fim de um item: **severidade**, `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão**, antes do `:` final
-- [ ] REF-R13  **Afirmação** que muda de **Célula** leva consigo as suas citações de **Decisão**
+- [x] REF-R13  **Afirmação** que muda de **Célula** leva consigo as suas citações de **Decisão**
 
 ## Pergunta  `PER`
 Lacuna conhecida da **Especificação**, ainda sem resposta.
@@ -95,8 +95,8 @@ Lacuna conhecida da **Especificação**, ainda sem resposta.
 ## Arquivo de perguntas  `APG`
 Arquivo com as **Perguntas** abertas da **Especificação**, uma por item, em ordem de número.
 - arquivo: `_perguntas.md`; opcional
-- [x] APG-R1  Lista plana, sem agrupamento; a **Área** de cada **Pergunta** é derivável
-- [x] APG-R2  Guarda só a **Pergunta** e as opções; a discussão fica fora
+- [ ] APG-R1  Lista plana, sem agrupamento; a **Área** de cada **Pergunta** é derivável
+- [ ] APG-R2  Guarda só a **Pergunta** e as opções; a discussão fica fora
 - [x] APG-R3  removida
 - [ ] APG-R4  As **Perguntas** ficam só neste arquivo, nunca num **Rastreador** ⟸ [D76]
 
@@ -104,9 +104,9 @@ Arquivo com as **Perguntas** abertas da **Especificação**, uma por item, em or
 Fato do produto, no particípio, ao qual alguma **Regra** reage.
 - nome: texto no particípio; único
 - produtora: 1 **Célula**
-- [x] EVT-R1  Não é uma mensagem do sistema; a arquitetura decide como realizá-lo
+- [ ] EVT-R1  Não é uma mensagem do sistema; a arquitetura decide como realizá-lo
 - [ ] EVT-R2  Só existe se ao menos uma **reação** o cita · erro ⟸ [D40]
-- [x] EVT-R3  Transição de estado cita o evento que a dispara, como `aguardando pagamento → pago: ao **Pagamento confirmado**`
+- [ ] EVT-R3  Transição de estado cita o evento que a dispara, como `aguardando pagamento → pago: ao **Pagamento confirmado**`
 
 ## Regra  `REG`
 **Afirmação** sempre verdadeira sobre uma **Célula**, independente de ação de um **Ator**; papel R.
@@ -125,20 +125,20 @@ Fato do produto, no particípio, ao qual alguma **Regra** reage.
 | combinação de condições | **Tabela de decisão** |
 | outra | R sem marca |
 
-- [x] REG-R2  Regra não leva rótulo de tipo; o tipo vem do lugar e da forma ⟸ [D37]
+- [ ] REG-R2  Regra não leva rótulo de tipo; o tipo vem do lugar e da forma ⟸ [D37]
 
 ## Tabela de decisão  `TDD`
 **Regra** escrita como tabela que dá um resultado para cada combinação de condições.
 - especializa **Regra**
 - [x] TDD-R1  É uma R terminada em `:` e seguida da tabela; a tabela inteira responde pelo **Identificador** ⟸ [D38]
-- [x] TDD-R2  Colunas de condição à esquerda; de resultado, à direita
+- [ ] TDD-R2  Colunas de condição à esquerda; de resultado, à direita
 - [ ] TDD-R3  Cada combinação de condições aparece exatamente uma vez · erro
-- [x] TDD-R4  `qualquer` vale para todos os valores de uma condição
+- [ ] TDD-R4  `qualquer` vale para todos os valores de uma condição
 
 ## Qualidade  `QUA`
 Como o produto se comporta, sem depender de uma ação específica; papel Q.
 - especializa **Linha**
-- [x] QUA-R1  Limite de qualidade tem número e unidade, como `em até 3 s`
+- [ ] QUA-R1  Limite de qualidade tem número e unidade, como `em até 3 s`
 - [x] QUA-R2  Qualidade sobre uma **Célula** fica no bloco dela; as demais, em `Regras globais` do **Arquivo de produto**
 
 ## Capacidade  `CAP`
@@ -146,7 +146,7 @@ Algo que um **Ator** pode fazer e que altera estado; papel C.
 - especializa **Linha**
 - 0..N **Critério**
 - [x] CAP-R1  Pertence à **Célula** que altera
-- [ ] CAP-R2  Capacidade que altera mais de uma **Célula** mora numa só; as outras reagem a um **Evento** dela ⟸ [D05]
+- [x] CAP-R2  Capacidade que altera mais de uma **Célula** mora numa só; as outras reagem a um **Evento** dela ⟸ [D05]
 
 ## Visão  `VIS`
 Algo que um **Ator** pode ver, sem alterar nada; papel V.
@@ -157,7 +157,7 @@ Algo que um **Ator** pode ver, sem alterar nada; papel V.
 ## Critério  `CRT`
 Condição para considerar atendida uma **Capacidade** ou uma **Visão**, escrita como sub-item dela.
 - [x] CRT-R1  Não tem **Identificador**
-- [x] CRT-R2  Critério que precisa ser citado sozinho vira **Regra**
+- [ ] CRT-R2  Critério que precisa ser citado sozinho vira **Regra**
 - [x] CRT-R3  Critério iniciado por `exige:` é pré-condição ⟸ [D39]
 - [x] CRT-R4  Critério iniciado por `se …:` é fluxo alternativo ou exceção ⟸ [D39]
 - [x] CRT-R5  Critério sem prefixo é resultado ⟸ [D39]
@@ -166,13 +166,13 @@ Condição para considerar atendida uma **Capacidade** ou uma **Visão**, escrit
 O que um texto do produto afirma, sem implicar comportamento; papel T.
 - especializa **Linha**
 - [x] DCL-R1  Só em **Células** que são textos, como políticas, contratos e condições de uso
-- [x] DCL-R2  Declaração sobre um comportamento cita a **Regra** em vez de repeti-la
+- [ ] DCL-R2  Declaração sobre um comportamento cita a **Regra** em vez de repeti-la
 
 ## Jornada  `JOR`
 Sequência de **Capacidades** e **Visões** cuja ordem é escolha de produto; papel J.
 - especializa **Linha**
 - [x] JOR-R1  Só no **Arquivo de produto**
-- [x] JOR-R2  Forma: `PRD-Jn  Nome: [ID] → [ID] → …`
+- [ ] JOR-R2  Forma: `PRD-Jn  Nome: [ID] → [ID] → …`
 - [ ] JOR-R3  Só cita **afirmações** de papel C e V · erro
 - [x] JOR-R4  Jornada não tem marca; está implementada quando todas as **afirmações** que cita estão
 
@@ -183,7 +183,7 @@ Quem age sobre o produto, definido pelo acesso que tem, e não pelo estado em qu
 - padrão: sim | não
 - [x] ATO-R1  **Afirmação** de papel C ou V sem marca de ator é do ator **padrão** ⟸ [D42]
 - [ ] ATO-R2  Marca de ator logo após o **Identificador**: `·` e o nome de um ator declarado, em minúsculas · erro
-- [x] ATO-R3  Estado de quem age não cria ator; fica no **modelo** da **Célula** ⟸ [D41]
-- [x] ATO-R4  O tempo, quando dispara **Regras** por prazo, é declarado como ator
+- [ ] ATO-R3  Estado de quem age não cria ator; fica no **modelo** da **Célula** ⟸ [D41]
+- [ ] ATO-R4  O tempo, quando dispara **Regras** por prazo, é declarado como ator
 - [ ] ATO-R5  **Regra** marcada `· tempo` contém um prazo com número e unidade · erro
 - [ ] ATO-R6  Há exatamente um **Ator** padrão na **Especificação** · erro

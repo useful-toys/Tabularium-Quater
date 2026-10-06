@@ -51,7 +51,7 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
 - [x] CEL-R16  Especialização: **Linha** de **modelo** `especializa **Célula**`; a célula é um caso particular da outra
 - [x] CEL-R17  A célula especializada herda o **modelo** e as **Linhas** do geral e só declara o que acrescenta
 - [ ] CEL-R18  Uma célula especializa no máximo uma outra · erro
-- [x] CEL-R19  Caso particular sem **Linhas** próprias não é especialização; é valor de um **Atributo**
+- [ ] CEL-R19  Caso particular sem **Linhas** próprias não é especialização; é valor de um **Atributo**
 - [x] CEL-R20  Pertencimento, associação e especialização descrevem como o negócio vê o domínio, não como os dados são guardados ⟸ [D48]
 - [x] CEL-C1  Dividir uma célula ⟸ [D27]
   - as **Linhas** que passam à célula nova são movidas, conforme [LAP-R5]
@@ -73,19 +73,19 @@ Característica de uma **Célula** como o negócio a vê, escrita como **Linha**
 - [x] ATR-R1  Forma: `nome: tipo; qualificadores`
 - [x] ATR-R2  removida
 - [ ] ATR-R3  Entra só se o usuário o vê, ou se alguma **afirmação** depende dele · alerta ⟸ [D46]
-- [x] ATR-R4  Códigos internos, datas de auditoria e chaves técnicas não entram
-- [x] ATR-R5  Formato, máscara e tamanho máximo não entram
+- [ ] ATR-R4  Códigos internos, datas de auditoria e chaves técnicas não entram
+- [ ] ATR-R5  Formato, máscara e tamanho máximo não entram
 - [ ] ATR-R6  **Atributo** cujo tipo é uma **Célula** é uma associação e leva a **Cardinalidade** antes da célula · erro
 - [ ] ATR-R7  Qualificadores só do vocabulário fechado: **identidade**, **único**, **imutável**, **opcional**, **inicial**, **derivado**, **pessoal**, **inverso** · erro ⟸ [D45]
 - [x] ATR-R8  Associação cujo papel tem o nome da própria **Célula** omite o nome, como em `- 1..N **Produto**`
 - [x] ATR-R9  Uma relação é declarada em uma só das duas **Células**; o outro lado, quando importa, vai em **inverso** ⟸ [D49]
-- [x] ATR-R10  Em associação, a **Cardinalidade** substitui o qualificador **opcional**
+- [ ] ATR-R10  Em associação, a **Cardinalidade** substitui o qualificador **opcional**
 
 ## Tipo de valor  `TIP`
 Valor sem **identidade** usado por **Atributos**, como uma contagem ou um código.
 - nome: texto; único
 - forma: tipo de base e restrições, como `inteiro; de 0 a 99`
-- [x] TIP-R1  Usado por uma só **Área**, fica nos tipos da área; por mais de uma, nos tipos comuns do **Arquivo de produto**
+- [ ] TIP-R1  Usado por uma só **Área**, fica nos tipos da área; por mais de uma, nos tipos comuns do **Arquivo de produto**
 
 ## Termo  `TRM`
 Palavra ou expressão com significado definido uma única vez na **Especificação**.
@@ -107,7 +107,7 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [ ] TRM-R2  Definido uma única vez, sem negrito · erro ⟸ [D50]
 - [x] TRM-R3  removida
 - [ ] TRM-R4  **Atributo** cujo nome se repete em outra **Célula** é referenciado como `**Célula.atributo**`, exceto no próprio bloco · erro ⟸ [D54]
-- [x] TRM-R5  Homônimo se resolve renomeando um dos lados ⟸ [D53]
+- [ ] TRM-R5  Homônimo se resolve renomeando um dos lados ⟸ [D53]
 - [ ] TRM-R6  Termo listado em **não usar** não aparece em nenhum arquivo · erro ⟸ [D52]
 - [ ] TRM-R7  Referenciado em negrito na primeira menção dentro de cada item de lista, frase de definição ou fileira de tabela; maiúsculas e plural não alteram o termo · alerta ⟸ [D51]
 - [x] TRM-R8  Não são menções: títulos, cabeçalhos de tabela, código, marcas de **Ator**, qualificadores no **modelo** e a própria **Célula** dentro do seu bloco
@@ -117,4 +117,4 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 Lista gerada de todos os **Termos**, cada um com o tipo de termo, a **definição** e o lugar de origem.
 - entrada: texto no formato nome · tipo de **Termo** — **definição** → lugar, mais **não usar** quando houver
 - [ ] GLO-R1  Em ordem alfabética
-- [ ] GLO-R2  Nunca é escrito à mão ⟸ [D33]
+- [x] GLO-R2  Nunca é escrito à mão ⟸ [D33]

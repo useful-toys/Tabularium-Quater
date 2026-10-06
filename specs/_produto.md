@@ -50,7 +50,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 
 ## Regras globais
 - [x] PRD-Q1  O texto se lê sem renderização e se renderiza nos editores e forjas comuns ⟸ [D73]
-- [x] PRD-Q2  O texto está no idioma do produto especificado
+- [ ] PRD-Q2  O texto está no idioma do produto especificado
 
 ## Fora de escopo
 - Arquitetura e detalhes técnicos · permanente
