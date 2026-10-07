@@ -28,4 +28,5 @@ Instruções que levam um agente de IA a executar o **Instalador** e a relatar o
 - usa 1 **npx skills**
 - [x] SKI-R1  Leva o **Instalador** consigo, e não os arquivos que ele copia
 - [x] SKI-R2  A cópia é sempre do **Instalador**; a skill não escreve esses arquivos
-- [x] SKI-I1  Pedido ao agente pelo nome `tabularium-instalar`
+- [x] SKI-I1  Comando `/tabularium-instalar`, digitado por quem usa o agente
+  - o agente não a aciona por conta própria

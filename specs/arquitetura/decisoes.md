@@ -91,6 +91,7 @@ Escolha do Claude. O Daniel pediu a descrição, a legenda, as instruções e os
 Estas são as escolhas que a arquitetura escrita em `_sistema.md` e `distribuicao.md` afirma. Ficam aqui, com o porquê que foi dito na conversa, até haver onde registrá-las.
 
 - **A instalação é uma skill, distribuída com `npx skills`.** Daniel: para não reinventar a roda. Realizada em `SKI-I1`.
+- **A skill só roda por comando de quem usa o agente, `/tabularium-instalar`.** Daniel, em 6 de outubro de 2026. O porquê não foi dito; o Claude tinha sugerido essa opção por a skill sobrescrever arquivos. Realizada em `SKI-I1`.
 - **A skill executa um script, e a cópia é sempre do script.** Claude: os arquivos são iguais em todos os projetos e a cópia tem de ser exata; um agente que reescreve o texto pode alterá-lo. É o raciocínio da D01 aplicado à instalação. Realizada em `SKI-R2`.
 - **O script baixa os arquivos direto da linha principal, por URL.** Daniel perguntou se era preciso clonar o repositório inteiro e tornou o repositório público para permitir o download direto. Descartados: embutir os arquivos na skill, que criava uma segunda cópia e envelhecia; e o clone raso, que exigia `git` e uma pasta temporária. Realizada em `INS-R1` e `ARQ-R1`.
 - **A lista do que copiar fica num manifesto na linha principal.** Claude: um arquivo novo no formato entra na lista sem depender de atualizar a skill de quem já instalou. Realizada em `MAN-R1`.

@@ -16,12 +16,12 @@ Para instalar:
    npx skills add useful-toys/Tabularium-Quater
    ```
 
-2. Peça ao agente para rodar a skill `tabularium-instalar`. Ela cria `specs/` e `specs/decisoes/`, copia para lá as instruções para agentes e a legenda do formato, e cria `specs/_produto.md` e `specs/_contadores.md` a partir de modelos.
+2. No agente, digite `/tabularium-instalar`. A skill cria `specs/` e `specs/decisoes/`, copia para lá as instruções para agentes e a legenda do formato, e cria `specs/_produto.md` e `specs/_contadores.md` a partir de modelos.
 3. Preencha `specs/_produto.md`, que nasce com textos de exemplo, e siga por [Como começar](#como-começar).
 
 Para atualizar:
 
-1. Peça ao agente para rodar a skill `tabularium-instalar` de novo. Ela sobrescreve as instruções para agentes e a legenda com a versão mais recente e mantém os arquivos que são seus.
+1. No agente, digite `/tabularium-instalar` de novo. A skill sobrescreve as instruções para agentes e a legenda com a versão mais recente e mantém os arquivos que são seus.
 2. Se o formato mudou, a skill lista o que a sua especificação precisa ajustar e espera o seu aceite antes de alterá-la.
 
 A versão instalada é sempre a mais recente da linha principal deste repositório; não há como escolher outra.
