@@ -17,6 +17,7 @@ O gerador e as skills de geração ainda não existem: onde este guia os descrev
 - [Relações entre células](#relações-entre-células)
 - [Eventos e reações](#eventos-e-reações)
 - [Onde mora cada regra](#onde-mora-cada-regra)
+- [Dados de referência](#dados-de-referência)
 - [Identificadores, lápides e citação](#identificadores-lápides-e-citação)
 - [Linguagem ubíqua](#linguagem-ubíqua)
 - [Células evoluem](#células-evoluem)
@@ -66,6 +67,7 @@ specs/
     _convencoes.md   legenda das decisões; igual em todo projeto
     _produto/        as que só _produto.md cita
     <area>/          as que os itens da área mais citam
+  dados/             dados de referência em JSON ou CSV, um arquivo por regra que os cita; lidos só sob demanda
 ```
 
 Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
@@ -218,8 +220,74 @@ As regras não recebem rótulo de tipo. O tipo é dado pelo lugar e pela forma (
 | Permissão | Marca de ator em C e V |
 | Comportamento geral | Q |
 | Combinação de condições | Tabela de decisão |
+| Conteúdo que já vem com o produto | Dados de referência |
 
 A **tabela de decisão** é uma R terminada em `:`, seguida de uma linha em branco e de uma tabela, com as condições à esquerda e os resultados à direita. Cada combinação aparece exatamente uma vez (TDD-R3).
+
+## Dados de referência
+
+Muitos produtos trazem conteúdo pronto: as seções de um catálogo, uma tabela de tarifas, uma convenção de cores definida pelo negócio. São **dados de referência**: instâncias de uma célula que já vêm com o produto e só mudam por uma nova versão dele (DRF-R1). O que decide se um conteúdo entra é quem o muda:
+
+| Quem muda | O que é | O que entra na especificação |
+| --- | --- | --- |
+| Ninguém; só uma nova versão do produto | Dados de referência | O modelo e os valores |
+| Um ator, por uma capacidade | Estado do produto | O modelo e a capacidade |
+| Um externo, sem decisão de quem especifica | Conteúdo fornecido | O modelo e o `fornece:` do externo |
+
+Os dados entram por uma regra terminada em `:`, no máximo uma por célula (DRF-R4, DRF-R9). Os que é preciso ver para entender as linhas da célula ficam no próprio bloco, numa tabela:
+
+```markdown
+## Modalidade  `MOD`
+Forma de envio que o **Cliente** escolhe ao fechar o **Pedido**.
+- código: texto; identidade
+- nome: texto
+- prazo: inteiro; em dias úteis
+- [ ] MOD-R1  As modalidades:
+
+| Código | Nome | Prazo |
+| --- | --- | --- |
+| ECO | Econômica | 8 |
+| EXP | Expressa | 2 |
+
+- [ ] MOD-R2  A modalidade `EXP` só é oferecida nas capitais
+```
+
+A primeira coluna é o atributo marcado `identidade`, e é isso que distingue a tabela de dados da tabela de decisão; por isso só a célula que tem um atributo assim recebe dados de referência (DRF-R7, DRF-R8). Cada coluna é um atributo da célula, e o opcional que falta fica com a célula vazia (DRF-R10, DRF-R12). Outra linha cita uma instância pela identidade, em código, como faz `MOD-R2` (DRF-R17).
+
+Os demais dados, e todo dado que não é tabular, vão para um arquivo na pasta `dados/`, que ninguém lê por rotina (DRF-R5). A regra cita o arquivo pelo nome, entre colchetes, e nomeia em negrito os atributos e as partes que ele traz, com o de identidade primeiro (DRF-R14, DRF-R15). Assim se sabe o que o arquivo contém sem abri-lo; os tipos continuam nas linhas de modelo.
+
+```markdown
+## Tarifa  `TAR`
+Preço de um envio numa **Modalidade**, por faixa de peso.
+- nome: texto; identidade
+- 1 **Modalidade**
+- [ ] TAR-R1  As tarifas, por **nome**, com a **Modalidade** e as **Faixas de peso**: [TAR-tarifas.json]
+
+## Faixa de peso  `FXP`
+Limite de peso de uma **Tarifa** e o preço cobrado até ele.
+- pertence a 1 **Tarifa**; inverso: 1..N
+- até: peso
+- preço: dinheiro
+```
+
+O arquivo `dados/TAR-tarifas.json` traz uma lista de objetos, um por instância:
+
+```json
+[
+  { "nome": "Econômica nacional",
+    "Modalidade": "ECO",
+    "Faixa de peso": [ { "até": "1 kg", "preço": "12,00" },
+                       { "até": "5 kg", "preço": "19,50" } ] }
+]
+```
+
+As chaves são os nomes dos atributos, como estão no modelo. A parte vem numa lista sob o nome da célula dela, e a outra célula é citada pela identidade da instância (ADA-R10, ADA-R11, DRF-R13). O nome do arquivo começa pela sigla da célula que o cita, e cada arquivo é citado por exatamente uma regra (ADA-R2, ADA-R4).
+
+Há só dois formatos: JSON para dado estruturado e CSV para dado tabular, este com os nomes dos atributos na primeira linha (ADA-R3, ADA-R13). O dado que chega em outro formato é convertido por programa, e o original não fica na especificação; quem o traz nunca o reescreve à mão, porque a transcrição erra em silêncio (ADA-R6, ADA-R7).
+
+Entre a tabela e o arquivo, o critério é a leitura, não só o tamanho: fica no bloco o que é preciso ver para entender a célula, e na dúvida vai para arquivo, que poupa o contexto de quem lê a área. Uma tabela com mais de 30 fileiras é candidata a arquivo de qualquer modo (DRF-R6).
+
+Uma célula com dados de referência pode ter também atributos que um ator altera, como a quantidade que um colecionador tem de cada figurinha de um catálogo fixo; os dados trazem só os demais (DRF-R18). Quando os dados mudam, o identificador da regra fica, e a marca volta a `[ ]` até o produto trazer os dados novos (DRF-R16). É o único caso em que uma marca volta atrás.
 
 ## Identificadores, lápides e citação
 
@@ -301,6 +369,7 @@ Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é jus
 | O quê | Onde fica | Como se liga |
 | --- | --- | --- |
 | Justificativas | `specs/decisoes/`, uma decisão por arquivo; só se abre quando se quer o porquê | O item fundamentado termina com `⟸ [Dnn]`; a decisão não cita de volta |
+| Dados de referência que não é preciso ver, ou que não são tabulares | `specs/dados/`, um arquivo por regra; só se abre quando se querem os valores | A regra termina com o nome do arquivo entre colchetes |
 | Ideias e pedidos não comprometidos | Rastreador | Viram afirmações `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
 | Explicações e exemplos | Documentos derivados | Cada frase cita sua origem |

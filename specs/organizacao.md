@@ -1,17 +1,18 @@
 # Organização
-Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validador** checa e o **Gerador** produz a partir dela, e como se guardam as **Decisões**.
+Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validador** checa e o **Gerador** produz a partir dela, e como se guardam as **Decisões** e os **Arquivos de dados**.
 
 ## Linguagem
 - externo: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
 
 ## Especificação  `ESP`
-Conjunto de arquivos Markdown que descreve um produto inteiro e é a fonte única da verdade sobre ele.
+Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que descreve um produto inteiro e é a fonte única da verdade sobre ele.
 - 1 **Instruções para agentes**
 - 1 **Arquivo de convenções**
 - 1 **Arquivo de produto**
 - 0..1 **Arquivo de perguntas**
 - 1 **Arquivo de contadores**
 - 1..N **Área** ⟸ [D31]
+- 0..N **Arquivo de dados**
 - evento: Especificação alterada
 - [x] ESP-R1  removida
 - [x] ESP-R2  A única prosa é a **definição** de cada **Célula**
@@ -76,6 +77,26 @@ Arquivo que guarda o maior número já usado em cada sequência da **Especifica�
 - [x] CTD-R7  O nome curto serve só para que duas alocações do mesmo número, feitas em paralelo, escrevam itens diferentes e conflitem ⟸ [D22]
 - [x] CTD-R8  Forma do item: `- SEQUÊNCIA  número  nome-curto`, com dois espaços entre as partes; sem nome curto enquanto o número é 0
 
+## Arquivo de dados  `ADA`
+Arquivo de texto com as instâncias que os **Dados de referência** de uma **Célula** citam, guardado à parte das **Áreas** e lido só sob demanda.
+- formato: JSON | CSV
+- [ ] ADA-R1  Mora na pasta `dados/`, junto dos arquivos da **Especificação**; a pasta não tem subpastas nem outros arquivos
+- [ ] ADA-R2  O nome é a **Sigla de célula** da **Célula** que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`
+- [ ] ADA-R3  Só há dois **formatos**: JSON, para dado estruturado, e CSV, para dado tabular ⟸ [D85]
+- [ ] ADA-R4  É citado por exatamente uma regra de **Dados de referência**
+- [x] ADA-R5  Traz só instâncias da **Célula** que o cita e das partes dela
+- [x] ADA-R6  Dado que chega em outro **formato** é convertido, e o original não fica na **Especificação**
+- [x] ADA-R7  Entra por cópia ou por conversão feita por programa, nunca por transcrição ⟸ [D89]
+- [x] ADA-R8  É texto em UTF-8
+- [ ] ADA-R9  Em JSON, é uma lista de objetos, um por instância
+- [x] ADA-R10  Em JSON, cada chave é o nome de um **Atributo**, escrito como no **modelo**
+- [x] ADA-R11  Em JSON, a parte fica numa lista sob o nome da **Célula** dela
+- [x] ADA-R12  Em JSON, **Atributo** **opcional** ausente é chave omitida
+- [ ] ADA-R13  Em CSV, a primeira linha traz os nomes dos **Atributos**, com o de **identidade** primeiro
+- [x] ADA-R14  Em CSV, o separador é a vírgula, e campo vazio é **Atributo** **opcional** ausente
+- [ ] ADA-R15  As colunas do CSV são exatamente os **Atributos** que a regra nomeia, conforme [DRF-R14]
+- [ ] ADA-R16  As chaves do primeiro nível do JSON estão entre os **Atributos** e as partes que a regra nomeia, conforme [DRF-R14]
+
 ## Área  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.
 - nome: texto; único
@@ -114,16 +135,17 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R8  **Linha** que não casa com nenhuma forma prevista é violação ⟸ [D79]
 - [x] VRF-R9  Lê só os arquivos como estão, sem consultar o **Controle de versão** ⟸ [D80]
 - [x] VRF-R10  Lê sempre a **Especificação** inteira, com as **Decisões**
-- [x] VRF-R11  Ignora as pastas que não são de **Área** nem de **Decisões**, entre elas a de arquitetura ⟸ [D82]
+- [x] VRF-R11  Ignora as pastas que não são de **Área**, de **Decisões** nem de **Arquivos de dados**, entre elas a de arquitetura ⟸ [D82]
 - [x] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
 - [x] VRF-R13  Não lê o conteúdo das seções geradas
-- [x] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R20] ⟸ [D77]
+- [x] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R21] ⟸ [D77]
 - [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ESP-R9], [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
 - [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
 - [x] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
 - [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13], [TRM-R14], [TRM-R15], [TRM-R16], [TRM-R17]
 - [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
+- [ ] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
@@ -141,6 +163,7 @@ Programa que produz as partes geradas da **Especificação**, sem interpretar o 
   - **Glossário**
   - lista de dados que identificam pessoas, a partir dos **Atributos** marcados **pessoal**
   - definições de link das **Referências** a **Linhas** [REF-R4]
+  - definições de link das citações de **Arquivos de dados** [DRF-R15]
   - índice de cada pasta de **Decisões**, com **Decisão.código**, **questão**, **resolução** e os itens que citam cada uma ⟸ [D19]
 
 ## Índice  `IND`
