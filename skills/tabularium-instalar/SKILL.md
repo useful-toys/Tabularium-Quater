@@ -24,6 +24,11 @@ Feito quando a saída traz uma linha por arquivo, com o estado: `criado`, `atual
 
 Mostre ao usuário a saída do script e, conforme o estado:
 
-- `criado  specs/_produto.md`: é um modelo com textos de exemplo, a preencher antes de a especificação valer.
+- `criado  specs/_produto.md`: é um modelo com textos de exemplo, a preencher antes de a especificação valer. Ofereça abrir o arquivo e conduzir o preenchimento com o usuário. Se ele aceitar, peça em texto corrido, sem exigir formato:
+  1. o produto: nome e uma frase do que ele é;
+  2. o problema que resolve, o problema em si e não a solução;
+  3. o público que usa.
+
+  Com isso preencha o título, a frase de abertura e o Propósito. Depois siga para os atores (os papéis que agem no produto e o acesso de cada um, indicando o padrão) e para as áreas. Áreas só entram quando houver células o bastante para agrupar: numa especificação que está nascendo, a tabela vazia é normal e a primeira área aparece junto com as primeiras células. Se o usuário preferir contar o produto de uma vez, extraia o que cabe em cada seção e mostre para conferir antes de gravar.
 - algum `atualizado`: o formato mudou. Leia `git diff -- specs/` e liste, para cada mudança nas instruções ou na legenda, os arquivos da especificação existente que ela afeta. Proponha os ajustes e espere o aceite antes de alterar a especificação.
 - só `igual` e `mantido`: o repositório já estava na versão mais recente.
