@@ -70,6 +70,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 - **Escolher o tipo:** use um tipo do vocabulário, se algum serve. Não invente palavra: se nenhum serve, omita a linha. Um componente tem no máximo um tipo.
 - **Criar um tipo da aplicação:** só quando dois ou mais componentes são a mesma espécie de coisa e têm afirmações em comum. Escreva o bloco do tipo como o de um componente, com as afirmações comuns, e faça cada componente citá-lo com `tipo: **Nome**`. O componente herda as linhas do tipo e não as repete.
 - **Tipo ou padrão:** o tipo diz o que o componente é, e ele só tem um. O padrão diz um comportamento que ele segue, e ele pode seguir vários.
+- **Componente que foge do padrão ou do tipo num ponto:** escreva no componente a afirmação que vale para ele e termine-a com `ao contrário de [ID]`, citando a afirmação do padrão ou do tipo. Não altere o padrão para acomodar o caso. Se vários componentes fogem do mesmo ponto, o padrão é que está errado: proponha revê-lo.
 - **Componente que apresenta uma célula:** pode ter o nome da célula; a sigla é outra. Cite com `realiza:` as afirmações dela que ele apresenta.
 - **Acrescentar uma afirmação:** aplique os dois testes, ache o dono, use o próximo número e atualize o contador.
 - **Criar um estilo:** confira antes se já existe um com o mesmo papel. Dê um nome que diga o papel, e não o valor. Escreva o valor só quando ele é compromisso.

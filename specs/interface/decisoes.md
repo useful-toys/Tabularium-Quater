@@ -99,6 +99,12 @@ Daniel, depois da conversão do Iconula. A lista de tipos da legenda só serviu 
 
 Complementos do Claude, aceitos: a linha `tipo:` é opcional num componente e é omitida quando nenhum tipo serve; o tipo da aplicação é citado em negrito; o padrão continua existindo, porque o tipo diz o que o componente é (um só) e o padrão diz um comportamento que ele segue (vários).
 
+### 22. A exceção a um padrão é marcada no componente
+
+Daniel, depois da conversão do Iconula. Quando um componente foge num ponto do padrão que segue, a afirmação dele termina com `ao contrário de [ID]`, citando a afirmação contrariada.
+
+- Descartado: reescrever o padrão para a exceção caber. Esconde que a exceção existe.
+
 ## Sobre o experimento
 
 ### 18. O experimento é no Iconula, e fica no Iconula
