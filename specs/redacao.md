@@ -20,7 +20,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 - [x] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de dono
 - [x] LIN-R9  **Afirmação** nova nasce `[ ]`, exceto a movida, que herda a marca
 - [x] LIN-R10  **Afirmação** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
-- [ ] LIN-R11  Num bloco de **Célula**, toda linha tem uma destas formas:
+- [x] LIN-R11  Num bloco de **Célula**, toda linha tem uma destas formas:
 
 | Linha | Forma | Regra |
 | --- | --- | --- |
@@ -87,7 +87,7 @@ Citação, em um lugar, de algo definido em outro.
 - [x] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
 - [x] REF-R12  removida
 - [x] REF-R13  **Afirmação** que muda de **Célula** leva consigo as suas citações de **Decisão**
-- [ ] REF-R14  Ordem das marcas no fim de um item: `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão**, antes do `:` final
+- [x] REF-R14  Ordem das marcas no fim de um item: `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão**, antes do `:` final
 
 ## Pergunta  `PER`
 Lacuna conhecida da **Especificação**, ainda sem resposta.
@@ -117,8 +117,8 @@ Arquivo com as **Perguntas** abertas da **Especificação**, uma por item, em or
 - [ ] APG-R2  Guarda só a **Pergunta** e as opções; a discussão fica fora
 - [x] APG-R3  removida
 - [ ] APG-R4  As **Perguntas** ficam só neste arquivo, nunca num **Rastreador** ⟸ [D76]
-- [ ] APG-R5  Forma do item: `- Pnn  enunciado?`, com dois espaços antes do **enunciado**; **opções** e **sobre** vêm em sub-itens `opção:` e `sobre:`
-- [ ] APG-R6  O título e a frase de abertura do arquivo são opcionais
+- [x] APG-R5  Forma do item: `- Pnn  enunciado?`, com dois espaços antes do **enunciado**; **opções** e **sobre** vêm em sub-itens `opção:` e `sobre:`
+- [x] APG-R6  O título e a frase de abertura do arquivo são opcionais
 
 ## Evento  `EVT`
 Fato do produto, no particípio, ao qual alguma **Regra** reage.
@@ -181,7 +181,7 @@ Condição para considerar atendida uma **Capacidade** ou uma **Visão**, escrit
 - [x] CRT-R3  Critério iniciado por `exige:` é pré-condição ⟸ [D39]
 - [x] CRT-R4  Critério iniciado por `se …:` é fluxo alternativo ou exceção ⟸ [D39]
 - [x] CRT-R5  Critério sem prefixo é resultado ⟸ [D39]
-- [ ] CRT-R6  Num bloco de **Célula**, só **Capacidade** e **Visão** têm sub-itens
+- [x] CRT-R6  Num bloco de **Célula**, só **Capacidade** e **Visão** têm sub-itens
 
 ## Declaração  `DCL`
 O que um texto do produto afirma, sem implicar comportamento; papel T.
@@ -193,7 +193,7 @@ O que um texto do produto afirma, sem implicar comportamento; papel T.
 Sequência de **Capacidades** e **Visões** cuja ordem é escolha de produto; papel J.
 - especializa **Linha**
 - [x] JOR-R1  Só no **Arquivo de produto**
-- [ ] JOR-R2  Forma: `PRD-Jn  Nome: [ID] → [ID] → …`
+- [x] JOR-R2  Forma: `PRD-Jn  Nome: [ID] → [ID] → …`
 - [x] JOR-R3  Só cita **afirmações** de papel C e V
 - [x] JOR-R4  Jornada não tem marca; está implementada quando todas as **afirmações** que cita estão
 
@@ -206,6 +206,6 @@ Quem age sobre o produto, definido pelo acesso que tem, e não pelo estado em qu
 - [x] ATO-R2  Marca de ator logo após o **Identificador**: `·` e o nome de um ator declarado, em minúsculas
 - [ ] ATO-R3  Estado de quem age não cria ator; fica no **modelo** da **Célula** ⟸ [D41]
 - [ ] ATO-R4  O tempo, quando dispara **Regras** por prazo, é declarado como ator
-- [ ] ATO-R5  **Regra** marcada `· tempo` contém um prazo com número e unidade
-- [ ] ATO-R6  Há exatamente um **Ator** padrão na **Especificação**
-- [ ] ATO-R7  Declarado em `Atores` como `- Nome: acesso`; o **padrão** termina com `; padrão`
+- [x] ATO-R5  **Regra** marcada `· tempo` contém um prazo com número e unidade
+- [x] ATO-R6  Há exatamente um **Ator** padrão na **Especificação**
+- [x] ATO-R7  Declarado em `Atores` como `- Nome: acesso`; o **padrão** termina com `; padrão`

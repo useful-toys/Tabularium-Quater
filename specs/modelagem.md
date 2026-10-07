@@ -50,7 +50,7 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
 - [x] CEL-R15  Pertencimento: **Linha** de **modelo** `pertence a 1 **Célula**`; a parte tem um só dono e não existe sem ele
 - [x] CEL-R16  Especialização: **Linha** de **modelo** `especializa **Célula**`; a célula é um caso particular da outra
 - [x] CEL-R17  A célula especializada herda o **modelo** e as **Linhas** do geral e só declara o que acrescenta
-- [ ] CEL-R18  Uma célula especializa no máximo uma outra
+- [x] CEL-R18  Uma célula especializa no máximo uma outra
 - [ ] CEL-R19  Caso particular sem **Linhas** próprias não é especialização; é valor de um **Atributo**
 - [x] CEL-R20  Pertencimento, associação e especialização descrevem como o negócio vê o domínio, não como os dados são guardados ⟸ [D48]
 - [x] CEL-C1  Dividir uma célula ⟸ [D27]
@@ -86,7 +86,7 @@ Valor sem **identidade** usado por **Atributos**, como uma contagem ou um códig
 - nome: texto; único
 - forma: tipo de base e restrições, como `inteiro; de 0 a 99`
 - [ ] TIP-R1  Usado por uma só **Área**, fica nos tipos da área; por mais de uma, nos tipos comuns do **Arquivo de produto**
-- [ ] TIP-R2  Forma: `- Nome: base; restrições`, ou `- Nome:` e os valores separados por `|`
+- [x] TIP-R2  Forma: `- Nome: base; restrições`, ou `- Nome:` e os valores separados por `|`
 
 ## Termo  `TRM`
 Palavra ou expressão com significado definido uma única vez na **Especificação**.
@@ -112,11 +112,15 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [x] TRM-R6  Termo listado em **não usar** não aparece em nenhum arquivo ⟸ [D52]
 - [x] TRM-R7  Referenciado em negrito na primeira menção dentro de cada item de lista, frase de definição ou fileira de tabela; maiúsculas e plural não alteram o termo ⟸ [D51]
 - [x] TRM-R8  Não são menções: títulos, cabeçalhos de tabela, código, marcas de **Ator**, qualificadores no **modelo** e a própria **Célula** dentro do seu bloco
-- [ ] TRM-R9  Termo da linguagem de uma **Área** é um item `- termo: definição` na seção `Linguagem`
-- [ ] TRM-R10  Primeira menção sem negrito que repete o nome como está na definição é violação; nome de **Atributo** não conta ⟸ [D81]
-- [ ] TRM-R11  Plural se reconhece palavra por palavra, pelas terminações regulares: `s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis` e `ns`
-- [ ] TRM-R12  Onde cabem dois termos, a menção é do de nome mais longo
-- [ ] TRM-R13  Os sinônimos de **não usar** fecham o texto da linha, antes das marcas de fim de item
+- [x] TRM-R9  Termo da linguagem de uma **Área** é um item `- termo: definição` na seção `Linguagem`
+- [x] TRM-R10  Primeira menção sem negrito que repete o nome como está na definição é violação; nome de **Atributo** não conta ⟸ [D81]
+- [x] TRM-R11  Plural se reconhece palavra por palavra, pelas terminações regulares: `s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis` e `ns`
+- [x] TRM-R12  Onde cabem dois termos, a menção é do de nome mais longo
+- [x] TRM-R13  Os sinônimos de **não usar** fecham o texto da linha, antes das marcas de fim de item
+- [x] TRM-R14  Negrito só marca **Referência** a termo; não há negrito de ênfase
+- [x] TRM-R15  O nome da **Área**, na tabela de áreas, não é menção
+- [x] TRM-R16  Sinônimo de **não usar** é acusado como palavra inteira, em maiúsculas ou minúsculas, fora de código
+- [x] TRM-R17  Negrito que casa com um termo e com um **Atributo** é do termo
 - [x] TRM-C1  Renomear um termo
 
 ## Glossário  `GLO`

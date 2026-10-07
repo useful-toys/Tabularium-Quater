@@ -45,7 +45,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - TDD-R  4  qualquer-vale-para
 - TIP-R  2  forma-tipo-valor
 - TRM-C  1  renomear-termo
-- TRM-R  13  sinonimos-fecham-texto
+- TRM-R  17  termo-vence-atributo
 - VIS-R  1  exibir-copiar-exportar
 - VRF-C  1  gerar-partes-derivadas
 - VRF-R  20  checa-numeracao

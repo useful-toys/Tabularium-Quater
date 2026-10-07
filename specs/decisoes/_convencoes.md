@@ -13,6 +13,7 @@ Legenda para ler e escrever uma decisão neste formato. Este arquivo é igual em
 - título: a questão, terminada em `?`, e o código, como `` # Quem vê um pedido?  `D07` ``
 - resolução: uma frase, logo abaixo do título; é escrita só ali
 - lista, nesta ordem: `Contexto`, `Alternativas descartadas`, `Consequências`
+- `Contexto`: na própria linha, como `- Contexto: texto`; os outros dois vão sozinhos na linha, com sub-itens
 - `Alternativas descartadas`: um sub-item por alternativa, com `:` e o motivo; ao menos uma
 - `Consequências`: sub-itens `Ganha:` e `Aceita:`
 - `## Histórico`: por último; uma entrada por alteração, da mais recente para a mais antiga, como `- 2026-10-04: decisão criada`

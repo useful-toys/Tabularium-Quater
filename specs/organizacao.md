@@ -21,7 +21,7 @@ Conjunto de arquivos Markdown que descreve um produto inteiro e é a fonte únic
 - [x] ESP-R6  O texto descreve só o que foi comprometido; ideias ficam no **Rastreador** até amadurecerem ⟸ [D59]
 - [ ] ESP-R7  Títulos organizam os blocos em hierarquia, com profundidade livre; dentro do bloco não há subtítulos, e a profundidade dos sub-itens é livre
 - [ ] ESP-R8  Uma especificação descreve um só produto, com uma só linguagem; significados de um **Termo** que não se conciliam indicam dois produtos, cada um com a sua especificação ⟸ [D06]
-- [ ] ESP-R9  Abaixo do título do arquivo, todo título é de **Célula** ou de seção prevista
+- [x] ESP-R9  Abaixo do título do arquivo, todo título é de **Célula** ou de seção prevista
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
   - o **Índice** da **Área** diz o que ela usa de fora
 
@@ -45,12 +45,12 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 - [x] APR-R2  Tudo o que um **Documento derivado** precisaria afirmar sobre o conjunto, e não se deduz das **Áreas**, mora aqui
 - [x] APR-R3  **Regra** global que cita uma **Célula** pertence ao bloco dessa célula
 - [ ] APR-R4  **Externo** visível ao usuário leva nome; o invisível, só o papel
-- [ ] APR-R5  Item fora de escopo diz o horizonte: permanente ou nesta versão
+- [x] APR-R5  Item fora de escopo diz o horizonte: permanente ou nesta versão
 - [x] APR-R6  A relação entre **Áreas** não é escrita aqui; é o **Mapa entre áreas** gerado
 - [x] APR-R7  `Propósito` começa pelo problema que o produto resolve ⟸ [D44]
 - [x] APR-R8  Cada **externo** diz, em sub-itens, o que guarda, fornece, recebe ou impõe
-- [ ] APR-R9  Não tem seção fora das previstas, nem fora da ordem
-- [ ] APR-R10  Forma dos itens de cada seção:
+- [x] APR-R9  Não tem seção fora das previstas, nem fora da ordem
+- [x] APR-R10  Forma dos itens de cada seção:
 
 | Seção | Forma |
 | --- | --- |
@@ -74,7 +74,7 @@ Arquivo que guarda o maior número já usado em cada sequência da **Especifica�
 - [x] CTD-R5  Alocar é usar o número guardado mais um e, na mesma mudança, atualizar o número e o nome curto ⟸ [D22]
 - [x] CTD-R6  Código alocado fora da linha principal do **Controle de versão** é provisório, e quem entra depois renumera o que colidir; depois de entrar, nunca é renumerado ⟸ [D23]
 - [x] CTD-R7  O nome curto serve só para que duas alocações do mesmo número, feitas em paralelo, escrevam itens diferentes e conflitem ⟸ [D22]
-- [ ] CTD-R8  Forma do item: `- SEQUÊNCIA  número  nome-curto`, com dois espaços entre as partes; sem nome curto enquanto o número é 0
+- [x] CTD-R8  Forma do item: `- SEQUÊNCIA  número  nome-curto`, com dois espaços entre as partes; sem nome curto enquanto o número é 0
 
 ## Área  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.
@@ -94,8 +94,8 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R8  A área reúne uma **célula central** e as **Células** que dependem principalmente dela ⟸ [D29]
 - [x] ARE-R9  **Célula** que troca mais **Referências**, feitas e recebidas, com outra área do que com a sua é candidata a mudar de área ⟸ [D30]
 - [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **dono**, vira pasta
-- [ ] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
-- [ ] ARE-R12  Área em pasta consta da tabela de áreas pelo nome da pasta; cada arquivo dela começa pelo título e traz as **Células** em blocos
+- [x] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
+- [x] ARE-R12  Área em pasta consta da tabela de áreas pelo nome da pasta; cada arquivo dela começa pelo título e traz as **Células** em blocos
 - [x] ARE-C1  Criar uma área
   - entra na tabela de áreas do **Arquivo de produto**
 - [ ] ARE-C2  Dividir uma área em duas
@@ -122,7 +122,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
 - [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
 - [x] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
-- [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13]
+- [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13], [TRM-R14], [TRM-R15], [TRM-R16], [TRM-R17]
 - [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
@@ -147,7 +147,7 @@ Programa que produz as partes geradas da **Especificação**, sem interpretar o 
 Seção gerada no topo de uma **Área** com o que ela usa de outras áreas.
 - conteúdo: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui e de **Perguntas** que tocam a área
 - [x] IND-R1  Nunca é editado à mão ⟸ [D70]
-- [ ] IND-R2  Começa com `<!-- gerado; não editar -->`
+- [x] IND-R2  Começa com `<!-- gerado; não editar -->`
 
 ## Mapa entre áreas  `MAP`
 Lista gerada de quais **Áreas** usam **Termos** e reagem a **Eventos** de quais outras.
@@ -192,7 +192,7 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 - [x] DEC-R16  Mais de 5 **alterações** indicam **resoluções** acumuladas
 - [x] DEC-R17  O texto da decisão nunca é escrito em **Área** nem no **Arquivo de produto**
 - [x] DEC-R18  A pasta `decisoes/` fica junto dos arquivos da **Especificação** e tem legenda e instruções para agentes próprias, `_convencoes.md` e `AGENTS.md`, iguais em todos os projetos
-- [ ] DEC-R19  Forma dos itens do corpo:
+- [x] DEC-R19  Forma dos itens do corpo:
 
 | Item | Forma |
 | --- | --- |
