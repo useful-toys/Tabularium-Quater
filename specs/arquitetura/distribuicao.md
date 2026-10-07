@@ -7,6 +7,7 @@ Script que copia da linha principal, para o repositório que adota o formato, as
 - local: `skills/tabularium-instalar/instalar.mjs`
 - usa 1 **Manifesto de instalação**
 - usa 1 **GitHub**
+- usa 1 **Node.js**
 - [x] INS-R1  Baixa cada arquivo da linha principal por URL, sem clonar o repositório
 - [x] INS-R2  Só escreve os caminhos que o **Manifesto de instalação** lista
 - [x] INS-I1  Execução por linha de comando, na raiz do repositório que adota o formato
