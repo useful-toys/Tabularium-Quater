@@ -36,6 +36,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 8. Toda afirmação nova nasce `[ ]`. Só marque `[x]` quando o produto cumpre a afirmação por inteiro, com evidência (um teste que passa ou uma verificação feita). Se a afirmação só pode ser cumprida em parte, ela está agregada demais: proponha dividi-la.
 9. Antes de alterar, retirar ou mover um item que termina com `⟸ [Dnn]`, leia todas as decisões que ele cita, porque a mudança pode contrariar qualquer uma delas. Uma decisão pode ser citada por vários itens: procure o código dela na especificação para ver o que mais ela fundamenta.
 10. Antes de escrever ou alterar uma decisão, leia `decisoes/AGENTS.md` e `decisoes/_convencoes.md`. Uma decisão responde a uma só questão: questão nova cria decisão nova.
+11. Escreva só o que o produto faz, nunca como ele é construído. Tecnologia, armazenamento, estrutura do código, formato de arquivo interno e forma de implantação são escolhas técnicas e não entram, nem como R nem como Q. Antes de escrever uma linha assim, reescreva-a como o que um ator ou o negócio observa: `O catálogo é embutido no código` vira `Nenhum ator altera o catálogo`, se é isso que se quer garantir. Se nada sobra depois de reescrever, a linha inteira pertence à arquitetura.
 
 ### Onde colocar cada coisa
 
@@ -55,6 +56,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 | Sistema ou organização fora do produto que alguma regra pressupõe | `Externos` em `_produto.md`, com sub-itens do que guarda, fornece, recebe ou impõe |
 | O porquê de uma escolha não óbvia, que tinha alternativa | Decisão em `decisoes/_produto/` ou `decisoes/<area>/`, na pasta da área cujos itens mais a citam; no item, só a marca `⟸ [Dnn]` no fim |
 | Problema que o produto resolve | Primeira linha de `Propósito` em `_produto.md` |
+| Escolha técnica: como o produto é construído | Fora da especificação, no documento de arquitetura; aqui, só a consequência que um ator ou o negócio observa, se houver |
 
 A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira cada linha na posição do seu papel.
 
@@ -81,7 +83,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 ### Depois de alterar
 
 - Rode o verificador, se o projeto tiver um, e corrija os erros antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
-- Sem verificador, confira ao menos: identificadores novos únicos e na sequência; `_contadores.md` com o número e o nome curto de cada alocação nova, e sem nenhum número diminuído; nenhuma referência `[ID]` ou `⟵ [Pnn]` quebrada; nenhuma citação `⟸ [Dnn]` sem o arquivo da decisão; marcas no fim do item na ordem severidade, `⟸`, `⟵`; nenhuma pergunta sem linha que a cite e sem `sobre:`; nenhum termo definido duas vezes; nenhum termo em negrito sem definição; primeira menção de cada termo em negrito; linhas na ordem fixa; nenhuma seção gerada editada.
+- Sem verificador, confira ao menos: identificadores novos únicos e na sequência; `_contadores.md` com o número e o nome curto de cada alocação nova, e sem nenhum número diminuído; nenhuma referência `[ID]` ou `⟵ [Pnn]` quebrada; nenhuma citação `⟸ [Dnn]` sem o arquivo da decisão; marcas no fim do item na ordem severidade, `⟸`, `⟵`; nenhuma pergunta sem linha que a cite e sem `sobre:`; nenhum termo definido duas vezes; nenhum termo em negrito sem definição; primeira menção de cada termo em negrito; linhas na ordem fixa; nenhuma seção gerada editada; nenhuma afirmação sobre como o produto é construído.
 - Resuma a mudança listando os identificadores criados, alterados e retirados, e os termos criados ou renomeados.
 
 ## Ao implementar
@@ -103,6 +105,8 @@ Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma 
 - Restrições: de projeto, de implementação, de interface, físicas, legais
 
 Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem afirmação e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem dono natural (falta uma célula); afirmação que cita outra célula mais do que a própria (mover a afirmação); duas células citadas quase sempre juntas, uma só pela outra (fundir); célula que troca mais referências com outra área do que com a sua (mudar de área); área com mais de 300 linhas ou com mais de um dono (virar pasta); bloco com muitas lápides `[x]` que nada cita (podar). Os sinais sobre decisões estão em `decisoes/AGENTS.md`.
+
+Proponha também, sem fazer por conta própria, reescrever ou retirar a afirmação que cita tecnologia, armazenamento, estrutura do código ou forma de implantação: reescrever, se há uma consequência que um ator ou o negócio observa; retirar, com lápide, se não há. Nas categorias acima, uma restrição de implementação só entra quando é imposta de fora ao produto, como por um externo ou por lei; a escolha feita pela equipe é arquitetura.
 
 Confira também se toda regra motivada por uma organização de fora (um órgão regulador, um parceiro, um titular de direitos) tem essa organização em `Externos`.
 

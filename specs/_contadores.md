@@ -31,7 +31,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - LAP-C  1  podar-lapides
 - LAP-R  9  lapide-x-nenhuma
 - LIN-C  3  corrigir-redacao-linha
-- LIN-R  9  linha-nova-nasce
+- LIN-R  10  descreve-o-que-faz
 - MAP-R  1  nunca-escrito-mao
 - PER-C  2  responder-pergunta
 - PER-R  8  pergunta-duvida-sobre

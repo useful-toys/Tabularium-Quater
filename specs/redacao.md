@@ -19,6 +19,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 - [x] LIN-R7  Linha de **modelo** não tem marca de implementação
 - [ ] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de dono · alerta
 - [x] LIN-R9  **Afirmação** nova nasce `[ ]`, exceto a movida, que herda a marca
+- [x] LIN-R10  **Afirmação** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
 - [x] LIN-C1  Acrescentar uma **afirmação**
   - no bloco da **Célula** dona, na posição do seu papel
   - com o próximo número livre, conforme [IDT-R2]
