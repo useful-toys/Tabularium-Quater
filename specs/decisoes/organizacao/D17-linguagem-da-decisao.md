@@ -5,7 +5,7 @@ Os termos da especificação, sem negrito.
   - Negrito conferido, como na especificação: renomear um termo obrigaria a editar as decisões
   - Texto livre: a decisão envelhece com nomes que já não existem
 - Consequências
-  - Ganha: texto leve, em que o verificador só acusa sinônimo proibido
+  - Ganha: texto leve, em que o validador só acusa sinônimo proibido
   - Aceita: um termo renomeado pode sobrar numa decisão sem que nada avise
 
 ## Histórico

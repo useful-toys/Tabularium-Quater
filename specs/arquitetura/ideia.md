@@ -89,7 +89,7 @@ As linhas de modelo têm palavras fixas: `tecnologia:`, `local:`, `realiza:` e `
 
 ## O experimento
 
-Em vez de mudar a definição do formato, escrevemos à mão a arquitetura do próprio Tabularium, só com o que existe: a área de distribuição, com três componentes (o instalador, o manifesto de instalação e a skill de instalação), mais três externos e três restrições globais. O Verificador ficou de fora porque nenhuma escolha técnica sobre ele foi tomada.
+Em vez de mudar a definição do formato, escrevemos à mão a arquitetura do próprio Tabularium, só com o que existe: a área de distribuição, com três componentes (o instalador, o manifesto de instalação e a skill de instalação), mais três externos e três restrições globais. O Validador ficou de fora porque nenhuma escolha técnica sobre ele foi tomada.
 
 O Daniel disse que ainda não sabe avaliar se o formato é bom, apesar de interessante. O experimento serve para isso. Perguntas que ajudam a avaliar:
 

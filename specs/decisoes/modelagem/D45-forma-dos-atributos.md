@@ -2,7 +2,7 @@
 Na forma nome, tipo e qualificadores, com os qualificadores tirados de um vocabulário fechado.
 - Contexto: texto livre depois do tipo aparecia no lugar de qualificadores, e nenhum programa o lia
 - Alternativas descartadas
-  - Texto livre depois do tipo: invisível para o verificador
+  - Texto livre depois do tipo: invisível para o validador
   - Vocabulário aberto de qualificadores: cada autor criaria os seus
 - Consequências
   - Ganha: atributos legíveis por programa

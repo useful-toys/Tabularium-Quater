@@ -6,7 +6,7 @@ Texto hierárquico em Markdown, do qual o grafo de referências é derivado.
   - Formatos de dados, como JSON ou XML: penosos de ler e de revisar à mão
 - Consequências
   - Ganha: leitura e edição sem ferramenta, e comparação simples entre versões
-  - Aceita: a integridade das referências depende do verificador
+  - Aceita: a integridade das referências depende do validador
 
 ## Histórico
 - 2026-10-05: decisão criada

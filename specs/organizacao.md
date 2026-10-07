@@ -1,5 +1,5 @@
 # Organização
-Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Verificador** checa e gera a partir dela, e como se guardam as **Decisões**.
+Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validador** checa e o **Gerador** produz a partir dela, e como se guardam as **Decisões**.
 
 ## Linguagem
 - externo: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
@@ -48,6 +48,19 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 - [x] APR-R6  A relação entre **Áreas** não é escrita aqui; é o **Mapa entre áreas** gerado
 - [x] APR-R7  `Propósito` começa pelo problema que o produto resolve ⟸ [D44]
 - [x] APR-R8  Cada **externo** diz, em sub-itens, o que guarda, fornece, recebe ou impõe
+- [ ] APR-R9  Não tem seção fora das previstas, nem fora da ordem
+- [ ] APR-R10  Forma dos itens de cada seção:
+
+| Seção | Forma |
+| --- | --- |
+| `Propósito` | `- Rótulo: texto`, com rótulo livre; o primeiro é `Problema`, conforme [APR-R7] |
+| `Áreas` | tabela com as colunas `Área`, `Célula central`, `Prioridade`, `Dono` e `Arquivo` |
+| `Atores` | conforme [ATO-R7] |
+| `Tipos comuns` | conforme [TIP-R2] |
+| `Jornadas` | conforme [JOR-R2] |
+| `Externos` | `- Nome · papel`, com sub-itens iniciados por `guarda:`, `fornece:`, `recebe:` ou `impõe:` |
+| `Regras globais` | **afirmações** de sigla `PRD` |
+| `Fora de escopo` | `- texto · permanente` ou `- texto · nesta versão` |
 
 ## Arquivo de contadores  `CTD`
 Arquivo que guarda o maior número já usado em cada sequência da **Especificação**, para que nenhum volte.
@@ -55,11 +68,12 @@ Arquivo que guarda o maior número já usado em cada sequência da **Especifica�
 - seções: `Identificadores`, `Perguntas`, `Decisões`, nesta ordem
 - [x] CTD-R1  `Identificadores` tem um item por **Sigla de célula** e **Letra de papel** já usadas, em ordem alfabética, com o maior número já usado e um nome curto da última alocação
 - [x] CTD-R2  `Perguntas` e `Decisões` têm um item cada, com o maior **Código de pergunta** e o maior **Código de decisão** já usados e um nome curto da última alocação
-- [ ] CTD-R3  Um número guardado só cresce, e uma **Sigla de célula** nunca sai, mesmo extinta · erro
-- [ ] CTD-R4  Nenhum **Identificador**, **Código de pergunta** ou **Código de decisão** da **Especificação** passa do número guardado · erro
+- [x] CTD-R3  Um número guardado só cresce, e uma **Sigla de célula** nunca sai, mesmo extinta
+- [x] CTD-R4  Nenhum **Identificador**, **Código de pergunta** ou **Código de decisão** da **Especificação** passa do número guardado
 - [x] CTD-R5  Alocar é usar o número guardado mais um e, na mesma mudança, atualizar o número e o nome curto ⟸ [D22]
 - [x] CTD-R6  Código alocado fora da linha principal do **Controle de versão** é provisório, e quem entra depois renumera o que colidir; depois de entrar, nunca é renumerado ⟸ [D23]
 - [x] CTD-R7  O nome curto serve só para que duas alocações do mesmo número, feitas em paralelo, escrevam itens diferentes e conflitem ⟸ [D22]
+- [ ] CTD-R8  Forma do item: `- SEQUÊNCIA  número  nome-curto`, com dois espaços entre as partes; sem nome curto enquanto o número é 0
 
 ## Área  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.
@@ -69,7 +83,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - prioridade: núcleo | apoio | genérico; opcional
 - dono: 1 **Dono de área**
 - seções: `Índice`, `Linguagem`, `Tipos` e as **Células**, nesta ordem, sendo opcionais as três primeiras
-- [ ] ARE-R1  Toda área consta da tabela de áreas do **Arquivo de produto**, e vice-versa · erro
+- [x] ARE-R1  Toda área consta da tabela de áreas do **Arquivo de produto**, e vice-versa
 - [ ] ARE-R2  Área não tem sigla
 - [x] ARE-R3  Mover uma **Célula** de área não muda nenhum **Identificador**
 - [x] ARE-R4  A área não redefine **Termos**; a linguagem é a da **Especificação** ⟸ [D06]
@@ -77,25 +91,48 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R6  Pasta de área: `_area.md` com as seções anteriores às **Células**, e um arquivo por célula ou grupo de células
 - [ ] ARE-R7  Não há pasta dentro de pasta
 - [x] ARE-R8  A área reúne uma **célula central** e as **Células** que dependem principalmente dela ⟸ [D29]
-- [ ] ARE-R9  **Célula** que troca mais **Referências**, feitas e recebidas, com outra área do que com a sua é candidata a mudar de área · alerta ⟸ [D30]
-- [ ] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **dono**, vira pasta · alerta
+- [x] ARE-R9  **Célula** que troca mais **Referências**, feitas e recebidas, com outra área do que com a sua é candidata a mudar de área ⟸ [D30]
+- [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **dono**, vira pasta
 - [x] ARE-C1  Criar uma área
   - entra na tabela de áreas do **Arquivo de produto**
 - [ ] ARE-C2  Dividir uma área em duas
   - indicado quando partes da área mal se referenciam
   - as **Células** mudam de arquivo; os **Identificadores**, não
 
-## Verificador  `VRF`
-Programa que checa a **Especificação** e produz as partes geradas, sem interpretar o texto.
-- severidade: erro | alerta
-- [ ] VRF-R1  Ao **Especificação alterada**: verifica e regenera as partes geradas
-- [ ] VRF-R2  **Severidade** erro bloqueia a mudança; alerta pede revisão
+## Validador  `VRF`
+Programa que checa a forma da **Especificação**, sem interpretar o texto.
+- [x] VRF-R1  removida
+- [x] VRF-R2  removida
 - [ ] VRF-R3  Toda checagem é sintática ⟸ [D68]
-- [ ] VRF-R4  Checa toda **Regra** terminada em `· erro` ou `· alerta`; a marca é a **severidade** ⟸ [D69]
+- [x] VRF-R4  removida
 - [ ] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui ⟸ [D01]
+- [ ] VRF-R6  Ao **Especificação alterada**: valida
+- [ ] VRF-R7  **Especificação** com ao menos uma violação é inválida; não há resultado intermediário
+- [ ] VRF-R8  **Linha** que não casa com nenhuma forma prevista é violação ⟸ [D79]
+- [ ] VRF-R9  Lê só os arquivos como estão, sem consultar o **Controle de versão** ⟸ [D80]
+- [ ] VRF-R10  Lê sempre a **Especificação** inteira, com as **Decisões**
+- [ ] VRF-R11  Ignora as pastas que não são de **Área** nem de **Decisões**, entre elas a de arquitetura ⟸ [D82]
+- [ ] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
+- [ ] VRF-R13  Não lê o conteúdo das seções geradas
+- [ ] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R20] ⟸ [D77]
+- [ ] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ARE-R1], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
+- [ ] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
+- [ ] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
+- [ ] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
+- [ ] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12]
+- [ ] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
+- [ ] VRF-C1  movida → [GER-C1]
 - [ ] VRF-V1  Ver as violações da **Especificação**
-  - cada violação cita o **Identificador** da **Regra** violada e a **severidade**
-- [ ] VRF-C1  Gerar as partes derivadas
+  - todas, em ordem de arquivo e de **Linha**
+  - cada uma cita o arquivo, a **Linha**, o **Identificador** da **Regra** violada e uma frase que se entende sem a **Especificação** do formato
+  - **Linha** que não casa com nenhuma forma gera uma só violação
+
+## Gerador  `GER`
+Programa que produz as partes geradas da **Especificação**, sem interpretar o texto.
+- [ ] GER-R1  Ao **Especificação alterada**: regenera as partes geradas
+- [ ] GER-R2  É determinístico: a mesma **Especificação** dá sempre as mesmas partes geradas
+- [ ] GER-C1  Gerar as partes derivadas ⟸ [D78]
+  - exige: nenhuma violação da **Especificação**
   - **Índice** de cada **Área**
   - **Mapa entre áreas**
   - **Glossário**
@@ -106,7 +143,7 @@ Programa que checa a **Especificação** e produz as partes geradas, sem interpr
 ## Índice  `IND`
 Seção gerada no topo de uma **Área** com o que ela usa de outras áreas.
 - conteúdo: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui e de **Perguntas** que tocam a área
-- [ ] IND-R1  Nunca é editado à mão · erro ⟸ [D70]
+- [x] IND-R1  Nunca é editado à mão ⟸ [D70]
 - [ ] IND-R2  Começa com `<!-- gerado; não editar -->`
 
 ## Mapa entre áreas  `MAP`
@@ -119,7 +156,7 @@ Documento produzido a partir da **Especificação** para um público ou uma fina
 - [x] DER-R1  É descartável: nunca é editado nem citado como fonte ⟸ [D71]
 - [x] DER-R2  Cada frase cita o **Identificador** ou o **Termo** de origem
 - [x] DER-R3  Frase sem origem é invenção de quem gerou ou lacuna da **Especificação**
-- [x] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Verificador** ⟸ [D02]
+- [x] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Gerador** ⟸ [D02]
 - [x] DER-R5  Guardá-lo sob **Controle de versão** cabe a quem adota, que assume a divergência; mantê-lo em dia não cabe ao formato ⟸ [D03]
 - [x] DER-V1 · leitor  Ler um documento derivado
   - cada frase leva a sua origem
@@ -133,25 +170,34 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 - alternativas descartadas: outras respostas à **questão**, cada uma com o motivo
 - consequências: o que se ganha e o que se aceita
 - alterações: entradas com data e uma linha, da mais recente para a mais antiga, na seção `Histórico` ⟸ [D14]
-- arquivo: em `decisoes/_produto/` ou em `decisoes/` seguido do nome de uma **Área**; o nome é o **código**, `-`, um nome curto e `.md`
-- [ ] DEC-R1  Título: a **questão** e o **código**, como `` # Quem vê um pedido?  `D07` ``; a **resolução** vem logo abaixo · erro ⟸ [D13]
-- [ ] DEC-R2  Depois da **resolução**, uma lista com `Contexto`, `Alternativas descartadas` e `Consequências`, nesta ordem, e a seção `Histórico` por último · erro
+- arquivo: em `decisoes/_produto/` ou em `decisoes/` seguido do nome de uma **Área**, com o nome formado pelo **código**, `-`, um nome curto e `.md`
+- [x] DEC-R1  Título: a **questão** e o **código**, como `` # Quem vê um pedido?  `D07` ``; a **resolução** vem logo abaixo ⟸ [D13]
+- [x] DEC-R2  Depois da **resolução**, uma lista com `Contexto`, `Alternativas descartadas` e `Consequências`, nesta ordem, e a seção `Histórico` por último
 - [x] DEC-R3  Responde a uma só **questão**; as **alternativas descartadas** são outras respostas a ela ⟸ [D12]
 - [x] DEC-R4  **Resolução** que se pode reverter em parte são duas decisões
 - [x] DEC-R5  Registra-se quando havia ao menos uma alternativa plausível; nasce na mesma mudança que o item que a cita ⟸ [D21]
 - [x] DEC-R6  **Questão** nova cria decisão nova; só se edita uma decisão quando a mesma questão ganha outra **resolução**
 - [x] DEC-R7  Ao mudar a **resolução**, a anterior vai para as **alternativas descartadas** e as **alterações** ganham uma entrada
-- [ ] DEC-R8  **Código** em sequência única para o produto; código já usado não volta · erro ⟸ [D10]
-- [ ] DEC-R9  Mora na pasta da **Área** cujos itens mais a citam; citada só pelo **Arquivo de produto**, em `_produto` · alerta ⟸ [D11]
+- [x] DEC-R8  **Código** em sequência única para o produto; código já usado não volta ⟸ [D10]
+- [x] DEC-R9  Mora na pasta da **Área** cujos itens mais a citam; citada só pelo **Arquivo de produto**, em `_produto` ⟸ [D11]
 - [x] DEC-R10  Mudar de pasta não muda o **código**
 - [x] DEC-R11  Usa os **Termos** da **Especificação**, sem negrito ⟸ [D17]
 - [x] DEC-R12  Um item do corpo pode citar outra decisão, com a mesma **Referência** `⟸ [Dnn]` ⟸ [D20]
-- [ ] DEC-R13  Decisão que nenhum item da **Especificação** e nenhuma outra decisão cita é órfã, e permanece até a limpeza · alerta ⟸ [D15]
-- [ ] DEC-R14  **Resolução** com mais de uma frase, ou com ponto e vírgula, indica mais de uma decisão · alerta
-- [ ] DEC-R15  Decisão com mais de 25 linhas indica mais de uma decisão · alerta
-- [ ] DEC-R16  Mais de 5 **alterações** indicam **resoluções** acumuladas · alerta
+- [x] DEC-R13  Decisão que nenhum item da **Especificação** e nenhuma outra decisão cita é órfã, e permanece até a limpeza ⟸ [D15]
+- [x] DEC-R14  **Resolução** com mais de uma frase, ou com ponto e vírgula, indica mais de uma decisão
+- [x] DEC-R15  Decisão com mais de 25 linhas indica mais de uma decisão
+- [x] DEC-R16  Mais de 5 **alterações** indicam **resoluções** acumuladas
 - [x] DEC-R17  O texto da decisão nunca é escrito em **Área** nem no **Arquivo de produto**
 - [x] DEC-R18  A pasta `decisoes/` fica junto dos arquivos da **Especificação** e tem legenda e instruções para agentes próprias, `_convencoes.md` e `AGENTS.md`, iguais em todos os projetos
+- [ ] DEC-R19  Forma dos itens do corpo:
+
+| Item | Forma |
+| --- | --- |
+| `Contexto` | `- Contexto: texto` |
+| alternativa descartada | sub-item de `- Alternativas descartadas`, como `- alternativa: motivo`; ao menos uma |
+| consequência | sub-item de `- Consequências`, iniciado por `Ganha:` ou `Aceita:` |
+| alteração | item de `Histórico`, como `- AAAA-MM-DD: texto` |
+
 - [x] DEC-C1  Registrar uma decisão
   - com o próximo **código** livre
   - ao menos um item passa a citá-la

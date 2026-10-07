@@ -6,7 +6,8 @@ Na pasta da área cujos itens mais a citam, numa estrutura que espelha a da espe
   - A pasta do produto sempre que a decisão cruza áreas: essa pasta incha
 - Consequências
   - Ganha: quem trabalha numa área abre só a pasta dela
-  - Aceita: uma decisão pode ficar na pasta errada depois que uma célula muda de área, até o verificador alertar
+  - Aceita: uma decisão pode ficar na pasta errada depois que uma célula muda de área, até a revisão apontar
 
 ## Histórico
+- 2026-10-06: o validador deixa de alertar, e o sinal fica com a revisão
 - 2026-10-04: decisão criada

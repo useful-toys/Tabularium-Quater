@@ -46,7 +46,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 | Algo que um ator faz e que altera estado | C no bloco da célula que ela altera; se altera mais de uma, mora numa só e as outras reagem a um evento dela |
 | Algo que um ator vê, sem alterar nada (inclui exportar e copiar) | V no bloco da célula exibida |
 | Condição de aceite de uma C ou V | Sub-item dela, sem identificador: `exige:` para pré-condição, `se …:` para alternativa ou exceção, sem prefixo para resultado |
-| Regra que vale sempre | R no bloco da célula sobre a qual ela fala; termine com `· erro` ou `· alerta` se um programa deve checá-la |
+| Regra que vale sempre | R no bloco da célula sobre a qual ela fala |
 | Efeito de algo que aconteceu em outra célula | Linha `evento:` na célula que produz o fato, e R `Ao **Evento**:` na célula que reage |
 | Regra com várias condições combinadas | R terminada em `:` seguida de uma tabela de decisão |
 | Limite de desempenho ou comportamento geral | Q na célula, ou em regras globais se não houver célula |
@@ -82,8 +82,8 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 
 ### Depois de alterar
 
-- Rode o verificador, se o projeto tiver um, e corrija os erros antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
-- Sem verificador, confira ao menos: identificadores novos únicos e na sequência; `_contadores.md` com o número e o nome curto de cada alocação nova, e sem nenhum número diminuído; nenhuma referência `[ID]` ou `⟵ [Pnn]` quebrada; nenhuma citação `⟸ [Dnn]` sem o arquivo da decisão; marcas no fim do item na ordem severidade, `⟸`, `⟵`; nenhuma pergunta sem linha que a cite e sem `sobre:`; nenhum termo definido duas vezes; nenhum termo em negrito sem definição; primeira menção de cada termo em negrito; linhas na ordem fixa; nenhuma seção gerada editada; nenhuma afirmação sobre como o produto é construído.
+- Rode o validador, se o projeto tiver um, e corrija os erros antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
+- Sem validador, confira ao menos: identificadores novos únicos e na sequência; `_contadores.md` com o número e o nome curto de cada alocação nova, e sem nenhum número diminuído; nenhuma referência `[ID]` ou `⟵ [Pnn]` quebrada; nenhuma citação `⟸ [Dnn]` sem o arquivo da decisão; marcas no fim do item na ordem `⟸`, `⟵`; nenhuma pergunta sem linha que a cite e sem `sobre:`; nenhum termo definido duas vezes; nenhum termo em negrito sem definição; primeira menção de cada termo em negrito; linhas na ordem fixa; nenhuma seção gerada editada.
 - Resuma a mudança listando os identificadores criados, alterados e retirados, e os termos criados ou renomeados.
 
 ## Ao implementar
@@ -120,7 +120,7 @@ Confira também se toda regra motivada por uma organização de fora (um órgão
 
 ## Ao gerar documentos derivados
 
-- Documentos derivados são redigidos por você. O Índice das áreas, o mapa entre áreas, o glossário e o índice de cada pasta de decisões não são: saem do verificador, e você não os escreve à mão.
+- Documentos derivados são redigidos por você. O Índice das áreas, o mapa entre áreas, o glossário e o índice de cada pasta de decisões não são: saem do gerador, e você não os escreve à mão.
 - Gere a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
 - Cite a origem de cada frase.
 - Documentos tradicionais saem assim: visão, de `Propósito`, atores, externos e fora de escopo; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.

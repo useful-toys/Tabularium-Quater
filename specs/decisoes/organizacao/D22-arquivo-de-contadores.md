@@ -4,8 +4,8 @@ Por um arquivo de contadores em que cada item leva um nome curto da última aloc
 - Alternativas descartadas
   - Um contador só com o número: as duas mudanças escrevem a mesma linha, e o controle de versão as aceita sem conflito
   - Um item por alocação, em vez de um por sequência: acusa a colisão, mas o arquivo cresce a cada número alocado
-  - Só o verificador, depois de juntar as mudanças: sem ele nada acusa, e a duplicata entra em silêncio
-  - Número atribuído só na entrada, com marcador provisório até lá: depende do verificador e de testes que citem o marcador
+  - Só o validador, depois de juntar as mudanças: sem ele nada acusa, e a duplicata entra em silêncio
+  - Número atribuído só na entrada, com marcador provisório até lá: depende do validador e de testes que citem o marcador
   - Códigos não sequenciais, sem contador: longos e sem ordem, contra a densidade
 - Consequências
   - Ganha: o maior número já usado fica escrito, e sobrevive à poda de lápides e à limpeza de decisões ⟸ [D07]

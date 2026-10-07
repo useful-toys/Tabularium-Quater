@@ -30,7 +30,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 
 ## Modelo
 - forma: `nome: tipo; qualificadores`; depois do `;`, só qualificadores
-- qualificadores: identidade · único · imutável · opcional · inicial: X · derivado, seguido da fórmula · pessoal · inverso: CARD
+- qualificadores: identidade · único · imutável · opcional · inicial: X · derivado: fórmula · pessoal · inverso: CARD
 - cardinalidades: 1 · 0..1 · 0..N · 1..N
 - pertencimento: `pertence a 1 **Célula**`; a parte não existe sem o dono
 - associação: `papel: CARD **Célula**`, ou só `CARD **Célula**` quando o papel tem o nome da célula
@@ -50,10 +50,9 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `Ao **Evento**:` no início de uma R: reação a um evento
 - R terminada em `:` seguida de tabela: tabela de decisão
 - critério iniciado por `exige:`: pré-condição; por `se …:`: fluxo alternativo ou exceção; sem prefixo: resultado
-- `· erro` ou `· alerta` depois do texto de uma R: regra checada por programa, com a severidade
 - `⟵ [P04]` no fim da linha: linha provisória, à espera da pergunta P04; respondida a pergunta, a marca sai
 - `⟸ [D07]` ou `⟸ [D07, D12]` no fim de um item de lista: decisões que o fundamentam; a frase de definição e as lápides não citam; a afirmação que muda de célula leva as citações consigo
-- ordem das marcas no fim de um item: `· erro` ou `· alerta`, depois `⟸ [Dnn]`, depois `⟵ [Pnn]`
+- ordem das marcas no fim de um item: `⟸ [Dnn]`, depois `⟵ [Pnn]`
 - `- [ ] PED-R7  removida`: lápide de uma afirmação retirada; passa a `[x]` quando o produto deixa de ter o comportamento
 - `- [x] PED-C3  movida → [ENT-C1]`: lápide de uma afirmação que mudou de célula; tem a marca da afirmação nova, que herda a da antiga
 - lápide `[x]` que nada mais cita pode ser podada; o número dela continua sem voltar
