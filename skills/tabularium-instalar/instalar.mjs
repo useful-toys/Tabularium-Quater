@@ -7,7 +7,7 @@
 // TABULARIUM_ORIGEM troca a origem por outra URL ou por uma pasta local.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 const origem = process.env.TABULARIUM_ORIGEM
   ?? 'https://raw.githubusercontent.com/useful-toys/Tabularium-Quater/main';
@@ -25,6 +25,14 @@ async function baixar(caminho) {
 const normalizar = (texto) => texto.replace(/\r\n/g, '\n');
 
 const manifesto = JSON.parse(await baixar('instalador/manifesto.json'));
+
+// O manifesto vem da rede: nenhum caminho dele pode levar a escrita para fora da raiz.
+for (const nome of [...manifesto.genericos, ...manifesto.modelos]) {
+  const relativo = relative(raiz, resolve(raiz, nome));
+  if (relativo === '' || isAbsolute(relativo) || relativo.split(sep)[0] === '..') {
+    throw new Error(`${nome}: caminho fora da raiz do repositório`);
+  }
+}
 
 // Tudo é baixado antes de qualquer escrita, para uma falha de rede não deixar a instalação pela metade.
 const plano = [];
