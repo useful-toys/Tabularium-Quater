@@ -84,7 +84,7 @@ Proposta do Claude, aceita, para a interface e para a arquitetura. `decisoes/` e
 
 Proposta do Claude, aceita. O componente recebe o mesmo nome e outra sigla, e o caso entra nos achados como célula candidata a migrar.
 
-- Descartado: dar outro nome ao componente, que seria um sinônimo.
+- Descartado: dar outro nome ao componente, que seria um sinônimo. Revista pela decisão 25.
 
 ### 17. O teste do que entra tem três perguntas
 
@@ -119,6 +119,13 @@ Daniel, depois da conversão do Iconula. A tela é um componente especial: tem `
 - Substitui a decisão 10: a composição das telas passa a ser escrita, nas linhas `usa`.
 - Descartado: uma seção de telas no arquivo do conjunto, só com nome e propósito; e não citar telas em afirmação nenhuma.
 - Complemento do Claude, aceito: o bloco da tela só traz o que vale para a tela inteira; wireframes e posição em pixels continuam de fora.
+
+### 25. Componente que mostra uma célula do domínio tem nome próprio
+
+Daniel, depois da conversão do Iconula. Revê a decisão 16. O nome igual funcionou quando a célula era interface descrita como célula, como o Menu de ações. Funcionou mal quando a célula era do domínio: "Figurinha" passou a ser o item do álbum e também o cartão que o mostra.
+
+- Componente e célula são a mesma coisa: mesmo nome, outra sigla, e a célula é candidata a sair da especificação.
+- A célula é do domínio e o componente só a mostra: o componente tem nome próprio, como "Cartão de figurinha".
 
 ## Sobre o experimento
 

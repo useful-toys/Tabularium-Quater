@@ -57,7 +57,7 @@ Perguntas que ajudam a avaliar:
 
 - **É mudança de produto.** Adotar isto no formato exige rever o item "Detalhe de interface" de `_produto.md`.
 - **O nome "componente" tem dois sentidos.** Na arquitetura é a peça da solução; aqui, o conjunto de controles. Cada pasta define o seu na própria legenda, e onde uma cita a outra, qualifica. Se o uso mostrar confusão, a saída prevista é renomear a unidade da arquitetura.
-- **Células que são interface.** A especificação do Iconula tem células como Menu de ações e Faixa de bandeiras. O experimento cria o componente com o mesmo nome e outra sigla, sem mexer na célula, e registra cada caso como candidato a migrar.
+- **Células que são interface.** A especificação do Iconula tem células como Menu de ações e Faixa de bandeiras. O experimento cria o componente com o mesmo nome e outra sigla, sem mexer na célula, e registra cada caso como candidato a migrar. Quando a célula é do domínio de verdade, como Figurinha, o componente que a mostra recebe nome próprio.
 - **As decisões ficam sem checagem.** O validador não lê a pasta. Se o formato for adotado, elas migram para `specs/decisoes/`, o que exige mudar as regras de órfã e de pasta.
 - **Os nomes.** Os papéis R, Q e I, as linhas de modelo e a sigla `IFC` são sugestão do Claude.
 - **A instalação não distribui esta pasta.** O manifesto não a lista, de propósito, enquanto for experimento.

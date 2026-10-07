@@ -70,7 +70,7 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - ordem da lista: modelo (linhas sem identificador), R, Q, I
 - área: um componente central e os componentes e padrões que dependem dele, num arquivo
 - siglas de componentes, de padrões, de células e de componentes da arquitetura formam um só conjunto: nenhuma se repete
-- componente que apresenta uma célula pode ter o nome dela; a sigla é sempre outra
+- componente que é a mesma coisa que uma célula da especificação tem o nome dela, com outra sigla; componente que só mostra uma célula do domínio tem nome próprio, que diz o que ele é na tela, como `Cartão de pedido`
 - seções de `_interface.md`: `Áreas`, `Meios`, `Estilos`, `Diretrizes`, `Fora de escopo`, nesta ordem, omitidas as vazias; sigla das afirmações: `IFC`
 - `Áreas`: tabela com as colunas `Área`, `Componente central` e `Arquivo`
 - `Meios`: `- nome: descrição`
