@@ -28,6 +28,7 @@ O gerador e as skills de geração ainda não existem: onde este guia os descrev
 - [Decisões](#decisões)
 - [Verificação e geração](#verificação-e-geração)
 - [Documentos derivados](#documentos-derivados)
+- [Interface, em experimento](#interface-em-experimento)
 - [Trabalhando com agentes de IA](#trabalhando-com-agentes-de-ia)
 - [Valores](#valores)
 - [Diferenciais em relação a RUP, ágil, BDD e DDD](#diferenciais-em-relação-a-rup-ágil-bdd-e-ddd)
@@ -68,6 +69,7 @@ specs/
     _produto/        as que só _produto.md cita
     <area>/          as que os itens da área mais citam
   dados/             dados de referência em JSON ou CSV, um arquivo por regra que os cita; lidos só sob demanda
+  interface/         como o produto se apresenta; formato experimental, fora da definição do formato
 ```
 
 Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
@@ -373,6 +375,7 @@ Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é jus
 | Ideias e pedidos não comprometidos | Rastreador | Viram afirmações `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
 | Explicações e exemplos | Documentos derivados | Cada frase cita sua origem |
+| Como o produto se apresenta | `specs/interface/`, em formato experimental; só se abre quando se mexe no que o ator vê ou opera | A interface cita as afirmações da especificação; a especificação não cita de volta |
 
 ## Decisões
 
@@ -405,7 +408,7 @@ Uma decisão pode citar outra, com a mesma marca, quando o contexto de uma é a 
 
 ## Verificação e geração
 
-A gramática é fixa para que um programa, o **Validador**, consiga checar a forma da especificação sem interpretar o texto (VRF-R3). É um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro da skill `tabularium-validar`: o agente o executa e lê a saída, mas não o substitui (VRF-R5). O que ele checa é uma lista fechada, escrita no bloco dele, que cita cada regra pelo identificador (VRF-R14): a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, as referências, os termos, a numeração e os dados de referência. Nos dados, ele confere a regra, o nome do arquivo, as colunas da tabela e do CSV, as chaves do primeiro nível do JSON e a identidade repetida; as chaves dentro das partes e o tipo dos valores ficam com a revisão (VRF-R21). A gramática também é fechada: toda linha tem de casar com uma forma prevista, e a que não casa é violação (VRF-R8). Uma linha que começa com `[ok]` em vez de `[x]` é um exemplo do que ele acusa. Ele lê só os arquivos como estão, sem consultar o histórico (VRF-R9), e por ora não checa a pasta de arquitetura (VRF-R11). Uma especificação com ao menos uma violação é inválida, sem resultado intermediário (VRF-R7); impedir que a mudança entre é escolha de quem adota. Os sinais de reagrupamento, como áreas pouco coesas e blocos grandes demais, não são checados por ele: ficam com a revisão.
+A gramática é fixa para que um programa, o **Validador**, consiga checar a forma da especificação sem interpretar o texto (VRF-R3). É um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro da skill `tabularium-validar`: o agente o executa e lê a saída, mas não o substitui (VRF-R5). O que ele checa é uma lista fechada, escrita no bloco dele, que cita cada regra pelo identificador (VRF-R14): a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, as referências, os termos, a numeração e os dados de referência. Nos dados, ele confere a regra, o nome do arquivo, as colunas da tabela e do CSV, as chaves do primeiro nível do JSON e a identidade repetida; as chaves dentro das partes e o tipo dos valores ficam com a revisão (VRF-R21). A gramática também é fechada: toda linha tem de casar com uma forma prevista, e a que não casa é violação (VRF-R8). Uma linha que começa com `[ok]` em vez de `[x]` é um exemplo do que ele acusa. Ele lê só os arquivos como estão, sem consultar o histórico (VRF-R9), e por ora não checa a pasta de arquitetura nem a de interface (VRF-R11). Uma especificação com ao menos uma violação é inválida, sem resultado intermediário (VRF-R7); impedir que a mudança entre é escolha de quem adota. Os sinais de reagrupamento, como áreas pouco coesas e blocos grandes demais, não são checados por ele: ficam com a revisão.
 
 Outro programa, o **Gerador**, vai produzir o que se deriva mecanicamente (GER-C1): o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais, as definições de link e o índice de cada pasta de decisões. Ele só gera a partir de uma especificação sem violações. Essas partes são sempre iguais para a mesma especificação (GER-R2).
 
@@ -424,6 +427,54 @@ Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de
 | Casos de uso | C (ator e objetivo), critérios `exige:`, `se …:` e de resultado, reações e jornadas |
 | Cenários de teste | Modelo (dado), C ou evento (quando), critérios e reações (então) |
 | Manual do usuário | Capacidades e visões, na ordem das jornadas |
+
+## Interface, em experimento
+
+A especificação diz o que o produto faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora de escopo. Para esse assunto há um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador não lê a pasta, a instalação não a distribui, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`.
+
+A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
+
+| Conceito | O que é |
+| --- | --- |
+| Componente | Conjunto de controles coordenados para um objetivo. É a unidade, com bloco e sigla |
+| Controle | Um item da tela, como um campo ou um botão. É parte de um componente e não tem bloco |
+| Tipo | A espécie do componente. Ou é uma palavra da legenda, como menu, painel e diálogo, ou é definido pela aplicação num bloco próprio; neste caso, os componentes do tipo herdam as afirmações dele |
+| Padrão | Comportamento que vários componentes seguem, como o jeito de confirmar uma ação. Um componente tem um tipo só, e pode seguir vários padrões |
+| Tela | Componente especial, do tipo `tela`. Não tem controles próprios: lista os componentes de que é feita, na ordem em que aparecem |
+| Estilo | Cor, tipografia ou medida com nome e papel. É citado pelo nome, em negrito; o valor só entra quando é compromisso |
+| Diretriz | Afirmação que vale para a interface inteira |
+| Meio | Onde a interface aparece. Cada produto declara os seus, e o que muda de um para outro vai num sub-item com o nome do meio |
+
+Um componente e o padrão que ele segue ficam assim:
+
+```markdown
+## Confirmação  `CNF`
+Pergunta feita ao ator antes de uma ação que não se desfaz.
+- tipo: padrão
+- [ ] CNF-R1  A pergunta diz a consequência, e não só o nome da ação
+- [ ] CNF-R2  A ação de confirmar usa a **cor de perigo**
+
+## Diálogo de cancelamento  `DCA`
+Diálogo em que o **Cliente** confirma o cancelamento de um **Pedido**.
+- tipo: diálogo
+- partes: pergunta, aviso de estorno, ação de desistir, ação de cancelar o pedido
+- segue **Confirmação**
+- realiza: [PED-C2]
+- [ ] DCA-I1  Desistir
+  - o diálogo fecha, e nada muda
+  - terminal: também com `Esc`
+```
+
+As afirmações têm três papéis: R é diretriz, sempre verdadeira; Q é qualidade, com número e unidade; I é interação, o que o ator faz, com a resposta do produto nos sub-itens.
+
+Dois testes decidem o que entra:
+
+- **Interface ou especificação?** Se a afirmação continuaria verdadeira num outro meio, ela é da especificação. "Um pedido pago é estornado ao ser cancelado" vale num terminal e numa página, e fica na célula. "O diálogo fecha com `Esc`" não vale em todo meio, e fica na interface.
+- **Interface ou código?** Entra o que vale em mais de um lugar do produto, o que o ator teria de reaprender se mudasse, e o que é compromisso com alguém de fora, como a identidade da marca ou a acessibilidade. O resto é detalhe de uma tela, como um espaçamento, e fica no código.
+
+A ligação com a especificação é de mão única, como a das decisões: o componente aponta com `realiza:` as afirmações que ele apresenta, e a especificação nunca aponta de volta. Quem decide o produto não precisa abrir a pasta.
+
+Não entram desenhos de tela nem posição em pixels. O formato foi posto à prova uma vez, na conversão da descrição de interface de uma das aplicações de exemplo, e alguns pontos ficaram em aberto. Estão em `specs/interface/ideia.md`, com a memória de como o formato nasceu. O [exemplo da interface do Pedido](exemplos/interface-pedido.md) traz um trecho comentado, e a legenda completa está em [`specs/interface/_convencoes.md`](specs/interface/_convencoes.md).
 
 ## Trabalhando com agentes de IA
 

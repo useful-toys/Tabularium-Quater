@@ -86,6 +86,17 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
 5. Confira cada mudança pela lista de `specs/AGENTS.md`.
 
+## Interface, em experimento
+
+A especificação diz o que o produto faz, em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela. Para isso há um formato experimental, em [`specs/interface/`](specs/interface/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente de interface**, um conjunto de controles coordenados para um objetivo.
+
+- **Componentes, e não desenhos de tela.** Cada componente é escrito uma vez e reusado. A tela é um componente especial, que só lista os componentes de que é feita.
+- **Tipos e padrões.** Um tipo diz o que o componente é, e a aplicação pode definir os seus. Um padrão diz um comportamento que vários componentes seguem.
+- **Estilos e diretrizes.** Cores, fontes e medidas ganham nome e são citadas por ele. As diretrizes valem para a interface inteira.
+- **Só o que precisa ser igual em mais de um lugar.** O detalhe de uma tela só, como um espaçamento, fica no código.
+
+O formato ainda não faz parte da definição do Tabularium: o validador não o lê e a instalação não o distribui. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
+
 ## Limites
 
 - **Ainda é hipótese.** Duas aplicações reais, Iconula e Abditum, serão especificadas no formato para pôr a ideia à prova.
@@ -103,3 +114,5 @@ Os limites por extenso estão no [guia](GUIA.md#limites-e-cuidados).
 - [`specs/_convencoes.md`](specs/_convencoes.md): a legenda do formato.
 - [`specs/`](specs/): a definição normativa, escrita no próprio formato. Em caso de divergência, vale o que está lá.
 - [`specs/decisoes/`](specs/decisoes/): o porquê de cada escolha.
+- [`exemplos/interface-pedido.md`](exemplos/interface-pedido.md): um trecho de interface de exemplo, comentado.
+- [`specs/interface/_convencoes.md`](specs/interface/_convencoes.md): a legenda do formato experimental de interface.
