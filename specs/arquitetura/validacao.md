@@ -5,7 +5,7 @@ Como a forma de uma especificação é conferida no repositório que adota o for
 Script que lê a pasta da especificação e acusa as violações de forma.
 - tecnologia: Node.js 18 ou mais recente; sem dependências
 - local: `skills/tabularium-validar/validar.mjs`
-- realiza: [VRF-R3], [VRF-R5], [VRF-R7], [VRF-R8], [VRF-R9], [VRF-R10], [VRF-R11], [VRF-R12], [VRF-R13], [VRF-R14], [VRF-V1]
+- realiza: [VRF-R3], [VRF-R5], [VRF-R7], [VRF-R8], [VRF-R9], [VRF-R10], [VRF-R11], [VRF-R12], [VRF-R13], [VRF-R14], [VRF-R21], [VRF-V1]
 - leitura: módulo que classifica cada linha da especificação pela forma
 - checagens: módulos que acusam as violações sobre o que a leitura devolve
 - usa 1 **Node.js**

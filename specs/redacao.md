@@ -165,18 +165,18 @@ Fato do produto, no particípio, ao qual alguma **Regra** reage.
 - [x] DRF-R1  Enumera só o que muda apenas por uma nova versão do produto ⟸ [D83]
 - [x] DRF-R2  O que um **Ator** altera é estado do produto e não é enumerado
 - [x] DRF-R3  O que um **externo** fornece e atualiza não é enumerado; consta só do que ele fornece
-- [ ] DRF-R4  É uma R terminada em `:` e seguida dos dados: uma tabela, depois de uma linha em branco, ou a citação de um **Arquivo de dados**, na mesma linha
+- [x] DRF-R4  É uma R terminada em `:` e seguida dos dados: uma tabela, depois de uma linha em branco, ou a citação de um **Arquivo de dados**, na mesma linha
 - [x] DRF-R5  Ficam em tabela, no bloco, os dados que é preciso ver para entender as **Linhas** da **Célula**; os demais, e todo dado que não é tabular, ficam em **Arquivo de dados** ⟸ [D84]
 - [x] DRF-R6  Tabela de dados com mais de 30 fileiras é candidata a **Arquivo de dados**
 - [x] DRF-R7  A tabela é de dados quando a primeira coluna é o **Atributo** marcado **identidade** na **Célula**; senão, é **Tabela de decisão** ⟸ [D86]
-- [ ] DRF-R8  Só a **Célula** com um **Atributo** marcado **identidade** tem dados de referência
-- [ ] DRF-R9  Uma **Célula** tem no máximo uma regra de dados
-- [ ] DRF-R10  Cada coluna da tabela é um **Atributo** da **Célula**, com o nome escrito como no **modelo**; maiúsculas não o alteram
-- [ ] DRF-R11  Nenhuma **identidade** se repete nos dados
+- [x] DRF-R8  Só a **Célula** com um **Atributo** marcado **identidade** tem dados de referência
+- [x] DRF-R9  Uma **Célula** tem no máximo uma regra de dados
+- [x] DRF-R10  Cada coluna da tabela é um **Atributo** da **Célula**, com o nome escrito como no **modelo**; maiúsculas não o alteram
+- [x] DRF-R11  Nenhuma **identidade** se repete nos dados
 - [x] DRF-R12  Na tabela, **Atributo** **opcional** ausente é célula vazia
 - [x] DRF-R13  **Atributo** que é associação traz a **identidade** da instância citada
-- [ ] DRF-R14  A regra que cita um **Arquivo de dados** nomeia em negrito os **Atributos** que ele traz, com o de **identidade** primeiro, e a **Célula** de cada parte que ele traz ⟸ [D91]
-- [ ] DRF-R15  A citação é o nome do arquivo entre colchetes, sem caminho, depois do `:`, como `[PED-tarifas.json]` ⟸ [D87]
+- [x] DRF-R14  A regra que cita um **Arquivo de dados** nomeia em negrito os **Atributos** que ele traz, com o de **identidade** primeiro, e a **Célula** de cada parte que ele traz ⟸ [D91]
+- [x] DRF-R15  A citação é o nome do arquivo entre colchetes, sem caminho, depois do `:`, como `[PED-tarifas.json]` ⟸ [D87]
 - [x] DRF-R16  Mudar os dados mantém o **Identificador**; a marca volta a `[ ]` até o produto trazer os dados novos ⟸ [D88]
 - [x] DRF-R17  Outra **Linha** cita uma instância pela **identidade**, em código e sem negrito
 - [x] DRF-R18  A **Célula** com dados de referência pode ter **Atributos** que um **Ator** altera; os dados trazem só os demais

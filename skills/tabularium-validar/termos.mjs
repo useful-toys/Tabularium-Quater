@@ -6,7 +6,7 @@ import { mascarar } from './leitura.mjs';
 // Plural reconhecido pelas terminações regulares, palavra por palavra.
 const TERMINACOES = [[/ões$/, 'ão'], [/ães$/, 'ão'], [/ais$/, 'al'], [/éis$/, 'el'], [/eis$/, 'el'], [/eis$/, 'il'], [/óis$/, 'ol'], [/ns$/, 'm'], [/es$/, ''], [/s$/, '']];
 const singulares = (palavra) => [palavra, ...TERMINACOES.filter(([fim]) => fim.test(palavra)).map(([fim, por]) => palavra.replace(fim, por))];
-const leituras = (nome) => nome.toLowerCase().split(' ').map(singulares)
+export const leituras = (nome) => nome.toLowerCase().split(' ').map(singulares)
   .reduce((feitas, opcoes) => feitas.flatMap((f) => opcoes.map((o) => (f ? `${f} ${o}` : o))), ['']);
 
 const SEM_TEXTO = ['branco', 'gerado', 'ignorada', 'marcador-gerado', 'desconhecida'];

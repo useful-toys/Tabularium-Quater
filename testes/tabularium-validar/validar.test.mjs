@@ -140,6 +140,29 @@ const casos = [
   ['TRM-R10', 'termo com o nome exato, sem negrito', troca('pedidos.md', 'a quantidade não muda mais', 'a quantidade não muda mais no Pedido')],
   ['TRM-R10', 'negrito só na segunda menção', troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto de um Pedido, com a **Quantidade**, dentro do **Pedido**.')],
   ['TRM-R10', 'termo da linguagem sem negrito', troca('_produto.md', 'Entrega dos produtos', 'Entrega do carrinho')],
+
+  ['DRF-R4', 'arquivo de dados citado por uma qualidade', { ...troca('pedidos.md', '- [ ] TAR-R1  As tarifas', '- [ ] TAR-Q1  As tarifas'), ...troca('_contadores.md', '- TAR-R  1  tarifas', '- TAR-Q  1  tarifas') }],
+  ['DRF-R8', 'arquivo de dados em célula sem identidade', troca('pedidos.md', '- código: texto; identidade\n- [ ] EMB-R1', '- código: texto\n- [ ] EMB-R1')],
+  ['DRF-R8', 'arquivo de dados citado numa regra global', troca('_produto.md', 'responde em até 3 s', 'responde em até 3 s: [PRD-telas.csv]')],
+  ['DRF-R9', 'duas regras de dados na mesma célula', { ...troca('pedidos.md', '| EXP | Expressa | |\n', '| EXP | Expressa | |\n\n- [ ] MOD-R2  Outras modalidades, por **código**: [MOD-outras.csv]\n'), ...troca('_contadores.md', '- MOD-R  1  modalidades', '- MOD-R  2  outras-modalidades'), 'dados/MOD-outras.csv': 'código\nRET\n' }],
+  ['DRF-R10', 'coluna que não é atributo da célula', troca('pedidos.md', '| Código | Nome | Prazo |', '| Código | Nome | Dias |')],
+  ['DRF-R11', 'identidade repetida na tabela', troca('pedidos.md', '| EXP | Expressa | |', '| ECO | Expressa | |')],
+  ['DRF-R11', 'identidade repetida no CSV', troca('dados/TAR-tarifas.csv', '"Expressa leve, até 1 kg",EXP,21', 'Econômica leve,EXP,21')],
+  ['DRF-R11', 'identidade repetida no JSON', troca('dados/EMB-embalagens.json', '"código": "G"', '"código": "P"')],
+  ['DRF-R14', 'regra que não nomeia a identidade primeiro', troca('pedidos.md', 'por **nome**, com a **Modalidade** e o **preço**', 'com a **Modalidade**, o **preço** e o **nome**')],
+  ['DRF-R15', 'citação com caminho', troca('pedidos.md', '[TAR-tarifas.csv]', '[dados/TAR-tarifas.csv]')],
+  ['ADA-R1', 'subpasta em dados/', { 'dados/antigos/TAR-velhas.csv': 'nome\n' }],
+  ['ADA-R2', 'arquivo com a sigla de outra célula', { ...troca('pedidos.md', '[TAR-tarifas.csv]', '[MOD-tarifas.csv]'), 'dados/TAR-tarifas.csv': null, 'dados/MOD-tarifas.csv': exemplo['dados/TAR-tarifas.csv'] }],
+  ['ADA-R2', 'nome de arquivo com maiúscula', { ...troca('pedidos.md', '[TAR-tarifas.csv]', '[TAR-Tarifas.csv]'), 'dados/TAR-tarifas.csv': null, 'dados/TAR-Tarifas.csv': exemplo['dados/TAR-tarifas.csv'] }],
+  ['ADA-R3', 'arquivo de dados em outro formato', { ...troca('pedidos.md', '[TAR-tarifas.csv]', '[TAR-tarifas.yaml]'), 'dados/TAR-tarifas.csv': null, 'dados/TAR-tarifas.yaml': 'nome: Econômica leve\n' }],
+  ['ADA-R4', 'arquivo que nenhuma regra cita', { 'dados/TAR-antigas.csv': 'nome\n' }],
+  ['ADA-R9', 'JSON mal formado', troca('dados/EMB-embalagens.json', '\n]\n', '\n')],
+  ['ADA-R9', 'JSON que não é uma lista', { 'dados/EMB-embalagens.json': '{ "código": "P" }\n' }],
+  ['ADA-R13', 'identidade fora da primeira coluna do CSV', { 'dados/TAR-tarifas.csv': 'Modalidade,nome,preço\nECO,Econômica leve,12\n' }],
+  ['ADA-R15', 'coluna do CSV que a regra não nomeia', troca('dados/TAR-tarifas.csv', 'nome,Modalidade,preço', 'nome,Modalidade,preço,peso')],
+  ['ADA-R15', 'atributo nomeado que o CSV não traz', troca('dados/TAR-tarifas.csv', 'nome,Modalidade,preço', 'nome,Modalidade')],
+  ['ADA-R16', 'chave do JSON que a regra não nomeia', troca('dados/EMB-embalagens.json', '{ "código": "P",', '{ "código": "P", "peso": 2,')],
+  ['REF-R1', 'arquivo de dados citado que não existe', { 'dados/TAR-tarifas.csv': null }],
 ];
 
 for (const [regra, erro, mudanca] of casos) {
@@ -197,6 +220,15 @@ test('TRM-R12: onde cabem dois termos, vale o de nome mais longo', () => {
   const violacoes = violacoesCom(troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto e **Quantidade** de um **Pedido**, até o Pedido pago.'));
   assert.equal(violacoes.length, 1);
   assert.match(violacoes[0].frase, /^"Pedido pago" é um termo/);
+});
+
+test('DRF-R7: a tabela cuja primeira coluna não é a identidade é tabela de decisão', () => {
+  assert.deepEqual(violacoesCom(troca('pedidos.md', '| Código | Nome | Prazo |', '| Nome | Código | Dias |')), []);
+});
+
+test('VRF-V1: a violação num arquivo de dados cita o arquivo e a linha', () => {
+  const violacoes = violacoesCom(troca('dados/TAR-tarifas.csv', '"Expressa leve, até 1 kg",EXP,21', 'Econômica leve,EXP,21'));
+  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['dados/TAR-tarifas.csv:3 DRF-R11']);
 });
 
 test('VRF-R11: pasta que não é de área nem de decisões é ignorada', () => {

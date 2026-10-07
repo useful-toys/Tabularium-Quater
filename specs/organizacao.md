@@ -80,22 +80,22 @@ Arquivo que guarda o maior número já usado em cada sequência da **Especifica�
 ## Arquivo de dados  `ADA`
 Arquivo de texto com as instâncias que os **Dados de referência** de uma **Célula** citam, guardado à parte das **Áreas** e lido só sob demanda.
 - formato: JSON | CSV
-- [ ] ADA-R1  Mora na pasta `dados/`, junto dos arquivos da **Especificação**; a pasta não tem subpastas nem outros arquivos
-- [ ] ADA-R2  O nome é a **Sigla de célula** da **Célula** que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`
-- [ ] ADA-R3  Só há dois **formatos**: JSON, para dado estruturado, e CSV, para dado tabular ⟸ [D85]
-- [ ] ADA-R4  É citado por exatamente uma regra de **Dados de referência**
+- [x] ADA-R1  Mora na pasta `dados/`, junto dos arquivos da **Especificação**; a pasta não tem subpastas
+- [x] ADA-R2  O nome é a **Sigla de célula** da **Célula** que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`
+- [x] ADA-R3  Só há dois **formatos**: JSON, para dado estruturado, e CSV, para dado tabular ⟸ [D85]
+- [x] ADA-R4  É citado por exatamente uma regra de **Dados de referência**
 - [x] ADA-R5  Traz só instâncias da **Célula** que o cita e das partes dela
 - [x] ADA-R6  Dado que chega em outro **formato** é convertido, e o original não fica na **Especificação**
 - [x] ADA-R7  Entra por cópia ou por conversão feita por programa, nunca por transcrição ⟸ [D89]
 - [x] ADA-R8  É texto em UTF-8
-- [ ] ADA-R9  Em JSON, é uma lista de objetos, um por instância
+- [x] ADA-R9  Em JSON, é uma lista de objetos, um por instância
 - [x] ADA-R10  Em JSON, cada chave é o nome de um **Atributo**, escrito como no **modelo**
 - [x] ADA-R11  Em JSON, a parte fica numa lista sob o nome da **Célula** dela
 - [x] ADA-R12  Em JSON, **Atributo** **opcional** ausente é chave omitida
-- [ ] ADA-R13  Em CSV, a primeira linha traz os nomes dos **Atributos**, com o de **identidade** primeiro
+- [x] ADA-R13  Em CSV, a primeira linha traz os nomes dos **Atributos**, com o de **identidade** primeiro
 - [x] ADA-R14  Em CSV, o separador é a vírgula, e campo vazio é **Atributo** **opcional** ausente
-- [ ] ADA-R15  As colunas do CSV são exatamente os **Atributos** que a regra nomeia, conforme [DRF-R14]
-- [ ] ADA-R16  As chaves do primeiro nível do JSON estão entre os **Atributos** e as partes que a regra nomeia, conforme [DRF-R14]
+- [x] ADA-R15  As colunas do CSV são exatamente os **Atributos** que a regra nomeia, conforme [DRF-R14]
+- [x] ADA-R16  As chaves do primeiro nível do JSON estão entre os **Atributos** e as partes que a regra nomeia, conforme [DRF-R14]
 
 ## Área  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.
@@ -145,7 +145,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
 - [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13], [TRM-R14], [TRM-R15], [TRM-R16], [TRM-R17]
 - [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
-- [ ] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
+- [x] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
