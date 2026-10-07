@@ -25,15 +25,18 @@ const celulasDe = (bruto) => (/^\|.*\|$/.test(bruto) ? bruto.slice(1, -1).split(
 export const mascarar = (t) => t.replace(/`[^`]*`/g, (c) => '`' + '¤'.repeat(c.length - 2) + '`');
 
 // Separa do texto as marcas de fim de item: decisões, pergunta e, numa regra, o ':' que anuncia a tabela.
+// Os sinônimos proibidos, como "(~~valor, montante~~)", fecham o texto e vêm antes dessas marcas.
 function separarCauda(texto, comTabela = false) {
   let resto = mascarar(texto);
-  const cauda = { decisoes: [], pergunta: null, tabela: false, caudaInvalida: false };
+  const cauda = { decisoes: [], pergunta: null, tabela: false, caudaInvalida: false, sinonimos: [] };
   if (comTabela && resto.endsWith(':')) { cauda.tabela = true; resto = resto.slice(0, -1); }
   let m = resto.match(/ ⟵ \[(P\d+)\]$/);
   if (m) { cauda.pergunta = m[1]; resto = resto.slice(0, m.index); }
   m = resto.match(/ ⟸ \[(D\d+(?:, D\d+)*)\]$/);
   if (m) { cauda.decisoes = m[1].split(', '); resto = resto.slice(0, m.index); }
   if (/[⟸⟵]/.test(resto)) cauda.caudaInvalida = true;
+  m = resto.match(/ \(~~([^~]+)~~\)$/);
+  if (m) { cauda.sinonimos = m[1].split(/,\s*/); resto = resto.slice(0, m.index); }
   return { texto: texto.slice(0, resto.length), ...cauda };
 }
 
@@ -91,7 +94,7 @@ function lerArea(brutas) {
     if (gerado) return linhas.push({ n, bruto, forma: 'gerado' });
     if (esperaDefinicao) {
       esperaDefinicao = false;
-      if (ehProsa(bruto)) return linhas.push({ n, bruto, forma: 'definicao' });
+      if (ehProsa(bruto)) return linhas.push({ n, bruto, forma: 'definicao', ...separarCauda(bruto) });
     }
     if (secao === 'desconhecida') return linhas.push({ n, bruto, forma: 'ignorada' });
     if (secao === null) return linhas.push(estranha(n, bruto, 'um título de seção ou de célula antes desta linha'));

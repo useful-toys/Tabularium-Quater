@@ -109,7 +109,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R3  Toda checagem é sintática ⟸ [D68]
 - [x] VRF-R4  removida
 - [x] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui ⟸ [D01]
-- [ ] VRF-R6  Ao **Especificação alterada**: valida
+- [x] VRF-R6  Ao **Especificação alterada**: valida
 - [x] VRF-R7  **Especificação** com ao menos uma violação é inválida; não há resultado intermediário
 - [x] VRF-R8  **Linha** que não casa com nenhuma forma prevista é violação ⟸ [D79]
 - [x] VRF-R9  Lê só os arquivos como estão, sem consultar o **Controle de versão** ⟸ [D80]
@@ -117,12 +117,12 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R11  Ignora as pastas que não são de **Área** nem de **Decisões**, entre elas a de arquitetura ⟸ [D82]
 - [x] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
 - [x] VRF-R13  Não lê o conteúdo das seções geradas
-- [ ] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R20] ⟸ [D77]
+- [x] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R20] ⟸ [D77]
 - [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ESP-R9], [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
 - [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
-- [ ] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
-- [ ] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12]
+- [x] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
+- [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13]
 - [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**

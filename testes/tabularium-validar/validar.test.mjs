@@ -38,7 +38,7 @@ const casos = [
   ['VRF-R12', 'falta a legenda das decisões', { 'decisoes/_convencoes.md': null }],
 
   ['ARE-R1', 'arquivo fora da tabela de áreas', { 'estoque.md': '# Estoque\n' }],
-  ['ARE-R1', 'área da tabela sem arquivo', troca('_produto.md', '| pedidos.md |\n', '| pedidos.md |\n| Estoque | **Produto** | apoio | vendas | estoque.md |\n')],
+  ['ARE-R1', 'área da tabela sem arquivo', troca('_produto.md', '| pedidos.md |\n', '| pedidos.md |\n| Estoque | **Pedido** | apoio | vendas | estoque.md |\n')],
   ['ARE-R1', 'pasta de área fora da tabela', { 'estoque/_area.md': '# Estoque\n' }],
   ['ARE-R11', 'seções da área fora de ordem', troca('pedidos.md', '## Linguagem\n- carrinho: **Pedido** que ainda não foi fechado\n\n## Tipos\n- Quantidade: inteiro; de 1 a 99\n', '## Tipos\n- Quantidade: inteiro; de 1 a 99\n\n## Linguagem\n- carrinho: **Pedido** que ainda não foi fechado\n')],
   ['APR-R9', 'seção que não existe em _produto.md', troca('_produto.md', '## Fora de escopo', '## Futuro')],
@@ -125,6 +125,20 @@ const casos = [
   ['CTD-R4', 'pergunta acima do contador', troca('_perguntas.md', '  - opção: 60 dias\n', '  - opção: 60 dias\n- P2  O frete do interior muda?\n  - sobre: **Pedido**\n')],
   ['CTD-R4', 'decisão acima do contador', { 'decisoes/pedidos/D2-outra.md': (t) => exemploDeDecisao('D2') }],
   ['DEC-R8', 'código de decisão repetido em outra pasta', { 'decisoes/_produto/D1-outra.md': (t) => exemploDeDecisao('D1') }],
+
+  ['TRM-R2', 'termo definido duas vezes', troca('pedidos.md', 'que ainda não foi fechado\n', 'que ainda não foi fechado\n- carrinho: outra coisa\n')],
+  ['TRM-R2', 'termo da linguagem com o nome de um ator', troca('pedidos.md', '- carrinho:', '- Cliente: quem compra\n- carrinho:')],
+  ['TRM-R2', 'atributo repetido no mesmo bloco', troca('pedidos.md', '- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**\n- quantidade: inteiro\n')],
+  ['TRM-R2', 'termo definido em negrito', troca('pedidos.md', '- carrinho: ', '- **carrinho**: ')],
+  ['TRM-R4', 'atributo homônimo citado sem a célula', { 'pedidos.md': (t) => t.replace('- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**\n- número: inteiro\n').replace('que ainda não foi fechado', 'que ainda não foi fechado e já tem **número**') }],
+  ['REF-R1', 'negrito que não é termo', troca('pedidos.md', 'Fechar o pedido', 'Fechar o **carrinho de compras**')],
+  ['REF-R1', 'plural que as terminações não explicam', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos dois **Itenz de pedido**')],
+  ['REF-R1', 'atributo que a célula não tem', troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido pela **Pedido.cor**')],
+  ['TRM-R6', 'sinônimo proibido em uso', { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)').replace('A lista de pedidos abre', 'A lista de pedidos mostra o Valor e abre') }],
+  ['TRM-R6', 'sinônimo proibido numa decisão', { ...troca('pedidos.md', 'Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)'), ...troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre o total da encomenda') }],
+  ['TRM-R10', 'termo com o nome exato, sem negrito', troca('pedidos.md', 'a quantidade não muda mais', 'a quantidade não muda mais no Pedido')],
+  ['TRM-R10', 'negrito só na segunda menção', troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto de um Pedido, com a **Quantidade**, dentro do **Pedido**.')],
+  ['TRM-R10', 'termo da linguagem sem negrito', troca('_produto.md', 'Entrega dos produtos', 'Entrega do carrinho')],
 ];
 
 for (const [regra, erro, mudanca] of casos) {
@@ -144,6 +158,36 @@ test('ARE-R12: a área em pasta é lida, com _area.md e um arquivo por célula',
   };
   assert.deepEqual(violacoesCom(mudancas), []);
   assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'pedidos/_area.md': null })), ['ARE-R1']);
+});
+
+test('TRM-R6: declarar sinônimos proibidos não é usá-los', () => {
+  assert.deepEqual(violacoesCom(troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~) ⟸ [D1]')), []);
+});
+
+test('TRM-R10: a própria célula, o atributo e a grafia diferente não são acusados', () => {
+  assert.deepEqual(violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('Fechar o pedido', 'Fechar o Pedido e os pedidos')
+      .replace('Ver os pedidos do dia', 'Ver a situação e o total do dia')
+      .replace('a quantidade não muda mais', 'a quantidade não muda mais nos Pedidos nem para o cliente'),
+  }), []);
+});
+
+test('TRM-R11: o plural regular em negrito resolve para o termo', () => {
+  const termos = ['visão', 'pão', 'jornal', 'papel', 'réptil', 'farol', 'homem', 'flor'];
+  const plurais = ['visões', 'pães', 'jornais', 'papéis', 'répteis', 'faróis', 'homens', 'flores'];
+  assert.deepEqual(violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('- carrinho:', `${termos.map((x) => `- ${x}: coisa`).join('\n')}\n- carrinho:`)
+      .replace('Fechar o pedido', `Fechar o pedido com ${plurais.map((x) => `**${x}**`).join(', ')}`),
+  }), []);
+});
+
+test('TRM-R12: onde cabem dois termos, vale o de nome mais longo', () => {
+  assert.deepEqual(violacoesCom(troca('pedidos.md', 'a quantidade não muda mais', 'a quantidade de cada item de Pedido não muda mais')), []);
+  const violacoes = violacoesCom(troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto e **Quantidade** de um **Pedido**, até o Pedido pago.'));
+  assert.equal(violacoes.length, 1);
+  assert.match(violacoes[0].frase, /^"Pedido pago" é um termo/);
 });
 
 test('VRF-R11: pasta que não é de área nem de decisões é ignorada', () => {

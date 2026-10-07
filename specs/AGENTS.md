@@ -82,8 +82,8 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 
 ### Depois de alterar
 
-- Rode o validador, se o projeto tiver um, e corrija os erros antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
-- Sem validador, confira ao menos: identificadores novos únicos e na sequência; `_contadores.md` com o número e o nome curto de cada alocação nova, e sem nenhum número diminuído; nenhuma referência `[ID]` ou `⟵ [Pnn]` quebrada; nenhuma citação `⟸ [Dnn]` sem o arquivo da decisão; marcas no fim do item na ordem `⟸`, `⟵`; nenhuma pergunta sem linha que a cite e sem `sobre:`; nenhum termo definido duas vezes; nenhum termo em negrito sem definição; primeira menção de cada termo em negrito; linhas na ordem fixa; nenhuma seção gerada editada.
+- Rode o validador, pela skill `tabularium-validar`, e corrija as violações antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
+- O validador não vê o histórico: confira você que nenhum número de `_contadores.md` diminuiu, e que cada alocação nova usou o número seguinte e atualizou o número e o nome curto.
 - Resuma a mudança listando os identificadores criados, alterados e retirados, e os termos criados ou renomeados.
 
 ## Ao implementar

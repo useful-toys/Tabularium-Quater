@@ -116,6 +116,7 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [ ] TRM-R10  Primeira menção sem negrito que repete o nome como está na definição é violação; nome de **Atributo** não conta ⟸ [D81]
 - [ ] TRM-R11  Plural se reconhece palavra por palavra, pelas terminações regulares: `s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis` e `ns`
 - [ ] TRM-R12  Onde cabem dois termos, a menção é do de nome mais longo
+- [ ] TRM-R13  Os sinônimos de **não usar** fecham o texto da linha, antes das marcas de fim de item
 - [x] TRM-C1  Renomear um termo
 
 ## Glossário  `GLO`

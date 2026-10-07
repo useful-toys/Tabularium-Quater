@@ -7,7 +7,7 @@ description: Valida a forma da especificação Tabularium na pasta specs/. Use d
 
 O validador é um script determinístico que checa a forma da especificação, sem interpretar o texto. Execute-o e leia a saída; não refaça as checagens dele por leitura.
 
-Por ora ele checa a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, a numeração e as referências a identificadores, decisões e perguntas. Os termos ele ainda não checa: para eles continua valendo a lista de conferência de `specs/AGENTS.md`, em "Depois de alterar".
+Ele checa a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, as referências, os termos e a numeração. O histórico ele não vê: o que depende dele está em `specs/AGENTS.md`, em "Depois de alterar".
 
 ## 1. Rodar
 

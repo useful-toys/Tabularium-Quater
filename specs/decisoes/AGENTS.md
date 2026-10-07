@@ -39,8 +39,8 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 
 ## Depois de alterar
 
-- Rode o validador, se o projeto tiver um.
-- Sem validador, confira ao menos: título terminado em `?` e com o código do nome do arquivo; resolução em uma só frase; ao menos uma alternativa descartada, com motivo; seções na ordem; toda marca `⟸ [Dnn]` com arquivo correspondente; nenhuma decisão nova sem item que a cite.
+- Rode o validador, pela skill `tabularium-validar`, e corrija as violações antes de concluir.
+- Confira você o que ele não checa: resolução em uma só frase, e nenhuma decisão nova sem item que a cite.
 - Resuma a mudança listando os códigos criados, revistos e apagados, e os itens que passaram a citar ou deixaram de citar cada um.
 
 ## Ao revisar
