@@ -3,10 +3,10 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 
 ## Identificadores
 - AGT-R  2  descreve-procedimentos-conflito
-- APG-R  5  forma-item-pergunta
+- APG-R  6  titulo-frase-opcionais
 - APR-R  10  forma-itens-secao
 - ARE-C  2  dividir-area-duas
-- ARE-R  11  secao-fora-ordem
+- ARE-R  12  area-em-pasta
 - ATO-R  7  declarado-em-atores
 - ATR-R  10  associacao-cardinalidade-substitui
 - CAP-R  2  capacidade-altera-mais
@@ -21,7 +21,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - DEC-R  19  forma-itens-corpo
 - DER-R  5  guarda-lo-sob
 - DER-V  1  ler-documento-derivado
-- ESP-R  8  especificacao-descreve-so
+- ESP-R  9  todo-titulo-celula
 - ESP-V  1  ler-area-sem
 - EVT-R  3  transicao-estado-cita
 - GER-C  1  gerar-partes-derivadas

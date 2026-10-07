@@ -118,6 +118,7 @@ Arquivo com as **Perguntas** abertas da **Especificação**, uma por item, em or
 - [x] APG-R3  removida
 - [ ] APG-R4  As **Perguntas** ficam só neste arquivo, nunca num **Rastreador** ⟸ [D76]
 - [ ] APG-R5  Forma do item: `- Pnn  enunciado?`, com dois espaços antes do **enunciado**; **opções** e **sobre** vêm em sub-itens `opção:` e `sobre:`
+- [ ] APG-R6  O título e a frase de abertura do arquivo são opcionais
 
 ## Evento  `EVT`
 Fato do produto, no particípio, ao qual alguma **Regra** reage.

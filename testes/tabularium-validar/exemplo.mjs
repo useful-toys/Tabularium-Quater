@@ -95,7 +95,7 @@ Maior número já usado em cada sequência.
 - ITE-R  1  quantidade-nao-muda
 - PED-C  1  fechar-pedido
 - PED-Q  1  lista-abre-rapido
-- PED-R  4  frete-por-regiao
+- PED-R  5  frete-por-regiao
 - PED-V  1  ver-pedidos-dia
 - PRD-J  1  comprar
 - PRD-Q  1  tela-responde

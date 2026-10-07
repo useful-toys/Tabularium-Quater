@@ -21,6 +21,7 @@ Conjunto de arquivos Markdown que descreve um produto inteiro e é a fonte únic
 - [x] ESP-R6  O texto descreve só o que foi comprometido; ideias ficam no **Rastreador** até amadurecerem ⟸ [D59]
 - [ ] ESP-R7  Títulos organizam os blocos em hierarquia, com profundidade livre; dentro do bloco não há subtítulos, e a profundidade dos sub-itens é livre
 - [ ] ESP-R8  Uma especificação descreve um só produto, com uma só linguagem; significados de um **Termo** que não se conciliam indicam dois produtos, cada um com a sua especificação ⟸ [D06]
+- [ ] ESP-R9  Abaixo do título do arquivo, todo título é de **Célula** ou de seção prevista
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
   - o **Índice** da **Área** diz o que ela usa de fora
 
@@ -94,6 +95,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R9  **Célula** que troca mais **Referências**, feitas e recebidas, com outra área do que com a sua é candidata a mudar de área ⟸ [D30]
 - [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **dono**, vira pasta
 - [ ] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
+- [ ] ARE-R12  Área em pasta consta da tabela de áreas pelo nome da pasta; cada arquivo dela começa pelo título e traz as **Células** em blocos
 - [x] ARE-C1  Criar uma área
   - entra na tabela de áreas do **Arquivo de produto**
 - [ ] ARE-C2  Dividir uma área em duas
@@ -116,12 +118,12 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
 - [x] VRF-R13  Não lê o conteúdo das seções geradas
 - [ ] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R20] ⟸ [D77]
-- [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
+- [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ESP-R9], [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
-- [ ] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
+- [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
 - [ ] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
 - [ ] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12]
-- [ ] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
+- [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
