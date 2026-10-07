@@ -82,6 +82,45 @@ Produto e **Quantidade** dentro de um **Pedido**.
 - pertence a 1 **Pedido**
 - quantidade: **Quantidade**
 - [ ] ITE-R1  Ao **Pedido pago**: a quantidade não muda mais
+
+## Modalidade  \`MOD\`
+Forma de envio de um **Pedido**.
+- código: texto; identidade
+- nome: texto
+- prazo: inteiro; opcional
+- [ ] MOD-R1  As modalidades:
+
+| Código | Nome | Prazo |
+| --- | --- | --- |
+| ECO | Econômica | 8 |
+| EXP | Expressa | |
+
+## Tarifa  \`TAR\`
+Preço de um envio numa **Modalidade**.
+- nome: texto; identidade
+- 1 **Modalidade**
+- preço: **Dinheiro**
+- [ ] TAR-R1  As tarifas, por **nome**, com a **Modalidade** e o **preço** ⟸ [D1]: [TAR-tarifas.csv]
+
+## Embalagem  \`EMB\`
+Caixa em que um **Pedido** é enviado.
+- código: texto; identidade
+- [ ] EMB-R1  As embalagens, por **código**, com as **Medidas**: [EMB-embalagens.json]
+
+## Medida  \`MED\`
+Dimensão de uma **Embalagem**.
+- pertence a 1 **Embalagem**
+- lado: texto
+- centímetros: inteiro
+`,
+  'dados/TAR-tarifas.csv': `nome,Modalidade,preço
+Econômica leve,ECO,12
+"Expressa leve, até 1 kg",EXP,21
+`,
+  'dados/EMB-embalagens.json': `[
+  { "código": "P", "Medida": [ { "lado": "altura", "centímetros": 10 } ] },
+  { "código": "G", "Medida": [ { "lado": "altura", "centímetros": 40 } ] }
+]
 `,
   '_perguntas.md': `# Perguntas
 - P1  O prazo de cancelamento é de 30 dias?
@@ -92,13 +131,16 @@ Produto e **Quantidade** dentro de um **Pedido**.
 Maior número já usado em cada sequência.
 
 ## Identificadores
+- EMB-R  1  embalagens
 - ITE-R  1  quantidade-nao-muda
+- MOD-R  1  modalidades
 - PED-C  1  fechar-pedido
 - PED-Q  1  lista-abre-rapido
 - PED-R  5  frete-por-regiao
 - PED-V  1  ver-pedidos-dia
 - PRD-J  1  comprar
 - PRD-Q  1  tela-responde
+- TAR-R  1  tarifas
 
 ## Perguntas
 - P  1  prazo-cancelamento

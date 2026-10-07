@@ -11,6 +11,7 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 3. Leia só as áreas que a tarefa toca. O Índice no topo de cada área lista o que ela usa de outras, as reações de outras áreas aos eventos dela e as perguntas abertas que a tocam; abra essas outras só se precisar.
 4. Se a tarefa toca uma linha que termina em `⟵ [Pnn]`, ou uma área com perguntas no Índice, leia a pergunta em `_perguntas.md`. A linha é provisória.
 5. Não leia `decisoes/` por rotina. Abra uma decisão só quando precisar do porquê de um item que termina em `⟸ [Dnn]`, ou antes de alterá-lo.
+6. Não leia `dados/` por rotina. A regra que cita um arquivo de dados nomeia em negrito os atributos que ele traz, e os tipos estão nas linhas de modelo do mesmo bloco; abra o arquivo só quando a tarefa precisar dos valores.
 
 Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. Todo termo tem um único lugar de definição e todo identificador é único na especificação.
 
@@ -49,6 +50,9 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 | Regra que vale sempre | R no bloco da célula sobre a qual ela fala |
 | Efeito de algo que aconteceu em outra célula | Linha `evento:` na célula que produz o fato, e R `Ao **Evento**:` na célula que reage |
 | Regra com várias condições combinadas | R terminada em `:` seguida de uma tabela de decisão |
+| Conteúdo que já vem com o produto e só muda por uma nova versão dele | R de dados de referência, no máximo uma por célula: terminada em `:` e seguida de uma tabela, ou da citação de um arquivo de `dados/`, como `[PED-tarifas.json]` |
+| Conteúdo que um ator altera | Estado: as linhas de modelo e a C que o altera; os valores não entram |
+| Conteúdo que um externo fornece e atualiza | Sub-item `fornece:` do externo, em `_produto.md`; os valores não entram |
 | Limite de desempenho ou comportamento geral | Q na célula, ou em regras globais se não houver célula |
 | O que um texto legal afirma | T, só em células que são textos |
 | Relação com outra célula | Linha de modelo, numa só das duas células: `pertence a 1 **X**`, `CARD **X**` ou `especializa **X**`; o outro lado, quando importa, em `inverso:` |
@@ -79,6 +83,9 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Abrir uma pergunta:** só para uma dúvida que surgiu sobre algo já comprometido; ideia não é pergunta. Acrescente em `_perguntas.md` um item `- Pnn  enunciado?` com o próximo número, conforme `_contadores.md`, atualizando o contador; opções, se houver, como sub-itens `opção:`. Se existe uma linha provisória, ela termina com `⟵ [Pnn]`; se a lacuna é a falta de uma linha, a pergunta leva o sub-item `sobre: **Célula**`. Nunca as duas coisas.
 - **Responder uma pergunta:** na mesma mudança, apague a pergunta de `_perguntas.md`, tire `⟵ [Pnn]` de todas as linhas que a citam e deixe o texto definitivo. Se a resposta precisa de justificativa, registre uma decisão: o enunciado da pergunta vira a questão, as opções não escolhidas viram as alternativas descartadas, e as linhas passam a terminar com `⟸ [Dnn]`. Não marque a pergunta como respondida: apagar é responder.
 - **Atributo com nome repetido em outra célula:** fora do próprio bloco, cite como `**Célula.atributo**`.
+- **Trazer dados de referência:** declare no modelo cada atributo que os dados trazem, com um deles marcado `identidade`. Se os dados são tabulares e é preciso vê-los para entender as linhas da célula, escreva uma tabela depois da R, com o atributo de identidade na primeira coluna. Nos demais casos, grave um arquivo em `dados/`, em JSON se o dado é estruturado e em CSV se é tabular, e cite-o no fim da R; no texto da R, nomeie em negrito os atributos que o arquivo traz, o de identidade primeiro, e a célula de cada parte. Na dúvida entre tabela e arquivo, arquivo.
+- **Gravar um arquivo de dados:** o dado que chega em arquivo entra por cópia ou por conversão feita por um programa, nunca reescrito por você. Se ele chega em outro formato, como XML, YAML ou planilha, proponha a conversão por programa, e não guarde o original na especificação. Informe quantos registros entraram, para o usuário conferir. Só a tabela pequena ditada na conversa você escreve.
+- **Alterar dados de referência:** edite a tabela ou o arquivo e mantenha o identificador da R; volte a marca a `[ ]` até o produto trazer os dados novos.
 
 ### Depois de alterar
 
@@ -104,7 +111,7 @@ Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma 
 - Suportabilidade: plataformas, navegadores, manutenção, configuração
 - Restrições: de projeto, de implementação, de interface, físicas, legais
 
-Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem afirmação e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem dono natural (falta uma célula); afirmação que cita outra célula mais do que a própria (mover a afirmação); duas células citadas quase sempre juntas, uma só pela outra (fundir); célula que troca mais referências com outra área do que com a sua (mudar de área); área com mais de 300 linhas ou com mais de um dono (virar pasta); bloco com muitas lápides `[x]` que nada cita (podar). Os sinais sobre decisões estão em `decisoes/AGENTS.md`.
+Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem afirmação e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem dono natural (falta uma célula); afirmação que cita outra célula mais do que a própria (mover a afirmação); duas células citadas quase sempre juntas, uma só pela outra (fundir); célula que troca mais referências com outra área do que com a sua (mudar de área); área com mais de 300 linhas ou com mais de um dono (virar pasta); bloco com muitas lápides `[x]` que nada cita (podar); tabela de dados de referência com mais de 30 fileiras, ou que não é preciso ver para entender a célula (mover para um arquivo de `dados/`). Os sinais sobre decisões estão em `decisoes/AGENTS.md`.
 
 Proponha também, sem fazer por conta própria, reescrever ou retirar a afirmação que cita tecnologia, armazenamento, estrutura do código ou forma de implantação: reescrever, se há uma consequência que um ator ou o negócio observa; retirar, com lápide, se não há. Nas categorias acima, uma restrição de implementação só entra quando é imposta de fora ao produto, como por um externo ou por lei; a escolha feita pela equipe é arquitetura.
 

@@ -2,6 +2,7 @@
 Maior número já usado em cada sequência da especificação, com um nome curto da última alocação. Um número só cresce e nunca volta.
 
 ## Identificadores
+- ADA-R  16  chaves-primeiro-nivel
 - AGT-R  2  descreve-procedimentos-conflito
 - APG-R  6  titulo-frase-opcionais
 - APR-R  10  forma-itens-secao
@@ -21,6 +22,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - DEC-R  19  forma-itens-corpo
 - DER-R  5  guarda-lo-sob
 - DER-V  1  ler-documento-derivado
+- DRF-R  18  atributos-ator-altera
 - ESP-R  9  todo-titulo-celula
 - ESP-V  1  ler-area-sem
 - EVT-R  3  transicao-estado-cita
@@ -48,11 +50,11 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - TRM-R  17  termo-vence-atributo
 - VIS-R  1  exibir-copiar-exportar
 - VRF-C  1  gerar-partes-derivadas
-- VRF-R  20  checa-numeracao
+- VRF-R  21  checa-dados-referencia
 - VRF-V  1  ver-violacoes-especificacao
 
 ## Perguntas
 - P  0
 
 ## Decisões
-- D  82  arquitetura-fora-da-validacao
+- D  91  regra-adianta-atributos

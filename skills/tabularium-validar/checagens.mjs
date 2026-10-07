@@ -3,6 +3,7 @@
 // que se entende sem ter a especificação do formato à mão.
 
 import { COLUNAS_AREAS, ROTULOS_DECISAO, SECOES_AREA, SECOES_PRODUTO, mascarar } from './leitura.mjs';
+import { checarDados } from './dados.mjs';
 import { checarTermos } from './termos.mjs';
 
 const QUALIFICADORES = ['identidade', 'único', 'imutável', 'opcional', 'pessoal'];
@@ -23,6 +24,7 @@ export function checar(e) {
   checarPasta(e, acusarEm);
   checarCodigos(e, acusarEm);
   checarTermos(e, acusarEm);
+  checarDados(e, acusarEm);
   for (const arquivo of e.arquivos) {
     const acusar = (linha, regra, frase) => violacoes.push({ arquivo: arquivo.caminho, linha, regra, frase });
     for (const l of arquivo.linhas) {

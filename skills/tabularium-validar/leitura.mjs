@@ -24,13 +24,16 @@ const celulasDe = (bruto) => (/^\|.*\|$/.test(bruto) ? bruto.slice(1, -1).split(
 // Dentro de código nada é marca: o miolo vira enchimento, com o mesmo comprimento.
 export const mascarar = (t) => t.replace(/`[^`]*`/g, (c) => '`' + '¤'.repeat(c.length - 2) + '`');
 
-// Separa do texto as marcas de fim de item: decisões, pergunta e, numa regra, o ':' que anuncia a tabela.
+// Separa do texto as marcas de fim de item: decisões, pergunta e, numa regra, o ':' que anuncia a tabela
+// ou o arquivo de dados, como ": [PED-tarifas.json]". É o ponto no nome que distingue o arquivo de um identificador.
 // Os sinônimos proibidos, como "(~~valor, montante~~)", fecham o texto e vêm antes dessas marcas.
 function separarCauda(texto, comTabela = false) {
   let resto = mascarar(texto);
-  const cauda = { decisoes: [], pergunta: null, tabela: false, caudaInvalida: false, sinonimos: [] };
-  if (comTabela && resto.endsWith(':')) { cauda.tabela = true; resto = resto.slice(0, -1); }
-  let m = resto.match(/ ⟵ \[(P\d+)\]$/);
+  const cauda = { decisoes: [], pergunta: null, tabela: false, arquivo: null, caudaInvalida: false, sinonimos: [] };
+  let m = comTabela ? resto.match(/: \[([^[\]]*\.[^[\]]*)\]$/) : null;
+  if (m) { cauda.arquivo = m[1]; resto = resto.slice(0, m.index); }
+  else if (comTabela && resto.endsWith(':')) { cauda.tabela = true; resto = resto.slice(0, -1); }
+  m = resto.match(/ ⟵ \[(P\d+)\]$/);
   if (m) { cauda.pergunta = m[1]; resto = resto.slice(0, m.index); }
   m = resto.match(/ ⟸ \[(D\d+(?:, D\d+)*)\]$/);
   if (m) { cauda.decisoes = m[1].split(', '); resto = resto.slice(0, m.index); }
@@ -306,7 +309,7 @@ const mds = (pasta) => readdirSync(pasta).filter((nome) => nome.endsWith('.md') 
 
 // Devolve os arquivos lidos, com as linhas classificadas, e o que falta ou sobra na pasta.
 export function lerEspecificacao(pasta) {
-  const e = { arquivos: [], faltam: [], soltos: [], pastasForaDaTabela: [], areasSemArquivo: [] };
+  const e = { arquivos: [], dados: [], faltam: [], soltos: [], pastasForaDaTabela: [], areasSemArquivo: [] };
   const ler = (caminho, tipo, leitor, extra = {}) => e.arquivos.push({ caminho, tipo, linhas: leitor(linhasDe(join(pasta, caminho))), ...extra });
 
   for (const fixo of ['AGENTS.md', '_convencoes.md']) if (!ehArquivo(join(pasta, fixo))) e.faltam.push({ caminho: fixo, regra: 'VRF-R12' });
@@ -315,7 +318,7 @@ export function lerEspecificacao(pasta) {
   if (ehArquivo(join(pasta, '_contadores.md'))) ler('_contadores.md', 'contadores', lerContadores);
   if (ehArquivo(join(pasta, '_perguntas.md'))) ler('_perguntas.md', 'perguntas', lerPerguntas);
 
-  const conhecidos = new Set(['AGENTS.md', '_convencoes.md', '_produto.md', '_contadores.md', '_perguntas.md', 'decisoes']);
+  const conhecidos = new Set(['AGENTS.md', '_convencoes.md', '_produto.md', '_contadores.md', '_perguntas.md', 'decisoes', 'dados']);
   const areas = e.arquivos.find((a) => a.tipo === 'produto')?.linhas.filter((l) => l.forma === 'area') ?? [];
   for (const area of areas) {
     const nome = area.arquivo.replace(/\/$/, '');
@@ -344,6 +347,15 @@ export function lerEspecificacao(pasta) {
         if (codigo) ler(`decisoes/${sub}/${arquivo}`, 'decisao', lerDecisao, { codigo });
         else e.soltos.push(`decisoes/${sub}/${arquivo}`);
       }
+    }
+  }
+
+  // Os arquivos de dados vêm com o texto inteiro: não têm linhas a classificar.
+  if (ehPasta(join(pasta, 'dados'))) {
+    for (const nome of readdirSync(join(pasta, 'dados')).sort()) {
+      const caminho = join(pasta, 'dados', nome);
+      if (ehPasta(caminho)) e.dados.push({ nome, pasta: true });
+      else e.dados.push({ nome, texto: /\.(json|csv)$/.test(nome) ? readFileSync(caminho, 'utf8').replace(/^﻿/, '') : null });
     }
   }
   return e;
