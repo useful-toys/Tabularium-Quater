@@ -58,6 +58,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 | O que o ator faz com o componente e o que o produto responde | I no bloco dele; a resposta, em sub-itens |
 | O que muda de um meio para outro | Sub-item iniciado pelo nome do meio |
 | Solução que atravessa componentes | Bloco de padrão, com `tipo: padrão` e sem `partes:` |
+| Texto exato que é compromisso | Entre crases, na afirmação do componente que o mostra; o texto que não é compromisso fica no código |
 | Cor, tipografia ou medida com nome | `Estilos` de `_interface.md` |
 | Onde a interface aparece | `Meios` de `_interface.md` |
 | O porquê de uma escolha que tinha alternativa | Decisão em `decisoes/` desta pasta, citada com `⟸ [Dnn]` |

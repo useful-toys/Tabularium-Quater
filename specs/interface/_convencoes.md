@@ -97,6 +97,7 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - `[PED-V1]` em qualquer item: referência a uma afirmação da especificação; a especificação nunca cita a interface
 - `**Termo**`: componente, tipo da aplicação, padrão, estilo ou termo da especificação, na primeira menção de cada item
 - sub-item iniciado pelo nome de um meio e `:`, em R, Q ou I: o que vale só naquele meio
+- texto entre crases numa afirmação, como `` `Li e concordo` ``: o texto exato que o produto mostra; só quando a redação é compromisso, como um texto com peso legal ou o rótulo de uma ação; fica na afirmação do componente que o mostra, e não há seção de textos
 - `ao contrário de [POP-I2]` no fim de uma afirmação ou de um sub-item de I: exceção a uma afirmação do padrão que o componente segue ou do tipo que ele cita; a exceção é escrita no componente, nunca no padrão nem no tipo
 - `⟸ [Dnn]` no fim de um item: decisão que o fundamenta, em `decisoes/` desta pasta ou na da especificação
 - `⟵ [Pnn]` no fim de um item: linha provisória, à espera de uma pergunta de `_perguntas.md` desta pasta

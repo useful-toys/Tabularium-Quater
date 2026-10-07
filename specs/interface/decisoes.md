@@ -105,6 +105,13 @@ Daniel, depois da conversão do Iconula. Quando um componente foge num ponto do 
 
 - Descartado: reescrever o padrão para a exceção caber. Esconde que a exceção existe.
 
+### 23. O texto exato vai dentro da afirmação
+
+Daniel, depois da conversão do Iconula. O texto que é compromisso é escrito entre crases, na afirmação do componente que o mostra.
+
+- Descartado, pelo Daniel: uma seção de textos no arquivo do conjunto. Contraria o princípio de que as informações ficam próximas.
+- Complemento do Claude, aceito: só entra o texto cuja redação é compromisso; o resto fica no código.
+
 ## Sobre o experimento
 
 ### 18. O experimento é no Iconula, e fica no Iconula
