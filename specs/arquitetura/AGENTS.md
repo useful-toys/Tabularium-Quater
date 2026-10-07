@@ -50,7 +50,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 | O que um componente oferece a outros ou a quem usa o sistema | I no bloco dele; o contrato, em sub-itens |
 | Colaboração entre componentes para cumprir uma capacidade | F em `Fluxos` de `_sistema.md`: `ARQ-Fn  Nome: [ID] → [ID]`, citando só I |
 | Sistema ou serviço de fora de que a solução depende | `Externos` de `_sistema.md`, com sub-itens do que guarda ou fornece |
-| O porquê de uma escolha | Decisão, citada com `⟸ [Dnn]`; o lugar das decisões da arquitetura ainda está em aberto, então pergunte antes de registrar |
+| O porquê de uma escolha que tinha alternativa | Decisão em `decisoes/` desta pasta, citada com `⟸ [Dnn]` |
 
 ## Receitas
 
@@ -59,6 +59,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 - **Acrescentar uma afirmação:** aplique o teste, ache o componente dono, use o próximo número e atualize o contador.
 - **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Acrescente-a na tabela de áreas de `_sistema.md`.
 - **Mudar um componente de lugar no repositório:** atualize `local:` na mesma mudança.
+- **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta; o item que a cita é desta pasta; e o código sai de `Decisões` em `../_contadores.md`, que você atualiza na mesma mudança.
 - **Retirar ou mover uma afirmação:** lápide no lugar, como na especificação.
 
 ## Depois de alterar

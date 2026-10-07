@@ -6,6 +6,7 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - `_convencoes.md`: esta legenda
 - `_sistema.md`: o que vale para o sistema inteiro; lido antes das áreas
 - `_contadores.md`: o maior número já usado em cada sequência da arquitetura, como na especificação
+- `decisoes/`: decisões que só a arquitetura cita, uma por arquivo, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
 - `<area>.md`: uma área; lida em qualquer ordem
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato
 
@@ -49,5 +50,5 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: afirmação R, Q ou I, construída por inteiro ou não; F e linhas de modelo não levam marca
 - `[ESP-R4]` em qualquer item: referência a uma afirmação da especificação; a especificação nunca cita a arquitetura
 - `**Termo**`: componente, externo ou termo da especificação, na primeira menção de cada item
-- `⟸ [Dnn]` no fim de um item: decisão que o fundamenta
+- `⟸ [Dnn]` no fim de um item: decisão que o fundamenta, em `decisoes/` desta pasta ou na da especificação
 - identificadores, lápides e negrito seguem a legenda da especificação

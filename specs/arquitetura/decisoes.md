@@ -80,9 +80,16 @@ Escolha do Claude. O Daniel pediu "um agente.md". O Claude usou `AGENTS.md`, que
 
 Escolha do Claude. O Daniel pediu a descrição, a legenda, as instruções e os dois arquivos informais. Os externos e as restrições que valem para o sistema inteiro não pertencem a nenhum componente e precisavam de um lugar, e as instruções mandam alocar números por um contador.
 
+### 13. As decisões da arquitetura moram na própria pasta
+
+Proposta do Claude, aceita em 7 de outubro de 2026, junto com a mesma escolha para a interface. As decisões que só a arquitetura cita ficam em `specs/arquitetura/decisoes/`, no formato das decisões da especificação e com os códigos `Dnn` da sequência do produto.
+
+- Descartado: `specs/decisoes/arquitetura/`. Uma decisão que só a arquitetura cita é órfã pelas regras de hoje, e a limpeza a apagaria; evitar isso exigiria mudar a definição do formato.
+- Aceita-se: o validador não lê essas decisões, e quem procura um `Dnn` olha em dois lugares.
+- As escolhas listadas no fim deste arquivo ainda não foram convertidas: várias estão sem o porquê dito.
+
 ## Em aberto
 
-- Onde se registram as decisões que só a arquitetura cita, e se elas usam a sequência `Dnn` do produto.
 - Onde ficam as perguntas abertas da arquitetura.
 - Se o formato entra na definição do Tabularium, o que exige rever "Arquitetura e detalhes técnicos · permanente" em `_produto.md`.
 

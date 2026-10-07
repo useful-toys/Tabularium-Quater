@@ -108,7 +108,7 @@ O Daniel disse que ainda não sabe avaliar se o formato é bom, apesar de intere
 ## Pontos em aberto
 
 - **É mudança de produto.** Adotar isto no formato exige rever o item "Arquitetura e detalhes técnicos · permanente" de `_produto.md`. A D74 continua valendo.
-- **Onde ficam as decisões da arquitetura.** A marca `⟸ [Dnn]` está prevista, mas uma decisão citada só pela arquitetura seria órfã pelas regras de hoje, e a sequência `Dnn` é única para o produto. Por isso nenhuma afirmação da arquitetura cita decisão ainda.
+- **Onde ficam as decisões da arquitetura.** Resolvido em 7 de outubro de 2026: em `decisoes/` desta pasta, com os códigos da sequência do produto. Uma decisão citada só pela arquitetura seria órfã em `specs/decisoes/` pelas regras de hoje. Nenhuma afirmação da arquitetura cita decisão ainda, porque as escolhas de `decisoes.md` não foram convertidas.
 - **Onde ficam as perguntas da arquitetura.** O arquivo de perguntas da especificação diz que as perguntas ficam só nele.
 - **Os contadores.** A arquitetura tem um `_contadores.md` próprio, porque as letras I e F não são papéis válidos no da especificação. As siglas, porém, precisam ser únicas nos dois.
 - **Os nomes.** "Componente", `realiza`, `usa`, e as letras I e F são sugestão do Claude.
