@@ -44,7 +44,8 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 
 | O que | Onde |
 | --- | --- |
-| De que tipo é o componente | Linha de modelo `tipo:` |
+| De que tipo é o componente | Linha de modelo `tipo:`, com um tipo do vocabulário ou, em negrito, um tipo da aplicação; omitida se nenhum serve |
+| O que vários componentes da mesma espécie têm em comum | Bloco de tipo da aplicação, citado por eles em `tipo:` |
 | Os controles de um componente, na ordem | Linha de modelo `partes:` |
 | Como o componente pode estar | Linha de modelo `situações:` |
 | Componente dentro de componente | Linha de modelo `usa CARD **Componente**`, só em quem contém |
@@ -66,6 +67,9 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 
 - **Decidir se algo é componente:** é componente o conjunto de controles que se coordenam para um objetivo e que pode aparecer em mais de um lugar. Um controle sozinho é parte. Uma solução sem controles próprios, que vários componentes seguem, é padrão. Uma frase que vale para tudo é diretriz.
 - **Criar um componente ou um padrão:** escolha a sigla, acrescente um item em `_contadores.md` para cada papel que ele usar, e escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem: modelo, R, Q, I.
+- **Escolher o tipo:** use um tipo do vocabulário, se algum serve. Não invente palavra: se nenhum serve, omita a linha. Um componente tem no máximo um tipo.
+- **Criar um tipo da aplicação:** só quando dois ou mais componentes são a mesma espécie de coisa e têm afirmações em comum. Escreva o bloco do tipo como o de um componente, com as afirmações comuns, e faça cada componente citá-lo com `tipo: **Nome**`. O componente herda as linhas do tipo e não as repete.
+- **Tipo ou padrão:** o tipo diz o que o componente é, e ele só tem um. O padrão diz um comportamento que ele segue, e ele pode seguir vários.
 - **Componente que apresenta uma célula:** pode ter o nome da célula; a sigla é outra. Cite com `realiza:` as afirmações dela que ele apresenta.
 - **Acrescentar uma afirmação:** aplique os dois testes, ache o dono, use o próximo número e atualize o contador.
 - **Criar um estilo:** confira antes se já existe um com o mesmo papel. Dê um nome que diga o papel, e não o valor. Escreva o valor só quando ele é compromisso.

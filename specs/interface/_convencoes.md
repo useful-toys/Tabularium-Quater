@@ -31,9 +31,9 @@ Legenda para ler e escrever a interface neste formato, que é experimental. Ela 
 Palavras desta legenda, iguais em todos os projetos; não são termos do produto e não levam negrito.
 - meio: onde a interface aparece, como terminal, desktop ou web; cada produto declara os seus
 - tela: tudo o que o ator tem diante de si num momento; não é unidade e não tem bloco
-- região: parte fixa da tela, que se repete entre telas
 - componente: conjunto de controles coordenados para um objetivo; é a unidade, com bloco e sigla
-- padrão: solução recorrente que atravessa componentes; tem bloco e sigla, sem partes
+- tipo: a espécie de um componente; ou é uma palavra deste vocabulário, ou é definido pela aplicação num bloco próprio
+- padrão: comportamento recorrente que vários componentes seguem; tem bloco e sigla, sem partes
 - diretriz: afirmação que vale para a interface inteira
 - controle: um item da tela, que o ator vê ou opera; parte de um componente, sem bloco
 - campo: controle que recebe um valor do ator; apresenta um atributo
@@ -41,13 +41,18 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - ação: controle que dispara algo, como botão, item de menu ou atalho
 - indicador: controle que só mostra, como situação, progresso ou contagem
 - listagem: controle que mostra vários itens do mesmo tipo, como lista, tabela ou árvore
-- formulário: componente com os campos de uma capacidade e as ações de concluir e de desistir
-- consulta: componente com uma listagem e a busca, o filtro e a ordenação dela
-- detalhe: componente com os dados de um só item, sem edição
-- diálogo: componente que interrompe o ator até ele responder
-- menu: componente com ações reunidas para escolha
-- navegação: componente que leva o ator de uma tela a outra
-- notificação: componente com uma resposta do produto que não pede resposta do ator
+- tipos de componente, iguais em todos os projetos:
+  - região: parte fixa da tela, que se repete entre telas
+  - grupo: reúne outros componentes sob um título
+  - painel: reúne controles num bloco delimitado da tela
+  - formulário: os campos de uma capacidade, com as ações de concluir e de desistir
+  - consulta: uma listagem, com a busca, o filtro e a ordenação dela
+  - detalhe: os dados de um só item, sem edição
+  - seletor: opções à vista, das quais o ator escolhe uma
+  - diálogo: interrompe o ator até ele responder
+  - menu: ações reunidas para escolha
+  - navegação: leva o ator de um lugar a outro
+  - notificação: resposta do produto que não pede resposta do ator
 - foco: o controle que recebe o teclado
 - marcação: os itens de uma listagem escolhidos para a próxima ação
 - atalho: tecla ou combinação que dispara uma ação
@@ -57,7 +62,9 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - estilo: convenção visual com nome, como uma cor, uma tipografia ou uma medida
 
 ## Estrutura
-- bloco de componente ou de padrão: título com nome e sigla (`` ## Diálogo de confirmação  `DCF` ``), frase de definição, lista única
+- bloco de componente, de tipo ou de padrão: título com nome e sigla (`` ## Diálogo de confirmação  `DCF` ``), frase de definição, lista única
+- bloco de tipo: escrito como o de componente; é tipo porque outros blocos o citam em `tipo:`
+- o componente herda as linhas do tipo da aplicação que ele cita, sem repeti-las
 - ordem da lista: modelo (linhas sem identificador), R, Q, I
 - área: um componente central e os componentes e padrões que dependem dele, num arquivo
 - siglas de componentes, de padrões, de células e de componentes da arquitetura formam um só conjunto: nenhuma se repete
@@ -74,7 +81,10 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - I  interação: o que o ator faz com o componente; sub-itens são a resposta do produto
 
 ## Modelo
-- `tipo: …`: `padrão`, num bloco de padrão; num bloco de componente, `região` ou o tipo de componente do vocabulário, ou outro nome quando nenhum serve
+- `tipo: padrão`: num bloco de padrão; obrigatória
+- `tipo: menu`: num bloco de componente, um tipo do vocabulário; opcional
+- `tipo: **Vista interna**`: num bloco de componente, um tipo da aplicação, em negrito; opcional
+- um componente tem no máximo um tipo; se nenhum serve, a linha é omitida
 - `partes: …`: os controles do componente, na ordem em que aparecem
 - `situações: a | b`: as situações em que o componente pode estar
 - `usa CARD **Componente**`: composição; declarada só em quem contém
@@ -85,7 +95,7 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 ## Marcas
 - `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: afirmação R, Q ou I, cumprida por inteiro pelo produto ou não; linhas de modelo não levam marca
 - `[PED-V1]` em qualquer item: referência a uma afirmação da especificação; a especificação nunca cita a interface
-- `**Termo**`: componente, padrão, estilo ou termo da especificação, na primeira menção de cada item
+- `**Termo**`: componente, tipo da aplicação, padrão, estilo ou termo da especificação, na primeira menção de cada item
 - sub-item iniciado pelo nome de um meio e `:`, em R, Q ou I: o que vale só naquele meio
 - `⟸ [Dnn]` no fim de um item: decisão que o fundamenta, em `decisoes/` desta pasta ou na da especificação
 - `⟵ [Pnn]` no fim de um item: linha provisória, à espera de uma pergunta de `_perguntas.md` desta pasta

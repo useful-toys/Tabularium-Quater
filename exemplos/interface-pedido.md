@@ -48,7 +48,7 @@ Diálogo em que o **Cliente** confirma o cancelamento de um **Pedido**.
 - **Diretrizes.** Afirmações que valem para a interface inteira, de sigla `IFC`.
 - **Padrão.** O bloco `Confirmação` não tem partes: é uma solução que vários componentes seguem.
 - **Componente.** O bloco `Diálogo de cancelamento` é um conjunto de controles coordenados para um objetivo. Os controles aparecem em `partes:` e não ganham bloco próprio.
-- **Modelo.** `tipo:` diz o que o bloco é, `segue` aponta o padrão, e `realiza:` aponta a afirmação da especificação que o componente apresenta. A especificação nunca aponta de volta.
+- **Modelo.** `tipo:` diz a espécie do componente, com uma palavra da legenda ou com um tipo que a própria aplicação definiu; `segue` aponta o padrão, e `realiza:` aponta a afirmação da especificação que o componente apresenta. A especificação nunca aponta de volta.
 - **Afirmações.** R é diretriz, sempre verdadeira; Q é qualidade, com número e unidade; I é interação, o que o ator faz, com a resposta do produto nos sub-itens.
 - **Variação por meio.** O sub-item que começa pelo nome de um meio vale só nele.
 

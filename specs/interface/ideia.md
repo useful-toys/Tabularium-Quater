@@ -23,6 +23,8 @@ Um componente é um conjunto de controles coordenados para um objetivo. Ele tem 
 
 **Três coisas se documentam.** O componente, que tem partes. O padrão, que é uma solução recorrente sem partes próprias, seguida por vários componentes. E a diretriz, que é uma afirmação solta, válida para a interface inteira.
 
+**O tipo permite reuso.** Um componente pode dizer de que tipo é. O tipo é uma palavra da legenda, como menu ou painel, ou é definido pela aplicação num bloco próprio; neste caso, os componentes do tipo herdam as afirmações dele.
+
 **Estilo tem nome.** Cor, tipografia e medida entram com nome e papel, e são citados em negrito como um termo. O valor só entra quando é compromisso. O valor de máquina fica no código.
 
 **Dois testes separam o que entra.** O teste do que entra separa a interface do código: vale em mais de um lugar, o ator teria de reaprender, ou é compromisso com alguém de fora. O teste da troca de meio separa a interface da especificação: o que continuaria verdadeiro num terminal é do produto.

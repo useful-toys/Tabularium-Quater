@@ -90,6 +90,15 @@ Proposta do Claude, aceita. O componente recebe o mesmo nome e outra sigla, e o 
 
 Proposta do Claude, aceita. Vale em mais de um lugar; o ator teria de reaprender; é compromisso com alguém de fora.
 
+### 21. Tipos gerais e tipos da aplicação
+
+Daniel, depois da conversão do Iconula. A lista de tipos da legenda só serviu a 4 de 14 componentes, e o Claude propôs tirar a linha `tipo:`. O Daniel preferiu o contrário:
+
+- região, grupo, painel e seletor entram na lista de tipos da legenda;
+- a aplicação pode definir tipos próprios, num bloco, e os componentes desse tipo herdam as afirmações dele. É reuso, nas palavras dele: como componentes customizados definidos pela aplicação.
+
+Complementos do Claude, aceitos: a linha `tipo:` é opcional num componente e é omitida quando nenhum tipo serve; o tipo da aplicação é citado em negrito; o padrão continua existindo, porque o tipo diz o que o componente é (um só) e o padrão diz um comportamento que ele segue (vários).
+
 ## Sobre o experimento
 
 ### 18. O experimento é no Iconula, e fica no Iconula
