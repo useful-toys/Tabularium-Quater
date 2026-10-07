@@ -5,15 +5,16 @@ Arquivos de texto num repositório público, levados ao repositório que adota o
 | Área | Componente central | Arquivo |
 | --- | --- | --- |
 | Distribuição | **Instalador** | distribuicao.md |
+| Validação | **Script de validação** | validacao.md |
 
 ## Externos
 - GitHub · hospedagem
   - guarda: o repositório do formato
   - fornece: cada arquivo da linha principal por URL, sem autenticação
 - npx skills · instalador de skills
-  - fornece: a instalação da **Skill de instalação** no repositório que adota o formato
+  - fornece: a instalação da **Skill de instalação** e da **Skill de validação** no repositório que adota o formato
 - Node.js · ambiente de execução
-  - fornece: a execução do **Instalador**
+  - fornece: a execução do **Instalador** e do **Script de validação**
 
 ## Restrições globais
 - [x] ARQ-R1  O formato é guardado num repositório público no **GitHub**, e a linha principal é a única versão distribuída
@@ -23,6 +24,7 @@ Arquivos de texto num repositório público, levados ao repositório que adota o
 
 ## Fluxos
 - ARQ-F1  Instalar ou atualizar o formato: [SKI-I1] → [INS-I1]
+- ARQ-F2  Validar a especificação: [SKV-I1] → [VAL-I1]
 
 ## Fora de escopo
 - Escolhas táticas, que mudam dentro de um componente sem que outro perceba · permanente

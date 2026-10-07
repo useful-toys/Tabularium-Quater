@@ -93,6 +93,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R8  A área reúne uma **célula central** e as **Células** que dependem principalmente dela ⟸ [D29]
 - [x] ARE-R9  **Célula** que troca mais **Referências**, feitas e recebidas, com outra área do que com a sua é candidata a mudar de área ⟸ [D30]
 - [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **dono**, vira pasta
+- [ ] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
 - [x] ARE-C1  Criar uma área
   - entra na tabela de áreas do **Arquivo de produto**
 - [ ] ARE-C2  Dividir uma área em duas
@@ -103,26 +104,26 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R1  removida
 - [x] VRF-R2  removida
-- [ ] VRF-R3  Toda checagem é sintática ⟸ [D68]
+- [x] VRF-R3  Toda checagem é sintática ⟸ [D68]
 - [x] VRF-R4  removida
-- [ ] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui ⟸ [D01]
+- [x] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui ⟸ [D01]
 - [ ] VRF-R6  Ao **Especificação alterada**: valida
-- [ ] VRF-R7  **Especificação** com ao menos uma violação é inválida; não há resultado intermediário
-- [ ] VRF-R8  **Linha** que não casa com nenhuma forma prevista é violação ⟸ [D79]
-- [ ] VRF-R9  Lê só os arquivos como estão, sem consultar o **Controle de versão** ⟸ [D80]
-- [ ] VRF-R10  Lê sempre a **Especificação** inteira, com as **Decisões**
-- [ ] VRF-R11  Ignora as pastas que não são de **Área** nem de **Decisões**, entre elas a de arquitetura ⟸ [D82]
-- [ ] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
-- [ ] VRF-R13  Não lê o conteúdo das seções geradas
+- [x] VRF-R7  **Especificação** com ao menos uma violação é inválida; não há resultado intermediário
+- [x] VRF-R8  **Linha** que não casa com nenhuma forma prevista é violação ⟸ [D79]
+- [x] VRF-R9  Lê só os arquivos como estão, sem consultar o **Controle de versão** ⟸ [D80]
+- [x] VRF-R10  Lê sempre a **Especificação** inteira, com as **Decisões**
+- [x] VRF-R11  Ignora as pastas que não são de **Área** nem de **Decisões**, entre elas a de arquitetura ⟸ [D82]
+- [x] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
+- [x] VRF-R13  Não lê o conteúdo das seções geradas
 - [ ] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R20] ⟸ [D77]
-- [ ] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ARE-R1], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
-- [ ] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
+- [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
+- [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
 - [ ] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
 - [ ] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
 - [ ] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12]
 - [ ] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
 - [ ] VRF-C1  movida → [GER-C1]
-- [ ] VRF-V1  Ver as violações da **Especificação**
+- [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
   - cada uma cita o arquivo, a **Linha**, o **Identificador** da **Regra** violada e uma frase que se entende sem a **Especificação** do formato
   - **Linha** que não casa com nenhuma forma gera uma só violação

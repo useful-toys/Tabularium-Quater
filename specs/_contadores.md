@@ -6,7 +6,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - APG-R  5  forma-item-pergunta
 - APR-R  10  forma-itens-secao
 - ARE-C  2  dividir-area-duas
-- ARE-R  10  area-com-mais
+- ARE-R  11  secao-fora-ordem
 - ATO-R  7  declarado-em-atores
 - ATR-R  10  associacao-cardinalidade-substitui
 - CAP-R  2  capacidade-altera-mais

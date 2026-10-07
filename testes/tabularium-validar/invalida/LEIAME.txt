@@ -1,0 +1,1 @@
+Pasta sem os arquivos fixos de uma especificação, usada pelo teste da linha de comando.
