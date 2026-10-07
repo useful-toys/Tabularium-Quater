@@ -6,7 +6,7 @@ Em vez de espalhar o mesmo assunto por glossário, regras de negócio e casos de
 
 A gramática é simples o bastante para um programa verificar e para pessoas e agentes de IA manterem. Serve a equipes de desenvolvimento e sustentação, da análise à implementação, e qualquer um pode adotá-lo.
 
-> **Estado: experimental.** Hoje existem a definição do formato, as instruções para agentes, as decisões do próprio formato e a skill de instalação. O verificador e as skills de geração ainda não existem: onde este README os menciona, descreve o que o formato pretende. Por ora, o alvo são produtos pequenos.
+> **Estado: experimental.** Hoje existem a definição do formato, as instruções para agentes, as decisões do próprio formato, a skill de instalação e a skill de validação. O gerador e as skills de geração ainda não existem: onde este README os menciona, descreve o que o formato pretende. Por ora, o alvo são produtos pequenos.
 
 ## A ideia
 
@@ -89,7 +89,7 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 ## Limites
 
 - **Ainda é hipótese.** Duas aplicações reais, Iconula e Abditum, serão especificadas no formato para pôr a ideia à prova.
-- **Falta o verificador.** Até ele existir, unicidade, referências e coesão dependem de disciplina.
+- **O validador não vê tudo.** Ele checa a forma, a unicidade e as referências, mas não o histórico dos números nem a coesão das áreas, que continuam dependendo de disciplina.
 - **O trabalho em equipe não está resolvido.** O formato ainda não diz quem aprova uma mudança, nem sobre qual texto.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Nada prova, por ora, que ela continua verdadeira.
 - **A densidade cobra de quem chega.** A resposta são os documentos derivados, que devem ser gerados, nunca editados.

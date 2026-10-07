@@ -7,7 +7,7 @@ Esta é a célula Pedido, de um sistema de pedidos fictício. Numa especificaç�
 Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades escolhidas.
 - pertence a 1 **Cliente**; inverso: 0..N
 - situação: aberto | aguardando pagamento | pago | cancelado; inicial: aberto
-- total: dinheiro; derivado; soma de preço × quantidade dos **Itens de pedido**
+- total: dinheiro; derivado: soma de preço × quantidade dos **Itens de pedido**
 - evento: Pedido pago
 - [x] PED-R1  Visível só ao **Cliente** dono e ao **Atendente** ⟸ [D07]
 - [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados

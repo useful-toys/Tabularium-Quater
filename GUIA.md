@@ -4,7 +4,7 @@ Este guia explica o formato Tabularium em detalhe. Para uma apresentação curta
 
 O guia é uma explicação derivada da definição normativa do formato, que está em [`specs/`](specs/), escrita no próprio formato. Em caso de divergência, vale o que está lá. Os identificadores entre parênteses, como (TRM-R7), apontam para a regra de origem.
 
-O verificador e as skills de geração ainda não existem: onde este guia os descreve, descreve o que o formato pretende.
+O gerador e as skills de geração ainda não existem: onde este guia os descreve, descreve o que o formato pretende.
 
 ## Índice
 
@@ -103,7 +103,7 @@ Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades 
 - pertence a 1 **Cliente**; inverso: 0..N
 - número: texto; identidade; único; imutável
 - situação: aberto | aguardando pagamento | pago | enviado | cancelado; inicial: aberto
-- total: dinheiro; derivado; soma de preço × quantidade dos **Itens de pedido** (~~valor, montante~~)
+- total: dinheiro; derivado: soma de preço × quantidade dos **Itens de pedido** (~~valor, montante~~)
 - evento: Pedido pago
 - [x] PED-R1  Visível só ao **Cliente** dono e ao **Atendente** ⟸ [D07]
 - [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
@@ -158,7 +158,7 @@ As linhas de modelo descrevem os atributos como o negócio os vê: `nome: tipo; 
 | imutável | O valor não muda depois de criado |
 | opcional | O valor pode faltar; sem o qualificador, é obrigatório |
 | inicial: X | Valor ao nascer |
-| derivado | Calculado a partir de outros atributos; a fórmula vem em seguida |
+| derivado | Calculado a partir de outros atributos, na forma `derivado: fórmula` |
 | pessoal | Dado pessoal; a lista de dados tratados de uma política de privacidade é gerada destes |
 | inverso: N | Cardinalidade da relação vista da outra célula |
 
@@ -219,7 +219,7 @@ As regras não recebem rótulo de tipo. O tipo é dado pelo lugar e pela forma (
 | Comportamento geral | Q |
 | Combinação de condições | Tabela de decisão |
 
-A **tabela de decisão** é uma R terminada em `:` e seguida de uma tabela, com as condições à esquerda e os resultados à direita. Cada combinação aparece exatamente uma vez, e o verificador acusa combinações faltando ou repetidas (TDD-R3).
+A **tabela de decisão** é uma R terminada em `:`, seguida de uma linha em branco e de uma tabela, com as condições à esquerda e os resultados à direita. Cada combinação aparece exatamente uma vez (TDD-R3).
 
 ## Identificadores, lápides e citação
 
@@ -254,7 +254,7 @@ Cada termo é definido uma única vez, sem negrito, no lugar mais específico qu
 | Ator ou externo | `Atores` ou `Externos` em `_produto.md` |
 | Qualquer outro termo | Seção `Linguagem` da área |
 
-Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o verificador acusa quem os usar.
+Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o validador acusa quem os usar.
 
 Não existe glossário escrito à mão. Ele é gerado por programa, juntando todas as definições, cada uma com o tipo de termo e o lugar de origem.
 
@@ -268,7 +268,7 @@ Quando uma afirmação muda de dono, ela ganha o identificador da nova célula e
 - [x] PED-C3  movida → [ENT-C1]
 ```
 
-Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14). O verificador deve sinalizar, como alerta, quando reagrupar: célula grande demais, célula sem linhas próprias, afirmação que cita mais outra célula do que a sua, duas células que só aparecem juntas. A decisão continua sendo de quem escreve.
+Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14). A revisão deve apontar quando reagrupar: célula grande demais, célula sem linhas próprias, afirmação que cita mais outra célula do que a sua, duas células que só aparecem juntas. A decisão continua sendo de quem escreve.
 
 ## Atores, externos e jornadas
 
@@ -282,7 +282,7 @@ Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14
 
 Uma área é um arquivo que agrupa células fortemente relacionadas. Ela se forma em torno de uma **célula central** e das células que dependem principalmente dela (ARE-R8). Área é só organização: não tem sigla, não redefine termos, e mover uma célula entre áreas não muda nenhum identificador.
 
-A proximidade lógica é medida, não apenas declarada. Para cada célula, contam-se as referências feitas e recebidas, por área. Uma célula que troca mais referências com outra área do que com a sua é candidata a mudar de lugar (ARE-R9). Ao escrever a especificação do próprio formato, essa medição, feita ainda sem o verificador, revelou uma área inteira que existia por afinidade temática, sem relação real entre suas células, e uma redundância escondida na lista de checagens do verificador.
+A proximidade lógica é medida, não apenas declarada. Para cada célula, contam-se as referências feitas e recebidas, por área. Uma célula que troca mais referências com outra área do que com a sua é candidata a mudar de lugar (ARE-R9). Ao escrever a especificação do próprio formato, essa medição, feita ainda sem o validador, revelou uma área inteira que existia por afinidade temática, sem relação real entre suas células, e uma redundância escondida na lista de checagens que ele tinha na época.
 
 ## Perguntas abertas
 
@@ -328,7 +328,7 @@ Só o cliente dono e o atendente.
 
 O título é uma **questão**, terminada em `?`, com o código da decisão. A frase logo abaixo é a **resolução**, escrita uma única vez. Seguem o contexto, as alternativas descartadas, cada uma com o motivo, e as consequências. O Histórico fica dentro da decisão, com a data e uma linha por alteração (DEC-R1, DEC-R2).
 
-A fronteira de uma decisão é a questão: uma decisão responde a uma só, e as alternativas descartadas são outras respostas a ela (DEC-R3). Se uma alternativa responde a outra questão, ou se dá para reverter só uma parte da resolução, são duas decisões. Por isso uma questão nova sempre cria uma decisão nova, e só se edita uma decisão quando a mesma questão ganha outra resolução (DEC-R6). O verificador deve alertar quando a resolução tem mais de uma frase, quando o arquivo passa de 25 linhas e quando o Histórico passa de 5 entradas; os dois números são provisórios.
+A fronteira de uma decisão é a questão: uma decisão responde a uma só, e as alternativas descartadas são outras respostas a ela (DEC-R3). Se uma alternativa responde a outra questão, ou se dá para reverter só uma parte da resolução, são duas decisões. Por isso uma questão nova sempre cria uma decisão nova, e só se edita uma decisão quando a mesma questão ganha outra resolução (DEC-R6). A revisão deve apontar quando a resolução tem mais de uma frase, quando o arquivo passa de 25 linhas e quando o Histórico passa de 5 entradas; os dois números são provisórios.
 
 Registra-se uma decisão quando havia ao menos uma alternativa plausível, na mesma mudança que o item que ela fundamenta (DEC-R5). O código `Dnn` é uma sequência única para o produto e nunca volta. A pasta `specs/decisoes/` espelha a especificação e tem a sua própria legenda e as suas instruções para agentes, para que quem não vai mexer em decisões não precise lê-las (DEC-R18): a decisão mora na pasta da área cujos itens mais a citam, ou em `_produto/`, e mudar de pasta não muda o código (DEC-R9, DEC-R10). Cada pasta tem um índice gerado por programa, com o código, a questão, a resolução e quem cita cada decisão.
 
@@ -336,9 +336,9 @@ Uma decisão pode citar outra, com a mesma marca, quando o contexto de uma é a 
 
 ## Verificação e geração
 
-A gramática é fixa para que um programa, o **Verificador**, consiga checar a especificação sem interpretar o texto (VRF-R3). Ele ainda não existe. Será um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro de uma skill: o agente o executa e lê a saída, mas não o substitui (VRF-R5). As regras que ele vai checar terminam com a severidade, `· erro` ou `· alerta` (VRF-R4): identificadores únicos e nunca reaproveitados, referências que resolvem, termos definidos uma única vez, primeira menção em negrito, eventos com reação, tabelas de decisão completas, linhas na ordem certa, perguntas citadas ou com `sobre:`, áreas coesas e blocos dentro do tamanho.
+A gramática é fixa para que um programa, o **Validador**, consiga checar a forma da especificação sem interpretar o texto (VRF-R3). É um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro da skill `tabularium-validar`: o agente o executa e lê a saída, mas não o substitui (VRF-R5). O que ele checa é uma lista fechada, escrita no bloco dele, que cita cada regra pelo identificador (VRF-R14): a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, as referências, os termos e a numeração. A gramática também é fechada: toda linha tem de casar com uma forma prevista, e a que não casa é violação (VRF-R8). Uma linha que começa com `[ok]` em vez de `[x]` é um exemplo do que ele acusa. Ele lê só os arquivos como estão, sem consultar o histórico (VRF-R9), e por ora não checa a pasta de arquitetura (VRF-R11). Uma especificação com ao menos uma violação é inválida, sem resultado intermediário (VRF-R7); impedir que a mudança entre é escolha de quem adota. Os sinais de reagrupamento, como áreas pouco coesas e blocos grandes demais, não são checados por ele: ficam com a revisão.
 
-O mesmo programa vai gerar o que se deriva mecanicamente: o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais, as definições de link e o índice de cada pasta de decisões. Essas partes são sempre iguais para a mesma especificação.
+Outro programa, o **Gerador**, vai produzir o que se deriva mecanicamente (GER-C1): o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais, as definições de link e o índice de cada pasta de decisões. Ele só gera a partir de uma especificação sem violações. Essas partes são sempre iguais para a mesma especificação (GER-R2).
 
 ## Documentos derivados
 
@@ -408,10 +408,10 @@ O Tabularium adota ideias de cada uma dessas abordagens e deixa outras de fora, 
 ## Limites e cuidados
 
 - **As afirmações deste guia ainda são hipóteses.** As duas aplicações de exemplo vão pôr à prova: se a célula basta ao agente para uma tarefa; se um agente descobre e entende a aplicação com facilidade; se um novato aprende o sistema, pela fonte e pelos derivados; se o formato sem prosa comporta tudo o que um produto real precisa dizer; se a proximidade medida aponta agrupamentos melhores; e se é fácil exportar para outros documentos. Que as afirmações `[ ]` conduzem uma implementação é intenção, e não está entre as hipóteses em teste.
-- **O verificador é parte do formato, não um acessório.** Sem ele, as regras de unicidade, de referência e de coesão dependem de disciplina, que não sobrevive a muitos autores. Enquanto ele não existir, é assim que o formato funciona.
+- **O validador é parte do formato, não um acessório.** Sem ele, as regras de forma, de unicidade e de referência dependem de disciplina, que não sobrevive a muitos autores. O que ele não vê, como o histórico dos números, continua dependendo dela.
 - **Um produto, uma linguagem.** Uma especificação descreve um só produto, com um significado por termo (ESP-R8). Quando dois significados legítimos do mesmo termo não se conciliam, são dois produtos, cada um com a sua especificação.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Ela precisa ser atualizada a cada evolução do código, e o formato ainda não diz o que prova que continua verdadeira. Numa especificação guardada longe do código, como nos repositórios de exemplo, as marcas são um retrato datado.
-- **O trabalho em equipe ainda não está resolvido.** A colisão de números alocados em paralelo aparece como conflito em `_contadores.md`, mas só se quem altera mantiver o arquivo em dia; sem o verificador, nada confere isso. O formato também não trata, por ora, de quem do negócio aprova uma mudança e sobre qual texto.
+- **O trabalho em equipe ainda não está resolvido.** A colisão de números alocados em paralelo aparece como conflito em `_contadores.md`, mas só se quem altera mantiver o arquivo em dia; o validador confere que nenhum número em uso passa do guardado, mas não vê o histórico. O formato também não trata, por ora, de quem do negócio aprova uma mudança e sobre qual texto.
 - **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato são os documentos derivados. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser gerados, nunca copiados.
 - **O formato não substitui a conversa.** Ele registra decisões de produto, mas não as toma. As perguntas abertas existem justamente para que a especificação mostre o que ainda não foi decidido.
 - **A justificativa de cada escolha deste formato deveria estar em `specs/decisoes/`.** A maior parte já está lá. As que não têm um item da especificação que as cite, como as escolhas sobre o README e sobre este guia, ainda só aparecem aqui, que, pelas regras do próprio formato, é o lugar errado para guardá-las.
