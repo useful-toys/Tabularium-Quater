@@ -37,7 +37,9 @@ Um componente é um conjunto de controles coordenados para um objetivo. Ele tem 
 
 ## O que ficou de fora de propósito
 
-Telas, a composição das telas e wireframes não entram. É decisão do Daniel: manter o experimento simples, amadurecer e acrescentar sob necessidade. Se a falta de algum deles doer, o agente leva o caso ao usuário, como manda `Quando o formato não serve`.
+Wireframes e a posição exata das coisas na tela não entram. É decisão do Daniel: manter o experimento simples, amadurecer e acrescentar sob necessidade. Se a falta doer, o agente leva o caso ao usuário, como manda `Quando o formato não serve`.
+
+As telas também tinham ficado de fora no começo. A conversão do Iconula mostrou que três afirmações precisavam citar uma tela, e o Daniel propôs tratá-la como um componente especial: um componente do tipo `tela`, feito de outros componentes.
 
 ## O experimento
 

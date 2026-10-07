@@ -39,6 +39,13 @@ Diálogo em que o **Cliente** confirma o cancelamento de um **Pedido**.
   - o diálogo fecha, e nada muda
   - web: também ao clicar fora do diálogo
   - terminal: também com `Esc`
+
+## Tela do pedido  `TPE`
+Tela em que o **Cliente** acompanha um **Pedido**.
+- tipo: tela
+- usa 1 **Resumo do pedido**
+- usa 0..1 **Diálogo de cancelamento**
+- [ ] TPE-R1  Mostra um só **Pedido** de cada vez
 ```
 
 ## Como ler
@@ -48,10 +55,11 @@ Diálogo em que o **Cliente** confirma o cancelamento de um **Pedido**.
 - **Diretrizes.** Afirmações que valem para a interface inteira, de sigla `IFC`.
 - **Padrão.** O bloco `Confirmação` não tem partes: é uma solução que vários componentes seguem.
 - **Componente.** O bloco `Diálogo de cancelamento` é um conjunto de controles coordenados para um objetivo. Os controles aparecem em `partes:` e não ganham bloco próprio.
+- **Tela.** O bloco `Tela do pedido` é um componente do tipo `tela`. Não tem partes: lista com `usa` os componentes de que é feita, na ordem em que aparecem. O `Resumo do pedido` teria o seu próprio bloco, que este trecho não mostra.
 - **Modelo.** `tipo:` diz a espécie do componente, com uma palavra da legenda ou com um tipo que a própria aplicação definiu; `segue` aponta o padrão, e `realiza:` aponta a afirmação da especificação que o componente apresenta. A especificação nunca aponta de volta.
 - **Afirmações.** R é diretriz, sempre verdadeira; Q é qualidade, com número e unidade; I é interação, o que o ator faz, com a resposta do produto nos sub-itens.
 - **Variação por meio.** O sub-item que começa pelo nome de um meio vale só nele.
 
-Não há telas: o que se descreve é o componente, que aparece em mais de uma. A regra de que um pedido pago é estornado ao ser cancelado continua na célula `Pedido`, porque valeria em qualquer meio; aqui só fica como ela se apresenta.
+A tela não repete o que é de um componente, e não traz desenho nem posição. A regra de que um pedido pago é estornado ao ser cancelado continua na célula `Pedido`, porque valeria em qualquer meio; aqui só fica como ela se apresenta.
 
 A legenda completa está em [`specs/interface/_convencoes.md`](../specs/interface/_convencoes.md).

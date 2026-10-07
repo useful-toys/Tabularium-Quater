@@ -24,13 +24,13 @@ Legenda para ler e escrever a interface neste formato, que é experimental. Ela 
   - nenhum: é detalhe de uma tela e fica no código
 - fronteira com a especificação: a afirmação continuaria verdadeira se o produto trocasse de meio? se sim, é da especificação, e aqui só se cita; se não, é da interface
 - o que a especificação já afirma não se repete: cita-se
-- não entram telas, a composição das telas nem wireframes
+- não entram wireframes nem a posição exata das coisas na tela
 - valor de máquina, como código de cor ou nome de variável, fica no código
 
 ## Vocabulário
 Palavras desta legenda, iguais em todos os projetos; não são termos do produto e não levam negrito.
 - meio: onde a interface aparece, como terminal, desktop ou web; cada produto declara os seus
-- tela: tudo o que o ator tem diante de si num momento; não é unidade e não tem bloco
+- tela: tudo o que o ator tem diante de si num momento; é um componente do tipo `tela`, feito de outros componentes
 - componente: conjunto de controles coordenados para um objetivo; é a unidade, com bloco e sigla
 - tipo: a espécie de um componente; ou é uma palavra deste vocabulário, ou é definido pela aplicação num bloco próprio
 - padrão: comportamento recorrente que vários componentes seguem; tem bloco e sigla, sem partes
@@ -42,6 +42,7 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - indicador: controle que só mostra, como situação, progresso ou contagem
 - listagem: controle que mostra vários itens do mesmo tipo, como lista, tabela ou árvore
 - tipos de componente, iguais em todos os projetos:
+  - tela: tudo o que o ator tem diante de si num momento; feita de outros componentes
   - região: parte fixa da tela, que se repete entre telas
   - grupo: reúne outros componentes sob um título
   - painel: reúne controles num bloco delimitado da tela
@@ -65,6 +66,7 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - bloco de componente, de tipo ou de padrão: título com nome e sigla (`` ## Diálogo de confirmação  `DCF` ``), frase de definição, lista única
 - bloco de tipo: escrito como o de componente; é tipo porque outros blocos o citam em `tipo:`
 - o componente herda as linhas do tipo da aplicação que ele cita, sem repeti-las
+- bloco de tela: componente de `tipo: tela`; não tem `partes:`; as linhas `usa` listam os componentes dela, na ordem em que aparecem; as afirmações são só as que valem para a tela inteira
 - ordem da lista: modelo (linhas sem identificador), R, Q, I
 - área: um componente central e os componentes e padrões que dependem dele, num arquivo
 - siglas de componentes, de padrões, de células e de componentes da arquitetura formam um só conjunto: nenhuma se repete

@@ -30,7 +30,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 1. Só entra o que passa no teste de `_convencoes.md`, seção `O que entra`. Aplique-o antes de escrever qualquer linha e pare no primeiro sim. Sem nenhum sim, é detalhe de uma tela: deixe-o no código.
 2. A fronteira com a especificação é o teste da troca de meio. Se a afirmação continuaria verdadeira num outro meio, ela é da especificação: se falta lá, proponha acrescentá-la lá e cite-a aqui com `realiza:`.
 3. A ligação com a especificação é de mão única. A interface cita identificadores e termos da especificação; nos arquivos de `specs/` fora desta pasta, escreva só especificação.
-4. A unidade é o componente, não a tela. Não escreva blocos de tela, a lista de componentes de uma tela, nem wireframes.
+4. A tela é um componente do tipo `tela`, feito de outros componentes. O bloco dela diz quais componentes ela usa, na ordem em que aparecem, e o que vale para a tela inteira. Não escreva nele o que é de um componente, nem wireframes, nem posição em pixels.
 5. Um controle não ganha bloco: aparece em `partes:` do componente. O que só faz sentido dentro de um componente é parte dele.
 6. Use as palavras do vocabulário da legenda com o sentido que ela dá, sem negrito. Não invente sinônimo para uma delas.
 7. Cor, fonte e medida que valem em mais de um lugar são estilos, com nome e papel. Cite o estilo em negrito, e não o valor. O valor de máquina fica no código.
@@ -49,6 +49,8 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 | Os controles de um componente, na ordem | Linha de modelo `partes:` |
 | Como o componente pode estar | Linha de modelo `situações:` |
 | Componente dentro de componente | Linha de modelo `usa CARD **Componente**`, só em quem contém |
+| Quais componentes uma tela tem | Linhas `usa` no bloco da tela, na ordem em que aparecem |
+| O que vale para uma tela inteira | R no bloco da tela |
 | Solução recorrente a que o componente obedece | Linha de modelo `segue **Padrão**` |
 | O que o componente apresenta da especificação | Linha de modelo `realiza:`, com os identificadores |
 | Onde ele mora no código | Linha de modelo `local:` |
@@ -68,6 +70,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 
 - **Decidir se algo é componente:** é componente o conjunto de controles que se coordenam para um objetivo e que pode aparecer em mais de um lugar. Um controle sozinho é parte. Uma solução sem controles próprios, que vários componentes seguem, é padrão. Uma frase que vale para tudo é diretriz.
 - **Criar um componente ou um padrão:** escolha a sigla, acrescente um item em `_contadores.md` para cada papel que ele usar, e escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem: modelo, R, Q, I.
+- **Criar uma tela:** escreva um bloco de componente com `tipo: tela`, sem `partes:`, e uma linha `usa` por componente, na ordem em que aparecem. O que é de um componente fica no bloco dele, mesmo que ele só apareça nessa tela.
 - **Escolher o tipo:** use um tipo do vocabulário, se algum serve. Não invente palavra: se nenhum serve, omita a linha. Um componente tem no máximo um tipo.
 - **Criar um tipo da aplicação:** só quando dois ou mais componentes são a mesma espécie de coisa e têm afirmações em comum. Escreva o bloco do tipo como o de um componente, com as afirmações comuns, e faça cada componente citá-lo com `tipo: **Nome**`. O componente herda as linhas do tipo e não as repete.
 - **Tipo ou padrão:** o tipo diz o que o componente é, e ele só tem um. O padrão diz um comportamento que ele segue, e ele pode seguir vários.

@@ -55,7 +55,7 @@ Proposta do Claude, aceita. Lista livre em `_interface.md`; a variação vai em 
 
 ### 10. Sem composição de telas
 
-Proposta do Claude, aceita. Fica no código, e observa-se no experimento se a falta dói.
+Proposta do Claude, aceita. Fica no código, e observa-se no experimento se a falta dói. Substituída pela decisão 24.
 
 ### 11. Sem wireframe, por ora
 
@@ -111,6 +111,14 @@ Daniel, depois da conversão do Iconula. O texto que é compromisso é escrito e
 
 - Descartado, pelo Daniel: uma seção de textos no arquivo do conjunto. Contraria o princípio de que as informações ficam próximas.
 - Complemento do Claude, aceito: só entra o texto cuja redação é compromisso; o resto fica no código.
+
+### 24. A tela é um componente do tipo tela
+
+Daniel, depois da conversão do Iconula. A tela é um componente especial: tem `tipo: tela`, não tem partes e lista com `usa` os componentes de que é feita, na ordem em que aparecem.
+
+- Substitui a decisão 10: a composição das telas passa a ser escrita, nas linhas `usa`.
+- Descartado: uma seção de telas no arquivo do conjunto, só com nome e propósito; e não citar telas em afirmação nenhuma.
+- Complemento do Claude, aceito: o bloco da tela só traz o que vale para a tela inteira; wireframes e posição em pixels continuam de fora.
 
 ## Sobre o experimento
 
