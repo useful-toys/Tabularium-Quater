@@ -72,6 +72,7 @@ const casos = [
   ['ATR-R7', 'qualificador fora do vocabulário', troca('pedidos.md', 'único; imutável', 'único; obrigatório')],
   ['ATR-R7', 'derivado sem fórmula', troca('pedidos.md', 'derivado: soma dos **Itens de pedido**', 'derivado')],
   ['ATR-R7', 'inverso sem cardinalidade', troca('pedidos.md', '- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**; inverso: vários\n')],
+  ['ATR-R7', 'relação com trecho que não é qualificador', troca('pedidos.md', '- pertence a 1 **Pedido**\n', '- pertence a 1 **Pedido**; sempre\n')],
   ['CEL-R18', 'duas especializações no mesmo bloco', troca('pedidos.md', '- pertence a 1 **Pedido**\n', '- especializa **Pedido**\n- especializa **Pedido**\n')],
   ['TIP-R2', 'tipo de valor sem forma', troca('pedidos.md', '- Quantidade: inteiro; de 1 a 99', '- Quantidade inteira')],
   ['TIP-R2', 'tipo comum sem forma', troca('_produto.md', '- Situação: aberto | pago', '- Situação')],
@@ -158,6 +159,14 @@ test('ARE-R12: a área em pasta é lida, com _area.md e um arquivo por célula',
   };
   assert.deepEqual(violacoesCom(mudancas), []);
   assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'pedidos/_area.md': null })), ['ARE-R1']);
+});
+
+test('ATR-R7: a relação leva qualificadores, como o inverso', () => {
+  assert.deepEqual(violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('- pertence a 1 **Pedido**\n', '- pertence a 1 **Pedido**; inverso: 1..N\n')
+      .replace('- 1..N **Item de pedido**\n', '- 1..N **Item de pedido**; inverso: 1\n'),
+  }), []);
 });
 
 test('TRM-R6: declarar sinônimos proibidos não é usá-los', () => {

@@ -108,7 +108,8 @@ function checarArea(arquivo, dicionario, acusar) {
     if (l.forma === 'afirmacao' && l.tabela) checarTabela(linhas, i, acusar);
     if (!bloco) return;
     if (l.forma === 'especializacao' && ++bloco.especializacoes > 1) acusar(l.n, 'CEL-R18', 'uma célula especializa no máximo uma outra; este bloco já tem uma linha "especializa"');
-    if (l.forma === 'atributo') checarAtributo(l, dicionario, acusar);
+    if (l.forma === 'atributo') checarTipo(l, dicionario, acusar);
+    if (l.qualificadores) checarQualificadores(l, acusar);
     const ordem = ordemNoBloco(l);
     if (ordem === null) return;
     if (ordem === 'papel') return acusar(l.n, 'CEL-R3', `o papel "${l.papel}" não cabe num bloco de célula; os papéis são R, Q, C, V e T`);
@@ -268,9 +269,12 @@ function checarSubitem(l, bloco, acusado, acusar) {
   else acusar(l.n, 'VRF-R8', 'linha não reconhecida; os itens desta seção não têm sub-itens');
 }
 
-function checarAtributo(l, dicionario, acusar) {
+function checarTipo(l, dicionario, acusar) {
   const celula = l.tipo.match(/^\*\*([^*]+)\*\*$/)?.[1];
   if (celula && dicionario.celulas.has(celula.toLowerCase())) acusar(l.n, 'ATR-R6', `atributo cujo tipo é uma célula é uma associação e leva a cardinalidade antes dela, como "${l.nome}: 1 **${celula}**"`);
+}
+
+function checarQualificadores(l, acusar) {
   for (const q of l.qualificadores) {
     const valor = q.match(/^(inicial|derivado|inverso): (\S.*)$/);
     if (QUALIFICADORES.includes(q) || (valor && (valor[1] !== 'inverso' || CARD.test(valor[2])))) continue;

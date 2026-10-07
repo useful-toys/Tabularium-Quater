@@ -26,8 +26,8 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 | --- | --- | --- |
 | **definição** | prosa, logo após o título | [CEL-R2] |
 | **Atributo** | `- nome: tipo; qualificadores` | [ATR-R1] |
-| associação sem papel | `- CARD **Célula**` | [ATR-R8] |
-| pertencimento | `- pertence a 1 **Célula**` | [CEL-R15] |
+| associação sem papel | `- CARD **Célula**`, com qualificadores depois de `;` | [ATR-R8] |
+| pertencimento | `- pertence a 1 **Célula**`, com qualificadores depois de `;` | [CEL-R15] |
 | especialização | `- especializa **Célula**` | [CEL-R16] |
 | **Evento** | `- evento: Nome` | [TRM-R1] |
 | **afirmação** | `- [x] CÓDIGO  texto` ou `- [ ] CÓDIGO  texto`, com dois espaços antes do texto | [LIN-R4] |

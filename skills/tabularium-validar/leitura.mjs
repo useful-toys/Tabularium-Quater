@@ -129,6 +129,15 @@ function lerArea(brutas) {
   return linhas;
 }
 
+// Parte o texto nos '; ' que estão fora de código.
+function partir(texto) {
+  const trechos = [];
+  let de = 0;
+  for (const corte of mascarar(texto).matchAll(/; /g)) { trechos.push(texto.slice(de, corte.index)); de = corte.index + 2; }
+  trechos.push(texto.slice(de));
+  return trechos;
+}
+
 function lerLinhaDeCelula(n, bruto, corpo) {
   if (/^\[/.test(corpo) || new RegExp(`^${CODIGO}`).test(corpo)) {
     return lerAfirmacao(n, bruto, corpo)
@@ -138,20 +147,17 @@ function lerLinhaDeCelula(n, bruto, corpo) {
   const t = item.texto;
   let m = t.match(/^evento: (\S.*)$/);
   if (m) return { n, bruto, forma: 'evento', nome: m[1], ...item };
-  m = t.match(/^pertence a 1 \*\*([^*]+)\*\*$/);
-  if (m) return { n, bruto, forma: 'pertencimento', celula: m[1], ...item };
   m = t.match(/^especializa \*\*([^*]+)\*\*$/);
   if (m) return { n, bruto, forma: 'especializacao', celula: m[1], ...item };
-  m = t.match(new RegExp(`^(${CARD}) \\*\\*([^*]+)\\*\\*$`));
-  if (m) return { n, bruto, forma: 'associacao', cardinalidade: m[1], celula: m[2], ...item };
+  // A relação também leva qualificadores, como em "pertence a 1 **Cliente**; inverso: 0..N".
+  const [relacao, ...qualificadores] = partir(t);
+  m = relacao.match(/^pertence a 1 \*\*([^*]+)\*\*$/);
+  if (m) return { n, bruto, forma: 'pertencimento', celula: m[1], qualificadores, ...item };
+  m = relacao.match(new RegExp(`^(${CARD}) \\*\\*([^*]+)\\*\\*$`));
+  if (m) return { n, bruto, forma: 'associacao', cardinalidade: m[1], celula: m[2], qualificadores, ...item };
   m = t.match(/^(\p{L}[\p{L}\p{N} ]*): (\S.*)$/u);
   if (m && !/^(pertence a|especializa) /.test(t)) {
-    // O ';' só separa trechos fora de código.
-    const cortes = [...mascarar(m[2]).matchAll(/; /g)].map((c) => c.index);
-    const trechos = [];
-    let de = 0;
-    for (const c of cortes) { trechos.push(m[2].slice(de, c)); de = c + 2; }
-    trechos.push(m[2].slice(de));
+    const trechos = partir(m[2]);
     return { n, bruto, forma: 'atributo', nome: m[1], tipo: trechos[0], qualificadores: trechos.slice(1), ...item };
   }
   return estranha(n, bruto, 'uma linha de bloco de célula: atributo ("- nome: tipo"), relação, evento, afirmação ou lápide', 'LIN-R11');
