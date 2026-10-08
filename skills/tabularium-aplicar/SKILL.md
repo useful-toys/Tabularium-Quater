@@ -54,7 +54,7 @@ Feito quando o validador responde `nenhuma violação`.
 
 ## 5. Relatar
 
-Liste o que foi criado, alterado e retirado, cada item com o nome e o código entre parênteses: afirmações, termos, decisões e perguntas. Sugira `/tabularium-registrar`, e deixe o autor acioná-la.
+Liste o que foi criado, alterado e retirado, cada item com o nome e o código entre parênteses: afirmações, termos, decisões e perguntas. Se o plano veio de uma issue, sugira `/tabularium-registrar`, e deixe o autor acioná-la. Sem issue, encerre aqui.
 
 ## Devolver
 
@@ -65,4 +65,4 @@ Você devolve quando o plano pede uma decisão que não está nele:
 - o texto existente mudou, ou algo novo contraria o plano;
 - o validador pede uma mudança de significado.
 
-Ao devolver, diga ao autor qual item do plano parou, o que você encontrou e o que já foi escrito. Se já escreveu parte do plano, pergunte se ele quer desfazer. A ideia volta para `em discussão` e precisa de novo consenso: sugira `/tabularium-entrevistar` com o número da issue, e `/tabularium-registrar` para gravar a volta.
+Ao devolver, diga ao autor qual item do plano parou, o que você encontrou e o que já foi escrito. Se já escreveu parte do plano, pergunte se ele quer desfazer. A ideia volta para `em discussão` e precisa de novo consenso. Se o plano veio de uma issue, sugira `/tabularium-entrevistar` com o número dela, e `/tabularium-registrar` para gravar a volta. Sem issue, sugira `/tabularium-entrevistar` nesta conversa.

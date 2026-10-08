@@ -69,7 +69,7 @@ Crie no repositório o rótulo que faltar, e deixe na issue só um dos quatro.
 | Consenso | Rótulo `consenso`. Na linha `Estado` do Resumo, ponha a data e o commit mais recente da linha principal: `consenso em 2026-10-08 · linha principal em a1b2c3d` |
 | Aplicada | Mantém `consenso`. O comentário do registro lista o que a aplicação criou, alterou e retirou. Feche a issue |
 | Rejeitada | Rótulo `rejeitada`. A linha `Estado` guarda o motivo. Feche a issue como não planejada |
-| Defeito, a ideia inteira | Rótulo `defeito` |
+| Defeito, a ideia inteira | Rótulo `defeito`. A issue fica aberta: quem trata o defeito é o processo da equipe |
 
 Feito quando a issue tem um só rótulo de estado, e está aberta ou fechada conforme a tabela.
 
