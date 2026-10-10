@@ -28,7 +28,7 @@ Para ver uma célula escrita, abra o [exemplo do Pedido](exemplos/pedido.md).
 Estes treze valores guiaram a criação do formato. Cada regra dele existe para servir a algum.
 
 1. **Organizada por células de conceitos.** Um bloco por coisa do domínio; as áreas se formam por relação medida, nunca por tipo de informação.
-2. **Densa.** Cada linha diz uma só coisa, e o significado vem da posição no texto.
+2. **Densa.** Cada linha diz uma só coisa, e o significado vem da posição no texto e de marcas de sentido fixo.
 3. **Hierárquica.** Títulos organizam os blocos e sub-itens detalham as linhas, na profundidade que o conteúdo pedir.
 4. **Fonte única da verdade.** Só o que foi comprometido, com cada afirmação dizendo se está implementada.
 5. **Sem redundância.** Cada termo e cada regra são escritos uma vez; o que se deriva mecanicamente é gerado por programa.
