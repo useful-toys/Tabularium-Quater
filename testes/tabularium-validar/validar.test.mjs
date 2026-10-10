@@ -133,9 +133,18 @@ const casos = [
   ['TRM-R2', 'atributo repetido no mesmo bloco', troca('pedidos.md', '- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**\n- quantidade: inteiro\n')],
   ['TRM-R2', 'termo definido em negrito', troca('pedidos.md', '- carrinho: ', '- **carrinho**: ')],
   ['TRM-R4', 'atributo homônimo citado sem a célula', { 'pedidos.md': (t) => t.replace('- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**\n- número: inteiro\n').replace('que ainda não foi fechado', 'que ainda não foi fechado e já tem **número**') }],
-  ['REF-R1', 'negrito que não é termo', troca('pedidos.md', 'Fechar o pedido', 'Fechar o **carrinho de compras**')],
-  ['REF-R1', 'plural que as terminações não explicam', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos dois **Itenz de pedido**')],
+  ['TRM-R14', 'negrito que não é termo', troca('pedidos.md', 'Fechar o pedido', 'Fechar o **carrinho de compras**')],
+  ['TRM-R14', 'plural que as terminações não explicam', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos dois **Itenz de pedido**')],
   ['REF-R1', 'atributo que a célula não tem', troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido pela **Pedido.cor**')],
+  ['TRM-R20', 'termo em negrito escrito com sublinhados', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos um __Item de pedido__')],
+  ['TRM-R20', 'ênfase escrita com sublinhados', troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido __sempre__')],
+  ['TRM-R20', 'negrito escrito com marca de HTML', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos um <strong>Item de pedido</strong>')],
+  ['TRM-R20', 'negrito com sublinhados no título do arquivo', troca('pedidos.md', '# Pedidos\n', '# __Pedidos__\n')],
+  ['TRM-R21', 'negrito no título do arquivo', troca('pedidos.md', '# Pedidos\n', '# **Pedidos**\n')],
+  ['TRM-R21', 'termo em negrito no cabeçalho de tabela', troca('pedidos.md', '| Região | Frete |', '| Região do **Cliente** | Frete |')],
+  ['DEC-R11', 'termo em negrito numa decisão', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre o total do **Pedido**')],
+  ['DEC-R11', 'ênfase em negrito no título de uma decisão', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'Um pedido pago', 'Um pedido **pago**')],
+  ['DEC-R11', 'negrito com sublinhados numa decisão', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'exige uma segunda cobrança', 'exige __outra__ cobrança')],
   ['TRM-R6', 'sinônimo proibido em uso', { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)').replace('A lista de pedidos abre', 'A lista de pedidos mostra o Valor e abre') }],
   ['TRM-R6', 'sinônimo proibido numa decisão', { ...troca('pedidos.md', 'Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)'), ...troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre o total da encomenda') }],
   ['TRM-R13', 'sinônimos proibidos no meio da linha', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma (~~valor, montante~~) dos **Itens de pedido**')],
@@ -263,10 +272,18 @@ test('TRM-R12: onde cabem dois termos, vale o de nome mais longo', () => {
   assert.match(violacoes[0].frase, /^"Pedido pago" é um termo/);
 });
 
-test('TRM-R14: não há negrito de ênfase; o negrito que não é termo sai como REF-R1', () => {
+test('TRM-R14: não há negrito de ênfase; a violação diz que o negrito só marca termo', () => {
   const violacoes = violacoesCom(troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido **sempre**'));
-  assert.deepEqual(regrasDe(violacoes), ['REF-R1']);
+  assert.deepEqual(regrasDe(violacoes), ['TRM-R14']);
   assert.match(violacoes[0].frase, /o negrito só marca referência a termo/);
+});
+
+test('TRM-R20: dentro de código e no meio de uma palavra, os sublinhados não são negrito', () => {
+  assert.deepEqual(violacoesCom(troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido com `__init__`, `<b>` e data__entrega__nova')), []);
+});
+
+test('TRM-R21: o negrito no título de célula sai como TRM-R2, que já o acusa', () => {
+  assert.deepEqual(regrasDe(violacoesCom(troca('pedidos.md', '## Modalidade  `MOD`', '## **Modalidade**  `MOD`'))), ['TRM-R2']);
 });
 
 test('TRM-R15: o nome da área, na tabela de áreas, não é menção', () => {
@@ -405,6 +422,8 @@ const casosDasCamadas = [
   ['VRF-R8', 'arquivo que não é decisão numa subpasta de decisões da interface', { 'interface/decisoes/_interface/notas.md': '# Notas\n' }],
   ['TRM-R18', 'declaração de sinônimos numa decisão de arquitetura', troca(D2, 'sobre aquele total', 'sobre aquele (~~soma~~) total')],
   ['TRM-R18', 'declaração de sinônimos numa decisão de interface', troca(D3, 'sobre aquele total', 'sobre aquele total (~~soma~~)')],
+  ['DEC-R11', 'negrito numa decisão de arquitetura', troca(D2, 'sobre aquele total', 'sobre **aquele** total')],
+  ['DEC-R11', 'negrito numa decisão de interface', troca(D3, 'sobre aquele total', 'sobre **aquele** total')],
   ['DEC-R22', 'a especificação cita decisão da arquitetura', troca('pedidos.md', 'o pedido não muda ⟸ [D1]', 'o pedido não muda ⟸ [D1, D2]')],
   ['DEC-R22', 'decisão da especificação cita decisão da interface', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre aquele total ⟸ [D3]')],
   ['DEC-R22', 'a arquitetura cita decisão da interface', troca('arquitetura/validacao.md', '[D2, D1]', '[D2, D3]')],

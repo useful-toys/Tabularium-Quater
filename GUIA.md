@@ -326,7 +326,7 @@ Cada termo é definido uma única vez, sem negrito, no lugar mais específico qu
 | Ator ou externo | `Atores` ou `Externos` em `_produto.md` |
 | Qualquer outro termo | Seção `Linguagem` da área |
 
-Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o validador acusa quem os usar.
+Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Por isso o negrito só marca termo: não há negrito de ênfase, ele se escreve só com `**`, e título e cabeçalho de tabela não o levam (TRM-R14, TRM-R20, TRM-R21). Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o validador acusa quem os usar.
 
 Não existe glossário escrito à mão. Ele é gerado por programa, juntando todas as definições, cada uma com o tipo de termo e o lugar de origem.
 

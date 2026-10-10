@@ -60,10 +60,12 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `SIGLA-PN`: identificador; P é o papel, N o número; números e siglas nunca voltam; fora da linha principal do controle de versão, um número recém-alocado ainda pode ser trocado se colidir
 - `[PED-R1]`: referência a identificador
 - `**Termo**`: referência a termo, na primeira menção de cada item, frase de definição ou fileira de tabela; definições não levam negrito; negrito só marca referência a termo, nunca ênfase
+- negrito se escreve só com `**`; `__texto__`, `<b>` e `<strong>` são violação, fora de código, mesmo em volta de um termo
 - em maiúsculas ou no plural regular (`s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis`, `ns`), é o mesmo termo
 - primeira menção sem negrito, com o nome escrito como na definição, é violação; nome de atributo não conta
 - onde cabem dois termos, a menção é do de nome mais longo; negrito que casa com um termo e com um atributo é do termo
 - não são menções: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo, a própria célula no seu bloco e o nome da área na tabela de áreas
+- título e cabeçalho de tabela não levam negrito, mesmo em volta de um termo
 - `(~~valor, montante~~)` no fim do texto da linha que define um termo, antes das marcas de fim de item: sinônimos que não devem ser usados, em maiúsculas ou minúsculas, fora de código
 - `**Célula.atributo**`: referência a atributo cujo nome se repete em outra célula
 - `· ator` logo após o identificador, em minúsculas: ator da afirmação, quando não é o padrão; a regra marcada `· tempo` traz o prazo com número e unidade

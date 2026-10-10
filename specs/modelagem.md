@@ -117,12 +117,14 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [x] TRM-R11  Plural se reconhece palavra por palavra, pelas terminações regulares: `s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis` e `ns`
 - [x] TRM-R12  Onde cabem dois termos, a menção é do de nome mais longo
 - [x] TRM-R13  Os sinônimos de **não usar** fecham o texto da linha, antes das marcas de fim de item
-- [x] TRM-R14  Negrito só marca **Referência** a termo; não há negrito de ênfase
+- [x] TRM-R14  Negrito só marca **Referência** a termo; não há negrito de ênfase ⟸ [D111]
 - [x] TRM-R15  O nome da **Área**, na tabela de áreas, não é menção
 - [x] TRM-R16  Sinônimo de **não usar** é acusado como palavra inteira, em maiúsculas ou minúsculas, fora de código
 - [x] TRM-R17  Negrito que casa com um termo e com um **Atributo** é do termo
 - [x] TRM-R18  A declaração de sinônimos de **não usar** só cabe na linha que define o termo ⟸ [D110]
 - [x] TRM-R19  Sinônimo de **não usar** não é o nome de um termo definido, nem no plural
+- [x] TRM-R20  Negrito se escreve só com `**`; `__texto__`, `<b>` e `<strong>` são violação, fora de código, mesmo em volta de um termo ⟸ [D112]
+- [x] TRM-R21  Título e cabeçalho de tabela não levam negrito, mesmo em volta de um termo ⟸ [D113]
 - [x] TRM-C1  Renomear um termo
 
 ## Glossário  `GLO`

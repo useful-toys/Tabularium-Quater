@@ -47,7 +47,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - TDD-R  4  qualquer-vale-para
 - TIP-R  2  forma-tipo-valor
 - TRM-C  1  renomear-termo
-- TRM-R  19  sinonimo-nao-e-termo
+- TRM-R  21  titulo-sem-negrito
 - VIS-R  1  exibir-copiar-exportar
 - VRF-C  1  gerar-partes-derivadas
 - VRF-R  27  nao-le-achados
@@ -57,4 +57,4 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - P  0
 
 ## Decisões
-- D  110  declaracao-so-na-definicao
+- D  113  titulo-sem-negrito

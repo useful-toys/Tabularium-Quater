@@ -1,4 +1,4 @@
-// Checagens sobre os termos: definição única, negrito que resolve,
+// Checagens sobre os termos: definição única, negrito que resolve e só marca termo,
 // menção exata sem negrito e sinônimos proibidos.
 
 import { mascarar } from './leitura.mjs';
@@ -12,6 +12,11 @@ export const leituras = (nome) => nome.toLowerCase().split(' ').map(singulares)
 const SEM_TEXTO = ['branco', 'gerado', 'ignorada', 'marcador-gerado', 'desconhecida'];
 const SEM_MENCAO = ['titulo-arquivo', 'titulo-secao', 'titulo-celula', 'tabela-cabecalho', 'tabela-separador'];
 const PALAVRA = /[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)*/gu;
+// As grafias de negrito que não são a do formato: "__texto__", "<b>" e "<strong>", até a marca que fecha.
+// No meio de uma palavra, como em "data__entrega", os sublinhados não são negrito.
+const OUTRO_NEGRITO = /(?<![\p{L}\p{N}_])__[^\s_](?:.*?[^\s_])?__(?![\p{L}\p{N}_])|<(b|strong)(?:\s[^>]*)?>.*?(?:<\/\1>|$)/giu;
+const temNegrito = (texto) => /\*\*[^*]+\*\*/.test(texto);
+const temOutroNegrito = (texto) => texto.search(OUTRO_NEGRITO) >= 0;
 
 export function checarTermos(e, acusar) {
   const arquivos = e.arquivos.filter((a) => ['area', 'produto', 'perguntas'].includes(a.tipo));
@@ -30,7 +35,7 @@ export function checarTermos(e, acusar) {
     const termo = lidas.find((l) => termos.has(l));
     if (termo) return { chave: termo };
     const atributo = lidas.find((l) => atributos.has(l));
-    if (!atributo) return { erro: 'REF-R1', frase: `**${nome}** não é um termo definido na especificação; o negrito só marca referência a termo` };
+    if (!atributo) return { erro: 'TRM-R14', frase: `**${nome}** não é um termo definido na especificação; o negrito só marca referência a termo` };
     const donas = atributos.get(atributo);
     if (donas.size === 1 || (celula && donas.has(celula))) return { chave: `.${atributo}` };
     return { erro: 'TRM-R4', frase: `o atributo "${atributo}" existe em mais de uma célula; fora do bloco dele, cite-o com a célula, como **Célula.${atributo}**` };
@@ -41,10 +46,17 @@ export function checarTermos(e, acusar) {
     for (const l of a.linhas) {
       if (l.forma === 'titulo-celula') celula = l.nome.toLowerCase();
       if (l.forma === 'titulo-secao' && a.tipo === 'area') celula = null;
-      if (SEM_TEXTO.includes(l.forma) || SEM_MENCAO.includes(l.forma)) continue;
+      if (SEM_TEXTO.includes(l.forma)) continue;
+      const bruto = mascarar(l.bruto);
+      if (temOutroNegrito(bruto)) acusar(a.caminho, l.n, 'TRM-R20', 'negrito se escreve só com dois asteriscos, como **Termo**, e só marca referência a termo; "__texto__", "<b>" e "<strong>" não valem, nem em volta de um termo');
+      if (SEM_MENCAO.includes(l.forma)) {
+        // No título de célula o negrito já sai como TRM-R2: ali está a definição do termo.
+        if (l.forma !== 'titulo-celula' && temNegrito(bruto)) acusar(a.caminho, l.n, 'TRM-R21', 'título e cabeçalho de tabela não levam negrito, nem em volta de um termo; ali o termo não é menção');
+        continue;
+      }
 
       const negritos = new Map();
-      for (const m of mascarar(l.bruto).matchAll(/\*\*([^*]+)\*\*/g)) {
+      for (const m of bruto.matchAll(/\*\*([^*]+)\*\*/g)) {
         const r = resolver(m[1], celula);
         if (r.erro) acusar(a.caminho, l.n, r.erro, r.frase);
         else negritos.set(m[1], r.chave);
@@ -62,6 +74,16 @@ export function checarTermos(e, acusar) {
         const nome = termos.get(chave).nome;
         acusar(a.caminho, l.n, 'TRM-R10', `"${nome}" é um termo e aparece aqui sem negrito; escreva **${nome}** na primeira menção dentro de cada item`);
       }
+    }
+  }
+
+  // Na decisão o termo vai sem negrito, e outro negrito não existe: todo negrito ali é violação,
+  // também nas decisões de arquitetura e de interface.
+  for (const a of e.arquivos.filter((x) => x.tipo === 'decisao')) {
+    for (const l of a.linhas) {
+      if (SEM_TEXTO.includes(l.forma)) continue;
+      const bruto = mascarar(l.bruto);
+      if (temNegrito(bruto) || temOutroNegrito(bruto)) acusar(a.caminho, l.n, 'DEC-R11', 'a decisão não leva negrito; os termos da especificação entram nela sem negrito');
     }
   }
 
@@ -180,7 +202,8 @@ function trechoDe(l) {
 // Onde cabem dois termos, vale o de nome mais longo.
 function mencoes(trecho, ordenados, negritos) {
   const achadas = [];
-  const plano = mascarar(trecho).replace(/\*\*([^*]+)\*\*/g, (tudo, nome, pos) => {
+  // O negrito de outra grafia já foi acusado: o que vai dentro dele não conta como menção sem negrito.
+  const plano = mascarar(trecho).replace(OUTRO_NEGRITO, (tudo) => ' '.repeat(tudo.length)).replace(/\*\*([^*]+)\*\*/g, (tudo, nome, pos) => {
     if (negritos.has(nome)) achadas.push({ negrito: true, chave: negritos.get(nome), pos });
     return ' '.repeat(tudo.length);
   });
