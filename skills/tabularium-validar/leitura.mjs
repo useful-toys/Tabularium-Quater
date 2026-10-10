@@ -22,10 +22,13 @@ const linhasDe = (caminho) => readFileSync(caminho, 'utf8').replace(/^﻿/, '').
 const ehProsa = (l) => l.trim() !== '' && !/^[-#|<\s]/.test(l);
 const branco = (n, bruto) => ({ n, bruto, forma: 'branco' });
 const estranha = (n, bruto, esperado, regra = 'VRF-R8') => ({ n, bruto, forma: 'desconhecida', esperado, regra });
+// O nome de um termo na linha que o define: vem em negrito, e sai daqui sem as marcas.
+const nomear = (escrito) => ({ nome: escrito.replaceAll('**', ''), nomeEmNegrito: /^\*\*[^*]+\*\*$/.test(escrito) });
 const celulasDe = (bruto) => (/^\|.*\|$/.test(bruto) ? bruto.slice(1, -1).split('|').map((c) => c.trim()) : null);
 
 // Dentro de código nada é marca: o miolo vira enchimento, com o mesmo comprimento.
-export const mascarar = (t) => t.replace(/`[^`]*`/g, (c) => '`' + '¤'.repeat(c.length - 2) + '`');
+// O código abre e fecha com o mesmo número de crases, e assim pode trazer crases dentro.
+export const mascarar = (t) => t.replace(/(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)/g, (c, crases, miolo) => crases + '¤'.repeat(miolo.length) + crases);
 
 // Separa do texto as marcas de fim de item: decisões, pergunta e, numa regra, o ':' que anuncia a tabela
 // ou o arquivo de dados, como ": [PED-tarifas.json]". É o ponto no nome que distingue o arquivo de um identificador.
@@ -92,12 +95,12 @@ function lerArea(brutas) {
     if (bruto.startsWith('#')) {
       pai = null; tabela = null; gerado = false; esperaDefinicao = false;
       const celula = bruto.match(/^(#{2,}) (.+?) {2}`([^`]*)`$/);
-      if (celula) { secao = 'célula'; esperaDefinicao = true; return linhas.push({ n, bruto, forma: 'titulo-celula', nivel: celula[1].length, nome: celula[2], sigla: celula[3] }); }
+      if (celula) { secao = 'célula'; esperaDefinicao = true; return linhas.push({ n, bruto, forma: 'titulo-celula', nivel: celula[1].length, ...nomear(celula[2]), sigla: celula[3] }); }
       const nome = bruto.match(/^## (.+)$/)?.[1];
       if (SECOES_AREA.includes(nome)) { secao = nome; gerado = nome === 'Índice'; return linhas.push({ n, bruto, forma: 'titulo-secao', nome }); }
       // O conteúdo sob um título estranho não é julgado: basta acusar o título.
       secao = 'desconhecida';
-      return linhas.push(estranha(n, bruto, 'um título de célula, como "## Pedido  `PED`", ou de seção: Índice, Linguagem ou Tipos', 'ESP-R9'));
+      return linhas.push(estranha(n, bruto, 'um título de célula, como "## **Pedido**  `PED`", ou de seção: Índice, Linguagem ou Tipos', 'ESP-R9'));
     }
     if (bruto === MARCADOR_GERADO) { gerado = true; return linhas.push({ n, bruto, forma: 'marcador-gerado' }); }
     if (gerado) return linhas.push({ n, bruto, forma: 'gerado' });
@@ -126,10 +129,10 @@ function lerArea(brutas) {
       const item = separarCauda(corpo);
       const m = item.texto.match(/^([^:]+): (\S.*)$/);
       linha = m
-        ? { n, bruto, forma: secao === 'Tipos' ? 'tipo-valor' : 'termo-linguagem', nome: m[1], ...item, texto: m[2] }
+        ? { n, bruto, forma: secao === 'Tipos' ? 'tipo-valor' : 'termo-linguagem', ...nomear(m[1]), ...item, texto: m[2] }
         : secao === 'Tipos'
-          ? estranha(n, bruto, 'um tipo de valor, como "- Quantidade: inteiro; de 1 a 99"', 'TIP-R2')
-          : estranha(n, bruto, 'um termo da linguagem, como "- termo: definição"', 'TRM-R9');
+          ? estranha(n, bruto, 'um tipo de valor, como "- **Quantidade**: inteiro; de 1 a 99"', 'TIP-R2')
+          : estranha(n, bruto, 'um termo da linguagem, como "- **termo**: definição"', 'TRM-R9');
     } else linha = lerLinhaDeCelula(n, bruto, corpo);
     if (linha.forma === 'afirmacao' && linha.tabela) tabela = { regra: linha, fileiras: 0 };
     pai = linha;
@@ -155,7 +158,7 @@ function lerLinhaDeCelula(n, bruto, corpo) {
   const item = separarCauda(corpo);
   const t = item.texto;
   let m = t.match(/^evento: (\S.*)$/);
-  if (m) return { n, bruto, forma: 'evento', nome: m[1], ...item };
+  if (m) return { n, bruto, forma: 'evento', ...nomear(m[1]), ...item };
   m = t.match(/^especializa \*\*([^*]+)\*\*$/);
   if (m) return { n, bruto, forma: 'especializacao', celula: m[1], ...item };
   // A relação também leva qualificadores, como em "pertence a 1 **Cliente**; inverso: 0..N".
@@ -164,12 +167,12 @@ function lerLinhaDeCelula(n, bruto, corpo) {
   if (m) return { n, bruto, forma: 'pertencimento', celula: m[1], qualificadores, ...item };
   m = relacao.match(new RegExp(`^(${CARD}) \\*\\*([^*]+)\\*\\*$`));
   if (m) return { n, bruto, forma: 'associacao', cardinalidade: m[1], celula: m[2], qualificadores, ...item };
-  m = t.match(/^(\p{L}[\p{L}\p{N} ]*): (\S.*)$/u);
+  m = t.match(/^(\*\*\p{L}[\p{L}\p{N} ]*\*\*|\p{L}[\p{L}\p{N} ]*): (\S.*)$/u);
   if (m && !/^(pertence a|especializa) /.test(t)) {
     const trechos = partir(m[2]);
-    return { n, bruto, forma: 'atributo', nome: m[1], tipo: trechos[0], qualificadores: trechos.slice(1), ...item };
+    return { n, bruto, forma: 'atributo', ...nomear(m[1]), tipo: trechos[0], qualificadores: trechos.slice(1), ...item };
   }
-  return estranha(n, bruto, 'uma linha de bloco de célula: atributo ("- nome: tipo"), relação, evento, afirmação ou lápide', 'LIN-R11');
+  return estranha(n, bruto, 'uma linha de bloco de célula: atributo ("- **nome**: tipo"), relação, evento, afirmação ou lápide', 'LIN-R11');
 }
 
 function lerProduto(brutas) {
@@ -214,16 +217,16 @@ function lerProduto(brutas) {
       linha = m ? { n, bruto, forma: 'proposito', rotulo: m[1], ...item } : estranha(n, bruto, 'um item de propósito, como "- Problema: texto"', 'APR-R10');
     } else if (secao === 'Atores') {
       m = t.match(/^([^:]+): (\S.*)$/);
-      linha = m ? { n, bruto, forma: 'ator', nome: m[1], padrao: /; padrão$/.test(m[2]), ...item } : estranha(n, bruto, 'um ator, como "- Nome: acesso"', 'ATO-R7');
+      linha = m ? { n, bruto, forma: 'ator', ...nomear(m[1]), padrao: /; padrão$/.test(m[2]), ...item } : estranha(n, bruto, 'um ator, como "- **Nome**: acesso"', 'ATO-R7');
     } else if (secao === 'Tipos comuns') {
       m = t.match(/^([^:]+): (\S.*)$/);
-      linha = m ? { n, bruto, forma: 'tipo-valor', nome: m[1], ...item, texto: m[2] } : estranha(n, bruto, 'um tipo de valor, como "- Quantidade: inteiro; de 1 a 99"', 'TIP-R2');
+      linha = m ? { n, bruto, forma: 'tipo-valor', ...nomear(m[1]), ...item, texto: m[2] } : estranha(n, bruto, 'um tipo de valor, como "- **Quantidade**: inteiro; de 1 a 99"', 'TIP-R2');
     } else if (secao === 'Jornadas') {
       m = corpo.match(new RegExp(`^(PRD-J\\d+) {2}([^:]+): (\\[${CODIGO}\\](?: → \\[${CODIGO}\\])*)$`));
       linha = m ? { n, bruto, forma: 'jornada', id: m[1], nome: m[2], passos: m[3].split(' → ').map((p) => p.slice(1, -1)) } : estranha(n, bruto, 'uma jornada, como "- PRD-J1  Nome: [PED-C1] → [PED-V1]"', 'JOR-R2');
     } else if (secao === 'Externos') {
       m = t.match(/^([^·]+?) · (\S.*)$/);
-      linha = m ? { n, bruto, forma: 'externo', nome: m[1], papelExterno: m[2], ...item } : estranha(n, bruto, 'um externo, como "- Nome · papel"', 'APR-R10');
+      linha = m ? { n, bruto, forma: 'externo', ...nomear(m[1]), papelExterno: m[2], ...item } : estranha(n, bruto, 'um externo, como "- **Nome** · papel"', 'APR-R10');
     } else if (secao === 'Regras globais') {
       linha = lerAfirmacao(n, bruto, corpo) ?? estranha(n, bruto, 'uma afirmação de sigla PRD, como "- [ ] PRD-Q1  texto"', 'APR-R10');
     } else {

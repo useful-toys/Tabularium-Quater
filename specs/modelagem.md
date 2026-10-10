@@ -2,24 +2,24 @@
 As **Células** do produto, seus **Atributos** e os **Termos** que os nomeiam.
 
 ## Linguagem
-- modelo: **Linhas** sem **Identificador** no início do bloco de uma **Célula**; descrevem o que ela é ⟸ [D32]
-- lista única: a lista de **Linhas** de um bloco, sem subtítulos
-- identidade: qualificador; distingue uma instância das outras e torna a **Célula** uma **entidade**
-- único: qualificador; o valor não se repete entre instâncias
-- imutável: qualificador; o valor não muda depois de criado
-- opcional: qualificador; o valor pode faltar; sem ele, é obrigatório
-- inicial: qualificador; valor ao nascer, na forma `inicial: X`
-- derivado: qualificador; calculado a partir de outros **Atributos**, na forma `derivado: fórmula`
-- inverso: qualificador; **Cardinalidade** da relação vista da **Célula** citada, na forma `inverso: 0..N`
-- pessoal: qualificador; dado que identifica ou torna identificável uma pessoa, conforme a **LGPD** ⟸ [D47]
+- **modelo**: **Linhas** sem **Identificador** no início do bloco de uma **Célula**; descrevem o que ela é ⟸ [D32]
+- **lista única**: a lista de **Linhas** de um bloco, sem subtítulos
+- **identidade**: qualificador; distingue uma instância das outras e torna a **Célula** uma **entidade**
+- **único**: qualificador; o valor não se repete entre instâncias
+- **imutável**: qualificador; o valor não muda depois de criado
+- **opcional**: qualificador; o valor pode faltar; sem ele, é obrigatório
+- **inicial**: qualificador; valor ao nascer, na forma `inicial: X`
+- **derivado**: qualificador; calculado a partir de outros **Atributos**, na forma `derivado: fórmula`
+- **inverso**: qualificador; **Cardinalidade** da relação vista da **Célula** citada, na forma `inverso: 0..N`
+- **pessoal**: qualificador; dado que identifica ou torna identificável uma pessoa, conforme a **LGPD** ⟸ [D47]
 
-## Célula  `CEL`
+## **Célula**  `CEL`
 Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a **Especificação** afirma sobre ela e que não pertence a nenhuma outra.
-- sigla: **Sigla de célula**; identidade; único
-- nome: texto; único
-- definição: uma frase compreensível fora do bloco ⟸ [D35]
-- entidade: sim | não; derivado: tem um **Atributo** marcado **identidade**
-- [x] CEL-R1  Título do bloco: nome e sigla em código, como `` ## Pedido  `PED` ``
+- **sigla**: **Sigla de célula**; identidade; único
+- **nome**: texto; único
+- **definição**: uma frase compreensível fora do bloco ⟸ [D35]
+- **entidade**: sim | não; derivado: tem um **Atributo** marcado **identidade**
+- [x] CEL-R1  Título do bloco: nome e sigla em código, como `` ## **Pedido**  `PED` ``
 - [x] CEL-R2  A **definição** vem logo após o título
 - [x] CEL-R3  Depois da **definição**, uma **lista única** nesta ordem: **modelo**, **Linhas** `evento:`, R, Q, C, V, T ⟸ [D34]
 - [x] CEL-R4  removida
@@ -65,12 +65,12 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
   - o **Atributo** sai do **modelo** de origem, que passa a citar a célula nova
 - [x] CEL-V1 · leitor  Ver tudo o que se sabe de uma célula no seu bloco
 
-## Atributo  `ATR`
+## **Atributo**  `ATR`
 Característica de uma **Célula** como o negócio a vê, escrita como **Linha** de **modelo**.
-- nome: texto que não se repete na mesma **Célula**
-- tipo: um **Tipo de valor**, valores separados por `|`, ou **Cardinalidade** seguida de uma **Célula**
-- qualificadores: zero ou mais, separados por `;`; opcional
-- [x] ATR-R1  Forma: `nome: tipo; qualificadores`
+- **nome**: texto que não se repete na mesma **Célula**
+- **tipo**: um **Tipo de valor**, valores separados por `|`, ou **Cardinalidade** seguida de uma **Célula**
+- **qualificadores**: zero ou mais, separados por `;`; opcional
+- [x] ATR-R1  Forma: `**nome**: tipo; qualificadores`
 - [x] ATR-R2  removida
 - [ ] ATR-R3  Entra só se o usuário o vê, ou se alguma **afirmação** depende dele ⟸ [D46]
 - [ ] ATR-R4  Códigos internos, datas de auditoria e chaves técnicas não entram
@@ -81,18 +81,18 @@ Característica de uma **Célula** como o negócio a vê, escrita como **Linha**
 - [x] ATR-R9  Uma relação é declarada em uma só das duas **Células**; o outro lado, quando importa, vai em **inverso** ⟸ [D49]
 - [ ] ATR-R10  Em associação, a **Cardinalidade** substitui o qualificador **opcional**
 
-## Tipo de valor  `TIP`
+## **Tipo de valor**  `TIP`
 Valor sem **identidade** usado por **Atributos**, como uma contagem ou um código.
-- nome: texto; único
-- forma: tipo de base e restrições, como `inteiro; de 0 a 99`
+- **nome**: texto; único
+- **forma**: tipo de base e restrições, como `inteiro; de 0 a 99`
 - [ ] TIP-R1  Usado por uma só **Área**, fica nos tipos da área; por mais de uma, nos tipos comuns do **Arquivo de produto**
-- [x] TIP-R2  Forma: `- Nome: base; restrições`, ou `- Nome:` e os valores separados por `|`
+- [x] TIP-R2  Forma: `- **Nome**: base; restrições`, ou `- **Nome**:` e os valores separados por `|`
 
-## Termo  `TRM`
+## **Termo**  `TRM`
 Palavra ou expressão com significado definido uma única vez na **Especificação**.
-- nome: texto que não se repete na **Especificação**, exceto nome de **Atributo**, que não se repete na sua **Célula**
-- não usar: sinônimos proibidos, tachados e entre parênteses no fim da linha que define o termo, como `(~~valor, montante~~)`; opcional
-- evento: Termo renomeado
+- **nome**: texto que não se repete na **Especificação**, exceto nome de **Atributo**, que não se repete na sua **Célula**
+- **não usar**: sinônimos proibidos, tachados e entre parênteses no fim da linha que define o termo, como `(~~valor, montante~~)`; opcional
+- evento: **Termo renomeado**
 - [x] TRM-R1  Lugar de definição por tipo de termo:
 
 | Tipo de termo | Lugar |
@@ -105,30 +105,34 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 | **externo** | `Externos` do **Arquivo de produto**; o nome antes de `·` |
 | outro | linguagem da **Área** |
 
-- [x] TRM-R2  Definido uma única vez, sem negrito ⟸ [D50]
+- [x] TRM-R2  removida
 - [x] TRM-R3  removida
 - [x] TRM-R4  **Atributo** cujo nome se repete em outra **Célula** é referenciado como `**Célula.atributo**`, exceto no próprio bloco ⟸ [D54]
 - [ ] TRM-R5  Homônimo se resolve renomeando um dos lados ⟸ [D53]
-- [x] TRM-R6  Termo listado em **não usar** não aparece em nenhum arquivo ⟸ [D52]
+- [x] TRM-R6  removida
 - [x] TRM-R7  Referenciado em negrito na primeira menção dentro de cada item de lista, frase de definição ou fileira de tabela; maiúsculas e plural não alteram o termo ⟸ [D51]
 - [x] TRM-R8  Não são menções: títulos, cabeçalhos de tabela, código, marcas de **Ator**, qualificadores no **modelo** e a própria **Célula** dentro do seu bloco
-- [x] TRM-R9  Termo da linguagem de uma **Área** é um item `- termo: definição` na seção `Linguagem`
-- [x] TRM-R10  Primeira menção sem negrito que repete o nome como está na definição é violação; nome de **Atributo** não conta ⟸ [D81]
+- [x] TRM-R9  Termo da linguagem de uma **Área** é um item `- **termo**: definição` na seção `Linguagem`
+- [x] TRM-R10  removida
 - [x] TRM-R11  Plural se reconhece palavra por palavra, pelas terminações regulares: `s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis` e `ns`
-- [x] TRM-R12  Onde cabem dois termos, a menção é do de nome mais longo
+- [x] TRM-R12  removida
 - [x] TRM-R13  Os sinônimos de **não usar** fecham o texto da linha, antes das marcas de fim de item
-- [x] TRM-R14  Negrito só marca **Referência** a termo; não há negrito de ênfase ⟸ [D111]
+- [x] TRM-R14  Negrito só marca termo, na definição e na **Referência**; não há negrito de ênfase ⟸ [D111]
 - [x] TRM-R15  O nome da **Área**, na tabela de áreas, não é menção
-- [x] TRM-R16  Sinônimo de **não usar** é acusado como palavra inteira, em maiúsculas ou minúsculas, fora de código
+- [x] TRM-R16  removida
 - [x] TRM-R17  Negrito que casa com um termo e com um **Atributo** é do termo
 - [x] TRM-R18  A declaração de sinônimos de **não usar** só cabe na linha que define o termo ⟸ [D110]
 - [x] TRM-R19  Sinônimo de **não usar** não é o nome de um termo definido, nem no plural
 - [x] TRM-R20  Negrito se escreve só com `**`; `__texto__`, `<b>` e `<strong>` são violação, fora de código, mesmo em volta de um termo ⟸ [D112]
-- [x] TRM-R21  Título e cabeçalho de tabela não levam negrito, mesmo em volta de um termo ⟸ [D113]
+- [x] TRM-R21  removida
+- [x] TRM-R22  Definido uma única vez ⟸ [D50]
+- [x] TRM-R23  Na definição, o nome vai em negrito, também no título do bloco da **Célula** ⟸ [D115]
+- [x] TRM-R24  Sinônimo de **não usar** não aparece em negrito, nem em maiúsculas ou no plural ⟸ [D52]
+- [x] TRM-R25  Título que não é de **Célula** e cabeçalho de tabela não levam negrito, mesmo em volta de um termo ⟸ [D113]
 - [x] TRM-C1  Renomear um termo
 
-## Glossário  `GLO`
+## **Glossário**  `GLO`
 Lista gerada de todos os **Termos**, cada um com o tipo de termo, a **definição** e o lugar de origem.
-- entrada: texto no formato nome · tipo de **Termo** — **definição** → lugar, mais **não usar** quando houver
+- **entrada**: texto no formato nome · tipo de **Termo** — **definição** → lugar, mais **não usar** quando houver
 - [ ] GLO-R1  Em ordem alfabética
 - [x] GLO-R2  Nunca é escrito à mão ⟸ [D33]

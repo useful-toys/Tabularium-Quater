@@ -3,12 +3,12 @@
 Esta é a célula Pedido, de um sistema de pedidos fictício. Numa especificação real, ela estaria dentro do arquivo de uma área, ao lado das células relacionadas.
 
 ```markdown
-## Pedido  `PED`
+## **Pedido**  `PED`
 Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades escolhidas.
 - pertence a 1 **Cliente**; inverso: 0..N
-- situação: aberto | aguardando pagamento | pago | cancelado; inicial: aberto
-- total: dinheiro; derivado: soma de preço × quantidade dos **Itens de pedido**
-- evento: Pedido pago
+- **situação**: aberto | aguardando pagamento | pago | cancelado; inicial: aberto
+- **total**: dinheiro; derivado: soma de preço × quantidade dos **Itens de pedido**
+- evento: **Pedido pago**
 - [x] PED-R1  Visível só ao **Cliente** dono e ao **Atendente** ⟸ [D07]
 - [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
 - [x] PED-C1  Fechar o pedido
@@ -21,12 +21,12 @@ Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades 
 
 ## Como ler
 
-- **Título e definição.** O nome, a sigla e uma frase que diz o que a célula é.
+- **Título e definição.** O nome, em negrito, a sigla e uma frase que diz o que a célula é.
 - **Modelo.** As linhas sem identificador: do que a célula é feita e a que se liga.
 - **Eventos.** Os fatos que ela produz e aos quais outras células reagem.
 - **Afirmações.** As linhas com identificador: regras (R), capacidades (C), visões (V) e outras. `[x]` quer dizer que o produto já cumpre; `[ ]`, que ainda não.
 - **Critérios.** Os sub-itens de uma capacidade: `exige:` é pré-condição, `se …:` é exceção, e sem prefixo é resultado.
-- **Marcas.** Os termos em negrito são definidos em outro lugar. `⟸ [D07]` aponta a decisão que justifica a linha, e `⟵ [P03]`, uma pergunta ainda aberta.
+- **Marcas.** O negrito marca termo: no título e no começo de uma linha de modelo ou de evento, o termo que ali é definido; no meio do texto, um termo definido em outro lugar. `⟸ [D07]` aponta a decisão que justifica a linha, e `⟵ [P03]`, uma pergunta ainda aberta.
 
 Não há subtítulos nem prosa além da definição. O significado vem da posição e da forma de cada linha.
 

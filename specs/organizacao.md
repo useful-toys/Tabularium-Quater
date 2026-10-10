@@ -2,9 +2,9 @@
 Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validador** checa e o **Gerador** produz a partir dela, e como se guardam as **Decisões** e os **Arquivos de dados**.
 
 ## Linguagem
-- externo: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
+- **externo**: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
 
-## Especificação  `ESP`
+## **Especificação**  `ESP`
 Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que descreve um produto inteiro e é a fonte única da verdade sobre ele.
 - 1 **Instruções para agentes**
 - 1 **Arquivo de convenções**
@@ -13,7 +13,7 @@ Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que 
 - 1 **Arquivo de contadores**
 - 1..N **Área** ⟸ [D31]
 - 0..N **Arquivo de dados**
-- evento: Especificação alterada
+- evento: **Especificação alterada**
 - [x] ESP-R1  removida
 - [x] ESP-R2  A única prosa é a **definição** de cada **Célula**
 - [x] ESP-R3  removida
@@ -26,22 +26,22 @@ Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que 
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
   - o **Índice** da **Área** diz o que ela usa de fora
 
-## Instruções para agentes  `AGT`
+## **Instruções para agentes**  `AGT`
 Arquivo que ensina agentes de IA a trabalhar no formato, igual em todos os projetos.
-- arquivo: `AGENTS.md`; imutável
+- **arquivo**: `AGENTS.md`; imutável
 - [x] AGT-R1  Não contém nada específico do produto ⟸ [D75]
 - [x] AGT-R2  Descreve procedimentos; em conflito, prevalece a **Especificação** do formato
 
-## Arquivo de convenções  `CNV`
+## **Arquivo de convenções**  `CNV`
 Legenda que ensina a ler e escrever no formato, igual em todos os projetos.
-- arquivo: `_convencoes.md`; imutável
+- **arquivo**: `_convencoes.md`; imutável
 - [x] CNV-R1  Não contém nada específico do produto
 - [x] CNV-R2  Resume o formato; em conflito, prevalece a **Especificação** do formato
 
-## Arquivo de produto  `APR`
+## **Arquivo de produto**  `APR`
 Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célula**.
-- arquivo: `_produto.md`; imutável
-- seções: `Propósito`, `Áreas`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias
+- **arquivo**: `_produto.md`; imutável
+- **seções**: `Propósito`, `Áreas`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias
 - [ ] APR-R1  Sigla das **afirmações**: `PRD`
 - [x] APR-R2  Tudo o que um **Documento derivado** precisaria afirmar sobre o conjunto, e não se deduz das **Áreas**, mora aqui
 - [x] APR-R3  **Regra** global que cita uma **Célula** pertence ao bloco dessa célula
@@ -60,14 +60,14 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 | `Atores` | conforme [ATO-R7] |
 | `Tipos comuns` | conforme [TIP-R2] |
 | `Jornadas` | conforme [JOR-R2] |
-| `Externos` | `- Nome · papel`, com sub-itens iniciados por `guarda:`, `fornece:`, `recebe:` ou `impõe:` |
+| `Externos` | `- **Nome** · papel`, com sub-itens iniciados por `guarda:`, `fornece:`, `recebe:` ou `impõe:` |
 | `Regras globais` | **afirmações** de sigla `PRD` |
 | `Fora de escopo` | `- texto · permanente` ou `- texto · nesta versão` |
 
-## Arquivo de contadores  `CTD`
+## **Arquivo de contadores**  `CTD`
 Arquivo que guarda o maior número já usado em cada sequência da **Especificação**, para que nenhum volte.
-- arquivo: `_contadores.md`; imutável
-- seções: `Identificadores`, `Perguntas`, `Decisões`, nesta ordem
+- **arquivo**: `_contadores.md`; imutável
+- **seções**: `Identificadores`, `Perguntas`, `Decisões`, nesta ordem
 - [x] CTD-R1  `Identificadores` tem um item por **Sigla de célula** e **Letra de papel** já usadas, em ordem alfabética, com o maior número já usado e um nome curto da última alocação
 - [x] CTD-R2  `Perguntas` e `Decisões` têm um item cada, com o maior **Código de pergunta** e o maior **Código de decisão** já usados e um nome curto da última alocação
 - [x] CTD-R3  Um número guardado só cresce, e uma **Sigla de célula** nunca sai, mesmo extinta
@@ -77,9 +77,9 @@ Arquivo que guarda o maior número já usado em cada sequência da **Especifica�
 - [x] CTD-R7  O nome curto serve só para que duas alocações do mesmo número, feitas em paralelo, escrevam itens diferentes e conflitem ⟸ [D22]
 - [x] CTD-R8  Forma do item: `- SEQUÊNCIA  número  nome-curto`, com dois espaços entre as partes; sem nome curto enquanto o número é 0
 
-## Arquivo de dados  `ADA`
+## **Arquivo de dados**  `ADA`
 Arquivo de texto com as instâncias que os **Dados de referência** de uma **Célula** citam, guardado à parte das **Áreas** e lido só sob demanda.
-- formato: JSON | CSV
+- **formato**: JSON | CSV
 - [x] ADA-R1  Mora na pasta `dados/`, junto dos arquivos da **Especificação**; a pasta não tem subpastas
 - [x] ADA-R2  O nome é a **Sigla de célula** da **Célula** que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`
 - [x] ADA-R3  Só há dois **formatos**: JSON, para dado estruturado, e CSV, para dado tabular ⟸ [D85]
@@ -97,14 +97,14 @@ Arquivo de texto com as instâncias que os **Dados de referência** de uma **Cé
 - [x] ADA-R15  As colunas do CSV são exatamente os **Atributos** que a regra nomeia, conforme [DRF-R14]
 - [x] ADA-R16  As chaves do primeiro nível do JSON estão entre os **Atributos** e as partes que a regra nomeia, conforme [DRF-R14]
 
-## Área  `ARE`
+## **Área**  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.
-- nome: texto; único
-- arquivo: nome da área em minúsculas, sem acento, com `.md`; único
-- célula central: 1 **Célula**
-- prioridade: núcleo | apoio | genérico; opcional
-- dono: 1 **Dono de área**
-- seções: `Índice`, `Linguagem`, `Tipos` e as **Células**, nesta ordem, sendo opcionais as três primeiras
+- **nome**: texto; único
+- **arquivo**: nome da área em minúsculas, sem acento, com `.md`; único
+- **célula central**: 1 **Célula**
+- **prioridade**: núcleo | apoio | genérico; opcional
+- **dono**: 1 **Dono de área**
+- **seções**: `Índice`, `Linguagem`, `Tipos` e as **Células**, nesta ordem, sendo opcionais as três primeiras
 - [x] ARE-R1  Toda área consta da tabela de áreas do **Arquivo de produto**, e vice-versa
 - [ ] ARE-R2  Área não tem sigla
 - [x] ARE-R3  Mover uma **Célula** de área não muda nenhum **Identificador**
@@ -123,7 +123,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
   - indicado quando partes da área mal se referenciam
   - as **Células** mudam de arquivo; os **Identificadores**, não
 
-## Validador  `VRF`
+## **Validador**  `VRF`
 Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R1  removida
 - [x] VRF-R2  removida
@@ -143,22 +143,23 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
 - [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
 - [x] VRF-R18  Checa as **Referências**: [REF-R1], [REF-R9], [JOR-R3], [EVT-R2], [PER-R5], [DEC-R22]
-- [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13], [TRM-R14], [TRM-R15], [TRM-R16], [TRM-R17], [TRM-R18], [TRM-R19], [TRM-R20], [TRM-R21], [DEC-R11]
+- [x] VRF-R19  Checa os **Termos**: [TRM-R4], [TRM-R11], [TRM-R13], [TRM-R14], [TRM-R17], [TRM-R18], [TRM-R19], [TRM-R20], [TRM-R22], [TRM-R23], [TRM-R24], [TRM-R25], [DEC-R11]
 - [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
 - [x] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
 - [x] VRF-R22  Ignora as pastas que não são de **Área**, de **Decisões**, de **Arquivos de dados**, de arquitetura nem de interface
 - [x] VRF-R23  Das pastas de arquitetura e de interface, checa só as **Decisões** e as **Referências** a elas ⟸ [D82]
 - [x] VRF-R24  Nas pastas de arquitetura e de interface, não lê `AGENTS.md`, `_convencoes.md`, `ideia.md` nem `decisoes.md`
 - [x] VRF-R25  Nas pastas de arquitetura e de interface, confere da **Referência** a uma **Decisão** a forma da marca e a existência da decisão, e não o lugar da marca na **Linha**
-- [x] VRF-R26  Nas **Decisões** de arquitetura e de interface, não checa [TRM-R6]
+- [x] VRF-R26  removida
 - [x] VRF-R27  Nas pastas de arquitetura e de interface, não lê `_achados.md`
+- [x] VRF-R28  Quanto aos **Termos**, checa só o negrito e as definições; o texto sem negrito não é checado ⟸ [D114]
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
   - cada uma cita o arquivo, a **Linha**, o **Identificador** da **Regra** violada e uma frase que se entende sem a **Especificação** do formato
   - **Linha** que não casa com nenhuma forma gera uma só violação
 
-## Gerador  `GER`
+## **Gerador**  `GER`
 Programa que produz as partes geradas da **Especificação**, sem interpretar o texto.
 - [ ] GER-R1  Ao **Especificação alterada**: regenera as partes geradas
 - [ ] GER-R2  É determinístico: a mesma **Especificação** dá sempre as mesmas partes geradas
@@ -172,18 +173,18 @@ Programa que produz as partes geradas da **Especificação**, sem interpretar o 
   - definições de link das citações de **Arquivos de dados** [DRF-R15]
   - índice de cada pasta de **Decisões**, com **Decisão.código**, **questão**, **resolução** e os itens que citam cada uma ⟸ [D19]
 
-## Índice  `IND`
+## **Índice**  `IND`
 Seção gerada no topo de uma **Área** com o que ela usa de outras áreas.
-- conteúdo: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui e de **Perguntas** que tocam a área
+- **conteúdo**: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui e de **Perguntas** que tocam a área
 - [x] IND-R1  Nunca é editado à mão ⟸ [D70]
 - [x] IND-R2  Começa com `<!-- gerado; não editar -->`
 
-## Mapa entre áreas  `MAP`
+## **Mapa entre áreas**  `MAP`
 Lista gerada de quais **Áreas** usam **Termos** e reagem a **Eventos** de quais outras.
-- conteúdo: lista que dá, para cada par de **Áreas**, quantas **Referências** uma faz à outra
+- **conteúdo**: lista que dá, para cada par de **Áreas**, quantas **Referências** uma faz à outra
 - [x] MAP-R1  Nunca é escrito à mão ⟸ [D70]
 
-## Documento derivado  `DER`
+## **Documento derivado**  `DER`
 Documento produzido a partir da **Especificação** para um público ou uma finalidade, como um manual ou um plano de testes.
 - [x] DER-R1  É descartável: nunca é editado nem citado como fonte ⟸ [D71]
 - [x] DER-R2  Cada frase cita o **Identificador** ou o **Termo** de origem
@@ -193,16 +194,16 @@ Documento produzido a partir da **Especificação** para um público ou uma fina
 - [x] DER-V1 · leitor  Ler um documento derivado
   - cada frase leva a sua origem
 
-## Decisão  `DEC`
+## **Decisão**  `DEC`
 Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas** e do **Arquivo de produto** e lida só sob demanda.
-- código: **Código de decisão**; identidade; único; imutável
-- questão: texto terminado em `?`
-- resolução: uma frase, que responde à **questão**
-- contexto: texto
-- alternativas descartadas: outras respostas à **questão**, cada uma com o motivo
-- consequências: o que se ganha e o que se aceita
-- alterações: entradas com data e uma linha, da mais recente para a mais antiga, na seção `Histórico` ⟸ [D14]
-- arquivo: em `decisoes/_produto/` ou em `decisoes/` seguido do nome de uma **Área**, com o nome formado pelo **código**, `-`, um nome curto e `.md`
+- **código**: **Código de decisão**; identidade; único; imutável
+- **questão**: texto terminado em `?`
+- **resolução**: uma frase, que responde à **questão**
+- **contexto**: texto
+- **alternativas descartadas**: outras respostas à **questão**, cada uma com o motivo
+- **consequências**: o que se ganha e o que se aceita
+- **alterações**: entradas com data e uma linha, da mais recente para a mais antiga, na seção `Histórico` ⟸ [D14]
+- **arquivo**: em `decisoes/_produto/` ou em `decisoes/` seguido do nome de uma **Área**, com o nome formado pelo **código**, `-`, um nome curto e `.md`
 - [x] DEC-R1  Título: a **questão** e o **código**, como `` # Quem vê um pedido?  `D07` ``; a **resolução** vem logo abaixo ⟸ [D13]
 - [x] DEC-R2  Depois da **resolução**, uma lista com `Contexto`, `Alternativas descartadas` e `Consequências`, nesta ordem, e a seção `Histórico` por último
 - [x] DEC-R3  Responde a uma só **questão**; as **alternativas descartadas** são outras respostas a ela ⟸ [D12]

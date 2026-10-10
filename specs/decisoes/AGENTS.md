@@ -24,7 +24,7 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 3. Nunca reutilize um código. O próximo é o que `_contadores.md`, na pasta da especificação, guarda em `Decisões`, mais um. Na mesma mudança, atualize ali o número e o nome curto, que é o nome do arquivo da decisão sem o código. Um código que ainda não entrou na linha principal é provisório: se outra mudança entrou antes com o mesmo código, renumere o seu, no arquivo e nos itens que o citam.
 4. Só registre uma decisão quando havia ao menos uma alternativa plausível. Não invente alternativas nem motivos: se o porquê não foi dito, pergunte.
 5. A ligação é de mão única. Na especificação entra só a marca `⟸ [Dnn]` no fim do item; o texto da decisão nunca entra em área nem em `_produto.md`, e a decisão não cita os itens que a citam.
-6. Use os termos da especificação, sem negrito. A decisão não leva negrito nenhum, nem de ênfase. Nunca use um sinônimo proibido.
+6. Use os termos da especificação, sem negrito. A decisão não leva negrito nenhum, nem de ênfase.
 7. Nunca edite o `README.md` de uma pasta de decisões: é gerado por programa.
 
 ## Receitas

@@ -1,5 +1,5 @@
-// Checagens sobre os termos: definição única, negrito que resolve e só marca termo,
-// menção exata sem negrito e sinônimos proibidos.
+// Checagens sobre os termos: definição única e em negrito, negrito que resolve e só marca termo,
+// e sinônimos proibidos. O texto sem negrito não é conferido.
 
 import { mascarar } from './leitura.mjs';
 
@@ -10,8 +10,7 @@ export const leituras = (nome) => nome.toLowerCase().split(' ').map(singulares)
   .reduce((feitas, opcoes) => feitas.flatMap((f) => opcoes.map((o) => (f ? `${f} ${o}` : o))), ['']);
 
 const SEM_TEXTO = ['branco', 'gerado', 'ignorada', 'marcador-gerado', 'desconhecida'];
-const SEM_MENCAO = ['titulo-arquivo', 'titulo-secao', 'titulo-celula', 'tabela-cabecalho', 'tabela-separador'];
-const PALAVRA = /[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)*/gu;
+const SEM_NEGRITO = ['titulo-arquivo', 'titulo-secao', 'tabela-cabecalho', 'tabela-separador'];
 // As grafias de negrito que não são a do formato: "__texto__", "<b>" e "<strong>", até a marca que fecha.
 // No meio de uma palavra, como em "data__entrega", os sublinhados não são negrito.
 const OUTRO_NEGRITO = /(?<![\p{L}\p{N}_])__[^\s_](?:.*?[^\s_])?__(?![\p{L}\p{N}_])|<(b|strong)(?:\s[^>]*)?>.*?(?:<\/\1>|$)/giu;
@@ -21,26 +20,28 @@ const temOutroNegrito = (texto) => texto.search(OUTRO_NEGRITO) >= 0;
 export function checarTermos(e, acusar) {
   const arquivos = e.arquivos.filter((a) => ['area', 'produto', 'perguntas'].includes(a.tipo));
   const { termos, atributos, daCelula, proibidos, lugares } = definicoes(arquivos, acusar);
-  const ordenados = [...termos.entries()]
-    .map(([chave, t]) => ({ chave, nome: t.nome, palavras: chave.split(' ') }))
-    .sort((a, b) => b.palavras.length - a.palavras.length || b.chave.length - a.chave.length);
 
-  // A que termo um negrito se refere, dentro do bloco de uma célula ou fora de todos.
-  const resolver = (nome, celula) => {
+  // O que há de errado num negrito que não é o da definição, dentro do bloco de uma célula ou fora de todos.
+  const defeito = (nome, celula) => {
     if (nome.includes('.')) {
       const [dona, atributo] = nome.toLowerCase().split('.');
-      return daCelula.get(dona)?.has(atributo) ? { chave: nome.toLowerCase() } : { erro: 'REF-R1', frase: `**${nome}** cita um atributo que não existe nessa célula` };
+      return daCelula.get(dona)?.has(atributo) ? null : ['REF-R1', `**${nome}** cita um atributo que não existe nessa célula`];
     }
     const lidas = leituras(nome);
-    const termo = lidas.find((l) => termos.has(l));
-    if (termo) return { chave: termo };
+    if (lidas.some((l) => termos.has(l))) return null;
     const atributo = lidas.find((l) => atributos.has(l));
-    if (!atributo) return { erro: 'TRM-R14', frase: `**${nome}** não é um termo definido na especificação; o negrito só marca referência a termo` };
-    const donas = atributos.get(atributo);
-    if (donas.size === 1 || (celula && donas.has(celula))) return { chave: `.${atributo}` };
-    return { erro: 'TRM-R4', frase: `o atributo "${atributo}" existe em mais de uma célula; fora do bloco dele, cite-o com a célula, como **Célula.${atributo}**` };
+    if (atributo) {
+      const donas = atributos.get(atributo);
+      if (donas.size === 1 || (celula && donas.has(celula))) return null;
+      return ['TRM-R4', `o atributo "${atributo}" existe em mais de uma célula; fora do bloco dele, cite-o com a célula, como **Célula.${atributo}**`];
+    }
+    // A palavra declarada é lida como o negrito: maiúsculas e plural não a alteram.
+    const proibido = proibidos.find((p) => leituras(p.palavra).some((l) => lidas.includes(l)));
+    if (proibido) return ['TRM-R24', `"${nome}" é sinônimo proibido de "${proibido.termo}"; escreva **${proibido.termo}**`];
+    return ['TRM-R14', `**${nome}** não é um termo definido na especificação; o negrito só marca termo`];
   };
 
+  // Só o negrito é conferido: o texto sem negrito não é checado quanto a termos.
   for (const a of arquivos) {
     let celula = null;
     for (const l of a.linhas) {
@@ -48,31 +49,17 @@ export function checarTermos(e, acusar) {
       if (l.forma === 'titulo-secao' && a.tipo === 'area') celula = null;
       if (SEM_TEXTO.includes(l.forma)) continue;
       const bruto = mascarar(l.bruto);
-      if (temOutroNegrito(bruto)) acusar(a.caminho, l.n, 'TRM-R20', 'negrito se escreve só com dois asteriscos, como **Termo**, e só marca referência a termo; "__texto__", "<b>" e "<strong>" não valem, nem em volta de um termo');
-      if (SEM_MENCAO.includes(l.forma)) {
-        // No título de célula o negrito já sai como TRM-R2: ali está a definição do termo.
-        if (l.forma !== 'titulo-celula' && temNegrito(bruto)) acusar(a.caminho, l.n, 'TRM-R21', 'título e cabeçalho de tabela não levam negrito, nem em volta de um termo; ali o termo não é menção');
+      if (temOutroNegrito(bruto)) acusar(a.caminho, l.n, 'TRM-R20', 'negrito se escreve só com dois asteriscos, como **Termo**, e só marca termo; "__texto__", "<b>" e "<strong>" não valem, nem em volta de um termo');
+      if (SEM_NEGRITO.includes(l.forma)) {
+        if (temNegrito(bruto)) acusar(a.caminho, l.n, 'TRM-R25', 'só o título de célula leva negrito, no nome que ele define; os outros títulos e o cabeçalho de tabela não levam, nem em volta de um termo');
         continue;
       }
-
-      const negritos = new Map();
-      for (const m of bruto.matchAll(/\*\*([^*]+)\*\*/g)) {
-        const r = resolver(m[1], celula);
-        if (r.erro) acusar(a.caminho, l.n, r.erro, r.frase);
-        else negritos.set(m[1], r.chave);
-      }
-      const trecho = trechoDe(l);
-      if (trecho === null) continue;
-      const definido = l.nome?.toLowerCase();
-      const primeiras = new Map();
-      for (const o of mencoes(trecho, ordenados, negritos)) {
-        if (!o.negrito && !o.exata) continue;
-        if (!primeiras.has(o.chave) || o.pos < primeiras.get(o.chave).pos) primeiras.set(o.chave, o);
-      }
-      for (const [chave, o] of primeiras) {
-        if (o.negrito || chave === celula || chave === definido) continue;
-        const nome = termos.get(chave).nome;
-        acusar(a.caminho, l.n, 'TRM-R10', `"${nome}" é um termo e aparece aqui sem negrito; escreva **${nome}** na primeira menção dentro de cada item`);
+      // No título de célula só cabe o negrito do nome, que a definição já confere.
+      if (l.forma === 'titulo-celula') continue;
+      const referencias = l.nomeEmNegrito ? bruto.replace(`**${l.nome}**`, '') : bruto;
+      for (const m of referencias.matchAll(/\*\*([^*]+)\*\*/g)) {
+        const erro = defeito(m[1], celula);
+        if (erro) acusar(a.caminho, l.n, ...erro);
       }
     }
   }
@@ -104,24 +91,9 @@ export function checarTermos(e, acusar) {
       }
     }
   }
-
-  // As decisões de arquitetura e de interface ficam de fora: o vocabulário delas ainda não está fechado.
-  for (const a of e.arquivos.filter((x) => !x.camada)) {
-    for (const l of a.linhas) {
-      if (SEM_TEXTO.includes(l.forma)) continue;
-      const texto = mascarar(l.bruto).replace(/\(~~[^~]+~~\)/g, '');
-      for (const p of proibidos) {
-        const palavra = p.palavra.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        if (new RegExp(`(?<![\\p{L}\\p{N}])${palavra}(?![\\p{L}\\p{N}])`, 'iu').test(texto)) {
-          acusar(a.caminho, l.n, 'TRM-R6', `"${p.palavra}" é sinônimo proibido de "${p.termo}"; use o termo`);
-        }
-      }
-    }
-  }
 }
-
 // Recolhe os termos, os atributos de cada célula, os sinônimos proibidos e as linhas em que a declaração
-// deles cabe, e acusa a definição repetida e o sinônimo proibido que é nome de termo.
+// deles cabe, e acusa a definição repetida, a que vem sem negrito e o sinônimo proibido que é nome de termo.
 function definicoes(arquivos, acusar) {
   const termos = new Map(), atributos = new Map(), daCelula = new Map(), declarados = [], lugares = new Set();
   for (const a of arquivos) {
@@ -130,12 +102,15 @@ function definicoes(arquivos, acusar) {
       lugares.add(l);
       for (const palavra of l.sinonimos ?? []) declarados.push({ palavra, termo, arquivo: a.caminho, linha: l.n });
     };
+    const emNegrito = (l) => {
+      if (!l.nomeEmNegrito) acusar(a.caminho, l.n, 'TRM-R23', `na definição, o nome do termo vai em negrito: escreva **${l.nome}**`);
+    };
     const definir = (l, tipo) => {
-      if (l.nome.includes('**')) acusar(a.caminho, l.n, 'TRM-R2', 'o termo é definido sem negrito; o negrito fica para as referências a ele');
-      const chave = l.nome.replaceAll('**', '').toLowerCase();
+      emNegrito(l);
+      const chave = l.nome.toLowerCase();
       const anterior = termos.get(chave);
-      if (anterior) acusar(a.caminho, l.n, 'TRM-R2', `o termo "${l.nome}" já está definido em ${anterior.arquivo}, linha ${anterior.linha}; cada termo tem um só lugar de definição`);
-      else termos.set(chave, { nome: l.nome.replaceAll('**', ''), tipo, arquivo: a.caminho, linha: l.n });
+      if (anterior) acusar(a.caminho, l.n, 'TRM-R22', `o termo "${l.nome}" já está definido em ${anterior.arquivo}, linha ${anterior.linha}; cada termo tem um só lugar de definição`);
+      else termos.set(chave, { nome: l.nome, tipo, arquivo: a.caminho, linha: l.n });
       if (tipo !== 'célula') proibir(l, l.nome);
     };
     for (const l of a.linhas) {
@@ -152,15 +127,16 @@ function definicoes(arquivos, acusar) {
       if (l.forma === 'ator') definir(l, 'ator');
       if (l.forma === 'externo') definir(l, 'externo');
       if (l.forma !== 'atributo' || !celula) continue;
+      emNegrito(l);
       const nome = l.nome.toLowerCase();
-      if (daCelula.get(celula).has(nome)) acusar(a.caminho, l.n, 'TRM-R2', `o atributo "${l.nome}" já está definido neste bloco`);
+      if (daCelula.get(celula).has(nome)) acusar(a.caminho, l.n, 'TRM-R22', `o atributo "${l.nome}" já está definido neste bloco`);
       daCelula.get(celula).add(nome);
       if (!atributos.has(nome)) atributos.set(nome, new Map());
       if (!atributos.get(nome).has(celula)) atributos.get(nome).set(celula, { arquivo: a.caminho, linha: l.n });
       proibir(l, l.nome);
     }
   }
-  // A palavra declarada é lida como menção: maiúsculas e plural não alteram o termo.
+  // A palavra declarada é lida como o negrito: maiúsculas e plural não alteram o termo.
   // A que é nome de termo não vira proibida: o defeito está na declaração, não nos usos.
   const proibidos = declarados.filter((p) => {
     const lidas = leituras(p.palavra);
@@ -178,44 +154,4 @@ function definicoes(arquivos, acusar) {
     return false;
   });
   return { termos, atributos, daCelula, proibidos, lugares };
-}
-
-// O trecho da linha em que uma menção sem negrito conta; null onde não conta nenhuma.
-function trechoDe(l) {
-  switch (l.forma) {
-    case 'definicao': case 'afirmacao': case 'subitem': case 'termo-linguagem': case 'tipo-valor': case 'fora-de-escopo': case 'subitem-pergunta':
-      return l.texto;
-    case 'atributo': return l.tipo;
-    case 'tabela-fileira': return l.bruto;
-    case 'proposito': return l.texto.slice(l.rotulo.length + 2);
-    case 'ator': return l.texto.slice(l.nome.length + 2);
-    case 'externo': return l.papelExterno;
-    case 'subitem-externo': return l.bruto.replace(/^ +- \p{L}+: /u, '');
-    case 'jornada': return l.nome;
-    case 'area': return `${l.central} | ${l.prioridade} | ${l.dono}`;
-    case 'pergunta': return l.enunciado;
-    default: return null;
-  }
-}
-
-// As menções de termos num trecho: as em negrito e as sem negrito, em qualquer grafia.
-// Onde cabem dois termos, vale o de nome mais longo.
-function mencoes(trecho, ordenados, negritos) {
-  const achadas = [];
-  // O negrito de outra grafia já foi acusado: o que vai dentro dele não conta como menção sem negrito.
-  const plano = mascarar(trecho).replace(OUTRO_NEGRITO, (tudo) => ' '.repeat(tudo.length)).replace(/\*\*([^*]+)\*\*/g, (tudo, nome, pos) => {
-    if (negritos.has(nome)) achadas.push({ negrito: true, chave: negritos.get(nome), pos });
-    return ' '.repeat(tudo.length);
-  });
-  const palavras = [...plano.matchAll(PALAVRA)].map((p) => ({ pos: p.index, fim: p.index + p[0].length, lidas: singulares(p[0].toLowerCase()), tomada: false }));
-  for (const termo of ordenados) {
-    for (let i = 0; i + termo.palavras.length <= palavras.length; i++) {
-      const janela = palavras.slice(i, i + termo.palavras.length);
-      const casa = janela.every((p, k) => !p.tomada && p.lidas.includes(termo.palavras[k]) && (k === 0 || plano.slice(janela[k - 1].fim, p.pos) === ' '));
-      if (!casa) continue;
-      for (const p of janela) p.tomada = true;
-      achadas.push({ negrito: false, chave: termo.chave, pos: janela[0].pos, exata: plano.slice(janela[0].pos, janela.at(-1).fim) === termo.nome });
-    }
-  }
-  return achadas;
 }

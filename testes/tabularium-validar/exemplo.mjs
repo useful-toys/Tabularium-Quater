@@ -24,19 +24,19 @@ Loja virtual pequena, para vender pela internet.
 | Pedidos | **Pedido** | núcleo | vendas | pedidos.md |
 
 ## Atores
-- Cliente: compra na loja; padrão
-- Atendente: acompanha os **Pedidos**
-- Tempo: dispara os prazos
+- **Cliente**: compra na loja; padrão
+- **Atendente**: acompanha os **Pedidos**
+- **Tempo**: dispara os prazos
 
 ## Tipos comuns
-- Dinheiro: decimal; de 0 em diante
-- Situação: aberto | pago
+- **Dinheiro**: decimal; de 0 em diante
+- **Situação**: aberto | pago
 
 ## Jornadas
 - PRD-J1  Comprar: [PED-C1] → [PED-V1]
 
 ## Externos
-- Banco · pagamentos
+- **Banco** · pagamentos
   - fornece: a confirmação de cada pagamento
 
 ## Regras globais
@@ -49,18 +49,18 @@ Loja virtual pequena, para vender pela internet.
 Os **Pedidos** e os **Itens de pedido** que os compõem.
 
 ## Linguagem
-- carrinho: **Pedido** que ainda não foi fechado
+- **carrinho**: **Pedido** que ainda não foi fechado
 
 ## Tipos
-- Quantidade: inteiro; de 1 a 99
+- **Quantidade**: inteiro; de 1 a 99
 
-## Pedido  \`PED\`
+## **Pedido**  \`PED\`
 Compra que um **Cliente** faz na loja.
-- número: inteiro; identidade; único; imutável
-- situação: **Situação**; inicial: aberto
-- total: **Dinheiro**; derivado: soma dos **Itens de pedido**
+- **número**: inteiro; identidade; único; imutável
+- **situação**: **Situação**; inicial: aberto
+- **total**: **Dinheiro**; derivado: soma dos **Itens de pedido**
 - 1..N **Item de pedido**
-- evento: Pedido pago
+- evento: **Pedido pago**
 - [ ] PED-R1  Depois de pago, o pedido não muda ⟸ [D1]
 - [x] PED-R2  removida
 - [ ] PED-R3 · tempo  O pedido aberto há 30 dias é cancelado ⟵ [P1]
@@ -77,17 +77,17 @@ Compra que um **Cliente** faz na loja.
   - o pedido passa a esperar o pagamento
 - [ ] PED-V1 · atendente  Ver os pedidos do dia
 
-## Item de pedido  \`ITE\`
+## **Item de pedido**  \`ITE\`
 Produto e **Quantidade** dentro de um **Pedido**.
 - pertence a 1 **Pedido**
-- quantidade: **Quantidade**
+- **quantidade**: **Quantidade**
 - [ ] ITE-R1  Ao **Pedido pago**: a quantidade não muda mais
 
-## Modalidade  \`MOD\`
+## **Modalidade**  \`MOD\`
 Forma de envio de um **Pedido**.
-- código: texto; identidade
-- nome: texto
-- prazo: inteiro; opcional
+- **código**: texto; identidade
+- **nome**: texto
+- **prazo**: inteiro; opcional
 - [ ] MOD-R1  As modalidades:
 
 | Código | Nome | Prazo |
@@ -95,23 +95,23 @@ Forma de envio de um **Pedido**.
 | ECO | Econômica | 8 |
 | EXP | Expressa | |
 
-## Tarifa  \`TAR\`
+## **Tarifa**  \`TAR\`
 Preço de um envio numa **Modalidade**.
-- nome: texto; identidade
+- **nome**: texto; identidade
 - 1 **Modalidade**
-- preço: **Dinheiro**
+- **preço**: **Dinheiro**
 - [ ] TAR-R1  As tarifas, por **nome**, com a **Modalidade** e o **preço** ⟸ [D1]: [TAR-tarifas.csv]
 
-## Embalagem  \`EMB\`
+## **Embalagem**  \`EMB\`
 Caixa em que um **Pedido** é enviado.
-- código: texto; identidade
+- **código**: texto; identidade
 - [ ] EMB-R1  As embalagens, por **código**, com as **Medidas**: [EMB-embalagens.json]
 
-## Medida  \`MED\`
+## **Medida**  \`MED\`
 Dimensão de uma **Embalagem**.
 - pertence a 1 **Embalagem**
-- lado: texto
-- centímetros: inteiro
+- **lado**: texto
+- **centímetros**: inteiro
 `,
   'dados/TAR-tarifas.csv': `nome,Modalidade,preço
 Econômica leve,ECO,12

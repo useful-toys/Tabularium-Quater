@@ -21,7 +21,7 @@ Legenda para ler e escrever uma decisão neste formato. Este arquivo é igual em
 ## Marcas
 - `Dnn`: código da decisão; sequência única para o produto; nunca volta, nem depois de apagada a decisão; o maior já usado está em `_contadores.md`, na pasta da especificação
 - `⟸ [D03]` no fim de um item do corpo: outra decisão, cuja resolução é contexto desta
-- termos da especificação: usados sem negrito; sinônimos proibidos não aparecem
+- termos da especificação: usados sem negrito
 - a decisão não leva negrito nenhum, em nenhuma grafia; o validador acusa
 
 ## Fronteira

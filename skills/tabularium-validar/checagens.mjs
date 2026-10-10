@@ -291,7 +291,7 @@ function checarSubitem(l, bloco, acusado, acusar) {
 
 function checarTipo(l, dicionario, acusar) {
   const celula = l.tipo.match(/^\*\*([^*]+)\*\*$/)?.[1];
-  if (celula && dicionario.celulas.has(celula.toLowerCase())) acusar(l.n, 'ATR-R6', `atributo cujo tipo é uma célula é uma associação e leva a cardinalidade antes dela, como "${l.nome}: 1 **${celula}**"`);
+  if (celula && dicionario.celulas.has(celula.toLowerCase())) acusar(l.n, 'ATR-R6', `atributo cujo tipo é uma célula é uma associação e leva a cardinalidade antes dela, como "**${l.nome}**: 1 **${celula}**"`);
 }
 
 function checarQualificadores(l, acusar) {

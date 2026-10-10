@@ -21,17 +21,17 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 | Redação | **Linha** | núcleo | mantenedor do formato | redacao.md |
 
 ## Atores
-- Autor: altera a **Especificação**; pessoa ou agente de IA; padrão
-- Dono de área: responde por uma **Área**; aceita as mudanças nela
-- Leitor: consulta a **Especificação** e os **Documentos derivados**; nunca altera
+- **Autor**: altera a **Especificação**; pessoa ou agente de IA; padrão
+- **Dono de área**: responde por uma **Área**; aceita as mudanças nela
+- **Leitor**: consulta a **Especificação** e os **Documentos derivados**; nunca altera
 
 ## Tipos comuns
-- Sigla de célula: texto; de 2 a 5 letras maiúsculas
-- Letra de papel: R | Q | C | V | T | J ⟸ [D36]
-- Código de identificador: texto; **Sigla de célula**, `-`, **Letra de papel** e número inteiro a partir de 1
-- Código de pergunta: texto; `P` e número inteiro a partir de 1
-- Código de decisão: texto; `D` e número inteiro a partir de 1
-- Cardinalidade: 1 | 0..1 | 0..N | 1..N
+- **Sigla de célula**: texto; de 2 a 5 letras maiúsculas
+- **Letra de papel**: R | Q | C | V | T | J ⟸ [D36]
+- **Código de identificador**: texto; **Sigla de célula**, `-`, **Letra de papel** e número inteiro a partir de 1
+- **Código de pergunta**: texto; `P` e número inteiro a partir de 1
+- **Código de decisão**: texto; `D` e número inteiro a partir de 1
+- **Cardinalidade**: 1 | 0..1 | 0..N | 1..N
 
 ## Jornadas
 - PRD-J1  Acrescentar uma **Regra**: [CEL-V1] → [LIN-C1] → [VRF-V1]
@@ -40,12 +40,12 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - PRD-J4  Responder uma **Pergunta**: [PER-C2] → [VRF-V1]
 
 ## Externos
-- Controle de versão · histórico
+- **Controle de versão** · histórico
   - guarda: todas as versões dos arquivos
   - fornece: a linha principal, a partir da qual nenhum código é renumerado
-- LGPD · lei geral de proteção de dados
+- **LGPD** · lei geral de proteção de dados
   - impõe: identificar os dados **pessoais** tratados pelo produto
-- Rastreador · ideias ⟸ [D60]
+- **Rastreador** · ideias ⟸ [D60]
   - guarda: ideias e pedidos ainda não comprometidos, até amadurecerem
 
 ## Regras globais

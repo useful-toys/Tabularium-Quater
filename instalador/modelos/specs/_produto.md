@@ -10,4 +10,4 @@ Uma frase que diz o que o produto é.
 | --- | --- | --- | --- | --- |
 
 ## Atores
-- Usuário: o acesso que tem; padrão
+- **Usuário**: o acesso que tem; padrão

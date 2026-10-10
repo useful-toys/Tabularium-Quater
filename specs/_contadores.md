@@ -47,14 +47,14 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - TDD-R  4  qualquer-vale-para
 - TIP-R  2  forma-tipo-valor
 - TRM-C  1  renomear-termo
-- TRM-R  21  titulo-sem-negrito
+- TRM-R  25  outro-titulo-sem-negrito
 - VIS-R  1  exibir-copiar-exportar
 - VRF-C  1  gerar-partes-derivadas
-- VRF-R  27  nao-le-achados
+- VRF-R  28  termos-so-negrito
 - VRF-V  1  ver-violacoes-especificacao
 
 ## Perguntas
 - P  0
 
 ## Decisões
-- D  113  titulo-sem-negrito
+- D  115  definicao-em-negrito

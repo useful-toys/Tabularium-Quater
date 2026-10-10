@@ -30,7 +30,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 1. Nunca renumere um identificador e nunca reutilize um número. O próximo número é o que `_contadores.md` guarda para aquela sigla e papel, mais um. Na mesma mudança, atualize o item do contador: o número e o nome curto, que são duas ou três palavras da linha nova. É o nome curto que faz duas alocações do mesmo número, feitas em paralelo, conflitarem; nunca o omita nem repita o anterior. Siglas de células extintas ou fundidas também não voltam, e continuam em `_contadores.md`. Um número que você alocou e que ainda não entrou na linha principal é provisório: se outra mudança entrou antes com o mesmo número, renumere o seu, junto com os testes e as citações que o usam.
 2. Para retirar uma afirmação, troque-a por uma lápide no mesmo lugar: `- [ ] PED-R7  removida`. Para mudá-la de célula, crie a afirmação na nova dona e deixe `- [x] PED-C3  movida → [ENT-C1]` no lugar antigo. Nunca apague o identificador ao retirar ou mover. A lápide não leva `⟸ [Dnn]`: a citação sai com a afirmação retirada e acompanha a afirmação movida. Lápides só saem pela poda, que o usuário pede quando acha oportuno: sai a lápide `[x]` que nenhuma linha cita, e o número dela continua sem voltar.
 3. Nunca edite seções marcadas `<!-- gerado; não editar -->`, como o Índice das áreas e o glossário. Elas são refeitas por programa.
-4. Defina cada termo uma única vez, sem negrito, no lugar que o tipo de termo pede. Em cada item de lista, frase de definição ou fileira de tabela, escreva em negrito a primeira menção de cada termo; as seguintes, no mesmo item, ficam sem negrito. Não contam como menção: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula dentro do seu bloco. O negrito só marca referência a termo e só se escreve com `**`: nunca o use para ênfase, nem em título ou cabeçalho de tabela, nem como `__texto__`, `<b>` ou `<strong>`. Nunca use um sinônimo que aparece tachado no fim de uma definição, como em `(~~valor, montante~~)`.
+4. Defina cada termo uma única vez, com o nome em negrito, no lugar que o tipo de termo pede; a célula é definida no título do bloco, que também leva o nome em negrito. Em cada item de lista, frase de definição ou fileira de tabela, escreva em negrito a primeira menção de cada termo; as seguintes, no mesmo item, ficam sem negrito. Não contam como menção: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula dentro do seu bloco. O negrito só marca termo, na definição e na referência, e só se escreve com `**`: nunca o use para ênfase, nem em cabeçalho de tabela ou em título que não seja o de uma célula, nem como `__texto__`, `<b>` ou `<strong>`. Nunca ponha em negrito, nem defina como termo, um sinônimo que aparece tachado no fim de uma definição, como em `(~~valor, montante~~)`: cite o termo.
 5. Cada afirmação diz uma só coisa. A única prosa é a frase de definição de cada célula.
 6. Não escreva histórico, justificativas, ideias, exemplos didáticos nem explicações. Se a mudança precisa de um porquê, registre uma decisão em `decisoes/` e cite-a no item com `⟸ [Dnn]`; o texto da decisão nunca entra em área nem em `_produto.md`. Uma ideia ainda não comprometida vai para o rastreador, nunca para a especificação nem para `_perguntas.md`.
 7. Não acrescente nada que não foi pedido: nem regras "óbvias", nem critérios extras, nem eventos sem reação.
@@ -43,12 +43,12 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 
 | O que | Onde |
 | --- | --- |
-| Atributo, estado, cardinalidade, derivado | Linha sem identificador no topo do bloco da célula: `nome: tipo; qualificadores` |
+| Atributo, estado, cardinalidade, derivado | Linha sem identificador no topo do bloco da célula: `**nome**: tipo; qualificadores` |
 | Algo que um ator faz e que altera estado | C no bloco da célula que ela altera; se altera mais de uma, mora numa só e as outras reagem a um evento dela |
 | Algo que um ator vê, sem alterar nada (inclui exportar e copiar) | V no bloco da célula exibida |
 | Condição de aceite de uma C ou V | Sub-item dela, sem identificador: `exige:` para pré-condição, `se …:` para alternativa ou exceção, sem prefixo para resultado |
 | Regra que vale sempre | R no bloco da célula sobre a qual ela fala |
-| Efeito de algo que aconteceu em outra célula | Linha `evento:` na célula que produz o fato, e R `Ao **Evento**:` na célula que reage |
+| Efeito de algo que aconteceu em outra célula | Linha `evento: **Nome**` na célula que produz o fato, e R `Ao **Evento**:` na célula que reage |
 | Regra com várias condições combinadas | R terminada em `:` seguida de uma tabela de decisão |
 | Conteúdo que já vem com o produto e só muda por uma nova versão dele | R de dados de referência, no máximo uma por célula: terminada em `:` e seguida de uma tabela, ou da citação de um arquivo de `dados/`, como `[PED-tarifas.json]` |
 | Conteúdo que um ator altera | Estado: as linhas de modelo e a C que o altera; os valores não entram |
@@ -71,7 +71,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Criar um termo:** confira antes se ele não é sinônimo de um termo existente. Se for, use o existente. Se for um nome novo para algo existente, pergunte.
 - **Renomear um termo:** troque a definição e todas as referências em negrito, em todos os arquivos, na mesma mudança.
 - **Decidir se algo é célula:** pare no primeiro teste com resposta sim. É algo que um ator faz ou vê: capacidade ou visão. Uma sequência de ações: jornada. Um fato que provoca reação: evento. Quem age: ator. Algo fora do produto que uma regra pressupõe: externo. Um valor sem identidade: tipo de valor. Característica, estado ou cálculo de outra coisa: atributo. Um agrupamento de células: área. Algo sobre o qual há o que afirmar e que não pertence a nenhuma outra coisa: célula. Nenhum desses: termo na linguagem da área.
-- **Criar uma célula:** escolha uma sigla de 2 a 5 letras que não apareça em `_contadores.md`, e acrescente lá um item para cada papel que ela usar, em ordem alfabética; escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem fixa.
+- **Criar uma célula:** escolha uma sigla de 2 a 5 letras que não apareça em `_contadores.md`, e acrescente lá um item para cada papel que ela usar, em ordem alfabética; escreva o título, com o nome em negrito, a frase de definição compreensível fora do bloco, e as linhas na ordem fixa.
 - **Mover uma afirmação para outra célula:** crie a afirmação na nova dona, com o próximo número da sigla dela e a mesma marca; no lugar antigo, deixe a lápide `movida → [NOVO]`. O comportamento não mudou, então nada fica pendente.
 - **Podar lápides:** só a pedido. Para cada lápide `[x]`, procure o identificador na especificação; se nada o cita, apague a lápide. Lápides `[ ]` e lápides citadas ficam.
 - **Registrar, rever, dividir ou limpar uma decisão:** siga `decisoes/AGENTS.md`, que traz as receitas e a legenda das decisões.
@@ -90,6 +90,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 ### Depois de alterar
 
 - Rode o validador, pela skill `tabularium-validar`, e corrija as violações antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
+- Quanto a termos, o validador confere só o negrito e as definições: confira você que a primeira menção de cada termo, em cada item, está em negrito.
 - O validador não vê o histórico: confira você que nenhum número de `_contadores.md` diminuiu, e que cada alocação nova usou o número seguinte e atualizou o número e o nome curto.
 - Resuma a mudança listando os identificadores criados, alterados e retirados, e os termos criados ou renomeados.
 

@@ -41,13 +41,13 @@ const casos = [
   ['ARE-R1', 'arquivo fora da tabela de áreas', { 'estoque.md': '# Estoque\n' }],
   ['ARE-R1', 'área da tabela sem arquivo', troca('_produto.md', '| pedidos.md |\n', '| pedidos.md |\n| Estoque | **Pedido** | apoio | vendas | estoque.md |\n')],
   ['ARE-R1', 'pasta de área fora da tabela', { 'estoque/_area.md': '# Estoque\n' }],
-  ['ARE-R11', 'seções da área fora de ordem', troca('pedidos.md', '## Linguagem\n- carrinho: **Pedido** que ainda não foi fechado\n\n## Tipos\n- Quantidade: inteiro; de 1 a 99\n', '## Tipos\n- Quantidade: inteiro; de 1 a 99\n\n## Linguagem\n- carrinho: **Pedido** que ainda não foi fechado\n')],
+  ['ARE-R11', 'seções da área fora de ordem', troca('pedidos.md', '## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n\n## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n', '## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n\n## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n')],
   ['APR-R9', 'seção que não existe em _produto.md', troca('_produto.md', '## Fora de escopo', '## Futuro')],
   ['APR-R9', 'seções de _produto.md fora de ordem', troca('_produto.md', '## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n\n## Fora de escopo\n- Entrega dos produtos · nesta versão\n', '## Fora de escopo\n- Entrega dos produtos · nesta versão\n\n## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n')],
   ['CEL-R2', 'célula sem frase de definição', troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.\n', '')],
-  ['CEL-R2', 'linha em branco entre o título e a definição', troca('pedidos.md', '## Item de pedido  `ITE`\n', '## Item de pedido  `ITE`\n\n')],
+  ['CEL-R2', 'linha em branco entre o título e a definição', troca('pedidos.md', '## **Item de pedido**  `ITE`\n', '## **Item de pedido**  `ITE`\n\n')],
   ['CEL-R3', 'visão antes de capacidade', troca('pedidos.md', '- [ ] PED-C1  Fechar o pedido\n  - exige: ao menos um **Item de pedido**\n  - o pedido passa a esperar o pagamento\n- [ ] PED-V1 · atendente  Ver os pedidos do dia\n', '- [ ] PED-V1 · atendente  Ver os pedidos do dia\n- [ ] PED-C1  Fechar o pedido\n  - exige: ao menos um **Item de pedido**\n  - o pedido passa a esperar o pagamento\n')],
-  ['CEL-R3', 'linha de modelo depois de afirmação', troca('pedidos.md', '- [x] PED-R2  removida\n', '- [x] PED-R2  removida\n- observação: texto\n')],
+  ['CEL-R3', 'linha de modelo depois de afirmação', troca('pedidos.md', '- [x] PED-R2  removida\n', '- [x] PED-R2  removida\n- **observação**: texto\n')],
   ['CEL-R3', 'papel que não cabe em bloco de célula', troca('pedidos.md', '- [ ] ITE-R1', '- [ ] ITE-J1')],
   ['CRT-R6', 'sub-item numa regra', troca('pedidos.md', 'o pedido não muda ⟸ [D1]\n', 'o pedido não muda ⟸ [D1]\n  - nem a pedido do cliente\n')],
   ['IND-R2', 'Índice escrito à mão', troca('pedidos.md', '## Linguagem\n', '## Índice\n- usa **Cliente**, de fora\n\n## Linguagem\n')],
@@ -60,7 +60,7 @@ const casos = [
   ['LIN-R4', 'marca que não é [x] nem [ ]', troca('pedidos.md', '- [ ] PED-Q1', '- [ok] PED-Q1')],
   ['LIN-R4', 'afirmação sem marca', troca('pedidos.md', '- [ ] PED-Q1', '- PED-Q1')],
   ['LIN-R11', 'um só espaço antes do texto', troca('pedidos.md', 'PED-Q1  A lista', 'PED-Q1 A lista')],
-  ['LIN-R11', 'linha de modelo sem forma', troca('pedidos.md', '- evento: Pedido pago\n', '- guarda os itens da compra\n- evento: Pedido pago\n')],
+  ['LIN-R11', 'linha de modelo sem forma', troca('pedidos.md', '- evento: **Pedido pago**\n', '- guarda os itens da compra\n- evento: **Pedido pago**\n')],
   ['LIN-R11', 'regra terminada em ":" sem tabela', troca('pedidos.md', 'o pedido não muda ⟸ [D1]\n', 'o pedido não muda ⟸ [D1]:\n')],
   ['LIN-R11', 'tabela colada na regra', troca('pedidos.md', 'Frete por região:\n\n', 'Frete por região:\n')],
   ['LIN-R11', 'tabela sem separador', troca('pedidos.md', '| --- | --- |\n| capital', '| capital')],
@@ -69,25 +69,25 @@ const casos = [
   ['CRT-R1', 'critério com marca e identificador', troca('pedidos.md', '  - exige: ao menos', '  - [ ] PED-C2  exige: ao menos')],
   ['REF-R14', 'pergunta antes da decisão', troca('pedidos.md', 'é cancelado ⟵ [P1]', 'é cancelado ⟵ [P1] ⟸ [D1]')],
   ['REF-R14', 'citação de decisão fora da forma', troca('pedidos.md', '⟸ [D1]\n', '⟸ D1\n')],
-  ['ATR-R6', 'atributo cujo tipo é uma célula, sem cardinalidade', troca('pedidos.md', '- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**\n- origem: **Pedido**\n')],
+  ['ATR-R6', 'atributo cujo tipo é uma célula, sem cardinalidade', troca('pedidos.md', '- **quantidade**: **Quantidade**\n', '- **quantidade**: **Quantidade**\n- **origem**: **Pedido**\n')],
   ['ATR-R7', 'qualificador fora do vocabulário', troca('pedidos.md', 'único; imutável', 'único; obrigatório')],
   ['ATR-R7', 'derivado sem fórmula', troca('pedidos.md', 'derivado: soma dos **Itens de pedido**', 'derivado')],
-  ['ATR-R7', 'inverso sem cardinalidade', troca('pedidos.md', '- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**; inverso: vários\n')],
+  ['ATR-R7', 'inverso sem cardinalidade', troca('pedidos.md', '- **quantidade**: **Quantidade**\n', '- **quantidade**: **Quantidade**; inverso: vários\n')],
   ['ATR-R7', 'relação com trecho que não é qualificador', troca('pedidos.md', '- pertence a 1 **Pedido**\n', '- pertence a 1 **Pedido**; sempre\n')],
   ['CEL-R18', 'duas especializações no mesmo bloco', troca('pedidos.md', '- pertence a 1 **Pedido**\n', '- especializa **Pedido**\n- especializa **Pedido**\n')],
-  ['TIP-R2', 'tipo de valor sem forma', troca('pedidos.md', '- Quantidade: inteiro; de 1 a 99', '- Quantidade inteira')],
-  ['TIP-R2', 'tipo comum sem forma', troca('_produto.md', '- Situação: aberto | pago', '- Situação')],
-  ['TRM-R9', 'termo da linguagem sem definição', troca('pedidos.md', '- carrinho: **Pedido** que ainda não foi fechado', '- carrinho')],
+  ['TIP-R2', 'tipo de valor sem forma', troca('pedidos.md', '- **Quantidade**: inteiro; de 1 a 99', '- Quantidade inteira')],
+  ['TIP-R2', 'tipo comum sem forma', troca('_produto.md', '- **Situação**: aberto | pago', '- Situação')],
+  ['TRM-R9', 'termo da linguagem sem definição', troca('pedidos.md', '- **carrinho**: **Pedido** que ainda não foi fechado', '- carrinho')],
   ['ATO-R2', 'marca de ator com maiúscula', troca('pedidos.md', '· atendente', '· Atendente')],
   ['ATO-R2', 'ator não declarado', troca('pedidos.md', '· atendente', '· gerente')],
   ['ATO-R5', 'regra de tempo sem prazo', troca('pedidos.md', 'aberto há 30 dias', 'aberto há muito tempo')],
   ['ATO-R6', 'dois atores padrão', troca('_produto.md', 'acompanha os **Pedidos**', 'acompanha os **Pedidos**; padrão')],
   ['ATO-R6', 'nenhum ator padrão', troca('_produto.md', 'compra na loja; padrão', 'compra na loja')],
-  ['ATO-R7', 'ator sem acesso', troca('_produto.md', '- Tempo: dispara os prazos', '- Tempo: dispara os prazos\n- Visitante')],
+  ['ATO-R7', 'ator sem acesso', troca('_produto.md', '- **Tempo**: dispara os prazos', '- **Tempo**: dispara os prazos\n- Visitante')],
   ['JOR-R2', 'jornada sem as setas', troca('_produto.md', '[PED-C1] → [PED-V1]', '[PED-C1], [PED-V1]')],
   ['APR-R10', 'Propósito não começa pelo problema', troca('_produto.md', '- Problema: ', '- Motivo: ')],
   ['APR-R10', 'colunas da tabela de áreas trocadas', troca('_produto.md', '| Área | Célula central |', '| Nome | Célula central |')],
-  ['APR-R10', 'externo sem papel', troca('_produto.md', '- Banco · pagamentos', '- Banco')],
+  ['APR-R10', 'externo sem papel', troca('_produto.md', '- **Banco** · pagamentos', '- Banco')],
   ['APR-R10', 'sub-item de externo com verbo desconhecido', troca('_produto.md', '  - fornece:', '  - devolve:')],
   ['APR-R10', 'fora de escopo sem horizonte', troca('_produto.md', ' · nesta versão', '')],
   ['APR-R10', 'regra global que não é afirmação', troca('_produto.md', '- [ ] PRD-Q1  Toda tela', '- Toda tela')],
@@ -128,11 +128,19 @@ const casos = [
   ['CTD-R4', 'decisão acima do contador', { 'decisoes/pedidos/D2-outra.md': (t) => exemploDeDecisao('D2') }],
   ['DEC-R8', 'código de decisão repetido em outra pasta', { 'decisoes/_produto/D1-outra.md': (t) => exemploDeDecisao('D1') }],
 
-  ['TRM-R2', 'termo definido duas vezes', troca('pedidos.md', 'que ainda não foi fechado\n', 'que ainda não foi fechado\n- carrinho: outra coisa\n')],
-  ['TRM-R2', 'termo da linguagem com o nome de um ator', troca('pedidos.md', '- carrinho:', '- Cliente: quem compra\n- carrinho:')],
-  ['TRM-R2', 'atributo repetido no mesmo bloco', troca('pedidos.md', '- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**\n- quantidade: inteiro\n')],
-  ['TRM-R2', 'termo definido em negrito', troca('pedidos.md', '- carrinho: ', '- **carrinho**: ')],
-  ['TRM-R4', 'atributo homônimo citado sem a célula', { 'pedidos.md': (t) => t.replace('- quantidade: **Quantidade**\n', '- quantidade: **Quantidade**\n- número: inteiro\n').replace('que ainda não foi fechado', 'que ainda não foi fechado e já tem **número**') }],
+  ['TRM-R22', 'termo definido duas vezes', troca('pedidos.md', 'que ainda não foi fechado\n', 'que ainda não foi fechado\n- **carrinho**: outra coisa\n')],
+  ['TRM-R22', 'termo da linguagem com o nome de um ator', troca('pedidos.md', '- **carrinho**:', '- **Cliente**: quem compra\n- **carrinho**:')],
+  ['TRM-R22', 'atributo repetido no mesmo bloco', troca('pedidos.md', '- **quantidade**: **Quantidade**\n', '- **quantidade**: **Quantidade**\n- **quantidade**: inteiro\n')],
+  ['TRM-R23', 'termo da linguagem definido sem negrito', troca('pedidos.md', '- **carrinho**: ', '- carrinho: ')],
+  ['TRM-R23', 'tipo de valor definido sem negrito', troca('pedidos.md', '- **Quantidade**: inteiro', '- Quantidade: inteiro')],
+  ['TRM-R23', 'tipo comum definido sem negrito', troca('_produto.md', '- **Dinheiro**: decimal', '- Dinheiro: decimal')],
+  ['TRM-R23', 'atributo definido sem negrito', troca('pedidos.md', '- **prazo**: inteiro', '- prazo: inteiro')],
+  ['TRM-R23', 'evento definido sem negrito', troca('pedidos.md', '- evento: **Pedido pago**', '- evento: Pedido pago')],
+  ['TRM-R23', 'ator definido sem negrito', troca('_produto.md', '- **Atendente**: acompanha', '- Atendente: acompanha')],
+  ['TRM-R23', 'externo definido sem negrito', troca('_produto.md', '- **Banco** · pagamentos', '- Banco · pagamentos')],
+  ['TRM-R23', 'célula com o título sem negrito', troca('pedidos.md', '## **Modalidade**  `MOD`', '## Modalidade  `MOD`')],
+  ['TRM-R23', 'negrito só numa parte do nome', troca('pedidos.md', '## **Item de pedido**  `ITE`', '## **Item** de pedido  `ITE`')],
+  ['TRM-R4', 'atributo homônimo citado sem a célula', { 'pedidos.md': (t) => t.replace('- **quantidade**: **Quantidade**\n', '- **quantidade**: **Quantidade**\n- **número**: inteiro\n').replace('que ainda não foi fechado', 'que ainda não foi fechado e já tem **número**') }],
   ['TRM-R14', 'negrito que não é termo', troca('pedidos.md', 'Fechar o pedido', 'Fechar o **carrinho de compras**')],
   ['TRM-R14', 'plural que as terminações não explicam', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos dois **Itenz de pedido**')],
   ['REF-R1', 'atributo que a célula não tem', troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido pela **Pedido.cor**')],
@@ -140,13 +148,13 @@ const casos = [
   ['TRM-R20', 'ênfase escrita com sublinhados', troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido __sempre__')],
   ['TRM-R20', 'negrito escrito com marca de HTML', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos um <strong>Item de pedido</strong>')],
   ['TRM-R20', 'negrito com sublinhados no título do arquivo', troca('pedidos.md', '# Pedidos\n', '# __Pedidos__\n')],
-  ['TRM-R21', 'negrito no título do arquivo', troca('pedidos.md', '# Pedidos\n', '# **Pedidos**\n')],
-  ['TRM-R21', 'termo em negrito no cabeçalho de tabela', troca('pedidos.md', '| Região | Frete |', '| Região do **Cliente** | Frete |')],
+  ['TRM-R25', 'negrito no título do arquivo', troca('pedidos.md', '# Pedidos\n', '# **Pedidos**\n')],
+  ['TRM-R25', 'termo em negrito no cabeçalho de tabela', troca('pedidos.md', '| Região | Frete |', '| Região do **Cliente** | Frete |')],
   ['DEC-R11', 'termo em negrito numa decisão', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre o total do **Pedido**')],
   ['DEC-R11', 'ênfase em negrito no título de uma decisão', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'Um pedido pago', 'Um pedido **pago**')],
   ['DEC-R11', 'negrito com sublinhados numa decisão', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'exige uma segunda cobrança', 'exige __outra__ cobrança')],
-  ['TRM-R6', 'sinônimo proibido em uso', { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)').replace('A lista de pedidos abre', 'A lista de pedidos mostra o Valor e abre') }],
-  ['TRM-R6', 'sinônimo proibido numa decisão', { ...troca('pedidos.md', 'Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)'), ...troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre o total da encomenda') }],
+  ['TRM-R24', 'sinônimo proibido em negrito', { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)').replace('A lista de pedidos abre', 'A lista de pedidos mostra o **valor** e abre') }],
+  ['TRM-R24', 'sinônimo proibido da célula, em negrito', { 'pedidos.md': (t) => t.replace('Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)').replace('A lista de pedidos abre', 'A lista de **encomendas** abre') }],
   ['TRM-R13', 'sinônimos proibidos no meio da linha', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma (~~valor, montante~~) dos **Itens de pedido**')],
   ['TRM-R18', 'declaração de sinônimos no fim de uma regra', troca('pedidos.md', 'o pedido não muda ⟸ [D1]', 'o pedido não muda (~~encomenda~~) ⟸ [D1]')],
   ['TRM-R18', 'declaração de sinônimos no meio de uma regra', troca('pedidos.md', 'Depois de pago, o pedido', 'Depois de pago (~~quitado~~), o pedido')],
@@ -157,12 +165,9 @@ const casos = [
   ['TRM-R19', 'sinônimo proibido que é um termo definido', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~cliente~~)')],
   ['TRM-R19', 'sinônimo proibido que é o plural de um termo', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~Clientes~~)')],
   ['TRM-R19', 'sinônimo proibido que é atributo de outra célula', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~prazo~~)')],
-  ['TRM-R10', 'termo com o nome exato, sem negrito', troca('pedidos.md', 'a quantidade não muda mais', 'a quantidade não muda mais no Pedido')],
-  ['TRM-R10', 'negrito só na segunda menção', troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto de um Pedido, com a **Quantidade**, dentro do **Pedido**.')],
-  ['TRM-R10', 'termo da linguagem sem negrito', troca('_produto.md', 'Entrega dos produtos', 'Entrega do carrinho')],
 
   ['DRF-R4', 'arquivo de dados citado por uma qualidade', { ...troca('pedidos.md', '- [ ] TAR-R1  As tarifas', '- [ ] TAR-Q1  As tarifas'), ...troca('_contadores.md', '- TAR-R  1  tarifas', '- TAR-Q  1  tarifas') }],
-  ['DRF-R8', 'arquivo de dados em célula sem identidade', troca('pedidos.md', '- código: texto; identidade\n- [ ] EMB-R1', '- código: texto\n- [ ] EMB-R1')],
+  ['DRF-R8', 'arquivo de dados em célula sem identidade', troca('pedidos.md', '- **código**: texto; identidade\n- [ ] EMB-R1', '- **código**: texto\n- [ ] EMB-R1')],
   ['DRF-R8', 'arquivo de dados citado numa regra global', troca('_produto.md', 'responde em até 3 s', 'responde em até 3 s: [PRD-telas.csv]')],
   ['DRF-R9', 'duas regras de dados na mesma célula', { ...troca('pedidos.md', '| EXP | Expressa | |\n', '| EXP | Expressa | |\n\n- [ ] MOD-R2  Outras modalidades, por **código**: [MOD-outras.csv]\n'), ...troca('_contadores.md', '- MOD-R  1  modalidades', '- MOD-R  2  outras-modalidades'), 'dados/MOD-outras.csv': 'código\nRET\n' }],
   ['DRF-R10', 'coluna que não é atributo da célula', troca('pedidos.md', '| Código | Nome | Prazo |', '| Código | Nome | Dias |')],
@@ -192,12 +197,12 @@ for (const [regra, erro, mudanca] of casos) {
 }
 
 test('ARE-R12: a área em pasta é lida, com _area.md e um arquivo por célula', () => {
-  const [inicio, itens] = exemplo['pedidos.md'].split('## Item de pedido');
+  const [inicio, itens] = exemplo['pedidos.md'].split('## **Item de pedido**');
   const mudancas = {
     'pedidos.md': null,
-    'pedidos/_area.md': inicio.slice(0, inicio.indexOf('## Pedido')),
-    'pedidos/pedido.md': `# Pedido\n\n${inicio.slice(inicio.indexOf('## Pedido'))}`,
-    'pedidos/item.md': `# Item de pedido\n\n## Item de pedido${itens}`,
+    'pedidos/_area.md': inicio.slice(0, inicio.indexOf('## **Pedido**')),
+    'pedidos/pedido.md': `# Pedido\n\n${inicio.slice(inicio.indexOf('## **Pedido**'))}`,
+    'pedidos/item.md': `# Item de pedido\n\n## **Item de pedido**${itens}`,
     ...troca('_produto.md', '| pedidos.md |', '| pedidos |'),
   };
   assert.deepEqual(violacoesCom(mudancas), []);
@@ -212,24 +217,24 @@ test('ATR-R7: a relação leva qualificadores, como o inverso', () => {
   }), []);
 });
 
-test('TRM-R6: declarar sinônimos proibidos não é usá-los', () => {
+test('TRM-R24: declarar sinônimos proibidos não é usá-los', () => {
   assert.deepEqual(violacoesCom(troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~) ⟸ [D1]')), []);
 });
 
 test('TRM-R13: a declaração fora do fim é acusada, mas os sinônimos continuam proibidos', () => {
-  const usado = { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma (~~valor, montante~~) dos **Itens de pedido**').replace('A lista de pedidos abre', 'A lista de pedidos mostra o Valor e abre') };
-  assert.deepEqual(regrasDe(violacoesCom(usado)), ['TRM-R13', 'TRM-R6']);
+  const usado = { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma (~~valor, montante~~) dos **Itens de pedido**').replace('A lista de pedidos abre', 'A lista de pedidos mostra o **Valor** e abre') };
+  assert.deepEqual(regrasDe(violacoesCom(usado)), ['TRM-R13', 'TRM-R24']);
 });
 
-test('TRM-R18: no título a declaração fora do lugar é acusada, além de REF-R1', () => {
-  const regras = regrasDe(violacoesCom(troca('pedidos.md', '## Pedido  `PED`', '## Pedido (~~encomenda~~)  `PED`')));
+test('TRM-R18: no título a declaração fora do lugar é acusada, além de TRM-R23', () => {
+  const regras = regrasDe(violacoesCom(troca('pedidos.md', '## **Pedido**  `PED`', '## **Pedido** (~~encomenda~~)  `PED`')));
   assert.ok(regras.includes('TRM-R18'));
   assert.ok(!regras.includes('TRM-R13'));
 });
 
 test('TRM-R18: o sinônimo declarado fora da definição não vira proibido', () => {
-  const usado = { 'pedidos.md': (t) => t.replace('o pedido não muda ⟸ [D1]', 'o pedido não muda (~~encomenda~~) ⟸ [D1]').replace('A lista de pedidos abre', 'A lista de encomendas e a encomenda abre') };
-  assert.deepEqual(regrasDe(violacoesCom(usado)), ['TRM-R18']);
+  const usado = { 'pedidos.md': (t) => t.replace('o pedido não muda ⟸ [D1]', 'o pedido não muda (~~encomenda~~) ⟸ [D1]').replace('A lista de pedidos abre', 'A lista de **encomendas** abre') };
+  assert.deepEqual(regrasDe(violacoesCom(usado)), ['TRM-R14', 'TRM-R18']);
 });
 
 test('TRM-R18: a violação diz onde a declaração cabe, na especificação e na decisão', () => {
@@ -246,13 +251,59 @@ test('TRM-R19: uma só violação, na declaração, que diz onde o termo está d
   assert.deepEqual(doAtributo.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:14 "prazo" está em não usar, mas é atributo de Modalidade, em pedidos.md, linha 43; tire-o da declaração ou renomeie o termo']);
 });
 
-test('TRM-R10: a própria célula, o atributo e a grafia diferente não são acusados', () => {
+test('VRF-R28: o termo sem negrito não é acusado, nem na primeira menção', () => {
   assert.deepEqual(violacoesCom({
     'pedidos.md': (t) => t
-      .replace('Fechar o pedido', 'Fechar o Pedido e os pedidos')
-      .replace('Ver os pedidos do dia', 'Ver a situação e o total do dia')
-      .replace('a quantidade não muda mais', 'a quantidade não muda mais nos Pedidos nem para o cliente'),
+      .replace('Fechar o pedido', 'Fechar o Pedido e os pedidos, com o Item de pedido')
+      .replace('Produto e **Quantidade** dentro de um **Pedido**.', 'Produto de um Pedido, com a Quantidade, dentro do **Pedido**.')
+      .replace('a quantidade não muda mais', 'a quantidade não muda mais no Pedido pago nem para o Cliente'),
+    ...troca('_produto.md', 'Entrega dos produtos', 'Entrega do carrinho'),
   }), []);
+});
+
+test('VRF-R28: o sinônimo proibido em texto sem negrito não é acusado, nem numa decisão', () => {
+  assert.deepEqual(violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)')
+      .replace('Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)')
+      .replace('A lista de pedidos abre', 'A lista de encomendas mostra o Valor, o montante e abre'),
+    ...troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre o valor da encomenda'),
+  }), []);
+});
+
+test('TRM-R24: a palavra proibida dentro do nome de um termo mais longo não é acusada', () => {
+  assert.deepEqual(violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor~~)')
+      .replace('- **quantidade**: **Quantidade**\n', '- **quantidade**: **Quantidade**\n- **valor unitário**: **Dinheiro**\n')
+      .replace('- **carrinho**:', '- **valor de face**: quantia impressa\n- **carrinho**:')
+      .replace('a quantidade não muda mais', 'o **valor unitário** e os **valores de face** não mudam mais, nem o Valor unitário'),
+  }), []);
+});
+
+test('TRM-R24: o sinônimo proibido é acusado em maiúsculas e no plural, e não dentro de código', () => {
+  const frase = (texto) => violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)')
+      .replace('A lista de pedidos abre', texto),
+  });
+  assert.deepEqual(regrasDe(frase('A lista de pedidos mostra o **VALOR** e abre')), ['TRM-R24']);
+  assert.deepEqual(regrasDe(frase('A lista de pedidos mostra os **Montantes** e abre')), ['TRM-R24']);
+  assert.deepEqual(regrasDe(frase('A lista de pedidos mostra a **valorizada** e abre')), ['TRM-R14']);
+  assert.deepEqual(frase('A lista de pedidos mostra o `**valor**` e abre'), []);
+});
+
+test('TRM-R24: a violação diz o termo que se escreve no lugar do sinônimo', () => {
+  const doAtributo = violacoesCom({ 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor~~)').replace('A lista de pedidos abre', 'A lista de pedidos mostra os **Valores** e abre') });
+  assert.deepEqual(doAtributo.map((v) => v.frase), ['"Valores" é sinônimo proibido de "total"; escreva **total**']);
+  const daCelula = violacoesCom({ 'pedidos.md': (t) => t.replace('Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)').replace('A lista de pedidos abre', 'A lista de **encomendas** abre') });
+  assert.deepEqual(daCelula.map((v) => v.frase), ['"encomendas" é sinônimo proibido de "Pedido"; escreva **Pedido**']);
+});
+
+test('TRM-R23: a violação diz o nome a pôr em negrito, e o negrito da definição não é lido como referência', () => {
+  const violacoes = violacoesCom(troca('pedidos.md', '- **prazo**: inteiro', '- prazo: inteiro'));
+  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:43 na definição, o nome do termo vai em negrito: escreva **prazo**']);
+  assert.deepEqual(violacoesCom({ 'pedidos.md': (t) => t.replace('- **prazo**: inteiro; opcional\n', '- **prazo**: inteiro; opcional\n- **número**: inteiro\n') }), []);
 });
 
 test('TRM-R11: o plural regular em negrito resolve para o termo', () => {
@@ -260,55 +311,29 @@ test('TRM-R11: o plural regular em negrito resolve para o termo', () => {
   const plurais = ['visões', 'pães', 'jornais', 'papéis', 'répteis', 'faróis', 'homens', 'flores'];
   assert.deepEqual(violacoesCom({
     'pedidos.md': (t) => t
-      .replace('- carrinho:', `${termos.map((x) => `- ${x}: coisa`).join('\n')}\n- carrinho:`)
+      .replace('- **carrinho**:', `${termos.map((x) => `- **${x}**: coisa`).join('\n')}\n- **carrinho**:`)
       .replace('Fechar o pedido', `Fechar o pedido com ${plurais.map((x) => `**${x}**`).join(', ')}`),
   }), []);
-});
-
-test('TRM-R12: onde cabem dois termos, vale o de nome mais longo', () => {
-  assert.deepEqual(violacoesCom(troca('pedidos.md', 'a quantidade não muda mais', 'a quantidade de cada item de Pedido não muda mais')), []);
-  const violacoes = violacoesCom(troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto e **Quantidade** de um **Pedido**, até o Pedido pago.'));
-  assert.equal(violacoes.length, 1);
-  assert.match(violacoes[0].frase, /^"Pedido pago" é um termo/);
 });
 
 test('TRM-R14: não há negrito de ênfase; a violação diz que o negrito só marca termo', () => {
   const violacoes = violacoesCom(troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido **sempre**'));
   assert.deepEqual(regrasDe(violacoes), ['TRM-R14']);
-  assert.match(violacoes[0].frase, /o negrito só marca referência a termo/);
+  assert.match(violacoes[0].frase, /o negrito só marca termo/);
 });
 
 test('TRM-R20: dentro de código e no meio de uma palavra, os sublinhados não são negrito', () => {
   assert.deepEqual(violacoesCom(troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido com `__init__`, `<b>` e data__entrega__nova')), []);
 });
 
-test('TRM-R21: o negrito no título de célula sai como TRM-R2, que já o acusa', () => {
-  assert.deepEqual(regrasDe(violacoesCom(troca('pedidos.md', '## Modalidade  `MOD`', '## **Modalidade**  `MOD`'))), ['TRM-R2']);
-});
-
-test('TRM-R15: o nome da área, na tabela de áreas, não é menção', () => {
-  const area = troca('_produto.md', '| Pedidos | **Pedido** |', '| Pedido pago | **Pedido** |');
-  assert.deepEqual(violacoesCom(area), []);
-  const tambemNoTexto = { '_produto.md': (t) => area['_produto.md'](t).replace('Público: pequenos vendedores', 'Público: quem vende Pedido pago') };
-  assert.deepEqual(regrasDe(violacoesCom(tambemNoTexto)), ['TRM-R10']);
-});
-
-test('TRM-R16: o sinônimo de não usar é acusado inteiro, em qualquer caixa e fora de código', () => {
-  const frase = (texto) => violacoesCom({
-    'pedidos.md': (t) => t
-      .replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)')
-      .replace('A lista de pedidos abre', texto),
-  });
-  assert.deepEqual(regrasDe(frase('A lista de pedidos mostra o valor e abre')), ['TRM-R6']);
-  assert.deepEqual(regrasDe(frase('A lista de pedidos mostra o VALOR e abre')), ['TRM-R6']);
-  assert.deepEqual(frase('A lista de pedidos mostra a valorizada e abre'), []);
-  assert.deepEqual(frase('A lista de pedidos mostra o `valor` e abre'), []);
+test('TRM-R14: o código entre crases duplas, com crase dentro, não é lido', () => {
+  assert.deepEqual(violacoesCom(troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido, como em `` ## **Nada**  `NAD` ``')), []);
 });
 
 test('TRM-R17: o negrito que casa com um termo e com um atributo é do termo', () => {
   assert.deepEqual(violacoesCom({
     'pedidos.md': (t) => t
-      .replace('- prazo: inteiro; opcional\n', '- prazo: inteiro; opcional\n- quantidade: inteiro\n')
+      .replace('- **prazo**: inteiro; opcional\n', '- **prazo**: inteiro; opcional\n- **quantidade**: inteiro\n')
       .replace('Fechar o pedido', 'Fechar o pedido com a **Quantidade**'),
   }), []);
 });
@@ -347,7 +372,7 @@ test('VRF-V1: a violação traz arquivo, linha, regra e frase, e sai uma só por
 test('VRF-V1: as violações saem em ordem de arquivo e de linha', () => {
   const violacoes = violacoesCom({
     ...troca('pedidos.md', '- [ ] PED-Q1', '- [ok] PED-Q1'),
-    ...troca('_produto.md', '- Banco · pagamentos', '- Banco'),
+    ...troca('_produto.md', '- **Banco** · pagamentos', '- Banco'),
     'pedidos.md': (texto) => texto.replace('- [ ] PED-Q1', '- [ok] PED-Q1').replace('único; imutável', 'único; fixo'),
   });
   assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['_produto.md:26 APR-R10', 'pedidos.md:12 ATR-R7', 'pedidos.md:27 LIN-R4']);
@@ -466,20 +491,15 @@ test('VRF-R25: a marca de decisão vale em qualquer lugar da linha, e dentro de 
   }), []);
 });
 
-test('VRF-R26: sinônimo proibido não é acusado nas decisões de arquitetura e de interface', () => {
-  const proibe = troca('pedidos.md', 'Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)');
-  assert.deepEqual(violacoesNasCamadas({ ...proibe, ...troca(D2, 'sobre aquele total', 'sobre o total da encomenda'), ...troca(D3, 'sobre aquele total', 'sobre o total da encomenda') }), []);
-});
-
 test('ARE-R12: a área em pasta que se chama interface é lida como área', () => {
-  const [inicio, itens] = exemplo['pedidos.md'].split('## Item de pedido');
+  const [inicio, itens] = exemplo['pedidos.md'].split('## **Item de pedido**');
   const mudancas = {
     'pedidos.md': null,
-    'interface/_area.md': inicio.slice(0, inicio.indexOf('## Pedido')),
-    'interface/pedido.md': `# Pedido\n\n${inicio.slice(inicio.indexOf('## Pedido'))}`,
-    'interface/item.md': `# Item de pedido\n\n## Item de pedido${itens}`,
+    'interface/_area.md': inicio.slice(0, inicio.indexOf('## **Pedido**')),
+    'interface/pedido.md': `# Pedido\n\n${inicio.slice(inicio.indexOf('## **Pedido**'))}`,
+    'interface/item.md': `# Item de pedido\n\n## **Item de pedido**${itens}`,
     ...troca('_produto.md', '| pedidos.md |', '| interface |'),
   };
   assert.deepEqual(violacoesCom(mudancas), []);
-  assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'interface/item.md': `# Item de pedido\nTexto ⟸ D9\n\n## Item de pedido${itens}` })), []);
+  assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'interface/item.md': `# Item de pedido\nTexto ⟸ D9\n\n## **Item de pedido**${itens}` })), []);
 });

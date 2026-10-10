@@ -104,13 +104,13 @@ Uma tela não é célula: é um conjunto de visões. Uma capacidade ou visão se
 O bloco de célula é o centro do formato. Ele reúne num só lugar o que a célula é, como é composta, o que acontece com ela, as regras que valem sobre ela, o que os atores fazem com ela e o que veem dela. Um exemplo, de um sistema de pedidos:
 
 ```markdown
-## Pedido  `PED`
+## **Pedido**  `PED`
 Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades escolhidas.
 - pertence a 1 **Cliente**; inverso: 0..N
-- número: texto; identidade; único; imutável
-- situação: aberto | aguardando pagamento | pago | enviado | cancelado; inicial: aberto
-- total: dinheiro; derivado: soma de preço × quantidade dos **Itens de pedido** (~~valor, montante~~)
-- evento: Pedido pago
+- **número**: texto; identidade; único; imutável
+- **situação**: aberto | aguardando pagamento | pago | enviado | cancelado; inicial: aberto
+- **total**: dinheiro; derivado: soma de preço × quantidade dos **Itens de pedido** (~~valor, montante~~)
+- evento: **Pedido pago**
 - [x] PED-R1  Visível só ao **Cliente** dono e ao **Atendente** ⟸ [D07]
 - [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
 - [x] PED-C1  Fechar o pedido
@@ -124,7 +124,7 @@ Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades 
 - [x] PED-V1 · atendente  Ver os pedidos de qualquer cliente
 ```
 
-O título traz o nome e a sigla da célula. Logo abaixo vem a frase de definição, que precisa ser compreensível fora do bloco, porque é ela que aparece no glossário gerado (CEL-R2). Depois vem uma lista única, sempre na mesma ordem (CEL-R3):
+O título traz o nome, em negrito, e a sigla da célula. Logo abaixo vem a frase de definição, que precisa ser compreensível fora do bloco, porque é ela que aparece no glossário gerado (CEL-R2). Depois vem uma lista única, sempre na mesma ordem (CEL-R3):
 
 1. **Modelo:** as linhas sem identificador. Descrevem atributos, pertencimentos, estados e valores derivados.
 2. **Eventos:** linhas `evento:`, com os fatos que a célula produz e aos quais alguma outra célula reage.
@@ -155,7 +155,7 @@ Isso é tudo o que é preciso para gerar um caso de uso completo, sem a prolixid
 
 ## Atributos
 
-As linhas de modelo descrevem os atributos como o negócio os vê: `nome: tipo; qualificadores`. Depois do `;` só entram qualificadores, de um vocabulário fechado (ATR-R7):
+As linhas de modelo descrevem os atributos como o negócio os vê: `**nome**: tipo; qualificadores`. Depois do `;` só entram qualificadores, de um vocabulário fechado (ATR-R7):
 
 | Qualificador | Significa |
 | --- | --- |
@@ -177,20 +177,20 @@ Três relações ligam as células, todas escritas como linhas de modelo e todas
 | Relação | Forma | Significa |
 | --- | --- | --- |
 | Pertencimento | `pertence a 1 **Pedido**` | A parte tem um só dono e não existe sem ele |
-| Associação | `1 **Produto**` ou `comprador: 1 **Cliente**` | Uma coisa se refere a outra, que existe por si; o nome do papel só aparece quando difere do nome da célula |
+| Associação | `1 **Produto**` ou `**comprador**: 1 **Cliente**` | Uma coisa se refere a outra, que existe por si; o nome do papel só aparece quando difere do nome da célula |
 | Especialização | `especializa **Pagamento**` | Caso particular, que herda o modelo e as linhas do geral e só declara o que acrescenta |
 
 ```markdown
-## Item de pedido  `ITP`
+## **Item de pedido**  `ITP`
 Um **Produto** e a quantidade dele dentro de um **Pedido**.
 - pertence a 1 **Pedido**; inverso: 1..N
 - 1 **Produto**; inverso: 0..N
-- quantidade: inteiro maior que zero
+- **quantidade**: inteiro maior que zero
 
-## Pagamento por cartão  `PGC`
+## **Pagamento por cartão**  `PGC`
 **Pagamento** feito com cartão de crédito, que pode ser parcelado.
 - especializa **Pagamento**
-- parcelas: inteiro de 1 a 12
+- **parcelas**: inteiro de 1 a 12
 - [x] PGC-R1  Parcelamento só acima do valor mínimo da loja
 ```
 
@@ -201,10 +201,10 @@ As cardinalidades são `1`, `0..1`, `0..N` e `1..N`, e em associações substitu
 Quando algo que acontece numa célula afeta outra, o efeito é escrito na célula afetada, nunca na que produz o fato (CEL-R5). A célula que produz declara o evento, e a que é afetada escreve uma reação:
 
 ```markdown
-## Cliente  `CLI`
-- evento: Cliente excluído
+## **Cliente**  `CLI`
+- evento: **Cliente excluído**
 
-## Pedido  `PED`
+## **Pedido**  `PED`
 - [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
 ```
 
@@ -241,11 +241,11 @@ Muitos produtos trazem conteúdo pronto: as seções de um catálogo, uma tabela
 Os dados entram por uma regra terminada em `:`, no máximo uma por célula (DRF-R4, DRF-R9). Os que é preciso ver para entender as linhas da célula ficam no próprio bloco, numa tabela:
 
 ```markdown
-## Modalidade  `MOD`
+## **Modalidade**  `MOD`
 Forma de envio que o **Cliente** escolhe ao fechar o **Pedido**.
-- código: texto; identidade
-- nome: texto
-- prazo: inteiro, em dias úteis
+- **código**: texto; identidade
+- **nome**: texto
+- **prazo**: inteiro, em dias úteis
 - [ ] MOD-R1  As modalidades:
 
 | Código | Nome | Prazo |
@@ -261,17 +261,17 @@ A primeira coluna é o atributo marcado `identidade`, e é isso que distingue a 
 Os demais dados, e todo dado que não é tabular, vão para um arquivo na pasta `dados/`, que ninguém lê por rotina (DRF-R5). A regra cita o arquivo pelo nome, entre colchetes, e nomeia em negrito os atributos e as partes que ele traz, com o de identidade primeiro (DRF-R14, DRF-R15). Assim se sabe o que o arquivo contém sem abri-lo; os tipos continuam nas linhas de modelo.
 
 ```markdown
-## Tarifa  `TAR`
+## **Tarifa**  `TAR`
 Preço de um envio numa **Modalidade**, por faixa de peso.
-- nome: texto; identidade
+- **nome**: texto; identidade
 - 1 **Modalidade**
 - [ ] TAR-R1  As tarifas, por **nome**, com a **Modalidade** e as **Faixas de peso**: [TAR-tarifas.json]
 
-## Faixa de peso  `FXP`
+## **Faixa de peso**  `FXP`
 Limite de peso de uma **Tarifa** e o preço cobrado até ele.
 - pertence a 1 **Tarifa**; inverso: 1..N
-- até: peso
-- preço: dinheiro
+- **até**: peso
+- **preço**: dinheiro
 ```
 
 O arquivo `dados/TAR-tarifas.json` traz uma lista de objetos, um por instância:
@@ -315,7 +315,7 @@ Lápides acumuladas viram ruído e pesam contra a densidade. Por isso podem ser 
 
 ## Linguagem ubíqua
 
-Cada termo é definido uma única vez, sem negrito, no lugar mais específico que o comporta (TRM-R1):
+Cada termo é definido uma única vez, com o nome em negrito, no lugar mais específico que o comporta (TRM-R1, TRM-R22, TRM-R23):
 
 | Tipo de termo | Onde é definido |
 | --- | --- |
@@ -326,7 +326,9 @@ Cada termo é definido uma única vez, sem negrito, no lugar mais específico qu
 | Ator ou externo | `Atores` ou `Externos` em `_produto.md` |
 | Qualquer outro termo | Seção `Linguagem` da área |
 
-Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Por isso o negrito só marca termo: não há negrito de ênfase, ele se escreve só com `**`, e título e cabeçalho de tabela não o levam (TRM-R14, TRM-R20, TRM-R21). Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o validador acusa quem os usar.
+Fora do lugar de definição, o termo aparece em negrito na primeira menção dentro de cada item (TRM-R7). Assim, um programa sabe exatamente quais termos cada linha usa, sem interpretar o texto. Por isso o negrito só marca termo: não há negrito de ênfase, ele se escreve só com `**`, e, dos títulos, só o de célula o leva, no nome que define (TRM-R14, TRM-R20, TRM-R25). Sinônimos que não devem ser usados vêm tachados e entre parênteses, no fim da linha que define o termo, como em `(~~valor, montante~~)`, e o validador acusa quem os puser em negrito ou os definir como termo (TRM-R19, TRM-R24).
+
+Quanto a termos, o validador confere só o negrito e as definições (VRF-R28). Dizer se uma palavra sem marca é um termo, ou um sinônimo proibido, depende de contexto que um programa não tem. O termo que ficou sem negrito na primeira menção fica com a revisão. O sinônimo de não usar só é violação em negrito ou como nome de termo: no texto comum, ele não é acusado.
 
 Não existe glossário escrito à mão. Ele é gerado por programa, juntando todas as definições, cada uma com o tipo de termo e o lugar de origem.
 
