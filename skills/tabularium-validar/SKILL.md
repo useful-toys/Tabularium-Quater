@@ -7,7 +7,7 @@ description: Valida a forma da especificação Tabularium na pasta specs/. Use d
 
 O validador é um script determinístico que checa a forma da especificação, sem interpretar o texto. Execute-o e leia a saída; não refaça as checagens dele por leitura.
 
-Ele checa a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, as referências, os termos, a numeração e os dados de referência. Dos arquivos de `specs/dados/`, confere o nome, as colunas do CSV, as chaves do primeiro nível do JSON e a identidade repetida; os valores, não. O histórico ele não vê: o que depende dele está em `specs/AGENTS.md`, em "Depois de alterar".
+Ele checa a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, as referências, os termos, a numeração e os dados de referência. Das pastas de arquitetura e de interface, confere só as decisões e as citações de decisão, como `⟸ [D07]`. Dos arquivos de `specs/dados/`, confere o nome, as colunas do CSV, as chaves do primeiro nível do JSON e a identidade repetida; os valores, não. O histórico ele não vê: o que depende dele está em `specs/AGENTS.md`, em "Depois de alterar".
 
 ## 1. Rodar
 
@@ -17,7 +17,7 @@ Na raiz do repositório, rode o script que está na pasta desta skill:
 node <pasta desta skill>/validar.mjs
 ```
 
-Ele valida `specs/`; para outra pasta, passe o caminho como argumento. As pastas de arquitetura e de interface e as seções geradas não são lidas: o que conferir nelas está no `AGENTS.md` de cada uma, em "Depois de alterar".
+Ele valida `specs/`; para outra pasta, passe o caminho como argumento. O resto das pastas de arquitetura e de interface não é lido, nem as seções geradas: o que conferir nessas pastas está no `AGENTS.md` de cada uma, em "Depois de alterar".
 
 Feito quando a última linha da saída traz o total: `nenhuma violação`, ou o número de violações.
 

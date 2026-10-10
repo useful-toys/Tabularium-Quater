@@ -65,7 +65,8 @@ export function checarTermos(e, acusar) {
     }
   }
 
-  for (const a of e.arquivos) {
+  // As decisões de arquitetura e de interface ficam de fora: o vocabulário delas ainda não está fechado.
+  for (const a of e.arquivos.filter((x) => !x.camada)) {
     for (const l of a.linhas) {
       if (SEM_TEXTO.includes(l.forma)) continue;
       const texto = mascarar(l.bruto).replace(/\(~~[^~]+~~\)/g, '');

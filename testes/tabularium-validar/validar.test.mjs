@@ -231,7 +231,8 @@ test('VRF-V1: a violação num arquivo de dados cita o arquivo e a linha', () =>
   assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['dados/TAR-tarifas.csv:3 DRF-R11']);
 });
 
-test('VRF-R11: pasta que não é de área nem de decisões é ignorada', () => {
+test('VRF-R22: pasta que não é de área, de decisões nem de dados é ignorada', () => {
+  assert.deepEqual(violacoesCom({ 'rascunhos/notas.md': 'qualquer coisa\n- [ok] sem forma ⟸ D9\n' }), []);
   assert.deepEqual(violacoesCom({ 'arquitetura/sistema.md': 'qualquer coisa\n- [ok] sem forma\n' }), []);
   assert.deepEqual(violacoesCom({ 'interface/_interface.md': 'qualquer coisa\n- [ok] sem forma\n' }), []);
 });
@@ -271,4 +272,103 @@ test('VRF-R7: a linha de comando imprime as violações, o total e sai com 1', (
 test('VRF-R7: a linha de comando sai com 0 numa especificação válida', () => {
   const saida = execFileSync(process.execPath, [script, 'specs'], { cwd: raiz, encoding: 'utf8' });
   assert.equal(saida, 'nenhuma violação\n');
+});
+
+// Uma decisão na arquitetura e outra na interface, com os arquivos que as citam.
+// A interface cita as três pastas; o resto das linhas dela e da arquitetura não é julgado.
+const camadas = {
+  ...troca('_contadores.md', '- D  1  pedido-pago-fixo', '- D  3  cores-fixas'),
+  'arquitetura/_sistema.md': '# Sistema\nqualquer coisa\n- [ok] ARQ-R1  Nenhum componente tem dependências ⟸ [D2]\n',
+  'arquitetura/validacao.md': '# Validação\n- usa 1 **Node.js** ⟸ [D2, D1]\n',
+  'arquitetura/decisoes/_sistema/D2-sem-dependencias.md': exemploDeDecisao('D2'),
+  'interface/_interface.md': '# Interface\n- [x] IFC-R1  As cores são fixas ⟸ [D3, D2] ⟵ [P7]\n- [x] IFC-R2  O total aparece em destaque ⟸ [D1]\n',
+  'interface/decisoes/_interface/D3-cores-fixas.md': exemploDeDecisao('D3'),
+  'interface/decisoes/_interface/README.md': 'qualquer coisa ⟸ D9\n',
+};
+
+// Aplica as mudanças sobre o exemplo já com as duas pastas.
+const violacoesNasCamadas = (mudancas = {}) => {
+  const arquivos = { ...camadas };
+  for (const [caminho, mudanca] of Object.entries(mudancas)) {
+    const antes = arquivos[caminho];
+    arquivos[caminho] = typeof mudanca !== 'function' ? mudanca
+      : (texto) => mudanca(typeof antes === 'function' ? antes(texto) : antes ?? texto);
+  }
+  return violacoesCom(arquivos);
+};
+
+const D2 = 'arquitetura/decisoes/_sistema/D2-sem-dependencias.md';
+const D3 = 'interface/decisoes/_interface/D3-cores-fixas.md';
+
+test('VRF-R23: as decisões de arquitetura e de interface e as citações delas são válidas', () => {
+  assert.deepEqual(violacoesNasCamadas(), []);
+});
+
+const casosDasCamadas = [
+  ['DEC-R1', 'decisão de interface com o código do título diferente do arquivo', troca(D3, '`D3`', '`D4`')],
+  ['DEC-R2', 'decisão de arquitetura sem Histórico', troca(D2, '\n## Histórico\n- 2026-01-10: decisão criada\n', '')],
+  ['DEC-R19', 'decisão de arquitetura com alternativa sem motivo', troca(D2, ': exige uma segunda cobrança', '')],
+  ['DEC-R8', 'código de decisão repetido entre a arquitetura e a interface', { 'interface/decisoes/_interface/D2-outra.md': exemploDeDecisao('D2') }],
+  ['DEC-R8', 'código de decisão repetido entre a especificação e a arquitetura', { 'arquitetura/decisoes/validacao/D1-outra.md': exemploDeDecisao('D1') }],
+  ['CTD-R4', 'decisão de arquitetura acima do contador', { 'arquitetura/decisoes/validacao/D4-nova.md': exemploDeDecisao('D4') }],
+  ['REF-R1', 'arquivo de arquitetura cita decisão que não existe', troca('arquitetura/validacao.md', '[D2, D1]', '[D2, D9]')],
+  ['REF-R1', 'decisão de interface cita decisão que não existe', troca(D3, 'sobre aquele total', 'sobre aquele total ⟸ [D9]')],
+  ['REF-R9', 'citação de decisão sem colchetes', troca('arquitetura/validacao.md', '⟸ [D2, D1]', '⟸ D2')],
+  ['REF-R9', 'citação de decisão com outro separador', troca('interface/_interface.md', '[D3, D2]', '[D3; D2]')],
+  ['REF-R9', 'citação de decisão sem a letra do código', troca('interface/_interface.md', '⟸ [D1]', '⟸ [1]')],
+  ['DEC-R21', 'decisão solta direto na pasta de decisões da arquitetura', { 'arquitetura/decisoes/D4-solta.md': exemploDeDecisao('D4') }],
+  ['DEC-R21', 'arquivo solto direto na pasta de decisões da interface', { 'interface/decisoes/notas.md': '# Notas\n' }],
+  ['VRF-R8', 'arquivo que não é decisão numa subpasta de decisões da interface', { 'interface/decisoes/_interface/notas.md': '# Notas\n' }],
+  ['DEC-R22', 'a especificação cita decisão da arquitetura', troca('pedidos.md', 'o pedido não muda ⟸ [D1]', 'o pedido não muda ⟸ [D1, D2]')],
+  ['DEC-R22', 'decisão da especificação cita decisão da interface', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre aquele total ⟸ [D3]')],
+  ['DEC-R22', 'a arquitetura cita decisão da interface', troca('arquitetura/validacao.md', '[D2, D1]', '[D2, D3]')],
+  ['DEC-R22', 'decisão da arquitetura cita decisão da interface', troca(D2, 'sobre aquele total', 'sobre aquele total ⟸ [D3]')],
+];
+
+for (const [regra, erro, mudanca] of casosDasCamadas) {
+  test(`${regra}: ${erro}`, () => {
+    assert.deepEqual(regrasDe(violacoesNasCamadas(mudanca)), [regra]);
+  });
+}
+
+test('DEC-R22: decisão da interface cita decisão da arquitetura e da especificação', () => {
+  assert.deepEqual(violacoesNasCamadas(troca(D3, 'sobre aquele total', 'sobre aquele total ⟸ [D2, D1]')), []);
+});
+
+test('DEC-R22: a violação diz de onde é a decisão e o que dali se pode citar', () => {
+  const violacoes = violacoesNasCamadas(troca('arquitetura/validacao.md', '[D2, D1]', '[D2, D3]'));
+  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['arquitetura/validacao.md:2 a decisão D3 é da interface, e daqui só se citam decisões da arquitetura e da especificação']);
+});
+
+test('VRF-R24: as instruções, a legenda e a memória informal das duas pastas não são lidas', () => {
+  const solto = 'qualquer coisa ⟸ D9 e ⟸ [D9]\n';
+  assert.deepEqual(violacoesNasCamadas({
+    'arquitetura/AGENTS.md': solto, 'arquitetura/_convencoes.md': solto, 'arquitetura/ideia.md': solto, 'arquitetura/decisoes.md': solto,
+    'interface/AGENTS.md': solto, 'interface/_convencoes.md': solto, 'interface/ideia.md': solto, 'interface/decisoes.md': solto,
+  }), []);
+  assert.deepEqual(regrasDe(violacoesNasCamadas({ 'arquitetura/validacao/ideia.md': solto })), ['REF-R1', 'REF-R9']);
+});
+
+test('VRF-R25: a marca de decisão vale em qualquer lugar da linha, e dentro de código não é marca', () => {
+  assert.deepEqual(violacoesNasCamadas({
+    'arquitetura/validacao.md': '# Validação\nA leitura ⟸ [D2] não depende das checagens; a marca é `⟸ [Dnn]`.\n',
+  }), []);
+});
+
+test('VRF-R26: sinônimo proibido não é acusado nas decisões de arquitetura e de interface', () => {
+  const proibe = troca('pedidos.md', 'Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)');
+  assert.deepEqual(violacoesNasCamadas({ ...proibe, ...troca(D2, 'sobre aquele total', 'sobre o total da encomenda'), ...troca(D3, 'sobre aquele total', 'sobre o total da encomenda') }), []);
+});
+
+test('ARE-R12: a área em pasta que se chama interface é lida como área', () => {
+  const [inicio, itens] = exemplo['pedidos.md'].split('## Item de pedido');
+  const mudancas = {
+    'pedidos.md': null,
+    'interface/_area.md': inicio.slice(0, inicio.indexOf('## Pedido')),
+    'interface/pedido.md': `# Pedido\n\n${inicio.slice(inicio.indexOf('## Pedido'))}`,
+    'interface/item.md': `# Item de pedido\n\n## Item de pedido${itens}`,
+    ...troca('_produto.md', '| pedidos.md |', '| interface |'),
+  };
+  assert.deepEqual(violacoesCom(mudancas), []);
+  assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'interface/item.md': `# Item de pedido\nTexto ⟸ D9\n\n## Item de pedido${itens}` })), []);
 });

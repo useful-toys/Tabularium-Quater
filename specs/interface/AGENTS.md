@@ -85,7 +85,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 
 ## Depois de alterar
 
-O validador não lê esta pasta. Confira ao menos: cada linha nova passa nos dois testes; toda referência `[ID]` resolve, aqui ou na especificação; todo estilo, componente e padrão citado em negrito existe; todo `local:` existe; nenhuma sigla repetida; os contadores com o número e o nome curto de cada alocação nova; linhas na ordem fixa.
+Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa nos dois testes; toda referência `[ID]` resolve, aqui ou na especificação; todo estilo, componente e padrão citado em negrito existe; todo `local:` existe; nenhuma sigla repetida; os contadores com o número e o nome curto de cada alocação nova; linhas na ordem fixa.
 
 Resuma a mudança listando os identificadores criados, alterados e retirados, e os estilos criados ou renomeados.
 

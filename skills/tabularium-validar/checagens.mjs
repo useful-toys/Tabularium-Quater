@@ -45,9 +45,10 @@ function checarPasta(e, acusar) {
     acusar(caminho, null, regra, regra === 'ARE-R1' ? 'falta este arquivo, que toda área em pasta tem' : 'falta este arquivo, que toda especificação tem');
   }
   for (const caminho of e.soltos) {
-    if (caminho.startsWith('decisoes/')) acusar(caminho, null, 'VRF-R8', 'arquivo que não é decisão; o nome de uma decisão é o código, "-", um nome curto e ".md", como "D07-quem-ve-pedido.md"');
+    if (/(?:^|\/)decisoes\//.test(caminho)) acusar(caminho, null, 'VRF-R8', 'arquivo que não é decisão; o nome de uma decisão é o código, "-", um nome curto e ".md", como "D07-quem-ve-pedido.md"');
     else acusar(caminho, null, 'ARE-R1', 'arquivo que não é fixo nem consta da tabela de áreas de _produto.md');
   }
+  for (const caminho of e.decisoesSoltas) acusar(caminho, null, 'DEC-R21', 'arquivo solto na pasta de decisões; a decisão de arquitetura ou de interface mora numa subpasta de área, ou em "_sistema" ou "_interface"');
   for (const pasta of e.pastasForaDaTabela) acusar(`${pasta}/_area.md`, null, 'ARE-R1', 'pasta de área que não consta da tabela de áreas de _produto.md');
   for (const area of e.areasSemArquivo) acusar('_produto.md', area.n, 'ARE-R1', `a área "${area.nome}" aponta para "${area.arquivo}", que não existe na pasta da especificação`);
 }
@@ -163,9 +164,20 @@ function checarCodigos(e, acusar) {
   const decisoes = new Map();
   for (const a of e.arquivos.filter((x) => x.tipo === 'decisao')) {
     const numero = Number(a.codigo.slice(1));
-    if (decisoes.has(numero)) acusar(a.caminho, null, 'DEC-R8', `o código ${a.codigo} já é o de ${decisoes.get(numero)}; o código de uma decisão é único no produto`);
-    else decisoes.set(numero, a.caminho);
+    if (decisoes.has(numero)) acusar(a.caminho, null, 'DEC-R8', `o código ${a.codigo} já é o de ${decisoes.get(numero).caminho}; o código de uma decisão é único no produto`);
+    else decisoes.set(numero, { caminho: a.caminho, camada: a.camada ?? null });
   }
+  // A decisão citada existe e é de uma pasta que o arquivo pode citar: a própria ou uma de que ela depende.
+  const citarDecisao = (a, n, codigo) => {
+    const d = codigo.match(/^D(\d+)$/);
+    if (!d) return;
+    const alvo = decisoes.get(Number(d[1]));
+    const de = a.camada ?? null;
+    if (!alvo) acusar(a.caminho, n, 'REF-R1', `a decisão ${codigo} não tem arquivo em decisoes/`);
+    else if (alvo.camada && alvo.camada !== de && !(de === 'interface' && alvo.camada === 'arquitetura')) {
+      acusar(a.caminho, n, 'DEC-R22', `a decisão ${codigo} é da ${alvo.camada}, e daqui só se citam decisões ${de ? `da ${de} e da especificação` : 'da especificação'}`);
+    }
+  };
   const perguntas = new Map();
   const talvezPergunta = new Set();
   const arquivoDePerguntas = e.arquivos.find((x) => x.tipo === 'perguntas');
@@ -186,10 +198,7 @@ function checarCodigos(e, acusar) {
       for (const m of texto.matchAll(/⟵ \[P(\d+)\]/g)) citadas.add(Number(m[1]));
       if (l.forma === 'desconhecida') continue;
       for (const m of texto.matchAll(/⟸ \[([^\]]*)\]/g)) {
-        for (const codigo of m[1].split(/,\s*/)) {
-          const d = codigo.match(/^D(\d+)$/);
-          if (d && !decisoes.has(Number(d[1]))) acusar(a.caminho, l.n, 'REF-R1', `a decisão ${codigo} não tem arquivo em decisoes/`);
-        }
+        for (const codigo of m[1].split(/,\s*/)) citarDecisao(a, l.n, codigo);
       }
       if (a.tipo === 'decisao') continue;
       for (const m of texto.matchAll(/⟵ \[P(\d+)\]/g)) {
@@ -206,6 +215,15 @@ function checarCodigos(e, acusar) {
           const alvo = ids.get(chaveDe(p[1], p[2], p[3]));
           if (alvo && alvo.papel !== 'C' && alvo.papel !== 'V') acusar(a.caminho, l.n, 'JOR-R3', `a jornada cita [${passo}], de papel ${alvo.papel}; jornada só cita capacidades (C) e visões (V)`);
         }
+      }
+    }
+  }
+  // Nos arquivos de arquitetura e de interface só se confere a marca de decisão, onde quer que esteja na linha.
+  for (const a of e.livres) {
+    for (const l of a.linhas) {
+      for (const m of mascarar(l.bruto).matchAll(/⟸(?: \[([^\]]*)\])?/g)) {
+        if (!/^D\d+(?:, D\d+)*$/.test(m[1] ?? '')) acusar(a.caminho, l.n, 'REF-R9', 'citação de decisão fora da forma; a marca é "⟸ [D07]", com os códigos separados por vírgula quando são vários, como "⟸ [D07, D12]"');
+        else for (const codigo of m[1].split(', ')) citarDecisao(a, l.n, codigo);
       }
     }
   }
@@ -256,7 +274,7 @@ function checarNumeracao(contadores, { ids, decisoes, perguntas, arquivoDePergun
     if (!guardado.has(letra)) { acusar(caminho, secao(nome).n, 'CTD-R2', `a seção ${nome} tem um item, como "- ${letra}  0", com o maior código já usado`); continue; }
     for (const [numero, onde] of emUso) {
       if (numero <= guardado.get(letra)) continue;
-      const [arquivo, linha] = letra === 'P' ? [arquivoDePerguntas.caminho, onde.n] : [onde, null];
+      const [arquivo, linha] = letra === 'P' ? [arquivoDePerguntas.caminho, onde.n] : [onde.caminho, null];
       acusar(arquivo, linha, 'CTD-R4', `${letra}${numero} passa do maior código guardado em _contadores.md, que é ${guardado.get(letra)}; quem aloca um código atualiza o contador`);
     }
   }

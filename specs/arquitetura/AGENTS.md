@@ -65,7 +65,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 
 ## Depois de alterar
 
-Confira ao menos: cada linha nova passa no teste do que entra; todo `local:` existe; toda referência `[ID]` resolve, aqui ou na especificação; nenhuma sigla repetida entre componentes e células; `_contadores.md` com o número e o nome curto de cada alocação nova; linhas na ordem fixa; primeira menção de cada termo em negrito.
+Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa no teste do que entra; todo `local:` existe; toda referência `[ID]` resolve, aqui ou na especificação; nenhuma sigla repetida entre componentes e células; `_contadores.md` com o número e o nome curto de cada alocação nova; linhas na ordem fixa; primeira menção de cada termo em negrito.
 
 Resuma a mudança listando os identificadores criados, alterados e retirados.
 

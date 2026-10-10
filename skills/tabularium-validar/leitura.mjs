@@ -11,6 +11,9 @@ export const SECOES_AREA = ['Índice', 'Linguagem', 'Tipos'];
 export const SECOES_CONTADORES = ['Identificadores', 'Perguntas', 'Decisões'];
 export const ROTULOS_DECISAO = ['Contexto', 'Alternativas descartadas', 'Consequências'];
 export const COLUNAS_AREAS = ['Área', 'Célula central', 'Prioridade', 'Dono', 'Arquivo'];
+// As pastas de arquitetura e de interface: de cada uma só se leem as decisões e as citações de decisão.
+const CAMADAS = ['arquitetura', 'interface'];
+const FORA_DA_CAMADA = ['AGENTS.md', '_convencoes.md', 'ideia.md', 'decisoes.md'];
 
 const CARD = '(?:1|0\\.\\.1|0\\.\\.N|1\\.\\.N)';
 const CODIGO = '[A-Z]{2,5}-[A-Z]\\d+';
@@ -309,8 +312,25 @@ const mds = (pasta) => readdirSync(pasta).filter((nome) => nome.endsWith('.md') 
 
 // Devolve os arquivos lidos, com as linhas classificadas, e o que falta ou sobra na pasta.
 export function lerEspecificacao(pasta) {
-  const e = { arquivos: [], dados: [], faltam: [], soltos: [], pastasForaDaTabela: [], areasSemArquivo: [] };
+  const e = { arquivos: [], livres: [], dados: [], faltam: [], soltos: [], decisoesSoltas: [], pastasForaDaTabela: [], areasSemArquivo: [] };
   const ler = (caminho, tipo, leitor, extra = {}) => e.arquivos.push({ caminho, tipo, linhas: leitor(linhasDe(join(pasta, caminho))), ...extra });
+  // As decisões de uma pasta de decisões, uma subpasta por área; a camada é null na especificação.
+  // Só na especificação a pasta guarda arquivos soltos: a legenda e as instruções das decisões.
+  const lerDecisoes = (raiz, camada) => {
+    if (!ehPasta(join(pasta, raiz))) return;
+    for (const sub of readdirSync(join(pasta, raiz)).sort()) {
+      if (!ehPasta(join(pasta, raiz, sub))) {
+        if (camada && sub.endsWith('.md')) e.decisoesSoltas.push(`${raiz}/${sub}`);
+        continue;
+      }
+      for (const arquivo of mds(join(pasta, raiz, sub))) {
+        if (arquivo === 'README.md') continue;
+        const codigo = arquivo.match(/^(D\d+)-[a-z0-9-]+\.md$/)?.[1];
+        if (codigo) ler(`${raiz}/${sub}/${arquivo}`, 'decisao', lerDecisao, { codigo, camada });
+        else e.soltos.push(`${raiz}/${sub}/${arquivo}`);
+      }
+    }
+  };
 
   for (const fixo of ['AGENTS.md', '_convencoes.md']) if (!ehArquivo(join(pasta, fixo))) e.faltam.push({ caminho: fixo, regra: 'VRF-R12' });
   for (const fixo of ['_produto.md', '_contadores.md']) if (!ehArquivo(join(pasta, fixo))) e.faltam.push({ caminho: fixo, regra: 'VRF-R10' });
@@ -339,15 +359,24 @@ export function lerEspecificacao(pasta) {
 
   if (ehPasta(join(pasta, 'decisoes'))) {
     for (const fixo of ['AGENTS.md', '_convencoes.md']) if (!ehArquivo(join(pasta, 'decisoes', fixo))) e.faltam.push({ caminho: `decisoes/${fixo}`, regra: 'VRF-R12' });
-    for (const sub of readdirSync(join(pasta, 'decisoes')).sort()) {
-      if (!ehPasta(join(pasta, 'decisoes', sub))) continue;
-      for (const arquivo of mds(join(pasta, 'decisoes', sub))) {
-        if (arquivo === 'README.md') continue;
-        const codigo = arquivo.match(/^(D\d+)-[a-z0-9-]+\.md$/)?.[1];
-        if (codigo) ler(`decisoes/${sub}/${arquivo}`, 'decisao', lerDecisao, { codigo });
-        else e.soltos.push(`decisoes/${sub}/${arquivo}`);
+  }
+  lerDecisoes('decisoes', null);
+
+  // Da arquitetura e da interface, as decisões são lidas como decisões; os outros arquivos vêm
+  // com as linhas sem classificar, só para a citação de decisão. A área com esse nome é área.
+  for (const camada of CAMADAS) {
+    if (conhecidos.has(camada) || !ehPasta(join(pasta, camada))) continue;
+    lerDecisoes(`${camada}/decisoes`, camada);
+    const percorrer = (rel) => {
+      for (const nome of readdirSync(join(pasta, rel)).sort()) {
+        const caminho = `${rel}/${nome}`;
+        if (ehPasta(join(pasta, caminho))) { if (caminho !== `${camada}/decisoes`) percorrer(caminho); }
+        else if (nome.endsWith('.md') && !(rel === camada && FORA_DA_CAMADA.includes(nome))) {
+          e.livres.push({ caminho, camada, linhas: linhasDe(join(pasta, caminho)).map((bruto, i) => ({ n: i + 1, bruto })) });
+        }
       }
-    }
+    };
+    percorrer(camada);
   }
 
   // Os arquivos de dados vêm com o texto inteiro: não têm linhas a classificar.
