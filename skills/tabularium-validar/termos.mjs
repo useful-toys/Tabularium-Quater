@@ -15,7 +15,7 @@ const PALAVRA = /[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)*/gu;
 
 export function checarTermos(e, acusar) {
   const arquivos = e.arquivos.filter((a) => ['area', 'produto', 'perguntas'].includes(a.tipo));
-  const { termos, atributos, daCelula, proibidos } = definicoes(arquivos, acusar);
+  const { termos, atributos, daCelula, proibidos, lugares } = definicoes(arquivos, acusar);
   const ordenados = [...termos.entries()]
     .map(([chave, t]) => ({ chave, nome: t.nome, palavras: chave.split(' ') }))
     .sort((a, b) => b.palavras.length - a.palavras.length || b.chave.length - a.chave.length);
@@ -65,13 +65,19 @@ export function checarTermos(e, acusar) {
     }
   }
 
-  // A posição da declaração é forma, não vocabulário: vale em todo arquivo e em toda forma de linha,
-  // inclusive as decisões de arquitetura e de interface. Só a declaração lida no fim está no lugar.
+  // O lugar da declaração é forma, não vocabulário: vale em todo arquivo e em toda forma de linha,
+  // inclusive as decisões de arquitetura e de interface. Fora da linha que define o termo só o lugar
+  // é acusado; nela, só a declaração lida no fim está na posição certa.
   for (const a of e.arquivos) {
     for (const l of a.linhas ?? []) {
       if (SEM_TEXTO.includes(l.forma)) continue;
       const declaracoes = [...mascarar(l.bruto).matchAll(/\(~~[^~]+~~\)/g)].length;
-      if (declaracoes > (l.declaracaoNoFim ? 1 : 0)) {
+      if (declaracoes === 0) continue;
+      if (!lugares.has(l)) {
+        acusar(a.caminho, l.n, 'TRM-R18', a.tipo === 'decisao'
+          ? 'só a especificação declara sinônimos de não usar; declare-os no fim da linha que define o termo'
+          : 'esta linha não define termo, e os sinônimos de não usar só cabem na linha que define o termo; declare-os no fim da definição');
+      } else if (declaracoes > (l.declaracaoNoFim ? 1 : 0)) {
         acusar(a.caminho, l.n, 'TRM-R13', 'os sinônimos de não usar fecham o texto da linha, antes das marcas de fim de item; mova a declaração para o fim');
       }
     }
@@ -92,12 +98,16 @@ export function checarTermos(e, acusar) {
   }
 }
 
-// Recolhe os termos, os atributos de cada célula e os sinônimos proibidos, e acusa a definição repetida.
+// Recolhe os termos, os atributos de cada célula, os sinônimos proibidos e as linhas em que a declaração
+// deles cabe, e acusa a definição repetida e o sinônimo proibido que é nome de termo.
 function definicoes(arquivos, acusar) {
-  const termos = new Map(), atributos = new Map(), daCelula = new Map(), proibidos = [];
+  const termos = new Map(), atributos = new Map(), daCelula = new Map(), declarados = [], lugares = new Set();
   for (const a of arquivos) {
     let celula = null;
-    const proibir = (l, termo) => { for (const palavra of l.sinonimos ?? []) proibidos.push({ palavra, termo }); };
+    const proibir = (l, termo) => {
+      lugares.add(l);
+      for (const palavra of l.sinonimos ?? []) declarados.push({ palavra, termo, arquivo: a.caminho, linha: l.n });
+    };
     const definir = (l, tipo) => {
       if (l.nome.includes('**')) acusar(a.caminho, l.n, 'TRM-R2', 'o termo é definido sem negrito; o negrito fica para as referências a ele');
       const chave = l.nome.replaceAll('**', '').toLowerCase();
@@ -123,12 +133,29 @@ function definicoes(arquivos, acusar) {
       const nome = l.nome.toLowerCase();
       if (daCelula.get(celula).has(nome)) acusar(a.caminho, l.n, 'TRM-R2', `o atributo "${l.nome}" já está definido neste bloco`);
       daCelula.get(celula).add(nome);
-      if (!atributos.has(nome)) atributos.set(nome, new Set());
-      atributos.get(nome).add(celula);
+      if (!atributos.has(nome)) atributos.set(nome, new Map());
+      if (!atributos.get(nome).has(celula)) atributos.get(nome).set(celula, { arquivo: a.caminho, linha: l.n });
       proibir(l, l.nome);
     }
   }
-  return { termos, atributos, daCelula, proibidos };
+  // A palavra declarada é lida como menção: maiúsculas e plural não alteram o termo.
+  // A que é nome de termo não vira proibida: o defeito está na declaração, não nos usos.
+  const proibidos = declarados.filter((p) => {
+    const lidas = leituras(p.palavra);
+    const termo = termos.get(lidas.find((l) => termos.has(l)));
+    const atributo = lidas.find((l) => atributos.has(l));
+    if (!termo && !atributo) return true;
+    let onde = termo;
+    let oQue = 'termo definido';
+    if (!termo) {
+      const [dona, lugar] = [...atributos.get(atributo)][0];
+      onde = lugar;
+      oQue = `atributo de ${termos.get(dona)?.nome ?? dona},`;
+    }
+    acusar(p.arquivo, p.linha, 'TRM-R19', `"${p.palavra}" está em não usar, mas é ${oQue} em ${onde.arquivo}, linha ${onde.linha}; tire-o da declaração ou renomeie o termo`);
+    return false;
+  });
+  return { termos, atributos, daCelula, proibidos, lugares };
 }
 
 // O trecho da linha em que uma menção sem negrito conta; null onde não conta nenhuma.

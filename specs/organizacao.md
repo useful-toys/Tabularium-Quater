@@ -143,7 +143,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
 - [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
 - [x] VRF-R18  Checa as **Referências**: [REF-R1], [REF-R9], [JOR-R3], [EVT-R2], [PER-R5], [DEC-R22]
-- [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13], [TRM-R14], [TRM-R15], [TRM-R16], [TRM-R17]
+- [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13], [TRM-R14], [TRM-R15], [TRM-R16], [TRM-R17], [TRM-R18], [TRM-R19]
 - [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
 - [x] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
 - [x] VRF-R22  Ignora as pastas que não são de **Área**, de **Decisões**, de **Arquivos de dados**, de arquitetura nem de interface

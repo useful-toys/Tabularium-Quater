@@ -121,6 +121,8 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [x] TRM-R15  O nome da **Área**, na tabela de áreas, não é menção
 - [x] TRM-R16  Sinônimo de **não usar** é acusado como palavra inteira, em maiúsculas ou minúsculas, fora de código
 - [x] TRM-R17  Negrito que casa com um termo e com um **Atributo** é do termo
+- [x] TRM-R18  A declaração de sinônimos de **não usar** só cabe na linha que define o termo ⟸ [D110]
+- [x] TRM-R19  Sinônimo de **não usar** não é o nome de um termo definido, nem no plural
 - [x] TRM-C1  Renomear um termo
 
 ## Glossário  `GLO`
