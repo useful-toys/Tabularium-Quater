@@ -65,6 +65,18 @@ export function checarTermos(e, acusar) {
     }
   }
 
+  // A posição da declaração é forma, não vocabulário: vale em todo arquivo e em toda forma de linha,
+  // inclusive as decisões de arquitetura e de interface. Só a declaração lida no fim está no lugar.
+  for (const a of e.arquivos) {
+    for (const l of a.linhas ?? []) {
+      if (SEM_TEXTO.includes(l.forma)) continue;
+      const declaracoes = [...mascarar(l.bruto).matchAll(/\(~~[^~]+~~\)/g)].length;
+      if (declaracoes > (l.declaracaoNoFim ? 1 : 0)) {
+        acusar(a.caminho, l.n, 'TRM-R13', 'os sinônimos de não usar fecham o texto da linha, antes das marcas de fim de item; mova a declaração para o fim');
+      }
+    }
+  }
+
   // As decisões de arquitetura e de interface ficam de fora: o vocabulário delas ainda não está fechado.
   for (const a of e.arquivos.filter((x) => !x.camada)) {
     for (const l of a.linhas) {

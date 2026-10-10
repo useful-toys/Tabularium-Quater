@@ -137,6 +137,8 @@ const casos = [
   ['REF-R1', 'atributo que a célula não tem', troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido pela **Pedido.cor**')],
   ['TRM-R6', 'sinônimo proibido em uso', { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)').replace('A lista de pedidos abre', 'A lista de pedidos mostra o Valor e abre') }],
   ['TRM-R6', 'sinônimo proibido numa decisão', { ...troca('pedidos.md', 'Compra que um **Cliente** faz na loja.', 'Compra que um **Cliente** faz na loja. (~~encomenda~~)'), ...troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre o total da encomenda') }],
+  ['TRM-R13', 'sinônimos proibidos no meio da linha', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma (~~valor, montante~~) dos **Itens de pedido**')],
+  ['TRM-R13', 'sinônimos proibidos numa célula de tabela', troca('pedidos.md', '| capital | grátis |', '| capital (~~metrópole~~) | grátis |')],
   ['TRM-R10', 'termo com o nome exato, sem negrito', troca('pedidos.md', 'a quantidade não muda mais', 'a quantidade não muda mais no Pedido')],
   ['TRM-R10', 'negrito só na segunda menção', troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto de um Pedido, com a **Quantidade**, dentro do **Pedido**.')],
   ['TRM-R10', 'termo da linguagem sem negrito', troca('_produto.md', 'Entrega dos produtos', 'Entrega do carrinho')],
@@ -194,6 +196,16 @@ test('ATR-R7: a relação leva qualificadores, como o inverso', () => {
 
 test('TRM-R6: declarar sinônimos proibidos não é usá-los', () => {
   assert.deepEqual(violacoesCom(troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~) ⟸ [D1]')), []);
+});
+
+test('TRM-R13: a declaração fora do fim é acusada, mas os sinônimos continuam proibidos', () => {
+  const usado = { 'pedidos.md': (t) => t.replace('soma dos **Itens de pedido**', 'soma (~~valor, montante~~) dos **Itens de pedido**').replace('A lista de pedidos abre', 'A lista de pedidos mostra o Valor e abre') };
+  assert.deepEqual(regrasDe(violacoesCom(usado)), ['TRM-R13', 'TRM-R6']);
+});
+
+test('TRM-R13: no título a declaração fora do lugar é acusada, além de REF-R1', () => {
+  const regras = regrasDe(violacoesCom(troca('pedidos.md', '## Pedido  `PED`', '## Pedido (~~encomenda~~)  `PED`')));
+  assert.ok(regras.includes('TRM-R13'));
 });
 
 test('TRM-R10: a própria célula, o atributo e a grafia diferente não são acusados', () => {
@@ -319,6 +331,8 @@ const casosDasCamadas = [
   ['DEC-R21', 'decisão solta direto na pasta de decisões da arquitetura', { 'arquitetura/decisoes/D4-solta.md': exemploDeDecisao('D4') }],
   ['DEC-R21', 'arquivo solto direto na pasta de decisões da interface', { 'interface/decisoes/notas.md': '# Notas\n' }],
   ['VRF-R8', 'arquivo que não é decisão numa subpasta de decisões da interface', { 'interface/decisoes/_interface/notas.md': '# Notas\n' }],
+  ['TRM-R13', 'sinônimos proibidos no meio da linha de uma decisão de arquitetura', troca(D2, 'sobre aquele total', 'sobre aquele (~~soma~~) total')],
+  ['TRM-R13', 'sinônimos proibidos no meio da linha de uma decisão de interface', troca(D3, 'sobre aquele total', 'sobre aquele (~~soma~~) total')],
   ['DEC-R22', 'a especificação cita decisão da arquitetura', troca('pedidos.md', 'o pedido não muda ⟸ [D1]', 'o pedido não muda ⟸ [D1, D2]')],
   ['DEC-R22', 'decisão da especificação cita decisão da interface', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'sobre aquele total', 'sobre aquele total ⟸ [D3]')],
   ['DEC-R22', 'a arquitetura cita decisão da interface', troca('arquitetura/validacao.md', '[D2, D1]', '[D2, D3]')],

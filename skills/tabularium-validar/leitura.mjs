@@ -29,10 +29,11 @@ export const mascarar = (t) => t.replace(/`[^`]*`/g, (c) => '`' + '¤'.repeat(c.
 
 // Separa do texto as marcas de fim de item: decisões, pergunta e, numa regra, o ':' que anuncia a tabela
 // ou o arquivo de dados, como ": [PED-tarifas.json]". É o ponto no nome que distingue o arquivo de um identificador.
-// Os sinônimos proibidos, como "(~~valor, montante~~)", fecham o texto e vêm antes dessas marcas.
+// Os sinônimos proibidos, como "(~~valor, montante~~)", fecham o texto e vêm antes dessas marcas;
+// os que aparecem fora do fim também são lidos, e `declaracaoNoFim` diz se houve um no lugar certo.
 function separarCauda(texto, comTabela = false) {
   let resto = mascarar(texto);
-  const cauda = { decisoes: [], pergunta: null, tabela: false, arquivo: null, caudaInvalida: false, sinonimos: [] };
+  const cauda = { decisoes: [], pergunta: null, tabela: false, arquivo: null, caudaInvalida: false, sinonimos: [], declaracaoNoFim: false };
   let m = comTabela ? resto.match(/: \[([^[\]]*\.[^[\]]*)\]$/) : null;
   if (m) { cauda.arquivo = m[1]; resto = resto.slice(0, m.index); }
   else if (comTabela && resto.endsWith(':')) { cauda.tabela = true; resto = resto.slice(0, -1); }
@@ -42,7 +43,9 @@ function separarCauda(texto, comTabela = false) {
   if (m) { cauda.decisoes = m[1].split(', '); resto = resto.slice(0, m.index); }
   if (/[⟸⟵]/.test(resto)) cauda.caudaInvalida = true;
   m = resto.match(/ \(~~([^~]+)~~\)$/);
-  if (m) { cauda.sinonimos = m[1].split(/,\s*/); resto = resto.slice(0, m.index); }
+  if (m) { cauda.sinonimos = m[1].split(/,\s*/); cauda.declaracaoNoFim = true; resto = resto.slice(0, m.index); }
+  // Declaração fora do fim: TRM-R13 acusa o lugar, mas os sinônimos continuam proibidos.
+  for (const fora of resto.matchAll(/\(~~([^~]+)~~\)/g)) cauda.sinonimos.push(...fora[1].split(/,\s*/));
   return { texto: texto.slice(0, resto.length), ...cauda };
 }
 
