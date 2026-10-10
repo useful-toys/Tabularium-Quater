@@ -1,4 +1,5 @@
-// Cada regra que o validador checa tem ao menos um exemplo que viola só ela.
+// Cada regra que o validador checa e acusa tem ao menos um exemplo que viola só ela;
+// a que só descreve o comportamento de outra checagem tem um teste desse comportamento.
 // Rode com: node --test testes/
 
 import assert from 'node:assert/strict';
@@ -232,6 +233,39 @@ test('TRM-R12: onde cabem dois termos, vale o de nome mais longo', () => {
   const violacoes = violacoesCom(troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.', 'Produto e **Quantidade** de um **Pedido**, até o Pedido pago.'));
   assert.equal(violacoes.length, 1);
   assert.match(violacoes[0].frase, /^"Pedido pago" é um termo/);
+});
+
+test('TRM-R14: não há negrito de ênfase; o negrito que não é termo sai como REF-R1', () => {
+  const violacoes = violacoesCom(troca('pedidos.md', 'Fechar o pedido', 'Fechar o pedido **sempre**'));
+  assert.deepEqual(regrasDe(violacoes), ['REF-R1']);
+  assert.match(violacoes[0].frase, /o negrito só marca referência a termo/);
+});
+
+test('TRM-R15: o nome da área, na tabela de áreas, não é menção', () => {
+  const area = troca('_produto.md', '| Pedidos | **Pedido** |', '| Pedido pago | **Pedido** |');
+  assert.deepEqual(violacoesCom(area), []);
+  const tambemNoTexto = { '_produto.md': (t) => area['_produto.md'](t).replace('Público: pequenos vendedores', 'Público: quem vende Pedido pago') };
+  assert.deepEqual(regrasDe(violacoesCom(tambemNoTexto)), ['TRM-R10']);
+});
+
+test('TRM-R16: o sinônimo de não usar é acusado inteiro, em qualquer caixa e fora de código', () => {
+  const frase = (texto) => violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~valor, montante~~)')
+      .replace('A lista de pedidos abre', texto),
+  });
+  assert.deepEqual(regrasDe(frase('A lista de pedidos mostra o valor e abre')), ['TRM-R6']);
+  assert.deepEqual(regrasDe(frase('A lista de pedidos mostra o VALOR e abre')), ['TRM-R6']);
+  assert.deepEqual(frase('A lista de pedidos mostra a valorizada e abre'), []);
+  assert.deepEqual(frase('A lista de pedidos mostra o `valor` e abre'), []);
+});
+
+test('TRM-R17: o negrito que casa com um termo e com um atributo é do termo', () => {
+  assert.deepEqual(violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('- prazo: inteiro; opcional\n', '- prazo: inteiro; opcional\n- quantidade: inteiro\n')
+      .replace('Fechar o pedido', 'Fechar o pedido com a **Quantidade**'),
+  }), []);
 });
 
 test('DRF-R7: a tabela cuja primeira coluna não é a identidade é tabela de decisão', () => {
