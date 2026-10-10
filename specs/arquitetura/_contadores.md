@@ -12,4 +12,4 @@ Maior número já usado em cada sequência da arquitetura, com um nome curto da 
 - SKV-I  1  comando-validar
 - SKV-R  1  leva-script-consigo
 - VAL-I  1  execucao-linha-comando
-- VAL-R  3  testes-fora-skill
+- VAL-R  5  teste-de-comportamento
