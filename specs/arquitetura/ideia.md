@@ -113,4 +113,4 @@ O Daniel disse que ainda não sabe avaliar se o formato é bom, apesar de intere
 - **Os contadores.** A arquitetura tem um `_contadores.md` próprio, porque as letras I e F não são papéis válidos no da especificação. As siglas, porém, precisam ser únicas nos dois.
 - **Os nomes.** "Componente", `realiza`, `usa`, e as letras I e F são sugestão do Claude.
 - **O teste do que entra** ainda não foi posto à prova fora deste caso.
-- **A instalação não distribui esta pasta.** O manifesto não a lista, de propósito, enquanto for experimento.
+- **A instalação distribui esta pasta.** Resolvido em 10 de outubro de 2026: o manifesto lista a legenda e as instruções entre os genéricos, e `_sistema.md` e `_contadores.md` entre os modelos, para o instalador criar a versão inicial de cada um. Antes, o manifesto a deixava de fora, de propósito, enquanto fosse experimento. `ideia.md` e `decisoes.md` não são distribuídos.

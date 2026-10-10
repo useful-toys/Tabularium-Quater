@@ -109,7 +109,7 @@ Nesses casos, deixe a interface como está e diga ao usuário:
 2. os lugares que você tentou e por que cada um não serviu;
 3. uma sugestão de como o formato poderia evoluir para cobrir o caso, e o que mais ela afetaria.
 
-Quem decide se o formato evolui é o usuário. Só altere `_convencoes.md` ou este arquivo depois que ele decidir.
+Quem decide se o formato evolui é o usuário. `_convencoes.md` e este arquivo são iguais em todos os projetos, e a instalação os sobrescreve: só os altere no repositório do formato, depois que ele decidir.
 
 ## Quando parar e perguntar
 

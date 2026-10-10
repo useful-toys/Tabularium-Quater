@@ -3,10 +3,18 @@
     "specs/AGENTS.md",
     "specs/_convencoes.md",
     "specs/decisoes/AGENTS.md",
-    "specs/decisoes/_convencoes.md"
+    "specs/decisoes/_convencoes.md",
+    "specs/arquitetura/AGENTS.md",
+    "specs/arquitetura/_convencoes.md",
+    "specs/interface/AGENTS.md",
+    "specs/interface/_convencoes.md"
   ],
   "modelos": [
     "specs/_contadores.md",
-    "specs/_produto.md"
+    "specs/_produto.md",
+    "specs/arquitetura/_contadores.md",
+    "specs/arquitetura/_sistema.md",
+    "specs/interface/_contadores.md",
+    "specs/interface/_interface.md"
   ]
 }

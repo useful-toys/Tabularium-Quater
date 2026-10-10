@@ -6,7 +6,7 @@ Em vez de espalhar o mesmo assunto por glossário, regras de negócio e casos de
 
 A gramática é simples o bastante para um programa verificar e para pessoas e agentes de IA manterem. Serve a equipes de desenvolvimento e sustentação, da análise à implementação, e qualquer um pode adotá-lo.
 
-> **Estado: experimental.** Hoje existem a definição do formato, as instruções para agentes, as decisões do próprio formato, a skill de instalação e a skill de validação. O gerador e as skills de geração ainda não existem: onde este README os menciona, descreve o que o formato pretende. Por ora, o alvo são produtos pequenos.
+> **Estado: experimental.** Hoje existem a definição do formato, as instruções para agentes, as decisões do próprio formato, a skill de instalação, a skill de validação e três skills que levam uma ideia até a especificação, além de dois formatos ainda mais novos, para a arquitetura e para a interface. O gerador e as skills de geração ainda não existem: onde este README os menciona, descreve o que o formato pretende. Por ora, o alvo são produtos pequenos.
 
 ## A ideia
 
@@ -62,18 +62,18 @@ A comparação completa está no [guia](GUIA.md#diferenciais-em-relação-a-rup-
 
 Para instalar:
 
-1. Na raiz do seu repositório, instale a skill de instalação:
+1. Na raiz do seu repositório, instale as skills do Tabularium:
 
    ```bash
    npx skills add useful-toys/Tabularium-Quater
    ```
 
-2. No agente, digite `/tabularium-instalar`. A skill cria `specs/` e `specs/decisoes/`, copia para lá as instruções para agentes e a legenda do formato, e cria `specs/_produto.md` e `specs/_contadores.md` a partir de modelos.
-3. Preencha `specs/_produto.md`, que nasce com textos de exemplo, e siga pelos [primeiros passos](#primeiros-passos).
+2. No agente, digite `/tabularium-instalar`. A skill cria `specs/`, com as pastas `decisoes/`, `arquitetura/` e `interface/`, copia para cada uma as instruções para agentes e a legenda, e cria a partir de modelos os arquivos que você preenche: `specs/_produto.md`, `specs/_contadores.md` e os equivalentes da arquitetura e da interface.
+3. Preencha `specs/_produto.md`, que nasce com textos de exemplo, e siga pelos [primeiros passos](#primeiros-passos). A arquitetura e a interface são opcionais e ficam para depois, porque citam a especificação.
 
 Para atualizar:
 
-1. No agente, digite `/tabularium-instalar` de novo. A skill sobrescreve as instruções para agentes e a legenda com a versão mais recente e mantém os arquivos que são seus.
+1. No agente, digite `/tabularium-instalar` de novo. A skill sobrescreve as instruções para agentes e as legendas com a versão mais recente, cria os modelos que ainda faltam e mantém os arquivos que são seus.
 2. Se o formato mudou, a skill lista o que a sua especificação precisa ajustar e espera o seu aceite antes de alterá-la.
 
 A versão instalada é sempre a mais recente da linha principal deste repositório; não há como escolher outra.
@@ -84,7 +84,23 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 2. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões.
 3. Marque cada afirmação com `[x]` ou `[ ]` e atualize `_contadores.md` a cada número alocado.
 4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
-5. Confira cada mudança pela lista de `specs/AGENTS.md`.
+5. Valide cada mudança com `/tabularium-validar` e corrija o que o validador acusar.
+
+Para mudar a especificação junto com o agente, há três skills, que você aciona nesta ordem:
+
+- `/tabularium-entrevistar` amadurece uma ideia com você até o consenso sobre o que muda, e mostra o plano.
+- `/tabularium-registrar` grava o plano numa issue do GitHub. É opcional.
+- `/tabularium-aplicar` escreve em `specs/` o plano que chegou ao consenso.
+
+## Arquitetura, em experimento
+
+A especificação diz o que o produto faz, nunca como ele é construído. As escolhas técnicas têm um formato experimental, em [`specs/arquitetura/`](specs/arquitetura/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente**, uma peça da solução, como um programa, um script ou um serviço.
+
+- **Só a escolha estratégica.** Entra o que guia a implementação e é caro de trocar depois. O resto é escolha tática e fica no código.
+- **Cada componente diz em que é feito, onde mora e o que cumpre.** A linha `realiza:` aponta as afirmações da especificação que ele atende.
+- **Restrições, limites e contratos.** Um componente tem restrições, limites técnicos e o que oferece aos outros. Os fluxos mostram como os componentes colaboram.
+
+O formato ainda não faz parte da definição do Tabularium, e o validador não o lê. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um exemplo real, abra a [arquitetura do próprio Tabularium](specs/arquitetura/distribuicao.md).
 
 ## Interface, em experimento
 
@@ -95,7 +111,7 @@ A especificação diz o que o produto faz, em qualquer meio: web, desktop ou ter
 - **Estilos e diretrizes.** Cores, fontes e medidas ganham nome e são citadas por ele. As diretrizes valem para a interface inteira.
 - **Só o que precisa ser igual em mais de um lugar.** O detalhe de uma tela só, como um espaçamento, fica no código.
 
-O formato ainda não faz parte da definição do Tabularium: o validador não o lê e a instalação não o distribui. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
+O formato ainda não faz parte da definição do Tabularium, e o validador não o lê. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
 
 ## Limites
 
@@ -114,5 +130,6 @@ Os limites por extenso estão no [guia](GUIA.md#limites-e-cuidados).
 - [`specs/_convencoes.md`](specs/_convencoes.md): a legenda do formato.
 - [`specs/`](specs/): a definição normativa, escrita no próprio formato. Em caso de divergência, vale o que está lá.
 - [`specs/decisoes/`](specs/decisoes/): o porquê de cada escolha.
+- [`specs/arquitetura/_convencoes.md`](specs/arquitetura/_convencoes.md): a legenda do formato experimental de arquitetura.
 - [`exemplos/interface-pedido.md`](exemplos/interface-pedido.md): um trecho de interface de exemplo, comentado.
 - [`specs/interface/_convencoes.md`](specs/interface/_convencoes.md): a legenda do formato experimental de interface.

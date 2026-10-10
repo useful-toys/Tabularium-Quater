@@ -28,6 +28,7 @@ O gerador e as skills de geração ainda não existem: onde este guia os descrev
 - [Decisões](#decisões)
 - [Verificação e geração](#verificação-e-geração)
 - [Documentos derivados](#documentos-derivados)
+- [Arquitetura, em experimento](#arquitetura-em-experimento)
 - [Interface, em experimento](#interface-em-experimento)
 - [Trabalhando com agentes de IA](#trabalhando-com-agentes-de-ia)
 - [Valores](#valores)
@@ -69,6 +70,7 @@ specs/
     _produto/        as que só _produto.md cita
     <area>/          as que os itens da área mais citam
   dados/             dados de referência em JSON ou CSV, um arquivo por regra que os cita; lidos só sob demanda
+  arquitetura/       como o produto é construído; formato experimental, fora da definição do formato
   interface/         como o produto se apresenta; formato experimental, fora da definição do formato
 ```
 
@@ -375,6 +377,7 @@ Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é jus
 | Ideias e pedidos não comprometidos | Rastreador | Viram afirmações `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
 | Explicações e exemplos | Documentos derivados | Cada frase cita sua origem |
+| Como o produto é construído | `specs/arquitetura/`, em formato experimental; só se abre quando a tarefa cruza componentes ou troca uma tecnologia | A arquitetura cita as afirmações da especificação; a especificação não cita de volta |
 | Como o produto se apresenta | `specs/interface/`, em formato experimental; só se abre quando se mexe no que o ator vê ou opera | A interface cita as afirmações da especificação; a especificação não cita de volta |
 
 ## Decisões
@@ -428,9 +431,51 @@ Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de
 | Cenários de teste | Modelo (dado), C ou evento (quando), critérios e reações (então) |
 | Manual do usuário | Capacidades e visões, na ordem das jornadas |
 
+## Arquitetura, em experimento
+
+A especificação diz o que o produto faz, nunca como ele é construído, e `_produto.md` lista a arquitetura como fora de escopo. Para esse assunto há um formato experimental, em `specs/arquitetura/`. Ele ainda não faz parte da definição do formato: o validador não lê a pasta, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e os modelos de `_sistema.md` e de `_contadores.md`. A pasta é opcional: os modelos podem ficar como vieram até a equipe decidir descrever a arquitetura.
+
+A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
+
+| Conceito | O que é |
+| --- | --- |
+| Componente | Peça da solução, como um programa, um script, uma skill, um arquivo de dados ou um serviço. É a unidade, com bloco e sigla |
+| Área | Um componente central e os que dependem dele, num arquivo |
+| Externo | Sistema ou serviço de fora de que a solução depende |
+| Restrição global | Afirmação que vale para o sistema inteiro, de sigla `ARQ` |
+| Fluxo | Sequência de interfaces que mostra como os componentes colaboram para cumprir uma capacidade |
+
+Um componente fica assim:
+
+```markdown
+## Instalador  `INS`
+Script que copia da linha principal os arquivos do formato para o repositório que o adota.
+- tecnologia: Node.js 18 ou mais recente; sem dependências
+- local: `skills/tabularium-instalar/instalar.mjs`
+- usa 1 **Manifesto de instalação**
+- [x] INS-R1  Baixa cada arquivo da linha principal por URL, sem clonar o repositório
+- [x] INS-I1  Execução por linha de comando, na raiz do repositório que adota o formato
+  - uma linha por arquivo, com o que foi feito dele
+```
+
+As linhas de modelo dizem em que o componente é feito (`tecnologia:`), onde ele mora no repositório (`local:`), o que ele cumpre da especificação (`realiza:`) e de quem depende (`usa`). As afirmações têm quatro papéis: R é restrição, sempre verdadeira; Q é qualidade, um limite técnico com número e unidade; I é interface, o que o componente oferece a outros ou a quem usa o sistema, com o contrato nos sub-itens; F é fluxo, e só aparece em `_sistema.md`.
+
+Só entra a escolha estratégica: a que guia a implementação e é cara de trocar depois. O teste para no primeiro sim:
+
+- Quem usa o sistema de fora perceberia a troca?
+- Dados ou arquivos já guardados teriam de ser migrados?
+- Mais de um componente teria de mudar junto?
+- Quem implementa precisa saber disso antes de começar qualquer parte?
+
+Sem nenhum sim, a escolha é tática e fica no código. Também fica no código o que ele já diz sem esforço, como versões exatas, listas de arquivos e assinaturas.
+
+A ligação com a especificação é de mão única, como a das decisões: o componente aponta com `realiza:` as afirmações que ele cumpre, e a especificação nunca aponta de volta. Quem decide o produto não precisa abrir a pasta.
+
+O exemplo real é a arquitetura do próprio Tabularium, em [`specs/arquitetura/`](specs/arquitetura/), e a legenda completa está em [`specs/arquitetura/_convencoes.md`](specs/arquitetura/_convencoes.md). A memória de como o formato nasceu está em `specs/arquitetura/ideia.md`.
+
 ## Interface, em experimento
 
-A especificação diz o que o produto faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora de escopo. Para esse assunto há um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador não lê a pasta, a instalação não a distribui, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`.
+A especificação diz o que o produto faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora de escopo. Para esse assunto há um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador não lê a pasta, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e os modelos de `_interface.md` e de `_contadores.md`. A pasta é opcional, como a de arquitetura.
 
 A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
 
@@ -479,6 +524,16 @@ Não entram desenhos de tela nem posição em pixels. O formato foi posto à pro
 ## Trabalhando com agentes de IA
 
 O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especificação: o que ler antes de cada tarefa, onde colocar cada tipo de informação, as regras que nunca se quebram (como não renumerar e não editar seções geradas) e quando parar e perguntar em vez de inventar. A revisão por categorias FURPS+ não gera requisitos: gera perguntas abertas, porque uma categoria vazia pode ser uma lacuna ou uma escolha consciente.
+
+Cinco skills acompanham o formato, e `npx skills` instala todas de uma vez. Só a de validação o agente aciona por conta própria; as outras esperam o seu comando.
+
+| Skill | O que faz |
+| --- | --- |
+| `/tabularium-instalar` | Instala ou atualiza o formato em `specs/` |
+| `/tabularium-validar` | Confere a forma da especificação com um script |
+| `/tabularium-entrevistar` | Amadurece uma ideia com o autor até o consenso sobre o que muda, e mostra o plano |
+| `/tabularium-registrar` | Grava numa issue do GitHub o estado da entrevista; opcional |
+| `/tabularium-aplicar` | Escreve em `specs/` o plano que chegou ao consenso |
 
 ## Valores
 

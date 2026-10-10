@@ -233,6 +233,7 @@ test('VRF-V1: a violação num arquivo de dados cita o arquivo e a linha', () =>
 
 test('VRF-R11: pasta que não é de área nem de decisões é ignorada', () => {
   assert.deepEqual(violacoesCom({ 'arquitetura/sistema.md': 'qualquer coisa\n- [ok] sem forma\n' }), []);
+  assert.deepEqual(violacoesCom({ 'interface/_interface.md': 'qualquer coisa\n- [ok] sem forma\n' }), []);
 });
 
 test('VRF-R13: o conteúdo gerado não é lido', () => {

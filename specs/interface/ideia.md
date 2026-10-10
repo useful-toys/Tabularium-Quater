@@ -64,4 +64,4 @@ Perguntas que ajudam a avaliar:
 - **Estilo composto.** Uma combinação que se repete, como painel com borda e sombra, não tem como receber nome; hoje ela é repetida em cada componente.
 - **"Meio" foi pouco usado.** No Iconula, só duas afirmações variaram por meio. O resto da variação era por caber ou não na largura e pela forma de entrada (toque, ponteiro, teclado), e coube em afirmações comuns. Falta ver um produto com mais de um meio de verdade.
 - **Os nomes.** Os papéis R, Q e I, as linhas de modelo e a sigla `IFC` são sugestão do Claude.
-- **A instalação não distribui esta pasta.** O manifesto não a lista, de propósito, enquanto for experimento.
+- **A instalação distribui esta pasta.** Resolvido em 10 de outubro de 2026: o manifesto lista a legenda e as instruções entre os genéricos, e `_interface.md` e `_contadores.md` entre os modelos, para o instalador criar a versão inicial de cada um. Antes, o manifesto a deixava de fora, de propósito, enquanto fosse experimento. `ideia.md` e `decisoes.md` não são distribuídos.

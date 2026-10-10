@@ -16,7 +16,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 2. Leia `_sistema.md`: áreas, externos, restrições globais e fluxos.
 3. Leia só a área que a tarefa toca.
 
-`ideia.md` e `decisoes.md` são memória informal de como este formato nasceu. Abra-os para entender por que o formato é assim; o que vale como arquitetura são os outros arquivos.
+`ideia.md` e `decisoes.md`, quando existem, são memória informal de como este formato nasceu. Abra-os para entender por que o formato é assim; o que vale como arquitetura são os outros arquivos.
 
 ## Ao responder perguntas
 
@@ -88,7 +88,7 @@ Nesses casos, deixe a especificação da arquitetura como está e diga ao usuár
 2. os lugares que você tentou e por que cada um não serviu;
 3. uma sugestão de como o formato poderia evoluir para cobrir o caso, e o que mais ela afetaria.
 
-Quem decide se o formato evolui é o usuário. Só altere `_convencoes.md` ou este arquivo depois que ele decidir, e registre a mudança em `decisoes.md`.
+Quem decide se o formato evolui é o usuário. `_convencoes.md` e este arquivo são iguais em todos os projetos, e a instalação os sobrescreve: só os altere no repositório do formato, depois que ele decidir, e registre a mudança no `decisoes.md` de lá.
 
 ## Quando parar e perguntar
 

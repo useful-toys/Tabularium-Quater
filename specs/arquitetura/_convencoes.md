@@ -8,7 +8,7 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - `_contadores.md`: o maior número já usado em cada sequência da arquitetura, como na especificação
 - `decisoes/`: decisões que só a arquitetura cita, uma por arquivo, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
 - `<area>.md`: uma área; lida em qualquer ordem
-- `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato
+- `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato
 
 ## Formato experimental
 - o que não se encaixa bem nos papéis, nas linhas de modelo ou no teste do que entra não é escrito à força: é levado ao usuário, que decide se o formato evolui
