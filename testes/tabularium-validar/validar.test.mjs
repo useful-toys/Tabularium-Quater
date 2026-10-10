@@ -320,6 +320,16 @@ test('VRF-R7: a linha de comando sai com 0 numa especificação válida', () => 
   assert.equal(saida, 'nenhuma violação\n');
 });
 
+test('VAL-I1: a linha de comando sai com 2 quando o argumento é uma pasta que não existe', () => {
+  const saida = spawnSync(process.execPath, [script, join(raiz, 'testes', 'tabularium-validar', 'nao-existe')], { encoding: 'utf8' });
+  assert.equal(saida.status, 2);
+});
+
+test('VAL-I1: a linha de comando sai com 2 quando o argumento é um arquivo, não uma pasta', () => {
+  const saida = spawnSync(process.execPath, [script, script], { encoding: 'utf8' });
+  assert.equal(saida.status, 2);
+});
+
 // Uma decisão na arquitetura e outra na interface, com os arquivos que as citam.
 // A interface cita as três pastas; o resto das linhas dela e da arquitetura não é julgado.
 const camadas = {

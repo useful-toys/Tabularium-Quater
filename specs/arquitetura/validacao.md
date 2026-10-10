@@ -19,6 +19,7 @@ Script que lê a pasta da especificação e acusa as violações de forma.
   - uma linha por violação, com arquivo, linha, identificador da regra e frase
   - uma linha final com o total
   - código de saída 0 sem violação e 1 com alguma
+  - código de saída 2 quando o argumento não é uma pasta existente
 
 ## Skill de validação  `SKV`
 Instruções que levam um agente de IA a executar o **Script de validação** e a corrigir o que ele acusa.
