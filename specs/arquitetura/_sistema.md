@@ -17,10 +17,10 @@ Arquivos de texto num repositório público, levados ao repositório que adota o
   - fornece: a execução do **Instalador** e do **Script de validação**
 
 ## Restrições globais
-- [x] ARQ-R1  O formato é guardado num repositório público no **GitHub**, e a linha principal é a única versão distribuída
-- [x] ARQ-R2  Os arquivos genéricos distribuídos são os da própria `specs/`; o repositório não guarda segunda cópia deles
-- [x] ARQ-R3  Manifesto e configuração não ficam soltos na raiz do repositório: vão em `specs/`, e os de instalação, em `instalador/`
-- [x] ARQ-R4  Os arquivos que cada repositório preenche por conta própria são distribuídos como modelos, guardados em `instalador/modelos/` no mesmo caminho do destino
+- [x] ARQ-R1  O formato é guardado num repositório público no **GitHub**, e a linha principal é a única versão distribuída ⟸ [D97, D103]
+- [x] ARQ-R2  Os arquivos genéricos distribuídos são os da própria `specs/`; o repositório não guarda segunda cópia deles ⟸ [D99]
+- [x] ARQ-R3  Manifesto e configuração não ficam soltos na raiz do repositório: vão em `specs/`, e os de instalação, em `instalador/` ⟸ [D102]
+- [x] ARQ-R4  Os arquivos que cada repositório preenche por conta própria são distribuídos como modelos, guardados em `instalador/modelos/` no mesmo caminho do destino ⟸ [D100, D101]
 
 ## Fluxos
 - ARQ-F1  Instalar ou atualizar o formato: [SKI-I1] → [INS-I1]

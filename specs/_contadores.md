@@ -57,4 +57,4 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - P  0
 
 ## Decisões
-- D  93  quem-cita-decisao
+- D  108  script-dentro-da-skill
