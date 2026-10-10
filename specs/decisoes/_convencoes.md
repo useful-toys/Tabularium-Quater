@@ -33,5 +33,10 @@ Legenda para ler e escrever uma decisão neste formato. Este arquivo é igual em
 ## Ligação com a especificação
 - o item da especificação cita a decisão com `⟸ [Dnn]` no fim; a decisão não cita o item
 - o texto da decisão nunca é escrito em área nem em `_produto.md`
-- decisão que nenhum item e nenhuma outra decisão cita é órfã; permanece até a limpeza
+- decisão que nenhum item da especificação, da arquitetura ou da interface e nenhuma outra decisão cita é órfã; permanece até a limpeza
 - a decisão mora na pasta da área que mais a cita; mudar de pasta não muda o código
+
+## Arquitetura e interface
+- as decisões da arquitetura e da interface moram em `arquitetura/decisoes/` e em `interface/decisoes/`, com a forma desta legenda e os códigos da mesma sequência
+- subpastas: `<area>/`, como aqui; `_sistema/` na arquitetura e `_interface/` na interface fazem o papel de `_produto/`
+- item da especificação cita só decisão desta pasta; item da arquitetura, também as da arquitetura; item da interface, também as da arquitetura e as da interface

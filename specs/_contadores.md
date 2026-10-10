@@ -19,7 +19,7 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - CTD-R  8  forma-item-contador
 - DCL-R  2  declaracao-sobre-comportamento
 - DEC-C  3  limpar-decisoes-orfas
-- DEC-R  19  forma-itens-corpo
+- DEC-R  22  citacao-por-camada
 - DER-R  5  guarda-lo-sob
 - DER-V  1  ler-documento-derivado
 - DRF-R  18  atributos-ator-altera
@@ -50,11 +50,11 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - TRM-R  17  termo-vence-atributo
 - VIS-R  1  exibir-copiar-exportar
 - VRF-C  1  gerar-partes-derivadas
-- VRF-R  21  checa-dados-referencia
+- VRF-R  26  sem-sinonimos-decisoes
 - VRF-V  1  ver-violacoes-especificacao
 
 ## Perguntas
 - P  0
 
 ## Decisões
-- D  91  regra-adianta-atributos
+- D  93  quem-cita-decisao

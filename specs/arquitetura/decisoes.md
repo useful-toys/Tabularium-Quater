@@ -88,6 +88,16 @@ Proposta do Claude, aceita em 7 de outubro de 2026, junto com a mesma escolha pa
 - Aceita-se: o validador não lê essas decisões, e quem procura um `Dnn` olha em dois lugares.
 - As escolhas listadas no fim deste arquivo ainda não foram convertidas: várias estão sem o porquê dito.
 
+### 14. O validador confere as decisões e as citações de decisão
+
+Daniel, em 10 de outubro de 2026, para a arquitetura e para a interface. Revê o "aceita-se" da decisão 13. O validador passa a ler as decisões desta pasta e a conferir, nos demais arquivos, só a marca `⟸ [Dnn]`: a forma dela e a existência da decisão. O formato da arquitetura em si continua sem checagem, porque ainda é experimental. Registrada em `D82`, `D92` e `D93`, de `specs/decisoes/`.
+
+- As decisões ficam em subpastas por área, e em `_sistema/` as que não são de área. Daniel: a interface pode ter muitas áreas, e a arquitetura deve ter algumas. Descartada a pasta plana, proposta do Claude.
+- A arquitetura cita decisões suas e da especificação; a interface, também as da arquitetura. Daniel: a interface contém escolhas de arquitetura, e a arquitetura contém escolhas de produto.
+- O código repetido e o código acima do contador são acusados nas três pastas, como uma sequência só.
+- A citação vinda da arquitetura ou da interface conta para uma decisão não ser órfã. Proposta do Claude, aceita.
+- Por ora, os sinônimos proibidos não são conferidos nas decisões desta pasta. Proposta do Claude, aceita: o vocabulário técnico tem palavras comuns que a especificação pode ter proibido com outro sentido.
+
 ## Em aberto
 
 - Onde ficam as perguntas abertas da arquitetura.

@@ -6,7 +6,7 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - `_convencoes.md`: esta legenda
 - `_sistema.md`: o que vale para o sistema inteiro; lido antes das áreas
 - `_contadores.md`: o maior número já usado em cada sequência da arquitetura, como na especificação
-- `decisoes/`: decisões que só a arquitetura cita, uma por arquivo, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
+- `decisoes/`: decisões da arquitetura, uma por arquivo, em subpastas por área e em `_sistema/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
 - `<area>.md`: uma área; lida em qualquer ordem
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato
 

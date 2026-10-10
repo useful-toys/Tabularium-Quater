@@ -35,7 +35,8 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 - **Dividir uma decisão:** se a resolução precisa de duas frases, se uma alternativa responde a outra questão ou se dá para reverter só uma parte, são duas decisões. Crie a segunda com novo código e ajuste a marca de cada item que citava a primeira.
 - **Resposta a uma pergunta aberta:** o enunciado da pergunta vira a questão, e as opções não escolhidas viram as alternativas descartadas.
 - **Mover de pasta:** quando os itens de outra área passam a citar mais a decisão, mova o arquivo. O código e as citações não mudam.
-- **Limpar decisões órfãs:** só a pedido, junto com a poda de lápides. Apague a decisão que nenhum item da especificação e nenhuma outra decisão cita; se ela era a única a citar outra, apague essa também.
+- **Limpar decisões órfãs:** só a pedido, junto com a poda de lápides. Apague a decisão que nenhum item da especificação, da arquitetura ou da interface e nenhuma outra decisão cita; se ela era a única a citar outra, apague essa também. Procure o código em toda a pasta `specs/`: a arquitetura e a interface também citam decisões desta pasta.
+- **Decisão de arquitetura ou de interface:** mora em `decisoes/` da pasta dela, com a forma desta legenda. Siga o `AGENTS.md` daquela pasta, que diz o que muda.
 
 ## Depois de alterar
 

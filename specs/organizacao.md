@@ -135,17 +135,22 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R8  **Linha** que não casa com nenhuma forma prevista é violação ⟸ [D79]
 - [x] VRF-R9  Lê só os arquivos como estão, sem consultar o **Controle de versão** ⟸ [D80]
 - [x] VRF-R10  Lê sempre a **Especificação** inteira, com as **Decisões**
-- [x] VRF-R11  Ignora as pastas que não são de **Área**, de **Decisões** nem de **Arquivos de dados**, entre elas a de arquitetura ⟸ [D82]
+- [ ] VRF-R11  removida
 - [x] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
 - [x] VRF-R13  Não lê o conteúdo das seções geradas
 - [x] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R21] ⟸ [D77]
-- [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ESP-R9], [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2]
+- [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ESP-R9], [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2], [DEC-R21]
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
 - [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
-- [x] VRF-R18  Checa as **Referências**: [REF-R1], [JOR-R3], [EVT-R2], [PER-R5]
+- [x] VRF-R18  Checa as **Referências**: [REF-R1], [REF-R9], [JOR-R3], [EVT-R2], [PER-R5], [DEC-R22]
 - [x] VRF-R19  Checa os **Termos**: [TRM-R2], [TRM-R4], [TRM-R6], [TRM-R10], [TRM-R11], [TRM-R12], [TRM-R13], [TRM-R14], [TRM-R15], [TRM-R16], [TRM-R17]
 - [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
 - [x] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
+- [ ] VRF-R22  Ignora as pastas que não são de **Área**, de **Decisões**, de **Arquivos de dados**, de arquitetura nem de interface
+- [ ] VRF-R23  Das pastas de arquitetura e de interface, checa só as **Decisões** e as **Referências** a elas ⟸ [D82]
+- [ ] VRF-R24  Nas pastas de arquitetura e de interface, não lê `AGENTS.md`, `_convencoes.md`, `ideia.md` nem `decisoes.md`
+- [ ] VRF-R25  Nas pastas de arquitetura e de interface, confere da **Referência** a uma **Decisão** a forma da marca e a existência da decisão, e não o lugar da marca na **Linha**
+- [ ] VRF-R26  Nas **Decisões** de arquitetura e de interface, não checa [TRM-R6]
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
@@ -209,7 +214,7 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 - [x] DEC-R10  Mudar de pasta não muda o **código**
 - [x] DEC-R11  Usa os **Termos** da **Especificação**, sem negrito ⟸ [D17]
 - [x] DEC-R12  Um item do corpo pode citar outra decisão, com a mesma **Referência** `⟸ [Dnn]` ⟸ [D20]
-- [x] DEC-R13  Decisão que nenhum item da **Especificação** e nenhuma outra decisão cita é órfã, e permanece até a limpeza ⟸ [D15]
+- [ ] DEC-R13  removida
 - [x] DEC-R14  **Resolução** com mais de uma frase, ou com ponto e vírgula, indica mais de uma decisão
 - [x] DEC-R15  Decisão com mais de 25 linhas indica mais de uma decisão
 - [x] DEC-R16  Mais de 5 **alterações** indicam **resoluções** acumuladas
@@ -224,13 +229,16 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 | consequência | sub-item de `- Consequências`, iniciado por `Ganha:` ou `Aceita:` |
 | alteração | item de `Histórico`, como `- AAAA-MM-DD: texto` |
 
+- [ ] DEC-R20  Decisão que nenhum item da **Especificação**, da arquitetura ou da interface e nenhuma outra decisão cita é órfã, e permanece até a limpeza ⟸ [D15]
+- [ ] DEC-R21  Decisão de arquitetura ou de interface mora em `decisoes/` da pasta dela, numa subpasta por área; a que não é de área, em `_sistema` ou em `_interface` ⟸ [D92]
+- [ ] DEC-R22  Item da **Especificação** cita só decisão da **Especificação**; item da arquitetura, também as da arquitetura; item da interface, também as da arquitetura e as da interface ⟸ [D93]
 - [x] DEC-C1  Registrar uma decisão
   - com o próximo **código** livre
   - ao menos um item passa a citá-la
 - [x] DEC-C2  Rever a **resolução** de uma decisão
   - conforme [DEC-R7]
 - [x] DEC-C3  Limpar as decisões órfãs
-  - exige: decisão órfã, conforme [DEC-R13]
+  - exige: decisão órfã, conforme [DEC-R20]
   - o arquivo é apagado
   - decisão que só a apagada citava também é apagada
   - o **Arquivo de contadores** impede que o **código** volte

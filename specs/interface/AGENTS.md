@@ -63,7 +63,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 | Texto exato que é compromisso | Entre crases, na afirmação do componente que o mostra; o texto que não é compromisso fica no código |
 | Cor, tipografia ou medida com nome | `Estilos` de `_interface.md` |
 | Onde a interface aparece | `Meios` de `_interface.md` |
-| O porquê de uma escolha que tinha alternativa | Decisão em `decisoes/` desta pasta, citada com `⟸ [Dnn]` |
+| O porquê de uma escolha que tinha alternativa | Decisão em `decisoes/` desta pasta, na subpasta da área, citada com `⟸ [Dnn]` |
 | Dúvida sobre algo já comprometido | Pergunta em `_perguntas.md` desta pasta |
 
 ## Receitas
@@ -79,7 +79,8 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 - **Acrescentar uma afirmação:** aplique os dois testes, ache o dono, use o próximo número e atualize o contador.
 - **Criar um estilo:** confira antes se já existe um com o mesmo papel. Dê um nome que diga o papel, e não o valor. Escreva o valor só quando ele é compromisso.
 - **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Acrescente-a na tabela de áreas de `_interface.md`.
-- **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta; o item que a cita é desta pasta; e o código sai de `Decisões` em `../_contadores.md`, que você atualiza na mesma mudança.
+- **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta, na subpasta da área do item, ou em `_interface/` se o item está em `_interface.md`; o item que a cita é desta pasta; e o código sai de `Decisões` em `../_contadores.md`, que você atualiza na mesma mudança.
+- **Citar uma decisão:** um item desta pasta cita decisão desta pasta, da arquitetura ou da especificação.
 - **Retirar ou mover uma afirmação:** lápide no lugar, como na especificação.
 
 ## Depois de alterar

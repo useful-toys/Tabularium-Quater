@@ -127,6 +127,17 @@ Daniel, depois da conversão do Iconula. Revê a decisão 16. O nome igual funci
 - Componente e célula são a mesma coisa: mesmo nome, outra sigla, e a célula é candidata a sair da especificação.
 - A célula é do domínio e o componente só a mostra: o componente tem nome próprio, como "Cartão de figurinha".
 
+### 26. O validador confere as decisões e as citações de decisão
+
+Daniel, em 10 de outubro de 2026, para a interface e para a arquitetura. Revê o "aceita-se" da decisão 15. O validador passa a ler as decisões desta pasta e a conferir, nos demais arquivos, só a marca `⟸ [Dnn]`: a forma dela e a existência da decisão. O formato da interface em si continua sem checagem, porque ainda é experimental. Registrada em `D82`, `D92` e `D93`, de `specs/decisoes/`.
+
+- As decisões ficam em subpastas por área, e em `_interface/` as que não são de área. Daniel: a interface pode ter muitas áreas, se a aplicação for grande e tiver muitos componentes visuais. Descartada a pasta plana, proposta do Claude.
+- A interface cita decisões suas, da arquitetura e da especificação. Daniel: a interface contém escolhas de arquitetura, e a arquitetura contém escolhas de produto.
+- O código repetido e o código acima do contador são acusados nas três pastas, como uma sequência só.
+- A citação vinda da interface conta para uma decisão não ser órfã. Proposta do Claude, aceita.
+- Por ora, os sinônimos proibidos não são conferidos nas decisões desta pasta. Proposta do Claude, aceita.
+- As perguntas de `_perguntas.md` desta pasta continuam sem checagem.
+
 ## Sobre o experimento
 
 ### 18. O experimento é no Iconula, e fica no Iconula
