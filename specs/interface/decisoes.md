@@ -138,6 +138,15 @@ Daniel, em 10 de outubro de 2026, para a interface e para a arquitetura. Revê o
 - Por ora, os sinônimos proibidos não são conferidos nas decisões desta pasta. Proposta do Claude, aceita.
 - As perguntas de `_perguntas.md` desta pasta continuam sem checagem.
 
+### 27. O agente é cético quanto ao formato
+
+Daniel, em 10 de outubro de 2026, para a interface e para a arquitetura. Complementa a decisão 12. O formato segue os valores da especificação do produto e não está fechado: as instruções e a legenda são proposta, baseada nas situações vividas até agora. O agente não força o encaixe; verifica se o formato poderia evoluir para servir melhor à especificação e, se sim, avisa o usuário com o problema, um exemplo e uma proposta. O usuário decide se o Tabularium evolui, no repositório do Tabularium.
+
+- Vale também para o encaixe que é possível, mas fere um valor: repetir, juntar duas coisas numa linha, não poder verificar.
+- A arquitetura não aplica o valor "Não técnica".
+- Complemento, em 10 de outubro de 2026, depois de uma entrevista: o agente avisa uma vez por tipo de problema e junta as ocorrências; o usuário decide entre forçar o encaixe, anotar sem issue e anotar com issue. A anotação vai para `_achados.md`, na própria pasta, com o estado; `forçado` vale só no projeto. Descartado o nome `_avisos.md`: a decisão 4 trocou "aviso" por "notificação". A issue é no Tabularium-Quater, com título `Ideia: …` e rótulos `enhancement` e `em discussão`, e só o `AGENTS.md` da pasta a oferece.
+- Registrada em `D109`, de `specs/arquitetura/decisoes/_sistema/`, porque a interface cita decisões da arquitetura, e não o contrário.
+
 ## Sobre o experimento
 
 ### 18. O experimento é no Iconula, e fica no Iconula

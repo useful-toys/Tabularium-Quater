@@ -50,11 +50,11 @@ Maior número já usado em cada sequência da especificação, com um nome curto
 - TRM-R  17  termo-vence-atributo
 - VIS-R  1  exibir-copiar-exportar
 - VRF-C  1  gerar-partes-derivadas
-- VRF-R  26  sem-sinonimos-decisoes
+- VRF-R  27  nao-le-achados
 - VRF-V  1  ver-violacoes-especificacao
 
 ## Perguntas
 - P  0
 
 ## Decisões
-- D  108  script-dentro-da-skill
+- D  109  formato-cetico

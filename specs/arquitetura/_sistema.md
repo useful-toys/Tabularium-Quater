@@ -21,6 +21,7 @@ Arquivos de texto num repositório público, levados ao repositório que adota o
 - [x] ARQ-R2  Os arquivos genéricos distribuídos são os da própria `specs/`; o repositório não guarda segunda cópia deles ⟸ [D99]
 - [x] ARQ-R3  Manifesto e configuração não ficam soltos na raiz do repositório: vão em `specs/`, e os de instalação, em `instalador/` ⟸ [D102]
 - [x] ARQ-R4  Os arquivos que cada repositório preenche por conta própria são distribuídos como modelos, guardados em `instalador/modelos/` no mesmo caminho do destino ⟸ [D100, D101]
+- [x] ARQ-R5  As **Instruções para agentes** da arquitetura e da interface mandam o agente avisar o usuário do que o formato não serve a escrever, e deixar que ele decida entre forçar o encaixe e anotá-lo em `_achados.md` ⟸ [D109]
 
 ## Fluxos
 - ARQ-F1  Instalar ou atualizar o formato: [SKI-I1] → [INS-I1]

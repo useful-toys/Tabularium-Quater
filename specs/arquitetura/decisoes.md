@@ -98,6 +98,12 @@ Daniel, em 10 de outubro de 2026, para a arquitetura e para a interface. Revê o
 - A citação vinda da arquitetura ou da interface conta para uma decisão não ser órfã. Proposta do Claude, aceita.
 - Por ora, os sinônimos proibidos não são conferidos nas decisões desta pasta. Proposta do Claude, aceita: o vocabulário técnico tem palavras comuns que a especificação pode ter proibido com outro sentido.
 
+### 15. O agente é cético quanto ao formato
+
+Daniel, em 10 de outubro de 2026, para a arquitetura e para a interface. Complementa a regra de levar ao usuário o que não se encaixa. O formato segue os valores da especificação do produto, sem o valor "Não técnica", e não está fechado: as instruções e a legenda são proposta, baseada nas situações vividas até agora. O agente não força o encaixe; verifica se o formato poderia evoluir para servir melhor à especificação e, se sim, avisa o usuário com o problema, um exemplo e uma proposta. O usuário decide se o Tabularium evolui, no repositório do Tabularium. Registrada também na decisão 27 de `specs/interface/decisoes.md`, e em `D109`, de `specs/arquitetura/decisoes/_sistema/`, citada por `ARQ-R5`. O detalhe do fluxo, com `_achados.md` e a issue, está no complemento da decisão 27.
+
+- Vale também para o encaixe que é possível, mas fere um valor: repetir, juntar duas coisas numa linha, não poder verificar.
+
 ## Em aberto
 
 - Onde ficam as perguntas abertas da arquitetura.

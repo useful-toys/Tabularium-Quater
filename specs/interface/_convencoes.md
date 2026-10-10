@@ -8,12 +8,17 @@ Legenda para ler e escrever a interface neste formato, que é experimental. Ela 
 - `_contadores.md`: o maior número já usado em cada sequência de identificadores da interface, como na especificação
 - `_perguntas.md`: dúvidas sobre a interface já comprometida; opcional; os códigos `Pnn` saem da sequência do produto, em `../_contadores.md`
 - `decisoes/`: decisões que só a interface cita, uma por arquivo, em subpastas por área e em `_interface/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
+- `_achados.md`: o que o formato não serviu a escrever, por tipo de problema, com o estado; opcional; fora do formato, e o validador não o lê
 - `<area>.md`: uma área; lida em qualquer ordem
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato
 
 ## Formato experimental
+- o formato é uma proposta, nascida de situações vividas e ainda não fechada; serve aos valores da especificação do produto (`README.md` da raiz), com componente no lugar de célula
 - o que não se encaixa bem nos papéis, nas linhas de modelo, no vocabulário ou no teste do que entra não é escrito à força: é levado ao usuário, que decide se o formato evolui
-- esta legenda só muda por decisão do usuário
+- o que cabe só ferindo um valor, como repetir, juntar duas coisas numa linha ou não poder ser verificado, também é levado ao usuário
+- o aviso traz o problema, um exemplo concreto e uma proposta, e vale uma vez por tipo de problema
+- o usuário decide: forçar o encaixe, ou anotá-lo em `_achados.md`, com ou sem issue no repositório do Tabularium
+- esta legenda só muda por decisão do usuário, no repositório do Tabularium
 
 ## O que entra
 - só o que impede dois lugares do produto de resolverem a mesma coisa de dois jeitos

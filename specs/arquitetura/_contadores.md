@@ -3,7 +3,7 @@ Maior número já usado em cada sequência da arquitetura, com um nome curto da 
 
 ## Identificadores
 - ARQ-F  2  validar-especificacao
-- ARQ-R  4  modelos-em-instalador
+- ARQ-R  5  formato-cetico
 - INS-I  1  execucao-linha-comando
 - INS-R  2  so-escreve-caminhos
 - MAN-R  1  mora-linha-principal

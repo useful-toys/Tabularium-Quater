@@ -7,12 +7,17 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - `_sistema.md`: o que vale para o sistema inteiro; lido antes das áreas
 - `_contadores.md`: o maior número já usado em cada sequência da arquitetura, como na especificação
 - `decisoes/`: decisões da arquitetura, uma por arquivo, em subpastas por área e em `_sistema/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
+- `_achados.md`: o que o formato não serviu a escrever, por tipo de problema, com o estado; opcional; fora do formato, e o validador não o lê
 - `<area>.md`: uma área; lida em qualquer ordem
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato
 
 ## Formato experimental
+- o formato é uma proposta, nascida de situações vividas e ainda não fechada; serve aos valores da especificação do produto (`README.md` da raiz), com componente no lugar de célula e sem o valor `Não técnica`
 - o que não se encaixa bem nos papéis, nas linhas de modelo ou no teste do que entra não é escrito à força: é levado ao usuário, que decide se o formato evolui
-- esta legenda só muda por decisão do usuário
+- o que cabe só ferindo um valor, como repetir, juntar duas coisas numa linha ou não poder ser verificado, também é levado ao usuário
+- o aviso traz o problema, um exemplo concreto e uma proposta, e vale uma vez por tipo de problema
+- o usuário decide: forçar o encaixe, ou anotá-lo em `_achados.md`, com ou sem issue no repositório do Tabularium
+- esta legenda só muda por decisão do usuário, no repositório do Tabularium
 
 ## O que entra
 - só a escolha técnica estratégica: a que guia a implementação e é cara de trocar depois

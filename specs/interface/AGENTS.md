@@ -4,6 +4,17 @@ Esta pasta descreve a interface do produto: os componentes, os padrões, os esti
 
 A gramática é a da especificação. As instruções de `../AGENTS.md` valem aqui, salvo o que este arquivo muda: identificadores que nunca voltam, lápides, termos em negrito na primeira menção, uma coisa por afirmação, e nada de histórico, justificativa ou explicação no texto.
 
+## O formato é uma proposta
+
+Este formato nasceu das situações vividas até agora e não está fechado. Ele existe para servir aos valores da especificação do produto, em `README.md` na raiz, seção `Valores`, lendo componente onde se lê célula. Se o formato e um valor divergem, vale o valor.
+
+Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes.md`:
+
+- Não pergunte só se o que você quer registrar cabe. Pergunte se o formato o escreve bem: numa linha, uma coisa só; sem repetir o que está em outro lugar; com cada termo uma vez; verificável; num lugar onde um agente o ache.
+- Caber com esforço é mau encaixe. Se, para escrever, você repetiria algo, juntaria duas coisas numa linha, usaria um papel, um tipo ou uma palavra do vocabulário por aproximação ou deixaria a afirmação sem como verificar, o formato é que deve ser questionado.
+- Não force. Não escreva o que encaixa mal, e não troque a escolha por outra que encaixe melhor: o formato é que serve à interface, e não o contrário.
+- Se o formato poderia evoluir para encaixar melhor, avise o usuário antes de escrever, conforme `Quando o formato não serve`.
+
 ## Quando ler a interface
 
 - Antes de implementar ou alterar qualquer coisa que o ator vê ou opera.
@@ -38,7 +49,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 9. Todo `local:` aponta para um caminho que existe no repositório.
 10. Números de identificador saem de `_contadores.md` desta pasta; códigos `Dnn` e `Pnn`, de `../_contadores.md`, que você atualiza na mesma mudança. Antes de criar uma sigla, confira que ela não aparece em nenhum arquivo de contadores de `specs/`.
 11. Toda afirmação nova nasce `[ ]` e passa a `[x]` quando o produto a cumpre por inteiro, com evidência.
-12. O formato é experimental e não previu tudo. Quando algo não se encaixa bem, pare e avise o usuário, conforme `Quando o formato não serve`. Escreva só o que cabe sem esforço.
+12. O formato é uma proposta e não previu tudo. Quando algo não se encaixa bem, ou se encaixa só ferindo um valor da especificação, pare e avise o usuário, conforme `Quando o formato não serve`. Escreva só o que cabe sem esforço.
 
 ## Onde colocar cada coisa
 
@@ -93,6 +104,8 @@ Resuma a mudança listando os identificadores criados, alterados e retirados, e 
 
 Proponha, sem fazer por conta própria: retirar a afirmação que deixou de passar no teste do que entra; levar para a especificação a afirmação que sobrevive à troca de meio; trazer da especificação a que não sobrevive; transformar em estilo o valor que se repete em mais de um componente; transformar em padrão o comportamento que se repete em mais de um componente.
 
+Aponte também onde o formato forçou o texto: a repetição, a linha com duas coisas, o tipo ou a palavra do vocabulário usados por aproximação, a afirmação que não se verifica. Cada um é um aviso ao usuário, conforme `Quando o formato não serve`.
+
 ## Quando o formato não serve
 
 Algo não se encaixa bem quando, para escrevê-lo, seria preciso:
@@ -102,15 +115,39 @@ Algo não se encaixa bem quando, para escrevê-lo, seria preciso:
 - usar uma palavra do vocabulário com outro sentido, ou precisar de uma que ele não tem;
 - dividir em vários componentes o que é uma coisa só, ou juntar num componente o que são várias;
 - deixar de fora, por causa do teste do que entra, algo que claramente evita inconsistência; ou aceitar algo que claramente é detalhe de uma tela;
-- escrever prosa, um desenho, uma tabela ou uma seção que o formato não tem.
+- escrever prosa, um desenho, uma tabela ou uma seção que o formato não tem;
+- repetir o que já está escrito em outro lugar, ou escrever numa linha duas coisas que mudariam por motivos diferentes;
+- escrever uma afirmação que ninguém consegue verificar no produto.
 
-Nesses casos, deixe a interface como está e diga ao usuário:
+Nesses casos, não escreva o que não encaixa; o que cabe sem esforço pode ser escrito. Antes de escrever, leia `_achados.md`: se o tipo de problema já está lá, aplique o estado dele. Senão, avise o usuário:
 
-1. o que precisava ser registrado, em uma ou duas frases;
-2. os lugares que você tentou e por que cada um não serviu;
-3. uma sugestão de como o formato poderia evoluir para cobrir o caso, e o que mais ela afetaria.
+1. o problema: o que precisava ser registrado e qual valor da especificação o formato fere, em uma ou duas frases;
+2. um exemplo concreto: a linha que você escreveria, ou o conteúdo real, e os lugares que você tentou, com o porquê de cada um não servir;
+3. uma proposta de como o formato poderia evoluir para cobrir o caso, e o que mais ela afetaria.
 
-Quem decide se o formato evolui é o usuário. `_convencoes.md` e este arquivo são iguais em todos os projetos, e a instalação os sobrescreve: só os altere no repositório do formato, depois que ele decidir.
+Avise uma vez por tipo de problema em cada conversa e junte as ocorrências, em vez de parar a cada uma. Se houver mais de um tipo, comece pelo que mais pesa. Não proponha a mudança como decidida e não a aplique.
+
+O usuário decide, por tipo de problema:
+
+- **forçar**, porque o encaixe procede: escreva como o exemplo, e registre em `_achados.md` o estado `forçado`, a forma escrita e os componentes onde a usou;
+- **anotar sem issue**: registre em `_achados.md` o estado `anotado`, e não escreva o item;
+- **anotar com issue**: registre como acima e, só com o sim do usuário, abra a issue conforme `Achados do formato`; o estado é `issue` e o link.
+
+Enquanto o usuário não decide, não escreva o item e siga com o resto.
+
+Quem decide se o formato evolui é o usuário, e a evolução se faz no repositório do Tabularium. `_convencoes.md` e este arquivo são iguais em todos os projetos, e a instalação os sobrescreve: só os altere lá, depois que ele decidir, e registre a mudança no `decisoes.md` de lá. A entrada `forçado` vale só no projeto: não altera a legenda.
+
+## Achados do formato
+
+`_achados.md`, nesta pasta, é opcional e não faz parte do formato. Cada entrada é um tipo de problema, escrita como o corpo de uma issue:
+
+- `## Título`, uma frase que diz o problema, e a linha `estado:` (`anotado`, `forçado` ou `issue: <link>`);
+- `### Resumo`, `### Problema`, `### Exemplo`, `### Proposta`, `### Em aberto` e `### Contexto`, em listas, uma coisa por linha;
+- `Contexto` traz a data, o repositório e as ocorrências: os componentes e os itens que pararam ali.
+
+Para abrir a issue, use `gh issue create --repo useful-toys/Tabularium-Quater`: título `Ideia: …`, rótulos `enhancement` e `em discussão`, e as seções da entrada como corpo, sem a linha `estado:`. Escreva o corpo num arquivo temporário e passe-o com `--body-file`. Cada entrada que o usuário leva ao Tabularium e decide, ou descarta, ele manda apagar.
+
+Leia `_achados.md` também antes de implementar ou responder sobre um componente que ele cita: o que ficou de fora não está no bloco.
 
 ## Quando parar e perguntar
 
