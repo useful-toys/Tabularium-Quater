@@ -151,6 +151,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R24  Nas pastas de arquitetura e de interface, não lê `AGENTS.md`, `_convencoes.md`, `ideia.md` nem `decisoes.md`
 - [x] VRF-R25  Nas pastas de arquitetura e de interface, confere da **Referência** a uma **Decisão** a forma da marca e a existência da decisão, e não o lugar da marca na **Linha**
 - [x] VRF-R26  Nas **Decisões** de arquitetura e de interface, não checa [TRM-R6]
+- [x] VRF-R27  Nas pastas de arquitetura e de interface, não lê `_achados.md`
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**

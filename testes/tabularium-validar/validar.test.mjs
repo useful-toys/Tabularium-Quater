@@ -349,6 +349,12 @@ test('VRF-R24: as instruções, a legenda e a memória informal das duas pastas 
   assert.deepEqual(regrasDe(violacoesNasCamadas({ 'arquitetura/validacao/ideia.md': solto })), ['REF-R1', 'REF-R9']);
 });
 
+test('VRF-R27: os achados do formato das duas pastas não são lidos', () => {
+  const solto = 'qualquer coisa ⟸ D9 e ⟸ [D9]\n';
+  assert.deepEqual(violacoesNasCamadas({ 'arquitetura/_achados.md': solto, 'interface/_achados.md': solto }), []);
+  assert.deepEqual(regrasDe(violacoesNasCamadas({ 'arquitetura/validacao/_achados.md': solto })), ['REF-R1', 'REF-R9']);
+});
+
 test('VRF-R25: a marca de decisão vale em qualquer lugar da linha, e dentro de código não é marca', () => {
   assert.deepEqual(violacoesNasCamadas({
     'arquitetura/validacao.md': '# Validação\nA leitura ⟸ [D2] não depende das checagens; a marca é `⟸ [Dnn]`.\n',

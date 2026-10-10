@@ -13,7 +13,7 @@ export const ROTULOS_DECISAO = ['Contexto', 'Alternativas descartadas', 'Consequ
 export const COLUNAS_AREAS = ['Área', 'Célula central', 'Prioridade', 'Dono', 'Arquivo'];
 // As pastas de arquitetura e de interface: de cada uma só se leem as decisões e as citações de decisão.
 const CAMADAS = ['arquitetura', 'interface'];
-const FORA_DA_CAMADA = ['AGENTS.md', '_convencoes.md', 'ideia.md', 'decisoes.md'];
+const FORA_DA_CAMADA = ['AGENTS.md', '_convencoes.md', 'ideia.md', 'decisoes.md', '_achados.md'];
 
 const CARD = '(?:1|0\\.\\.1|0\\.\\.N|1\\.\\.N)';
 const CODIGO = '[A-Z]{2,5}-[A-Z]\\d+';
