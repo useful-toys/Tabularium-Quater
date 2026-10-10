@@ -12,8 +12,8 @@ Script que lê a pasta da especificação e acusa as violações de forma.
 - [x] VAL-R1  A **leitura** não depende das **checagens**, para servir a outro programa que leia a especificação ⟸ [D105]
 - [ ] VAL-R2  removida
 - [x] VAL-R3  Os testes ficam em `testes/`, fora da pasta da **Skill de validação**, e não são distribuídos ⟸ [D107]
-- [ ] VAL-R4  Cada regra checada que acusa tem ao menos um teste com um exemplo que viola só ela ⟸ [D106]
-- [ ] VAL-R5  Cada regra checada que só descreve o comportamento de outra checagem tem ao menos um teste desse comportamento, com o identificador dela no nome ⟸ [D106]
+- [x] VAL-R4  Cada regra checada que acusa tem ao menos um teste com um exemplo que viola só ela ⟸ [D106]
+- [x] VAL-R5  Cada regra checada que só descreve o comportamento de outra checagem tem ao menos um teste desse comportamento, com o identificador dela no nome ⟸ [D106]
 - [x] VAL-I1  Execução por linha de comando, na raiz do repositório que adota o formato
   - argumento opcional: a pasta da especificação; sem ele, `specs/`
   - uma linha por violação, com arquivo, linha, identificador da regra e frase
