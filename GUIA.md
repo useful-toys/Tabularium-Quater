@@ -555,12 +555,13 @@ Não entram desenhos de tela nem posição em pixels. O formato foi posto à pro
 
 O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especificação: o que ler antes de cada tarefa, onde colocar cada tipo de informação, as regras que nunca se quebram (como não renumerar e não editar seções geradas) e quando parar e perguntar em vez de inventar. A revisão por categorias FURPS+ não gera requisitos: gera perguntas abertas, porque uma categoria vazia pode ser uma lacuna ou uma escolha consciente.
 
-Sete skills acompanham o formato, e `npx skills` instala todas de uma vez. A de validação e a de sorteio o agente aciona por conta própria; as outras esperam o seu comando.
+Oito skills acompanham o formato, e `npx skills` instala todas de uma vez. A de validação e a de sorteio o agente aciona por conta própria; as outras esperam o seu comando.
 
 | Skill | O que faz |
 | --- | --- |
 | `/tabularium-instalar` | Instala ou atualiza o formato em `specs/` |
 | `/tabularium-validar` | Confere a forma da especificação com um script |
+| `/tabularium-indexar` | Regenera, com um script, os índices `README.md` de cada pasta |
 | `/tabularium-sortear` | Sorteia, com um script, o prefixo dos códigos de uma mudança sem issue |
 | `/tabularium-entrevistar` | Amadurece uma ideia com o autor, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia |
 | `/tabularium-sugerir` | Sugere ideias que complementam a que foi discutida; a aceita volta para a entrevista |
