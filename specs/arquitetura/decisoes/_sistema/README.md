@@ -1,7 +1,7 @@
 <!-- gerado; não editar -->
 # Decisões do sistema
 
-- [D95](D95-quem-aciona-skill.md) Quem pode acionar cada skill? A skill que altera arquivos ou acessa a rede só é acionada por uma pessoa, e a que só lê também pode ser acionada pelo agente.
+- [D95](D95-quem-aciona-skill.md) Quem pode acionar cada skill? A skill que altera arquivos escritos à mão ou acessa a rede só é acionada por uma pessoa, e a que só lê ou só grava arquivos gerados também pode ser acionada pelo agente.
   - citada por: SKI-I1, SKX-I23.1, SKS-I22.1, SKV-I1
 - [D99](D99-genericos-da-propria-specs.md) Os arquivos genéricos distribuídos têm cópia própria? Não, são os da própria pasta da especificação do formato.
   - citada por: ARQ-R2

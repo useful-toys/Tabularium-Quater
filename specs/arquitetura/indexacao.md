@@ -29,5 +29,4 @@ Instruções que levam um agente de IA a executar o **Script de indexação** e 
 - usa 1 **Skill de validação**
 - usa 1 **npx skills**
 - [x] SKX-R23.1  Leva o **Script de indexação** consigo ⟸ [D108]
-- [x] SKX-I23.1  Comando `/tabularium-indexar`, digitado por quem usa o agente ⟸ [D95]
-  - o agente não a aciona por conta própria
+- [x] SKX-I23.1  Comando `/tabularium-indexar`, digitado por quem usa o agente ou acionado pelo agente depois de validar a especificação ⟸ [D95]

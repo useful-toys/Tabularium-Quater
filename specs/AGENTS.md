@@ -92,7 +92,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - Rode o validador, pela skill `tabularium-validar`, e corrija as violações antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
 - Quanto a termos, o validador confere só o negrito e as definições: confira você que a primeira menção de cada termo, em cada item, está em negrito.
 - O validador não vê o histórico: confira você que nenhum código que já está na linha principal mudou, que cada código novo leva o prefixo da mudança, e que nenhum foi alocado só com um número.
-- Os índices `README.md` são refeitos pela skill `tabularium-indexar`, que só o usuário aciona. Se a mudança criou, moveu, renomeou ou retirou uma área, uma célula ou uma decisão, ou mudou a frase de uma delas ou quem cita uma decisão, avise-o de que os índices ficaram desatualizados.
+- Depois de o validador não acusar nada, refaça os índices `README.md`, pela skill `tabularium-indexar`. Ela também é um script: execute-o e não escreva nem corrija um índice à mão.
 - Resuma a mudança listando os identificadores criados, alterados e retirados, e os termos criados ou renomeados.
 
 ## Ao implementar

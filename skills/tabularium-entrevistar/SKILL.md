@@ -141,7 +141,7 @@ Feito quando cada pergunta da rodada foi respondida, inclusive as que as respost
 Tem **consenso** a parte com redação final que o autor respondeu ou confirmou. Só ela é gravada. O resto fica no [plano](plano.md), em `Em aberto`.
 
 1. Escreva cada parte com consenso pela receita que ela pede: "Receitas" de `specs/AGENTS.md` para o produto, as do `AGENTS.md` da pasta para arquitetura e interface, e as de `specs/decisoes/AGENTS.md` para as decisões. Todo código leva o prefixo do passo 2.
-2. Rode o validador, pela skill `tabularium-validar`, e siga "Depois de alterar" do `AGENTS.md` de cada registro tocado. Corrija o que for só de forma. Se a correção muda o significado de uma linha, ela volta a ser pergunta.
+2. Rode o validador, pela skill `tabularium-validar`, depois o indexador, pela skill `tabularium-indexar`, e siga "Depois de alterar" do `AGENTS.md` de cada registro tocado. Corrija o que for só de forma. Se a correção muda o significado de uma linha, ela volta a ser pergunta.
 3. Faça um commit com o que a rodada gravou. Acionar esta skill é o pedido desse commit; o envio ao servidor continua a pedido. A mensagem diz a rodada e o assunto, na convenção do repositório.
 4. Mostre o resumo da rodada:
 

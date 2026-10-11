@@ -43,7 +43,7 @@ Compare a ramificação com a linha principal, com `git diff <linha principal> -
 4. **Lápides:** nenhuma aponta para um código que a própria ramificação criou e apagou.
 5. **Decisões:** cada decisão nova é citada por algum item, e tem contexto, alternativa descartada com motivo e consequências.
 6. **O que o validador não vê:** siga "Depois de alterar" do `AGENTS.md` de cada registro que a ramificação tocou.
-7. **Índices:** os `README.md` de cada pasta estão em dia. Quem os refaz é a skill `tabularium-indexar`, que só o autor aciona: peça que ele a rode, e faça um commit com os índices que mudaram.
+7. **Índices:** rode o indexador, pela skill `tabularium-indexar`, até `nenhum índice mudou`, e faça um commit com os índices que ele gravou.
 
 Corrija o que é só de forma, e faça um commit com as correções. Se a correção muda o texto ou o significado de uma linha, devolva.
 

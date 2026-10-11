@@ -1,7 +1,6 @@
 ---
 name: tabularium-indexar
-description: Regenera os índices README.md das pastas de uma especificação Tabularium, com as áreas de cada pasta e as decisões de cada pasta de decisões.
-disable-model-invocation: true
+description: Regenera os índices README.md das pastas de uma especificação Tabularium, com as áreas de cada pasta e as decisões de cada pasta de decisões. Use depois de validar qualquer alteração em specs/, e quando pedirem para indexar ou refazer os índices.
 ---
 
 # Indexar as pastas da especificação

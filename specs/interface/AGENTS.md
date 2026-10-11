@@ -98,7 +98,7 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 
 Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa nos dois testes; toda referência `[ID]` resolve, aqui ou na especificação; todo estilo, componente e padrão citado em negrito existe; todo `local:` existe; nenhuma sigla repetida; cada código novo com o prefixo da mudança, e nenhum código antigo trocado; linhas na ordem fixa.
 
-Nunca edite o `README.md` desta pasta nem os das pastas de decisões: são índices, refeitos pela skill `tabularium-indexar`, que só o usuário aciona. Se a mudança criou, renomeou ou retirou uma área, um componente, um padrão ou uma decisão, avise-o de que os índices ficaram desatualizados.
+Nunca edite o `README.md` desta pasta nem os das pastas de decisões: são índices. Refaça-os depois de validar, pela skill `tabularium-indexar`.
 
 Resuma a mudança listando os identificadores criados, alterados e retirados, e os estilos criados ou renomeados.
 
