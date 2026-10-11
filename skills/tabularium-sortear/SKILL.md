@@ -1,26 +1,23 @@
 ---
 name: tabularium-sortear
-description: Sorteia o código que serve de prefixo aos identificadores, decisões e perguntas de uma mudança sem issue, numa especificação Tabularium. Use antes de alocar um código em specs/ quando a mudança não vem de uma issue, ou quando o número da issue já serviu de prefixo.
+description: Gera o código sorteado que serve de prefixo de mudança aos códigos de uma especificação Tabularium. Use antes de alocar um código em specs/ quando a mudança não vem de uma issue, ou quando o número da issue já serviu de prefixo de mudança.
 ---
 
-# Sortear o prefixo de uma mudança
+# Gerar o código sorteado
 
-Todo código novo da especificação leva o prefixo da mudança que o aloca, como em `PED-R9.1` e `Dk7q2.1`. O prefixo é o número da issue que pede a mudança, ou um **código sorteado**. Quem sorteia é um script: não escolha o código você, nem peça ao usuário que escolha.
+O **prefixo de mudança** é o mesmo em todo **código de identificador**, **código de pergunta** e **código de decisão** que uma mudança aloca: o `9` de `PED-R9.1`, o `k7q2` de `Dk7q2.1`. A forma deles está na regra 1 de `specs/AGENTS.md`.
 
-## 1. Decidir se é caso de sorteio
+## 1. Achar o prefixo de mudança
 
-Use o número da issue, sem sortear, quando as duas coisas valem:
+Pare no primeiro caso que vale:
 
-- o trabalho foi pedido para uma issue do rastreador, e você sabe o número dela;
-- nenhum código com esse prefixo existe na linha principal do controle de versão.
+1. A mudança já alocou um desses códigos, nesta conversa ou no que a ramificação acrescenta em `specs/` à linha principal: é o prefixo de mudança dele.
+2. O trabalho foi pedido para uma issue do rastreador, de número conhecido, que não é prefixo de mudança de nenhum desses códigos na linha principal: é o número da issue.
+3. Qualquer outro caso, incluída a dúvida sobre haver issue: é um **código sorteado**. Siga para o passo 2 sem perguntar.
 
-Em qualquer outro caso, sorteie. Na dúvida sobre haver issue, sorteie sem perguntar.
+Feito quando você sabe qual caso vale; nos casos 1 e 2, a skill termina aqui.
 
-Se a mudança já alocou algum código com prefixo sorteado e ele está à vista, reaproveite esse prefixo em vez de sortear outro.
-
-Feito quando você sabe se o prefixo é o número da issue, um código já sorteado nesta mudança ou um a sortear.
-
-## 2. Sortear
+## 2. Gerar o código sorteado
 
 Na raiz do repositório, rode o script que está na pasta desta skill:
 
@@ -28,10 +25,6 @@ Na raiz do repositório, rode o script que está na pasta desta skill:
 node <pasta desta skill>/sortear.mjs
 ```
 
-Ele confere `specs/`; para outra pasta, passe o caminho como argumento. A saída é uma linha com o código, de 4 caracteres, que ainda não aparece na pasta.
+Ele confere `specs/`, ou a pasta passada como argumento, e imprime o código sorteado. Se falha, mostre o erro ao usuário e pare: o código sorteado só sai do script.
 
-Feito quando você tem o código impresso pelo script.
-
-## 3. Usar
-
-Escreva o código como prefixo de todos os códigos que a mudança aloca, seguido de `.` e do número de ordem, que começa em 1 em cada sequência: `PED-Rk7q2.1`, `PED-Rk7q2.2`, `PED-Ck7q2.1`, `Dk7q2.1`.
+Feito quando você tem o código sorteado impresso.
