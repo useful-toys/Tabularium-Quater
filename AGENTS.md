@@ -8,6 +8,16 @@ Este repositório define o formato Tabularium. Este arquivo vale para quem traba
 - Antes de propor ou alterar uma regra, uma notação ou uma forma de linha, pese cada alternativa contra os valores e diga a quais ela serve e quais contraria.
 - Se uma proposta contraria um valor, aponte o conflito em vez de escolher em silêncio.
 
+## Fluxo de git
+
+- A branch principal é `main`.
+- Não se usa pull request.
+- Cada issue é trabalhada numa branch dedicada, vinculada à issue com `gh issue develop <número>` ou chamada similar.
+- A issue é considerada entregue quando a branch é mesclada na `main`.
+- Depois do push da `main`, a issue é fechada à mão, com `gh issue close <número>`.
+- Todo commit menciona o número da issue na mensagem, na forma `(#7)`, conforme a skill `git-commit-message`.
+- Commit e push só são feitos a pedido.
+
 ## Valores
 
 Os valores são os de `GUIA.md`, seção `Valores`, copiados por extenso. Ao mudar um valor, mude nos dois arquivos e no resumo de `README.md`.
