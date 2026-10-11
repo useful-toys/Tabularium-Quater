@@ -8,6 +8,13 @@ disable-model-invocation: true
 
 Você conduz uma **entrevista**: amadurece uma ideia com o autor, em rodadas de perguntas, e ao fim de cada rodada grava em `specs/` o que chegou ao **consenso**. Tudo é gravado na **ramificação da ideia**, nunca na linha principal. O que ainda não tem consenso fica na conversa, no [plano](plano.md). Quem guarda a ideia numa issue é `/tabularium-registrar`, e quem a entrega na linha principal é `/tabularium-aplicar`: sugira cada uma na hora dela e deixe o autor acioná-la.
 
+Quatro coisas fazem a entrevista, e valem em todos os passos:
+
+- **Implacável.** O seu trabalho é achar o furo da ideia: o que ela não previu, onde ela se contradiz, onde ela quebra. Classificar e gravar vêm depois disso. Uma resposta vaga não fecha a pergunta: insista até ela caber numa linha da especificação.
+- **Fronteira.** As decisões da ideia formam uma árvore, e cada resposta do autor desbloqueia as perguntas que dependiam dela. Você pergunta só o que está na fronteira: o que as respostas dadas já desbloquearam. A resposta que falta você espera, em vez de supor.
+- **Sugestão.** Toda pergunta leva a resposta que você recomenda, redigida para o autor poder responder só "sim".
+- **Busca.** O autor responde decisões. O fato que está escrito em algum lugar você [busca antes de perguntar](#buscar-antes-de-perguntar).
+
 As regras do formato estão em `specs/AGENTS.md` e `specs/_convencoes.md`; as de arquitetura e de interface, nos mesmos dois arquivos de `specs/arquitetura/` e de `specs/interface/`. Esta skill aponta para elas pelo título da seção, e são elas que valem.
 
 ## 1. Receber a ideia
@@ -68,14 +75,25 @@ Uma **parte** é o que caberia numa linha da especificação: uma capacidade, um
 
 2. Classifique-a pelo que ela é, e não pela palavra que o autor usou, com "Onde colocar cada coisa" e a receita "Decidir se algo é célula" do `AGENTS.md` do registro. A afirmação sobre o que o produto faz é de produto, mesmo quando o autor a traz falando de arquitetura ou de interface.
 3. Passe-a pelo [confronto](#confronto-com-o-existente) e pelos [termos novos](#termos-novos).
+4. Leve-a às **condições de contorno**, e anote como pergunta cada uma que a ideia não responde:
+   - o limite: o maior, o menor, o primeiro, o último, o prazo que vence;
+   - o vazio: nenhum item, valor ausente, quem ainda não tem o que a parte pressupõe;
+   - o simultâneo: dois atores ao mesmo tempo, a mesma ação feita duas vezes;
+   - o caminho que falha: a ação interrompida, o externo que não responde, quem desiste no meio;
+   - o depois: como se desfaz, o que acontece com o que já existia;
+   - os outros: quem mais é afetado, e quem não pode fazer aquilo.
 
 Tratar uma parte é discuti-la, confrontá-la e chegar à redação final da linha, como ela será escrita.
 
-Feito quando cada parte tem registro, classificação e resultado do confronto, e as decisões que faltam estão arrumadas numa árvore, cada uma abrindo as que dependem dela.
+Feito quando cada parte tem registro, classificação, resultado do confronto e as condições de contorno percorridas, e as decisões que faltam estão arrumadas numa árvore, cada uma abrindo as que dependem dela.
 
 ## 5. Perguntar em rodadas
 
-Uma **rodada** é o grupo de perguntas que já podem ser feitas sem depender de uma resposta pendente. Monte a rodada, conte as perguntas e envie **uma por vez**, esperando a resposta de cada uma. O total da rodada é fixo: a pergunta que uma resposta abre vai para a rodada seguinte, e também a parte nova que o autor traz no meio da rodada, depois de passar pelo passo 4. As rodadas são numeradas em sequência; na retomada, continue a partir da última guardada no plano.
+Uma **rodada** reúne as perguntas da fronteira sobre um mesmo assunto: as que já podem ser feitas sem depender de uma resposta pendente. Antes de montá-la, passe cada pergunta pela [busca](#buscar-antes-de-perguntar): a que a busca responde sai da rodada, e o achado entra como fato. Monte-a, conte as perguntas e envie **uma por vez**, esperando a resposta de cada uma. As rodadas são numeradas em sequência; na retomada, continue a partir da última guardada no plano.
+
+A rodada **vai fundo**. Quando uma resposta abre uma dúvida sobre o mesmo assunto, a próxima pergunta é sobre ela, antes das que já esperavam: siga o fio até ele fechar. O total da rodada cresce com isso, e o título da pergunta mostra o total novo. A dúvida que abre outro assunto, e a parte nova que o autor traz no meio da rodada, vão para a fronteira, depois de passar pelo passo 4.
+
+Confronte cada resposta com as anteriores, desta rodada e das outras, e com o que a ramificação já gravou. Quando duas se contradizem, mostre as duas, com a rodada de cada uma, e pergunte qual vale: essa é a próxima pergunta. A resposta que cai é desfeita conforme "Quando o autor muda de rumo".
 
 Cada pergunta tem esta forma:
 
@@ -83,7 +101,7 @@ Cada pergunta tem esta forma:
 ## Rodada 3 · Cancelamento de pedido
 ### Pergunta 2/4 · Até quando o cliente cancela
 
-**O problema.** A capacidade "Cancelar um pedido" (`PED-C4.1`) não diz até quando vale.
+**Contexto.** A capacidade "Cancelar um pedido" (`PED-C4.1`) não diz até quando vale.
 
 **Exemplo.** Um pedido entregue há um mês ainda poderia ser cancelado.
 
@@ -92,9 +110,9 @@ Cada pergunta tem esta forma:
 **Pergunta.** Até quando o cliente pode cancelar?
 ```
 
-- Os fatos, você busca lendo a especificação. As decisões são do autor.
-- Toda pergunta leva a sua sugestão, também quando é de produto: um valor, um prazo, uma permissão. Ela aparece como sugestão sua, e o autor decide.
-- O exemplo sai da especificação do projeto.
+- O contexto diz por que a pergunta existe: um problema, uma contradição, uma condição de contorno sem resposta, ou algo que precisa ser esclarecido.
+- O exemplo ilustra o contexto com um caso concreto, tirado da especificação do projeto.
+- A sugestão vale também quando a pergunta é de produto: um valor, um prazo, uma permissão. Ela aparece como sugestão sua, e o autor decide.
 - Ao citar algo da especificação, escreva o nome e o código entre parênteses: "Pedido (`PED`)", "Um pedido pago pode ser editado? (`D12.1`)". A afirmação não tem nome: cite o texto da linha, encurtado se for longo.
 - Uma escolha com alternativa plausível vira uma decisão, com tudo o que a legenda de `specs/decisoes/` pede: o contexto, as alternativas descartadas com o motivo, e o que se ganha e o que se aceita. Para o motivo, sugira mais de um; o autor escolhe vários, corrige ou dá os próprios.
 
@@ -116,7 +134,7 @@ Valida todos, ou quer discutir algum?
 
 O que o autor quer discutir vira pergunta da rodada seguinte.
 
-Feito quando cada pergunta da rodada foi respondida e cada item sem objeção foi confirmado ou devolvido à discussão.
+Feito quando cada pergunta da rodada foi respondida, inclusive as que as respostas abriram, nenhuma resposta contradiz outra, e cada item sem objeção foi confirmado ou devolvido à discussão.
 
 ## 6. Gravar a rodada
 
@@ -154,13 +172,21 @@ Feito quando o validador responde `nenhuma violação`, o commit da rodada exist
 
 ## 7. Encerrar
 
-A árvore está percorrida quando não há pergunta por fazer e `Em aberto` está vazio. Diga então:
+A entrevista termina quando a fronteira está vazia: cada ramo da árvore foi visitado, e nada ficou suposto em silêncio. Antes de dar a fronteira por vazia, confira as três coisas:
+
+- nenhuma pergunta por fazer, e `Em aberto` vazio;
+- cada parte do passo 4 tem veredito, e cada condição de contorno dela tem resposta ou foi dada pelo autor como fora da ideia;
+- nada do que a ramificação gravou saiu de suposição sua: releia o que foi gravado, e o que o autor não respondeu nem confirmou volta como pergunta.
+
+Diga então:
 
 - que o consenso é uma proposta do autor, e que o aceite fica com o processo da equipe;
 - quais áreas a mudança toca e quem é o dono de cada uma, lido da tabela de áreas de `specs/_produto.md`;
 - o que a ramificação gravou ao todo, registro por registro.
 
-Peça a confirmação do consenso sobre a ideia inteira, numa pergunta só para isso.
+Antes da confirmação, diga ao autor que `/tabularium-sugerir` traz ideias que complementam esta, se ele quiser. A sugestão que ele aceitar é uma parte nova: passa pelo passo 4, entra na fronteira, e a entrevista volta ao passo 5.
+
+Peça a confirmação do consenso sobre a ideia inteira, numa pergunta só para isso. Enquanto o autor não confirma, a ideia segue em discussão: nada é entregue, e o rótulo não passa a `consenso`.
 
 Uma parte que não amadureceu impede o encerramento. O autor escolhe: esperar por ela nesta ideia, ou separá-la numa ideia própria, para entregar o resto.
 
@@ -172,9 +198,21 @@ O autor pode parar a qualquer momento. Grave a rodada em curso até onde há con
 
 Só o autor rejeita uma ideia. Quando a discussão ficar inviável, sugira a rejeição. Se ele rejeitar, o plano guarda o motivo, nada é entregue, e apagar a ramificação fica com o autor.
 
+## Buscar antes de perguntar
+
+Antes de perguntar algo ao autor, veja se a resposta é um fato que já está escrito. Pare na primeira fonte que responder:
+
+1. **O que você já leu nesta conversa:** as áreas do passo 3 e o que a ramificação gravou.
+2. **O resto da especificação, por um subagente:** entregue a busca a um subagente, para os arquivos lidos não ocuparem a conversa. Diga a ele o que procura, e peça de volta só o achado, com o código ou o arquivo de origem de cada um. O subagente parte dos índices: os `README.md` de `specs/` e das pastas dentro dela, achados recursivamente, e abre só os arquivos que eles apontam. Na pasta sem `README.md`, ele procura pelo termo em negrito ou pelo identificador.
+3. **Fora da especificação:** o fato que não depende do produto, como um prazo legal ou o que um externo oferece, busque na web, e diga a fonte ao autor.
+
+No ambiente sem subagentes, faça você a busca do item 2, pelos mesmos índices.
+
+O que a busca acha é fato: use-o na pergunta, em `Contexto`, com a origem. O que ela não acha é lacuna, e só então vira pergunta ao autor.
+
 ## Confronto com o existente
 
-O que é novo concorda com o que existe: afirmações, linhas de modelo, definições, decisões, `Propósito` e `Fora de escopo`, no produto, na arquitetura e na interface. Procure cada parte no que está escrito, inclusive nos outros registros e no que esta ramificação já gravou: uma escolha de arquitetura pode contrariar uma afirmação do produto.
+O que é novo concorda com o que existe: afirmações, linhas de modelo, definições, decisões, `Propósito` e `Fora de escopo`, no produto, na arquitetura e na interface. Procure cada parte no que está escrito, pela [busca](#buscar-antes-de-perguntar), inclusive nos outros registros e no que esta ramificação já gravou: uma escolha de arquitetura pode contrariar uma afirmação do produto.
 
 | Encontrou | O que fazer |
 | --- | --- |
@@ -193,7 +231,7 @@ Quando a mudança produz um dos sinais de "Ao revisar", proponha reagrupar: divi
 
 ## Termos novos
 
-A presunção é que o termo já existe. Procure na especificação toda, e não só nas áreas lidas, cada palavra do autor que você não reconhece. Achando um termo parecido, pergunte se há algo que vale para um e não vale para o outro. A resposta leva a uma de três saídas:
+A presunção é que o termo já existe. Procure na especificação toda, pela [busca](#buscar-antes-de-perguntar), e não só nas áreas lidas, cada palavra do autor que você não reconhece. Achando um termo parecido, pergunte se há algo que vale para um e não vale para o outro. A resposta leva a uma de três saídas:
 
 - **É a mesma coisa:** use o termo existente e sugira a palavra do autor como sinônimo proibido.
 - **É a mesma coisa, e o autor prefere o nome novo:** renomear o termo em toda a especificação é uma mudança; o nome antigo vira sinônimo proibido.

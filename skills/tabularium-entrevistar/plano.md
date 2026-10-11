@@ -32,7 +32,7 @@ A notação é densa e hierárquica: títulos, uma coisa por linha, sub-itens pa
 - **Resumo:** o que está proposto, o que está em discussão, o estado e a ramificação. O estado traz o rótulo e o número da última rodada. `Proposto` conta, em palavras do negócio, o que a ramificação já gravou.
 - **Ramificação:** o nome da ramificação da ideia e o prefixo dos códigos dela. É por essa linha que uma retomada acha onde continuar.
 - **Em aberto:** o que ainda não tem consenso, com as opções levantadas e a sua sugestão. Seção sem item fica vazia.
-- **Fora do plano:** as partes com veredito já existe, defeito, pendente ou codificação, e o que foi adiado.
+- **Fora do plano:** as partes com veredito já existe, defeito, pendente ou codificação, o que foi adiado, e cada sugestão de `/tabularium-sugerir` que o autor recusou, como `Sugestão recusada: …`.
 - **Para retomar:** o próximo ponto.
 
 A ideia rejeitada guarda o motivo no Resumo: `- Estado: rejeitada · motivo: contraria a regra de pedido entregue, e o autor preferiu mantê-la`.
