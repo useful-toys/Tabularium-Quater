@@ -1,6 +1,6 @@
 # O plano
 
-O plano é o estado de uma ideia: o que já tem consenso, o que falta decidir e o que ficou de fora. Ele é mostrado na conversa e é o que `/tabularium-registrar` grava no corpo da issue.
+O plano é o estado do que a ramificação da ideia não guarda: o que falta decidir, o que ficou de fora e por onde retomar. O que já tem consenso está gravado em `specs/`, na ramificação, e não se repete aqui. O plano é mostrado na conversa e é o que `/tabularium-registrar` grava no corpo da issue.
 
 A notação é densa e hierárquica: títulos, uma coisa por linha, sub-itens para detalhar, sem prosa. As seções são sempre estas, nesta ordem:
 
@@ -9,35 +9,7 @@ A notação é densa e hierárquica: títulos, uma coisa por linha, sub-itens pa
 - Proposto: o cliente cancela um pedido ainda não enviado, e é reembolsado
 - Em discussão: o cancelamento de pedido já pago
 - Estado: em discussão · última rodada: 3
-
-## Mudanças
-
-### Produto
-1. Acrescentar em Pedido (`PED`)
-   - [ ] PED-R?  **Pedido** enviado não pode ser cancelado ⟸ [D?a]
-2. Mudar o significado de "Cancelar um pedido" (`PED-C4.1`)
-   - lápide `removida` em [PED-C4.1]
-   - [ ] PED-C?  Cancelar um **Pedido**
-     - exige: pedido ainda não enviado · sem objeção
-3. Termo novo, na linguagem de Vendas
-   - reembolso: devolução ao **Cliente** do valor de um **Pedido** cancelado
-4. Abrir pergunta
-   - P?  Em quanto tempo o reembolso é pago? · sobre: **Pedido**
-
-### Arquitetura
-5. Acrescentar em Avisos (`AVI`)
-   - [ ] AVI-R?  O aviso de cancelamento sai pelo **Serviço de e-mail**
-
-### Interface
-
-## Decisões
-- D?a  Um pedido enviado pode ser cancelado? · Não.
-  - contexto: depois do envio, o pedido está com a transportadora
-  - descartada: cancelar com devolução pelo correio
-    - motivo do autor: o custo do frete de volta
-    - motivo, sugerido e aceito: a devolução já cobre esse caso
-  - ganha: o cancelamento nunca envolve frete
-  - aceita: o cliente espera a entrega para devolver
+- Ramificação: `31-cancelar-pedido` · prefixo: `31`
 
 ## Em aberto
 - O cliente cancela um pedido já pago?
@@ -57,11 +29,9 @@ A notação é densa e hierárquica: títulos, uma coisa por linha, sub-itens pa
 
 ## Regras da notação
 
-- **Resumo:** o que está proposto, o que está em discussão e o estado. O estado traz o rótulo e o número da última rodada.
-- **Mudanças:** cada linha na redação final, como será escrita, agrupada por registro. O código novo aparece sem número: `PED-R?`, `P?`, `D?a`. Seção de registro sem mudança fica vazia.
-- **`· sem objeção`:** no fim da linha que você adotou e o autor ainda não confirmou.
-- **Decisões:** a questão, a resposta numa frase só, o contexto, cada alternativa descartada com os motivos, o que se ganha e o que se aceita. O motivo diz a origem: "motivo do autor", quando ele o disse, ou "motivo, sugerido e aceito", quando a sugestão foi sua.
-- **Em aberto:** o que ainda não virou mudança, com as opções levantadas e a sua sugestão.
+- **Resumo:** o que está proposto, o que está em discussão, o estado e a ramificação. O estado traz o rótulo e o número da última rodada. `Proposto` conta, em palavras do negócio, o que a ramificação já gravou.
+- **Ramificação:** o nome da ramificação da ideia e o prefixo dos códigos dela. É por essa linha que uma retomada acha onde continuar.
+- **Em aberto:** o que ainda não tem consenso, com as opções levantadas e a sua sugestão. Seção sem item fica vazia.
 - **Fora do plano:** as partes com veredito já existe, defeito, pendente ou codificação, e o que foi adiado.
 - **Para retomar:** o próximo ponto.
 

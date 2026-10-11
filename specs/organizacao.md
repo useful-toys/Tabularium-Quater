@@ -234,6 +234,8 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 - [x] DEC-R22  Item da **Especificação** cita só decisão da **Especificação**; item da arquitetura, também as da arquitetura; item da interface, também as da arquitetura e as da interface ⟸ [D93]
 - [x] DEC-R22.1  **Código** único entre as decisões da **Especificação**, da arquitetura e da interface; código já usado não volta ⟸ [D10]
 - [x] DEC-R22.2  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, de [IDT-R22.1] a [IDT-R22.5] ⟸ [D10]
+- [x] DEC-Rknnk.1  O **código** fica definitivo como o do **Identificador**, conforme [IDT-Rknnk.1] e [IDT-Rknnk.2]
+- [x] DEC-Rknnk.2  Em [DEC-R22.1], só o **código** definitivo conta como já usado
 - [x] DEC-C1  Registrar uma decisão
   - com **código** novo, conforme [DEC-R22.2]
   - ao menos um item passa a citá-la

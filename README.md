@@ -86,11 +86,11 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
 5. Valide cada mudança com `/tabularium-validar` e corrija o que o validador acusar.
 
-Para mudar a especificação junto com o agente, há três skills, que você aciona nesta ordem:
+Para mudar a especificação junto com o agente, há três skills, que você aciona:
 
-- `/tabularium-entrevistar` amadurece uma ideia com você até o consenso sobre o que muda, e mostra o plano.
-- `/tabularium-registrar` grava o plano numa issue do GitHub. É opcional.
-- `/tabularium-aplicar` escreve em `specs/` o plano que chegou ao consenso.
+- `/tabularium-entrevistar` amadurece uma ideia com você, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia.
+- `/tabularium-registrar` guarda numa issue do GitHub o que ainda está em aberto. É opcional.
+- `/tabularium-aplicar` confere a ramificação da ideia e a entrega na linha principal.
 
 ## Arquitetura, em experimento
 
