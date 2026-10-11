@@ -68,7 +68,7 @@ Para instalar:
    npx skills add useful-toys/Tabularium-Quater
    ```
 
-2. No agente, digite `/tabularium-instalar`. A skill cria `specs/`, com as pastas `decisoes/`, `arquitetura/` e `interface/`, copia para cada uma as instruções para agentes e a legenda, e cria a partir de modelos os arquivos que você preenche: `specs/_produto.md`, `specs/_contadores.md` e os equivalentes da arquitetura e da interface.
+2. No agente, digite `/tabularium-instalar`. A skill cria `specs/`, com as pastas `decisoes/`, `arquitetura/` e `interface/`, copia para cada uma as instruções para agentes e a legenda, e cria a partir de modelos os arquivos que você preenche: `specs/_produto.md` e os equivalentes da arquitetura e da interface.
 3. Preencha `specs/_produto.md`, que nasce com textos de exemplo, e siga pelos [primeiros passos](#primeiros-passos). A arquitetura e a interface são opcionais e ficam para depois, porque citam a especificação.
 
 Para atualizar:
@@ -82,7 +82,7 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 
 1. Escreva `_produto.md`: o problema, os atores e as primeiras áreas.
 2. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões.
-3. Marque cada afirmação com `[x]` ou `[ ]` e atualize `_contadores.md` a cada número alocado.
+3. Marque cada afirmação com `[x]` ou `[ ]`, e dê a cada código novo o prefixo da mudança: o número da issue, ou um código de `/tabularium-sortear`.
 4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
 5. Valide cada mudança com `/tabularium-validar` e corrija o que o validador acusar.
 

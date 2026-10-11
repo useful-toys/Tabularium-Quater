@@ -10,7 +10,7 @@ Legenda para ler e escrever uma decisão neste formato. Este arquivo é igual em
 - `README.md` de cada pasta: índice gerado por programa
 
 ## Estrutura
-- título: a questão, terminada em `?`, e o código, como `` # Quem vê um pedido?  `D07` ``
+- título: a questão, terminada em `?`, e o código, como `` # Quem vê um pedido?  `D7.1` ``
 - resolução: uma frase, logo abaixo do título; é escrita só ali
 - lista, nesta ordem: `Contexto`, `Alternativas descartadas`, `Consequências`
 - `Contexto`: na própria linha, como `- Contexto: texto`; os outros dois vão sozinhos na linha, com sub-itens
@@ -19,8 +19,9 @@ Legenda para ler e escrever uma decisão neste formato. Este arquivo é igual em
 - `## Histórico`: por último; uma entrada por alteração, da mais recente para a mais antiga, como `- 2026-10-04: decisão criada`
 
 ## Marcas
-- `Dnn`: código da decisão; sequência única para o produto; nunca volta, nem depois de apagada a decisão; o maior já usado está em `_contadores.md`, na pasta da especificação
-- `⟸ [D03]` no fim de um item do corpo: outra decisão, cuja resolução é contexto desta
+- `Dnn`: código da decisão; `D`, o prefixo de mudança, `.` e o número de ordem, como `D9.1` ou `Dk7q2.1`, conforme a legenda da especificação; único no produto; nunca volta, nem depois de apagada a decisão
+- `D07`, só com um número: código anterior ao prefixo de mudança; continua válido, e nenhum outro é alocado assim
+- `⟸ [D3.1]` no fim de um item do corpo: outra decisão, cuja resolução é contexto desta
 - termos da especificação: usados sem negrito
 - a decisão não leva negrito nenhum, em nenhuma grafia; o validador acusa
 
@@ -38,6 +39,6 @@ Legenda para ler e escrever uma decisão neste formato. Este arquivo é igual em
 - a decisão mora na pasta da área que mais a cita; mudar de pasta não muda o código
 
 ## Arquitetura e interface
-- as decisões da arquitetura e da interface moram em `arquitetura/decisoes/` e em `interface/decisoes/`, com a forma desta legenda e os códigos da mesma sequência
+- as decisões da arquitetura e da interface moram em `arquitetura/decisoes/` e em `interface/decisoes/`, com a forma desta legenda e códigos únicos entre as três pastas
 - subpastas: `<area>/`, como aqui; `_sistema/` na arquitetura e `_interface/` na interface fazem o papel de `_produto/`
 - item da especificação cita só decisão desta pasta; item da arquitetura, também as da arquitetura; item da interface, também as da arquitetura e as da interface

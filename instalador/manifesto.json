@@ -10,11 +10,8 @@
     "specs/interface/_convencoes.md"
   ],
   "modelos": [
-    "specs/_contadores.md",
     "specs/_produto.md",
-    "specs/arquitetura/_contadores.md",
     "specs/arquitetura/_sistema.md",
-    "specs/interface/_contadores.md",
     "specs/interface/_interface.md"
   ]
 }

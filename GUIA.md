@@ -62,7 +62,6 @@ specs/
   _convencoes.md     legenda do formato; igual em todo projeto
   _produto.md        o que vale para o produto inteiro
   _perguntas.md      perguntas abertas (opcional)
-  _contadores.md     maior número já usado em cada sequência, com o nome da última alocação
   <area>.md          uma área: coleção de células de conceitos fortemente relacionadas; um arquivo por área
   decisoes/          decisões relevantes, uma por arquivo; lidas só sob demanda
     AGENTS.md        instruções para agentes sobre decisões
@@ -111,17 +110,17 @@ Solicitação de compra de um **Cliente**, com os **Produtos** e as quantidades 
 - **situação**: aberto | aguardando pagamento | pago | enviado | cancelado; inicial: aberto
 - **total**: dinheiro; derivado: soma de preço × quantidade dos **Itens de pedido** (~~valor, montante~~)
 - evento: **Pedido pago**
-- [x] PED-R1  Visível só ao **Cliente** dono e ao **Atendente** ⟸ [D07]
-- [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
-- [x] PED-C1  Fechar o pedido
+- [x] PED-R1.1  Visível só ao **Cliente** dono e ao **Atendente** ⟸ [D7.1]
+- [x] PED-R2.1  Ao **Cliente excluído**: pedidos em aberto são cancelados
+- [x] PED-C1.1  Fechar o pedido
   - exige: ao menos um item
-  - se algum **Produto** está sem estoque: o fechamento é recusado com aviso ⟵ [P03]
+  - se algum **Produto** está sem estoque: o fechamento é recusado com aviso ⟵ [P3.1]
   - a situação passa a aguardando pagamento
-- [ ] PED-C2  Cancelar o pedido
+- [ ] PED-C2.1  Cancelar o pedido
   - exige: situação aberto, aguardando pagamento ou pago
   - se já foi pago: o pagamento é estornado
   - a situação passa a cancelado
-- [x] PED-V1 · atendente  Ver os pedidos de qualquer cliente
+- [x] PED-V1.1 · atendente  Ver os pedidos de qualquer cliente
 ```
 
 O título traz o nome, em negrito, e a sigla da célula. Logo abaixo vem a frase de definição, que precisa ser compreensível fora do bloco, porque é ela que aparece no glossário gerado (CEL-R2). Depois vem uma lista única, sempre na mesma ordem (CEL-R3):
@@ -191,7 +190,7 @@ Um **Produto** e a quantidade dele dentro de um **Pedido**.
 **Pagamento** feito com cartão de crédito, que pode ser parcelado.
 - especializa **Pagamento**
 - **parcelas**: inteiro de 1 a 12
-- [x] PGC-R1  Parcelamento só acima do valor mínimo da loja
+- [x] PGC-R1.1  Parcelamento só acima do valor mínimo da loja
 ```
 
 As cardinalidades são `1`, `0..1`, `0..N` e `1..N`, e em associações substituem o qualificador `opcional`. Cada relação é declarada numa só das duas células; o outro lado, quando importa, vai em `inverso:` (ATR-R9). Um caso particular sem linhas próprias não é especialização, e sim o valor de um atributo (CEL-R19). Com as relações declaradas assim, o diagrama de domínio é derivado, nunca desenhado à mão.
@@ -205,7 +204,7 @@ Quando algo que acontece numa célula afeta outra, o efeito é escrito na célul
 - evento: **Cliente excluído**
 
 ## **Pedido**  `PED`
-- [x] PED-R2  Ao **Cliente excluído**: pedidos em aberto são cancelados
+- [x] PED-R2.1  Ao **Cliente excluído**: pedidos em aberto são cancelados
 ```
 
 Quem lê o bloco do Pedido vê tudo o que pode acontecer com ele, inclusive o que vem de fora. Quem lê o bloco do Cliente não vê o que a exclusão provoca: essa visão inversa, de quem reage a cada evento, está no Índice gerado. Um evento só existe se alguma regra reage a ele (EVT-R2), o que evita listar toda mudança de estado. Eventos são fatos do domínio, não mensagens do sistema: a arquitetura decide como realizá-los.
@@ -246,17 +245,17 @@ Forma de envio que o **Cliente** escolhe ao fechar o **Pedido**.
 - **código**: texto; identidade
 - **nome**: texto
 - **prazo**: inteiro, em dias úteis
-- [ ] MOD-R1  As modalidades:
+- [ ] MOD-R1.1  As modalidades:
 
 | Código | Nome | Prazo |
 | --- | --- | --- |
 | ECO | Econômica | 8 |
 | EXP | Expressa | 2 |
 
-- [ ] MOD-R2  A modalidade `EXP` só é oferecida nas capitais
+- [ ] MOD-R2.1  A modalidade `EXP` só é oferecida nas capitais
 ```
 
-A primeira coluna é o atributo marcado `identidade`, e é isso que distingue a tabela de dados da tabela de decisão; por isso só a célula que tem um atributo assim recebe dados de referência (DRF-R7, DRF-R8). Cada coluna é um atributo da célula, e o opcional que falta fica com a célula vazia (DRF-R10, DRF-R12). Outra linha cita uma instância pela identidade, em código, como faz `MOD-R2` (DRF-R17).
+A primeira coluna é o atributo marcado `identidade`, e é isso que distingue a tabela de dados da tabela de decisão; por isso só a célula que tem um atributo assim recebe dados de referência (DRF-R7, DRF-R8). Cada coluna é um atributo da célula, e o opcional que falta fica com a célula vazia (DRF-R10, DRF-R12). Outra linha cita uma instância pela identidade, em código, como faz `MOD-R2.1` (DRF-R17).
 
 Os demais dados, e todo dado que não é tabular, vão para um arquivo na pasta `dados/`, que ninguém lê por rotina (DRF-R5). A regra cita o arquivo pelo nome, entre colchetes, e nomeia em negrito os atributos e as partes que ele traz, com o de identidade primeiro (DRF-R14, DRF-R15). Assim se sabe o que o arquivo contém sem abri-lo; os tipos continuam nas linhas de modelo.
 
@@ -265,7 +264,7 @@ Os demais dados, e todo dado que não é tabular, vão para um arquivo na pasta 
 Preço de um envio numa **Modalidade**, por faixa de peso.
 - **nome**: texto; identidade
 - 1 **Modalidade**
-- [ ] TAR-R1  As tarifas, por **nome**, com a **Modalidade** e as **Faixas de peso**: [TAR-tarifas.json]
+- [ ] TAR-R1.1  As tarifas, por **nome**, com a **Modalidade** e as **Faixas de peso**: [TAR-tarifas.json]
 
 ## **Faixa de peso**  `FXP`
 Limite de peso de uma **Tarifa** e o preço cobrado até ele.
@@ -295,23 +294,27 @@ Uma célula com dados de referência pode ter também atributos que um ator alte
 
 ## Identificadores, lápides e citação
 
-Toda afirmação tem um identificador no formato `SIGLA-PN`: a sigla da célula, a letra do papel e um número sequencial. `PED-C2` é a segunda capacidade do Pedido. Os identificadores nunca são renumerados, e um número usado nunca volta (IDT-R2).
+Toda afirmação tem um identificador no formato `SIGLA-PN`: a sigla da célula, a letra do papel e um número. O número tem duas partes, separadas por um ponto: o **prefixo de mudança** e o **número de ordem**. `PED-C9.2` é a segunda capacidade do Pedido que a mudança 9 criou. Os identificadores nunca são renumerados, e um código usado nunca volta (IDT-R2).
 
-O maior número já usado em cada sequência fica escrito em `_contadores.md`, um item por sigla e papel, um para as perguntas e um para as decisões. Cada item traz o número e um nome curto da última alocação, como `- PED-R  8  pago-nao-edita`. Alocar é usar o número guardado mais um e atualizar o item na mesma mudança (CTD-R5).
+O prefixo é o da mudança que aloca o código, o mesmo em todos os códigos dela (IDT-R22.1). Quando a mudança foi pedida por uma issue do rastreador, o prefixo é o número da issue. Quando não há issue, ou o número dela já serviu de prefixo na linha principal, é um **código sorteado**, de 4 caracteres, como em `PED-Rk7q2.1` (IDT-R22.2). O sorteio usa só consoantes minúsculas e os dígitos de 2 a 9, para o código nunca formar palavra, e começa sempre por letra, para não se confundir com um número de issue. Quem sorteia é um script, entregue na skill `tabularium-sortear`, que confere que o código ainda não aparece na especificação; nem a pessoa nem o agente o escolhem (IDT-R22.6).
 
-Isso serve a dois fins. O número continua conhecido depois que lápides são podadas e decisões são limpas. E, quando duas pessoas alocam o mesmo número em paralelo, cada uma escreve um nome curto diferente no mesmo item, e o controle de versão acusa o conflito. Sem o nome curto as duas escreveriam a mesma linha, e a duplicata entraria em silêncio; é o que aconteceria com duas decisões de mesmo código, que são arquivos diferentes (CTD-R7). Quem entra depois renumera o que colidiu: um número só deixa de poder mudar quando entra na linha principal (CTD-R6).
+O número de ordem conta, a partir de 1, os códigos da mesma sigla e do mesmo papel que a mudança aloca (IDT-R22.3). As perguntas e as decisões seguem a mesma forma: `P9.1`, `D9.1`, `Dk7q2.1`.
+
+O prefixo existe para que duas mudanças feitas em paralelo, cada uma na sua ramificação, nunca aloquem o mesmo código. Quem distribui os números de issue é o rastreador, e o sorteio confere o que já existe; por isso não há arquivo de contadores a manter nem código a renumerar quando as mudanças se juntam. O código vale desde que é escrito, mesmo fora da linha principal (IDT-R22.4).
+
+Uma especificação mais antiga traz códigos só com um número, como `PED-R8` e `D07`. Eles continuam válidos e nunca mudam, mas nenhum outro é alocado assim (IDT-R22.5).
 
 Uma afirmação retirada vira **lápide** no mesmo lugar, para que as referências antigas continuem resolvendo (LAP-R1):
 
 ```markdown
-- [ ] PED-R7  removida
+- [ ] PED-R7.1  removida
 ```
 
 A lápide nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado (LAP-R4).
 
 Uma correção de redação mantém o identificador e a marca. Uma mudança de significado retira a afirmação e cria outra (LIN-R3), que nasce `[ ]`: a lápide e a afirmação nova ficam pendentes até o produto acompanhar, e o agente enxerga a mudança sem precisar comparar versões. Mover uma célula de uma área para outra não muda nenhum identificador (ARE-R3).
 
-Lápides acumuladas viram ruído e pesam contra a densidade. Por isso podem ser podadas, quando quem mantém a especificação achar oportuno: sai a lápide `[x]` que nenhuma linha ainda cita (LAP-R9). O número dela continua sem voltar, e quem o lembra é `_contadores.md`.
+Lápides acumuladas viram ruído e pesam contra a densidade. Por isso podem ser podadas, quando quem mantém a especificação achar oportuno: sai a lápide `[x]` que nenhuma linha ainda cita (LAP-R9). O identificador dela continua sem voltar.
 
 ## Linguagem ubíqua
 
@@ -339,7 +342,7 @@ As células são a forma de organizar o conhecimento, e o conhecimento muda. À 
 Quando uma afirmação muda de dono, ela ganha o identificador da nova célula e herda a marca de implementação, porque o comportamento não mudou. No lugar antigo fica uma lápide que redireciona as referências (LAP-R5, LAP-R7):
 
 ```markdown
-- [x] PED-C3  movida → [ENT-C1]
+- [x] PED-C3.1  movida → [ENT-C1.1]
 ```
 
 Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14). A revisão deve apontar quando reagrupar: célula grande demais, célula sem linhas próprias, afirmação que cita mais outra célula do que a sua, duas células que só aparecem juntas. A decisão continua sendo de quem escreve.
@@ -350,7 +353,7 @@ Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14
 
 **Externos** são sistemas ou organizações fora do produto que alguma regra pressupõe: um provedor de identidade, um órgão regulador, o titular de direitos sobre um conteúdo. Cada um diz o que guarda, fornece, recebe ou impõe (APR-R8).
 
-**Jornadas** registram as sequências de capacidades e visões cuja ordem é escolha de produto, como uma lista de identificadores: `PRD-J1  Primeira compra: [CLI-C1] → [PED-C1] → [PAG-C1]`.
+**Jornadas** registram as sequências de capacidades e visões cuja ordem é escolha de produto, como uma lista de identificadores: `PRD-J1.1  Primeira compra: [CLI-C1.1] → [PED-C1.1] → [PAG-C1.1]`.
 
 ## Áreas
 
@@ -363,12 +366,12 @@ A proximidade lógica é medida, não apenas declarada. Para cada célula, conta
 Dúvidas que surgem sobre o que já foi comprometido ficam em `_perguntas.md`, uma por item, com opções quando houver. Ideias não são perguntas: ficam no rastreador até amadurecerem (PER-R8).
 
 ```markdown
-- P03  Fechar pedido com produto sem estoque: recusar o fechamento ou fechar sem o item?
+- P3.1  Fechar pedido com produto sem estoque: recusar o fechamento ou fechar sem o item?
   - opção: recusar com aviso
   - opção: fechar sem o item e avisar o cliente
 ```
 
-Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é justamente a falta de uma linha, a pergunta diz sobre qual célula é (`sobre: **Entrega**`), e nunca as duas coisas (PER-R4). Não existe estado "respondida": responder é apagar a pergunta e, na mesma mudança, tirar a marca das linhas que a citavam (REF-R5). Se a resposta precisar de justificativa, vira uma decisão: o enunciado passa a ser a questão, e as opções não escolhidas, as alternativas descartadas.
+Uma linha provisória aponta para a pergunta com `⟵ [P3.1]`. Se a lacuna é justamente a falta de uma linha, a pergunta diz sobre qual célula é (`sobre: **Entrega**`), e nunca as duas coisas (PER-R4). Não existe estado "respondida": responder é apagar a pergunta e, na mesma mudança, tirar a marca das linhas que a citavam (REF-R5). Se a resposta precisar de justificativa, vira uma decisão: o enunciado passa a ser a questão, e as opções não escolhidas, as alternativas descartadas.
 
 ## O que fica fora das células
 
@@ -384,12 +387,12 @@ Uma linha provisória aponta para a pergunta com `⟵ [P03]`. Se a lacuna é jus
 
 ## Decisões
 
-O formato das decisões é parte do Tabularium, mas o texto delas nunca entra numa célula, numa área ou em `_produto.md`: ali seria ruído. O que entra é só uma marca no fim do item fundamentado, como o `⟸ [D07]` do exemplo do Pedido (REF-R9). Qualquer item de lista pode levar a marca: uma afirmação, uma linha de modelo, um evento, um item de `_produto.md`. Um item pode citar várias decisões, `⟸ [D07, D12]`, e uma decisão pode ser citada por vários itens. A decisão não cita de volta (REF-R10). Uma afirmação que muda de célula leva consigo as suas citações (REF-R13).
+O formato das decisões é parte do Tabularium, mas o texto delas nunca entra numa célula, numa área ou em `_produto.md`: ali seria ruído. O que entra é só uma marca no fim do item fundamentado, como o `⟸ [D7.1]` do exemplo do Pedido (REF-R9). Qualquer item de lista pode levar a marca: uma afirmação, uma linha de modelo, um evento, um item de `_produto.md`. Um item pode citar várias decisões, `⟸ [D7.1, D12.1]`, e uma decisão pode ser citada por vários itens. A decisão não cita de volta (REF-R10). Uma afirmação que muda de célula leva consigo as suas citações (REF-R13).
 
 Uma decisão é um arquivo assim:
 
 ```markdown
-# Quem vê um pedido?  `D07`
+# Quem vê um pedido?  `D7.1`
 Só o cliente dono e o atendente.
 - Contexto: o pedido traz endereço e itens comprados
 - Alternativas descartadas
@@ -407,13 +410,13 @@ O título é uma **questão**, terminada em `?`, com o código da decisão. A fr
 
 A fronteira de uma decisão é a questão: uma decisão responde a uma só, e as alternativas descartadas são outras respostas a ela (DEC-R3). Se uma alternativa responde a outra questão, ou se dá para reverter só uma parte da resolução, são duas decisões. Por isso uma questão nova sempre cria uma decisão nova, e só se edita uma decisão quando a mesma questão ganha outra resolução (DEC-R6). A revisão deve apontar quando a resolução tem mais de uma frase, quando o arquivo passa de 25 linhas e quando o Histórico passa de 5 entradas; os dois números são provisórios.
 
-Registra-se uma decisão quando havia ao menos uma alternativa plausível, na mesma mudança que o item que ela fundamenta (DEC-R5). O código `Dnn` é uma sequência única para o produto e nunca volta. A pasta `specs/decisoes/` espelha a especificação e tem a sua própria legenda e as suas instruções para agentes, para que quem não vai mexer em decisões não precise lê-las (DEC-R18): a decisão mora na pasta da área cujos itens mais a citam, ou em `_produto/`, e mudar de pasta não muda o código (DEC-R9, DEC-R10). Cada pasta tem um índice gerado por programa, com o código, a questão, a resolução e quem cita cada decisão.
+Registra-se uma decisão quando havia ao menos uma alternativa plausível, na mesma mudança que o item que ela fundamenta (DEC-R5). O código `Dnn` leva o prefixo de mudança e o número de ordem, como o identificador, é único no produto e nunca volta (DEC-R22.1, DEC-R22.2). A pasta `specs/decisoes/` espelha a especificação e tem a sua própria legenda e as suas instruções para agentes, para que quem não vai mexer em decisões não precise lê-las (DEC-R18): a decisão mora na pasta da área cujos itens mais a citam, ou em `_produto/`, e mudar de pasta não muda o código (DEC-R9, DEC-R10). Cada pasta tem um índice gerado por programa, com o código, a questão, a resolução e quem cita cada decisão.
 
 Uma decisão pode citar outra, com a mesma marca, quando o contexto de uma é a resolução da outra. A decisão que ninguém mais cita permanece até uma limpeza feita sob demanda, a mesma que poda as lápides (DEC-R20).
 
 ## Verificação e geração
 
-A gramática é fixa para que um programa, o **Validador**, consiga checar a forma da especificação sem interpretar o texto (VRF-R3). É um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro da skill `tabularium-validar`: o agente o executa e lê a saída, mas não o substitui (VRF-R5). O que ele checa é uma lista fechada, escrita no bloco dele, que cita cada regra pelo identificador (VRF-R14): a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, as referências, os termos, a numeração e os dados de referência. Nos dados, ele confere a regra, o nome do arquivo, as colunas da tabela e do CSV, as chaves do primeiro nível do JSON e a identidade repetida; as chaves dentro das partes e o tipo dos valores ficam com a revisão (VRF-R21). A gramática também é fechada: toda linha tem de casar com uma forma prevista, e a que não casa é violação (VRF-R8). Uma linha que começa com `[ok]` em vez de `[x]` é um exemplo do que ele acusa. Ele lê só os arquivos como estão, sem consultar o histórico (VRF-R9), e, das pastas de arquitetura e de interface, por ora só checa as decisões e as citações de decisão (VRF-R23). Uma especificação com ao menos uma violação é inválida, sem resultado intermediário (VRF-R7); impedir que a mudança entre é escolha de quem adota. Os sinais de reagrupamento, como áreas pouco coesas e blocos grandes demais, não são checados por ele: ficam com a revisão.
+A gramática é fixa para que um programa, o **Validador**, consiga checar a forma da especificação sem interpretar o texto (VRF-R3). É um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro da skill `tabularium-validar`: o agente o executa e lê a saída, mas não o substitui (VRF-R5). O que ele checa é uma lista fechada, escrita no bloco dele, que cita cada regra pelo identificador (VRF-R14): a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, os códigos de decisão e de pergunta, as referências, os termos e os dados de referência. Nos dados, ele confere a regra, o nome do arquivo, as colunas da tabela e do CSV, as chaves do primeiro nível do JSON e a identidade repetida; as chaves dentro das partes e o tipo dos valores ficam com a revisão (VRF-R21). A gramática também é fechada: toda linha tem de casar com uma forma prevista, e a que não casa é violação (VRF-R8). Uma linha que começa com `[ok]` em vez de `[x]` é um exemplo do que ele acusa. Ele lê só os arquivos como estão, sem consultar o histórico (VRF-R9), e, das pastas de arquitetura e de interface, por ora só checa as decisões e as citações de decisão (VRF-R23). Uma especificação com ao menos uma violação é inválida, sem resultado intermediário (VRF-R7); impedir que a mudança entre é escolha de quem adota. Os sinais de reagrupamento, como áreas pouco coesas e blocos grandes demais, não são checados por ele: ficam com a revisão.
 
 Outro programa, o **Gerador**, vai produzir o que se deriva mecanicamente (GER-C1): o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais, as definições de link e o índice de cada pasta de decisões. Ele só gera a partir de uma especificação sem violações. Essas partes são sempre iguais para a mesma especificação (GER-R2).
 
@@ -435,7 +438,7 @@ Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de
 
 ## Arquitetura, em experimento
 
-A especificação diz o que o produto faz, nunca como ele é construído, e `_produto.md` lista a arquitetura como fora de escopo. Para esse assunto há um formato experimental, em `specs/arquitetura/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e os modelos de `_sistema.md` e de `_contadores.md`. A pasta é opcional: os modelos podem ficar como vieram até a equipe decidir descrever a arquitetura.
+A especificação diz o que o produto faz, nunca como ele é construído, e `_produto.md` lista a arquitetura como fora de escopo. Para esse assunto há um formato experimental, em `specs/arquitetura/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e o modelo de `_sistema.md`. A pasta é opcional: os modelos podem ficar como vieram até a equipe decidir descrever a arquitetura.
 
 A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
 
@@ -477,7 +480,7 @@ O exemplo real é a arquitetura do próprio Tabularium, em [`specs/arquitetura/`
 
 ## Interface, em experimento
 
-A especificação diz o que o produto faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora de escopo. Para esse assunto há um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e os modelos de `_interface.md` e de `_contadores.md`. A pasta é opcional, como a de arquitetura.
+A especificação diz o que o produto faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora de escopo. Para esse assunto há um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e o modelo de `_interface.md`. A pasta é opcional, como a de arquitetura.
 
 A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
 
@@ -498,16 +501,16 @@ Um componente e o padrão que ele segue ficam assim:
 ## Confirmação  `CNF`
 Pergunta feita ao ator antes de uma ação que não se desfaz.
 - tipo: padrão
-- [ ] CNF-R1  A pergunta diz a consequência, e não só o nome da ação
-- [ ] CNF-R2  A ação de confirmar usa a **cor de perigo**
+- [ ] CNF-R1.1  A pergunta diz a consequência, e não só o nome da ação
+- [ ] CNF-R2.1  A ação de confirmar usa a **cor de perigo**
 
 ## Diálogo de cancelamento  `DCA`
 Diálogo em que o **Cliente** confirma o cancelamento de um **Pedido**.
 - tipo: diálogo
 - partes: pergunta, aviso de estorno, ação de desistir, ação de cancelar o pedido
 - segue **Confirmação**
-- realiza: [PED-C2]
-- [ ] DCA-I1  Desistir
+- realiza: [PED-C2.1]
+- [ ] DCA-I1.1  Desistir
   - o diálogo fecha, e nada muda
   - terminal: também com `Esc`
 ```
@@ -527,12 +530,13 @@ Não entram desenhos de tela nem posição em pixels. O formato foi posto à pro
 
 O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especificação: o que ler antes de cada tarefa, onde colocar cada tipo de informação, as regras que nunca se quebram (como não renumerar e não editar seções geradas) e quando parar e perguntar em vez de inventar. A revisão por categorias FURPS+ não gera requisitos: gera perguntas abertas, porque uma categoria vazia pode ser uma lacuna ou uma escolha consciente.
 
-Cinco skills acompanham o formato, e `npx skills` instala todas de uma vez. Só a de validação o agente aciona por conta própria; as outras esperam o seu comando.
+Seis skills acompanham o formato, e `npx skills` instala todas de uma vez. A de validação e a de sorteio o agente aciona por conta própria; as outras esperam o seu comando.
 
 | Skill | O que faz |
 | --- | --- |
 | `/tabularium-instalar` | Instala ou atualiza o formato em `specs/` |
 | `/tabularium-validar` | Confere a forma da especificação com um script |
+| `/tabularium-sortear` | Sorteia, com um script, o prefixo dos códigos de uma mudança sem issue |
 | `/tabularium-entrevistar` | Amadurece uma ideia com o autor até o consenso sobre o que muda, e mostra o plano |
 | `/tabularium-registrar` | Grava numa issue do GitHub o estado da entrevista; opcional |
 | `/tabularium-aplicar` | Escreve em `specs/` o plano que chegou ao consenso |
@@ -588,7 +592,7 @@ O Tabularium adota ideias de cada uma dessas abordagens e deixa outras de fora, 
 - **O validador é parte do formato, não um acessório.** Sem ele, as regras de forma, de unicidade e de referência dependem de disciplina, que não sobrevive a muitos autores. O que ele não vê, como o histórico dos números, continua dependendo dela.
 - **Um produto, uma linguagem.** Uma especificação descreve um só produto, com um significado por termo (ESP-R8). Quando dois significados legítimos do mesmo termo não se conciliam, são dois produtos, cada um com a sua especificação.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Ela precisa ser atualizada a cada evolução do código, e o formato ainda não diz o que prova que continua verdadeira. Numa especificação guardada longe do código, como nos repositórios de exemplo, as marcas são um retrato datado.
-- **O trabalho em equipe ainda não está resolvido.** A colisão de números alocados em paralelo aparece como conflito em `_contadores.md`, mas só se quem altera mantiver o arquivo em dia; o validador confere que nenhum número em uso passa do guardado, mas não vê o histórico. O formato também não trata, por ora, de quem do negócio aprova uma mudança e sobre qual texto.
+- **O trabalho em equipe ainda não está resolvido.** O prefixo de mudança evita que duas mudanças em paralelo aloquem o mesmo código, mas o validador não vê o histórico: não acusa o código antigo que foi trocado, nem o código novo alocado só com um número. O formato também não trata, por ora, de quem do negócio aprova uma mudança e sobre qual texto.
 - **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato são os documentos derivados. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser gerados, nunca copiados.
 - **O formato não substitui a conversa.** Ele registra decisões de produto, mas não as toma. As perguntas abertas existem justamente para que a especificação mostre o que ainda não foi decidido.
 - **A justificativa de cada escolha deste formato deveria estar em `specs/decisoes/`.** A maior parte já está lá. As que não têm um item da especificação que as cite, como as escolhas sobre o README e sobre este guia, ainda só aparecem aqui, que, pelas regras do próprio formato, é o lugar errado para guardá-las.

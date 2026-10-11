@@ -5,8 +5,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `AGENTS.md`: instruções para agentes de IA
 - `_convencoes.md`: esta legenda
 - `_produto.md`: o que vale para o produto inteiro; lido antes das áreas; inclui os externos, sistemas ou organizações que alguma regra pressupõe
-- `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional; um item por pergunta, como `- P04  enunciado?`, com sub-itens `opção:` e `sobre:`; título e frase de abertura são opcionais
-- `_contadores.md`: um item por sequência, como `- PED-R  8  pago-nao-edita`: o maior número já usado e um nome curto da última alocação; dois espaços entre as partes; sem nome curto enquanto o número é 0; o número só cresce; alocar é usar o número guardado mais um e atualizar o item; seções `Identificadores`, em ordem alfabética, `Perguntas` e `Decisões`
+- `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional; um item por pergunta, como `- P4.1  enunciado?`, com sub-itens `opção:` e `sobre:`; título e frase de abertura são opcionais
 - `decisoes/`: decisões relevantes, uma por arquivo, lidas só sob demanda; tem a sua própria legenda e as suas instruções para agentes; os itens da especificação as citam, e elas não citam de volta
 - `dados/`: arquivos de dados de referência, em JSON ou CSV, lidos só sob demanda; cada um é citado por exatamente uma regra; o nome é a sigla da célula que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`; a pasta não tem subpastas nem outros arquivos
 - `<area>.md`: uma área; lida em qualquer ordem
@@ -40,7 +39,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `Áreas`: tabela com as colunas `Área`, `Célula central`, `Prioridade`, `Dono` e `Arquivo`
 - `Atores`: `- **Nome**: acesso`; há exatamente um padrão, que termina com `; padrão`
 - `Tipos comuns`: como os itens de Tipos
-- `Jornadas`: `- PRD-J1  Nome: [ID] → [ID]`
+- `Jornadas`: `- PRD-J1.1  Nome: [ID] → [ID]`
 - `Externos`: `- **Nome** · papel`, com sub-itens iniciados por `guarda:`, `fornece:`, `recebe:` ou `impõe:`
 - `Regras globais`: afirmações de sigla `PRD`
 - `Fora de escopo`: `- texto · permanente` ou `- texto · nesta versão`
@@ -57,8 +56,12 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 
 ## Marcas
 - `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: afirmação R, Q, C, V ou T, implementada por inteiro ou não; não há estado parcial; dois espaços entre o identificador e o texto; J e linhas de modelo não levam marca
-- `SIGLA-PN`: identificador; P é o papel, N o número; números e siglas nunca voltam; fora da linha principal do controle de versão, um número recém-alocado ainda pode ser trocado se colidir
-- `[PED-R1]`: referência a identificador
+- `SIGLA-PN`: identificador; P é o papel e N o número, formado pelo prefixo de mudança, `.` e o número de ordem, como em `PED-R9.1`; códigos e siglas nunca mudam nem voltam
+- prefixo de mudança: o número da issue que pede a mudança, sem zero à esquerda, ou um código sorteado, como em `PED-Rk7q2.1`; é o mesmo em todos os códigos que a mudança aloca
+- código sorteado: 4 caracteres de `bcdfghjklmnpqrstvwxz23456789`, o primeiro uma letra; sai de um programa, nunca de pessoa nem de agente
+- número de ordem: conta, a partir de 1, os códigos da mesma sigla e do mesmo papel que a mudança aloca; perguntas e decisões têm cada uma a sua contagem, como em `P9.1` e `D9.1`
+- `PED-R8`, `P04` ou `D07`, só com um número: código anterior ao prefixo de mudança; continua válido, e nenhum outro é alocado assim
+- `[PED-R1.1]`: referência a identificador
 - `**Termo**`: termo; na definição, o nome vai em negrito, também no título de célula; na referência, vai em negrito a primeira menção de cada item, frase de definição ou fileira de tabela; negrito só marca termo, nunca ênfase
 - negrito se escreve só com `**`; `__texto__`, `<b>` e `<strong>` são violação, fora de código, mesmo em volta de um termo
 - em maiúsculas ou no plural regular (`s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis`, `ns`), é o mesmo termo
@@ -73,19 +76,19 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - R terminada em `:` seguida de uma linha em branco e de uma tabela: tabela de decisão, ou dados de referência quando a primeira coluna é o atributo de identidade da célula
 - R terminada em `: [PED-tarifas.json]`: dados de referência num arquivo de `dados/`
 - critério iniciado por `exige:`: pré-condição; por `se …:`: fluxo alternativo ou exceção; sem prefixo: resultado
-- `⟵ [P04]` no fim da linha: linha provisória, à espera da pergunta P04; respondida a pergunta, a marca sai
-- `⟸ [D07]` ou `⟸ [D07, D12]` no fim de um item de lista: decisões que o fundamentam; a frase de definição e as lápides não citam; a afirmação que muda de célula leva as citações consigo
+- `⟵ [P4.1]` no fim da linha: linha provisória, à espera da pergunta P4.1; respondida a pergunta, a marca sai
+- `⟸ [D7.1]` ou `⟸ [D7.1, D12.1]` no fim de um item de lista: decisões que o fundamentam; a frase de definição e as lápides não citam; a afirmação que muda de célula leva as citações consigo
 - ordem das marcas no fim de um item: `⟸ [Dnn]`, depois `⟵ [Pnn]`; na regra seguida de tabela ou de arquivo de dados, antes do `:`
-- `- [ ] PED-R7  removida`: lápide de uma afirmação retirada; passa a `[x]` quando o produto deixa de ter o comportamento
-- `- [x] PED-C3  movida → [ENT-C1]`: lápide de uma afirmação que mudou de célula; tem a marca da afirmação nova, que herda a da antiga
-- lápide `[x]` que nada mais cita pode ser podada; o número dela continua sem voltar
+- `- [ ] PED-R7.1  removida`: lápide de uma afirmação retirada; passa a `[x]` quando o produto deixa de ter o comportamento
+- `- [x] PED-C3.1  movida → [ENT-C1.1]`: lápide de uma afirmação que mudou de célula; tem a marca da afirmação nova, que herda a da antiga
+- lápide `[x]` que nada mais cita pode ser podada; o identificador dela continua sem voltar
 - `<!-- gerado; não editar -->`: seção gerada por programa; documentos derivados, como visão, casos de uso e manual, são redigidos por agente e ficam fora desta pasta
 
 ## Dados de referência
 - instâncias de uma célula que já vêm com o produto e só mudam por uma nova versão dele; o que um ator altera é estado, e o que um externo fornece e atualiza consta só do `fornece:` dele
 - uma regra de dados por célula, no máximo: R terminada em `:` e seguida dos dados; só em célula com atributo de identidade
 - no bloco: tabela cuja primeira coluna é o atributo de identidade; cada coluna é um atributo da célula, com o nome escrito como no modelo; opcional ausente é célula vazia
-- em arquivo: o nome entre colchetes depois do `:`, sem caminho, como em `- [ ] PED-R5  As tarifas, por **modalidade**, com as **Faixas de peso** ⟸ [D07]: [PED-tarifas.json]`
+- em arquivo: o nome entre colchetes depois do `:`, sem caminho, como em `- [ ] PED-R5.1  As tarifas, por **modalidade**, com as **Faixas de peso** ⟸ [D7.1]: [PED-tarifas.json]`
 - a regra que cita um arquivo nomeia em negrito os atributos que ele traz, com o de identidade primeiro, e a célula de cada parte que ele traz; o tipo de cada atributo fica só na linha de modelo
 - no bloco fica o que é preciso ver para entender as linhas da célula; o resto, e todo dado que não é tabular, vai para arquivo; tabela com mais de 30 fileiras é candidata a arquivo
 - JSON: lista de objetos, um por instância; cada chave é o nome de um atributo; a parte fica numa lista sob o nome da célula dela; opcional ausente é chave omitida

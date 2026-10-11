@@ -75,7 +75,7 @@ As linhas de modelo têm palavras fixas: `tecnologia:`, `local:`, `realiza:` e `
 | 6. Linguagem ubíqua | A mesma linguagem do produto, acrescida dos nomes dos componentes; siglas num espaço só |
 | 7. Base para outros documentos | Diagramas de contexto e de componentes sairiam por programa, das linhas `usa`; visões em prosa, por agente |
 | 8. Verificável por programa | Além da gramática, âncoras: todo `local:` existe, toda referência resolve |
-| 9. Rastreável | Igual: identificadores que nunca voltam, com contadores próprios |
+| 9. Rastreável | Igual: identificadores que nunca voltam, com o prefixo de mudança |
 | 10. Fundamentada em decisões | Igual, e mais importante aqui, porque quase toda afirmação é uma decisão que tinha alternativa |
 | 11. Explícita sobre lacunas | Igual em princípio; onde ficam as perguntas da arquitetura ainda não foi definido |
 | 12. Não técnica | Inverte: só técnica. Não repete o que o produto faz |
@@ -110,7 +110,7 @@ O Daniel disse que ainda não sabe avaliar se o formato é bom, apesar de intere
 - **É mudança de produto.** Adotar isto no formato exige rever o item "Arquitetura e detalhes técnicos · permanente" de `_produto.md`. A D74 continua valendo.
 - **Onde ficam as decisões da arquitetura.** Resolvido em 7 de outubro de 2026: em `decisoes/` desta pasta, com os códigos da sequência do produto. Uma decisão citada só pela arquitetura seria órfã em `specs/decisoes/` pelas regras de hoje. Nenhuma afirmação da arquitetura cita decisão ainda, porque as escolhas de `decisoes.md` não foram convertidas.
 - **Onde ficam as perguntas da arquitetura.** O arquivo de perguntas da especificação diz que as perguntas ficam só nele.
-- **Os contadores.** A arquitetura tem um `_contadores.md` próprio, porque as letras I e F não são papéis válidos no da especificação. As siglas, porém, precisam ser únicas nos dois.
+- **Os contadores.** Resolvido em 10 de outubro de 2026: não há mais contadores, e todo código novo leva o prefixo de mudança, como na especificação. As siglas continuam únicas entre componentes e células.
 - **Os nomes.** "Componente", `realiza`, `usa`, e as letras I e F são sugestão do Claude.
 - **O teste do que entra** ainda não foi posto à prova fora deste caso.
-- **A instalação distribui esta pasta.** Resolvido em 10 de outubro de 2026: o manifesto lista a legenda e as instruções entre os genéricos, e `_sistema.md` e `_contadores.md` entre os modelos, para o instalador criar a versão inicial de cada um. Antes, o manifesto a deixava de fora, de propósito, enquanto fosse experimento. `ideia.md` e `decisoes.md` não são distribuídos.
+- **A instalação distribui esta pasta.** Resolvido em 10 de outubro de 2026: o manifesto lista a legenda e as instruções entre os genéricos, e `_sistema.md` entre os modelos, para o instalador criar a versão inicial dele. Antes, o manifesto a deixava de fora, de propósito, enquanto fosse experimento. `ideia.md` e `decisoes.md` não são distribuídos.

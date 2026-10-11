@@ -47,7 +47,7 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 7. Cor, fonte e medida que valem em mais de um lugar são estilos, com nome e papel. Cite o estilo em negrito, e não o valor. O valor de máquina fica no código.
 8. Cada afirmação é verificável no produto. Uma intenção, como "a interface é agradável", não entra.
 9. Todo `local:` aponta para um caminho que existe no repositório.
-10. Números de identificador saem de `_contadores.md` desta pasta; códigos `Dnn` e `Pnn`, de `../_contadores.md`, que você atualiza na mesma mudança. Antes de criar uma sigla, confira que ela não aparece em nenhum arquivo de contadores de `specs/`.
+10. Todo código novo, de identificador, de decisão ou de pergunta, leva o prefixo da mudança e o número de ordem, como manda a regra 1 de `../AGENTS.md`. Antes de criar uma sigla, confira que nenhum componente, nenhuma célula e nenhum item da interface a tem: procure-a em toda a pasta `specs/`.
 11. Toda afirmação nova nasce `[ ]` e passa a `[x]` quando o produto a cumpre por inteiro, com evidência.
 12. O formato é uma proposta e não previu tudo. Quando algo não se encaixa bem, ou se encaixa só ferindo um valor da especificação, pare e avise o usuário, conforme `Quando o formato não serve`. Escreva só o que cabe sem esforço.
 
@@ -80,23 +80,23 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 ## Receitas
 
 - **Decidir se algo é componente:** é componente o conjunto de controles que se coordenam para um objetivo e que pode aparecer em mais de um lugar. Um controle sozinho é parte. Uma solução sem controles próprios, que vários componentes seguem, é padrão. Uma frase que vale para tudo é diretriz.
-- **Criar um componente ou um padrão:** escolha a sigla, acrescente um item em `_contadores.md` para cada papel que ele usar, e escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem: modelo, R, Q, I.
+- **Criar um componente ou um padrão:** escolha a sigla, conforme a regra 10, e escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem: modelo, R, Q, I.
 - **Criar uma tela:** escreva um bloco de componente com `tipo: tela`, sem `partes:`, e uma linha `usa` por componente, na ordem em que aparecem. O que é de um componente fica no bloco dele, mesmo que ele só apareça nessa tela.
 - **Escolher o tipo:** use um tipo do vocabulário, se algum serve. Não invente palavra: se nenhum serve, omita a linha. Um componente tem no máximo um tipo.
 - **Criar um tipo da aplicação:** só quando dois ou mais componentes são a mesma espécie de coisa e têm afirmações em comum. Escreva o bloco do tipo como o de um componente, com as afirmações comuns, e faça cada componente citá-lo com `tipo: **Nome**`. O componente herda as linhas do tipo e não as repete.
 - **Tipo ou padrão:** o tipo diz o que o componente é, e ele só tem um. O padrão diz um comportamento que ele segue, e ele pode seguir vários.
 - **Componente que foge do padrão ou do tipo num ponto:** escreva no componente a afirmação que vale para ele e termine-a com `ao contrário de [ID]`, citando a afirmação do padrão ou do tipo. Não altere o padrão para acomodar o caso. Se vários componentes fogem do mesmo ponto, o padrão é que está errado: proponha revê-lo.
 - **Dar nome a um componente ligado a uma célula:** se a célula é do domínio e o componente só a mostra, dê a ele um nome próprio, que diga o que ele é na tela, como `Cartão de pedido` para a célula `Pedido`. Se o componente e a célula são a mesma coisa, como um menu descrito como célula, use o mesmo nome, com outra sigla, e avise o usuário: a célula é candidata a sair da especificação. Nos dois casos, cite com `realiza:` as afirmações dela que ele apresenta.
-- **Acrescentar uma afirmação:** aplique os dois testes, ache o dono, use o próximo número e atualize o contador.
+- **Acrescentar uma afirmação:** aplique os dois testes, ache o dono e componha o identificador conforme a regra 10.
 - **Criar um estilo:** confira antes se já existe um com o mesmo papel. Dê um nome que diga o papel, e não o valor. Escreva o valor só quando ele é compromisso.
 - **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Acrescente-a na tabela de áreas de `_interface.md`.
-- **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta, na subpasta da área do item, ou em `_interface/` se o item está em `_interface.md`; o item que a cita é desta pasta; e o código sai de `Decisões` em `../_contadores.md`, que você atualiza na mesma mudança.
+- **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta, na subpasta da área do item, ou em `_interface/` se o item está em `_interface.md`; o item que a cita é desta pasta; e o código é único entre as decisões das três pastas.
 - **Citar uma decisão:** um item desta pasta cita decisão desta pasta, da arquitetura ou da especificação.
 - **Retirar ou mover uma afirmação:** lápide no lugar, como na especificação.
 
 ## Depois de alterar
 
-Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa nos dois testes; toda referência `[ID]` resolve, aqui ou na especificação; todo estilo, componente e padrão citado em negrito existe; todo `local:` existe; nenhuma sigla repetida; os contadores com o número e o nome curto de cada alocação nova; linhas na ordem fixa.
+Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa nos dois testes; toda referência `[ID]` resolve, aqui ou na especificação; todo estilo, componente e padrão citado em negrito existe; todo `local:` existe; nenhuma sigla repetida; cada código novo com o prefixo da mudança, e nenhum código antigo trocado; linhas na ordem fixa.
 
 Resuma a mudança listando os identificadores criados, alterados e retirados, e os estilos criados ou renomeados.
 

@@ -60,7 +60,7 @@ Cada pergunta tem esta forma:
 ## Rodada 3 · Cancelamento de pedido
 ### Pergunta 2/4 · Até quando o cliente cancela
 
-**O problema.** A capacidade "Cancelar um pedido" (`PED-C4`) não diz até quando vale.
+**O problema.** A capacidade "Cancelar um pedido" (`PED-C4.1`) não diz até quando vale.
 
 **Exemplo.** Um pedido entregue há um mês ainda poderia ser cancelado.
 
@@ -74,7 +74,7 @@ Uma ideia que chega madura passa pelos mesmos passos, em menos rodadas.
 - Os fatos, você busca lendo a especificação. As decisões são do autor.
 - Toda pergunta leva a sua sugestão, também quando é de produto: um valor, um prazo, uma permissão. Ela aparece como sugestão sua, e o autor decide.
 - O exemplo sai da especificação do projeto.
-- Ao citar algo da especificação, escreva o nome e o código entre parênteses: "Pedido (`PED`)", "Um pedido pago pode ser editado? (`D12`)". A afirmação não tem nome: cite o texto da linha, encurtado se for longo.
+- Ao citar algo da especificação, escreva o nome e o código entre parênteses: "Pedido (`PED`)", "Um pedido pago pode ser editado? (`D12.1`)". A afirmação não tem nome: cite o texto da linha, encurtado se for longo.
 - Uma escolha com alternativa plausível vira uma decisão no plano, com tudo o que a legenda de `specs/decisoes/` pede: o contexto, as alternativas descartadas com o motivo, e o que se ganha e o que se aceita. Para o motivo, sugira mais de um; o autor escolhe vários, corrige ou dá os próprios.
 
 ### Sem objeção

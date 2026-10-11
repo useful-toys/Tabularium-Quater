@@ -5,9 +5,8 @@ Legenda para ler e escrever a interface neste formato, que é experimental. Ela 
 - `AGENTS.md`: instruções para agentes de IA sobre a interface
 - `_convencoes.md`: esta legenda
 - `_interface.md`: o que vale para a interface inteira; lido antes das áreas
-- `_contadores.md`: o maior número já usado em cada sequência de identificadores da interface, como na especificação
-- `_perguntas.md`: dúvidas sobre a interface já comprometida; opcional; os códigos `Pnn` saem da sequência do produto, em `../_contadores.md`
-- `decisoes/`: decisões que só a interface cita, uma por arquivo, em subpastas por área e em `_interface/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
+- `_perguntas.md`: dúvidas sobre a interface já comprometida; opcional; os códigos `Pnn` levam o prefixo de mudança, como na especificação
+- `decisoes/`: decisões que só a interface cita, uma por arquivo, em subpastas por área e em `_interface/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` levam o prefixo de mudança, como na especificação
 - `_achados.md`: o que o formato não serviu a escrever, por tipo de problema, com o estado; opcional; fora do formato, e o validador não o lê
 - `<area>.md`: uma área; lida em qualquer ordem
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato
@@ -101,11 +100,11 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 
 ## Marcas
 - `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: afirmação R, Q ou I, cumprida por inteiro pelo produto ou não; linhas de modelo não levam marca
-- `[PED-V1]` em qualquer item: referência a uma afirmação da especificação; a especificação nunca cita a interface
+- `[PED-V1.1]` em qualquer item: referência a uma afirmação da especificação; a especificação nunca cita a interface
 - `**Termo**`: componente, tipo da aplicação, padrão, estilo ou termo da especificação, na primeira menção de cada item
 - sub-item iniciado pelo nome de um meio e `:`, em R, Q ou I: o que vale só naquele meio
 - texto entre crases numa afirmação, como `` `Li e concordo` ``: o texto exato que o produto mostra; só quando a redação é compromisso, como um texto com peso legal ou o rótulo de uma ação; fica na afirmação do componente que o mostra, e não há seção de textos
-- `ao contrário de [POP-I2]` no fim de uma afirmação ou de um sub-item de I: exceção a uma afirmação do padrão que o componente segue ou do tipo que ele cita; a exceção é escrita no componente, nunca no padrão nem no tipo
+- `ao contrário de [POP-I2.1]` no fim de uma afirmação ou de um sub-item de I: exceção a uma afirmação do padrão que o componente segue ou do tipo que ele cita; a exceção é escrita no componente, nunca no padrão nem no tipo
 - `⟸ [Dnn]` no fim de um item: decisão que o fundamenta, em `decisoes/` desta pasta, na da arquitetura ou na da especificação
 - `⟵ [Pnn]` no fim de um item: linha provisória, à espera de uma pergunta de `_perguntas.md` desta pasta
 - identificadores, lápides, tabelas de decisão e negrito seguem a legenda da especificação

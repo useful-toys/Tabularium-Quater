@@ -49,7 +49,7 @@ Acrescente um comentário com o que aconteceu desde o registro anterior:
 - Rodada 3 · Cancelamento de pedido
 
 ### Estabelecido
-- A capacidade "Cancelar um pedido" (`PED-C4`) não dizia até quando vale
+- A capacidade "Cancelar um pedido" (`PED-C4.1`) não dizia até quando vale
 
 ### Decidido
 - O cliente cancela até o envio

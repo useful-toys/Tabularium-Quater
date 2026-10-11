@@ -42,7 +42,7 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 3. Uma afirmação sobre o que o produto faz pertence à especificação. Se ela falta lá, proponha acrescentá-la lá e cite-a aqui com `realiza:`.
 4. O código é a fonte do que ele já diz sem esforço. Versões exatas, listas de arquivos e assinaturas ficam nele.
 5. Todo `local:` aponta para um caminho que existe no repositório.
-6. Números saem de `_contadores.md` desta pasta, como na especificação. Antes de criar uma sigla, confira que ela não aparece nem ali nem em `../_contadores.md`.
+6. Todo código novo leva o prefixo da mudança e o número de ordem, como manda a regra 1 de `../AGENTS.md`. Antes de criar uma sigla, confira que nenhum componente, nenhuma célula e nenhum item da interface a tem: procure-a em toda a pasta `specs/`.
 7. Toda afirmação nova nasce `[ ]` e passa a `[x]` quando está construída por inteiro.
 8. O formato é uma proposta e não previu tudo. Quando algo não se encaixa bem, ou se encaixa só ferindo um valor da especificação, pare e avise o usuário, conforme `Quando o formato não serve`. Escreva só o que cabe sem esforço.
 
@@ -66,17 +66,17 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 ## Receitas
 
 - **Decidir se algo é componente:** é componente o que tem responsabilidade própria e poderia ser trocado inteiro. Uma função, uma tela ou um arquivo de apoio são parte de um componente e ficam no código.
-- **Criar um componente:** escolha a sigla, acrescente um item em `_contadores.md` para cada papel que ele usar, e escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem: modelo, R, Q, I.
-- **Acrescentar uma afirmação:** aplique o teste, ache o componente dono, use o próximo número e atualize o contador.
+- **Criar um componente:** escolha a sigla, conforme a regra 6, e escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem: modelo, R, Q, I.
+- **Acrescentar uma afirmação:** aplique o teste, ache o componente dono e componha o identificador conforme a regra 6.
 - **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Acrescente-a na tabela de áreas de `_sistema.md`.
 - **Mudar um componente de lugar no repositório:** atualize `local:` na mesma mudança.
-- **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta, na subpasta da área do item, ou em `_sistema/` se o item está em `_sistema.md`; o item que a cita é desta pasta; e o código sai de `Decisões` em `../_contadores.md`, que você atualiza na mesma mudança.
+- **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta, na subpasta da área do item, ou em `_sistema/` se o item está em `_sistema.md`; o item que a cita é desta pasta; e o código é único entre as decisões das três pastas.
 - **Citar uma decisão:** um item desta pasta cita decisão desta pasta ou da especificação, nunca da interface. A decisão que a interface também cita mora aqui.
 - **Retirar ou mover uma afirmação:** lápide no lugar, como na especificação.
 
 ## Depois de alterar
 
-Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa no teste do que entra; todo `local:` existe; toda referência `[ID]` resolve, aqui ou na especificação; nenhuma sigla repetida entre componentes e células; `_contadores.md` com o número e o nome curto de cada alocação nova; linhas na ordem fixa; primeira menção de cada termo em negrito.
+Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa no teste do que entra; todo `local:` existe; toda referência `[ID]` resolve, aqui ou na especificação; nenhuma sigla repetida entre componentes e células; cada código novo com o prefixo da mudança, e nenhum código antigo trocado; linhas na ordem fixa; primeira menção de cada termo em negrito.
 
 Resuma a mudança listando os identificadores criados, alterados e retirados.
 

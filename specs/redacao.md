@@ -39,8 +39,8 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 | **Dados de referência** em arquivo | `- [ ] CÓDIGO  texto: [SIGLA-nome-curto.json]`, ou com `.csv` | [DRF-R15] |
 
 - [x] LIN-C1  Acrescentar uma **afirmação**
-  - no bloco da **Célula** dona, na posição do seu papel
-  - com o próximo número livre, conforme [IDT-R2]
+  - no bloco da **Célula** dona, depois das **Linhas** do mesmo papel
+  - com **Identificador** novo, de [IDT-R22.1] a [IDT-R22.3]
 - [x] LIN-C2  Retirar uma **afirmação**
 - [x] LIN-C3  Corrigir a redação de uma **afirmação**
 
@@ -49,10 +49,17 @@ Código que torna uma **Linha** citável.
 - **código**: **Código de identificador**; identidade; único; imutável ⟸ [D55]
 - **sigla**: **Sigla de célula**
 - **papel**: **Letra de papel**
-- **número**: inteiro sequencial por sigla e papel
+- **prefixo**: **Prefixo de mudança**; opcional
+- **ordem**: **Número de ordem**
 - [x] IDT-R1  Código válido e **único** na **Especificação**
 - [x] IDT-R2  Nunca é renumerado; número já usado não volta ⟸ [D56]
 - [x] IDT-R3  A sigla é a da **Célula** dona da **Linha**, ou `PRD` no **Arquivo de produto**
+- [x] IDT-R22.1  O **prefixo** é o da mudança que aloca o **código**, o mesmo em todos os códigos que ela aloca ⟸ [D22.1]
+- [x] IDT-R22.2  O número de uma issue só serve de **prefixo** à mudança pedida por ela, e enquanto nenhum código com esse prefixo existe na linha principal do **Controle de versão**; nos demais casos, o prefixo é um **Código sorteado** ⟸ [D22.2]
+- [x] IDT-R22.3  A **ordem** conta, a partir de 1, os códigos de mesma **sigla** e mesmo **papel** que a mudança aloca
+- [x] IDT-R22.4  O **código** é definitivo desde que é alocado, mesmo fora da linha principal do **Controle de versão** ⟸ [D22.1]
+- [x] IDT-R22.5  O **código** sem **prefixo**, que traz só um número depois do **papel**, é anterior ao **Prefixo de mudança**: continua válido, e nenhum outro é alocado
+- [x] IDT-R22.6  O **Código sorteado** sai de um programa, que confere que ele ainda não aparece na **Especificação**; nunca é escolhido por pessoa nem por agente de IA
 
 ## **Lápide**  `LAP`
 **Linha** que ocupa o lugar de uma **afirmação** que foi retirada, para que as **Referências** antigas continuem resolvendo.
@@ -71,7 +78,6 @@ Código que torna uma **Linha** citável.
   - exige: lápide marcada `[x]`
   - exige: nenhuma **Referência** a cita
   - a lápide sai do bloco
-  - o **Arquivo de contadores** impede que o número volte
 
 ## **Referência**  `REF`
 Citação, em um lugar, de algo definido em outro.
@@ -106,14 +112,16 @@ Lacuna conhecida da **Especificação**, ainda sem resposta.
 - [x] PER-R6  Estar no **Arquivo de perguntas** é estar aberta; não há estado de respondida ⟸ [D66]
 - [x] PER-R7  Responde o **Dono de área** da **Área** afetada
 - [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta ⟸ [D60]
+- [x] PER-R22.1  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, de [IDT-R22.1] a [IDT-R22.5]
+- [x] PER-R22.2  **Código** único na **Especificação**
 - [x] PER-C1  Abrir uma pergunta
-  - no **Arquivo de perguntas**, com o próximo número livre
+  - no fim do **Arquivo de perguntas**, com **código** novo, conforme [PER-R22.1]
 - [x] PER-C2  Responder uma pergunta
   - a pergunta sai do **Arquivo de perguntas**
   - resposta que precisa de justificativa vira **Decisão**: o **enunciado** vira a **questão**, e as **opções** não escolhidas, as **alternativas descartadas**
 
 ## **Arquivo de perguntas**  `APG`
-Arquivo com as **Perguntas** abertas da **Especificação**, uma por item, em ordem de número.
+Arquivo com as **Perguntas** abertas da **Especificação**, uma por item.
 - **arquivo**: `_perguntas.md`; opcional
 - [ ] APG-R1  Lista plana, sem agrupamento; a **Área** de cada **Pergunta** é derivável
 - [ ] APG-R2  Guarda só a **Pergunta** e as opções; a discussão fica fora

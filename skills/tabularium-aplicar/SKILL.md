@@ -40,7 +40,7 @@ Aplique cada item de `Mudanças` e de `Decisões`, na ordem do plano, pela recei
 - arquitetura e interface: "Receitas" do `AGENTS.md` de cada pasta;
 - decisões: "Receitas" de `specs/decisoes/AGENTS.md`.
 
-O que é seu, e só isto: trocar cada `?` pelo próximo número dos contadores, levar o código alocado de cada decisão a todos os itens que a citam, pôr cada linha na posição do seu papel, deixar as lápides e atualizar os contadores.
+O que é seu, e só isto: trocar cada `?` pelo prefixo da mudança e pelo número de ordem, levar o código alocado de cada decisão a todos os itens que a citam, pôr cada linha no fim das linhas do seu papel e deixar as lápides. O prefixo é o da regra 1 de `specs/AGENTS.md`: o número da issue do plano, se nenhum código com esse prefixo existe na linha principal, e senão um código da skill `tabularium-sortear`.
 
 Só `Mudanças` e `Decisões` são aplicadas. O que está em `Fora do plano` fica como está na especificação, inclusive a marca de uma afirmação com defeito.
 

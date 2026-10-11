@@ -15,27 +15,27 @@ Este é um trecho da interface do mesmo sistema de pedidos fictício do [exemplo
   - valor: vermelho
 
 ## Diretrizes
-- [x] IFC-R1  Toda ação tem texto
-- [ ] IFC-R2  Toda ação que não se desfaz segue **Confirmação**
-- [ ] IFC-Q1  O retorno de uma ação aparece em até 200 ms
+- [x] IFC-R1.1  Toda ação tem texto
+- [ ] IFC-R2.1  Toda ação que não se desfaz segue **Confirmação**
+- [ ] IFC-Q1.1  O retorno de uma ação aparece em até 200 ms
 ```
 
 ```markdown
 ## Confirmação  `CNF`
 Pergunta feita ao ator antes de uma ação que não se desfaz.
 - tipo: padrão
-- [ ] CNF-R1  A pergunta diz a consequência, e não só o nome da ação
-- [ ] CNF-R2  A ação de confirmar usa a **cor de perigo**
-- [ ] CNF-R3  O foco inicial fica na ação de desistir ⟸ [D12]
+- [ ] CNF-R1.1  A pergunta diz a consequência, e não só o nome da ação
+- [ ] CNF-R2.1  A ação de confirmar usa a **cor de perigo**
+- [ ] CNF-R3.1  O foco inicial fica na ação de desistir ⟸ [D12.1]
 
 ## Diálogo de cancelamento  `DCA`
 Diálogo em que o **Cliente** confirma o cancelamento de um **Pedido**.
 - tipo: diálogo
 - partes: pergunta, aviso de estorno, ação de desistir, ação de cancelar o pedido
 - segue **Confirmação**
-- realiza: [PED-C2]
-- [ ] DCA-R1  O aviso de estorno só aparece quando o **Pedido** já foi pago
-- [ ] DCA-I1  Desistir
+- realiza: [PED-C2.1]
+- [ ] DCA-R1.1  O aviso de estorno só aparece quando o **Pedido** já foi pago
+- [ ] DCA-I1.1  Desistir
   - o diálogo fecha, e nada muda
   - web: também ao clicar fora do diálogo
   - terminal: também com `Esc`
@@ -45,7 +45,7 @@ Tela em que o **Cliente** acompanha um **Pedido**.
 - tipo: tela
 - usa 1 **Resumo do pedido**
 - usa 0..1 **Diálogo de cancelamento**
-- [ ] TPE-R1  Mostra um só **Pedido** de cada vez
+- [ ] TPE-R1.1  Mostra um só **Pedido** de cada vez
 ```
 
 ## Como ler

@@ -15,8 +15,8 @@ A notação é densa e hierárquica: títulos, uma coisa por linha, sub-itens pa
 ### Produto
 1. Acrescentar em Pedido (`PED`)
    - [ ] PED-R?  **Pedido** enviado não pode ser cancelado ⟸ [D?a]
-2. Mudar o significado de "Cancelar um pedido" (`PED-C4`)
-   - lápide `removida` em [PED-C4]
+2. Mudar o significado de "Cancelar um pedido" (`PED-C4.1`)
+   - lápide `removida` em [PED-C4.1]
    - [ ] PED-C?  Cancelar um **Pedido**
      - exige: pedido ainda não enviado · sem objeção
 3. Termo novo, na linguagem de Vendas
@@ -46,9 +46,9 @@ A notação é densa e hierárquica: títulos, uma coisa por linha, sub-itens pa
   - sugestão: sim, com reembolso
 
 ## Fora do plano
-- Já existe: "O cliente vê os seus pedidos" (`PED-V1`)
-- Defeito: "O cliente recebe a confirmação do pedido" (`PED-R2`)
-- Pendente: "O cliente vê o motivo do cancelamento" (`PED-V3`)
+- Já existe: "O cliente vê os seus pedidos" (`PED-V1.1`)
+- Defeito: "O cliente recebe a confirmação do pedido" (`PED-R2.1`)
+- Pendente: "O cliente vê o motivo do cancelamento" (`PED-V3.1`)
 - Codificação: o nome da função de cancelamento
 
 ## Para retomar

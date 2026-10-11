@@ -2,7 +2,7 @@
 // Cada violação cita a regra do formato que a linha contraria e traz uma frase
 // que se entende sem ter a especificação do formato à mão.
 
-import { COLUNAS_AREAS, ROTULOS_DECISAO, SECOES_AREA, SECOES_PRODUTO, mascarar } from './leitura.mjs';
+import { CODIGO, COLUNAS_AREAS, NUMERO, ROTULOS_DECISAO, SECOES_AREA, SECOES_PRODUTO, mascarar, numeroDe } from './leitura.mjs';
 import { checarDados } from './dados.mjs';
 import { checarTermos } from './termos.mjs';
 
@@ -29,12 +29,11 @@ export function checar(e) {
     const acusar = (linha, regra, frase) => violacoes.push({ arquivo: arquivo.caminho, linha, regra, frase });
     for (const l of arquivo.linhas) {
       if (l.forma === 'desconhecida') acusar(l.n, l.regra, `linha não reconhecida; aqui cabe ${l.esperado}`);
-      if (l.caudaInvalida) acusar(l.n, 'REF-R14', 'marcas de fim de item fora da forma ou da ordem; primeiro vem "⟸ [D07]" e depois "⟵ [P04]", sempre no fim');
+      if (l.caudaInvalida) acusar(l.n, 'REF-R14', 'marcas de fim de item fora da forma ou da ordem; primeiro vem "⟸ [D7.1]" e depois "⟵ [P4.1]", sempre no fim');
       if (l.forma === 'afirmacao' || l.forma === 'lapide') checarAfirmacao(l, dicionario, acusar);
     }
     if (arquivo.tipo === 'produto') checarProduto(arquivo, acusar);
     if (arquivo.tipo === 'area') checarArea(arquivo, dicionario, acusar);
-    if (arquivo.tipo === 'contadores') checarContadores(arquivo, acusar);
     if (arquivo.tipo === 'decisao') checarDecisao(arquivo, acusar);
   }
   return violacoes.sort((a, b) => (a.arquivo < b.arquivo ? -1 : a.arquivo > b.arquivo ? 1 : (a.linha ?? 0) - (b.linha ?? 0)));
@@ -45,7 +44,7 @@ function checarPasta(e, acusar) {
     acusar(caminho, null, regra, regra === 'ARE-R1' ? 'falta este arquivo, que toda área em pasta tem' : 'falta este arquivo, que toda especificação tem');
   }
   for (const caminho of e.soltos) {
-    if (/(?:^|\/)decisoes\//.test(caminho)) acusar(caminho, null, 'VRF-R8', 'arquivo que não é decisão; o nome de uma decisão é o código, "-", um nome curto e ".md", como "D07-quem-ve-pedido.md"');
+    if (/(?:^|\/)decisoes\//.test(caminho)) acusar(caminho, null, 'VRF-R8', 'arquivo que não é decisão; o nome de uma decisão é o código, "-", um nome curto e ".md", como "D7.1-quem-ve-pedido.md"');
     else acusar(caminho, null, 'ARE-R1', 'arquivo que não é fixo nem consta da tabela de áreas de _produto.md');
   }
   for (const caminho of e.decisoesSoltas) acusar(caminho, null, 'DEC-R21', 'arquivo solto na pasta de decisões; a decisão de arquitetura ou de interface mora numa subpasta de área, ou em "_sistema" ou "_interface"');
@@ -130,10 +129,16 @@ function ordemNoBloco(l) {
   return l.papel === 'J' ? 'papel' : null;
 }
 
-const chaveDe = (sigla, papel, numero) => `${sigla}-${papel}${Number(numero)}`;
+// O número inválido fica como foi escrito: a linha que o define já foi acusada.
+const chaveDe = (sigla, papel, numero) => `${sigla}-${papel}${numeroDe(numero) ?? numero}`;
 const SEM_TEXTO = ['branco', 'gerado', 'ignorada', 'marcador-gerado'];
+const FORMA_DO_NUMERO = 'o prefixo da mudança, "." e o número de ordem, como "9.1" ou "k7q2.1"; o prefixo é o número de uma issue ou um código sorteado de 4 caracteres, e nenhum número começa por zero';
+const ID = new RegExp(`([A-Z]{2,5})-([A-Z])(${NUMERO})`, 'g');
+const ID_CITADO = new RegExp(`\\[([A-Z]{2,5})-([A-Z])(${NUMERO})\\]`, 'g');
+const PERGUNTA_CITADA = new RegExp(`⟵ \\[P(${NUMERO})\\]`, 'g');
+const DECISOES_CITADAS = new RegExp(`^D${NUMERO}(?:, D${NUMERO})*$`);
 
-// Identificadores, referências e numeração: o que só se confere olhando a especificação inteira.
+// Identificadores e referências: o que só se confere olhando a especificação inteira.
 // O código que aparece numa linha não reconhecida conta como talvez definido,
 // para o erro daquela linha não se repetir em cada lugar que a cita.
 function checarCodigos(e, acusar) {
@@ -143,17 +148,17 @@ function checarCodigos(e, acusar) {
     let dona = a.tipo === 'produto' ? 'PRD' : null;
     for (const l of a.linhas) {
       if (l.forma === 'titulo-celula') dona = l.sigla;
-      if (l.forma === 'desconhecida') for (const m of l.bruto.matchAll(/([A-Z]{2,5})-([A-Z])(\d+)/g)) talvez.add(chaveDe(m[1], m[2], m[3]));
+      if (l.forma === 'desconhecida') for (const m of l.bruto.matchAll(ID)) talvez.add(chaveDe(m[1], m[2], m[3]));
       if (!['afirmacao', 'lapide', 'jornada'].includes(l.forma)) continue;
-      const p = l.id.match(/^([A-Z]{2,5})-([RQCVTJ])(\d+)$/);
-      if (!p || Number(p[3]) === 0) {
-        acusar(a.caminho, l.n, 'IDT-R1', `"${l.id}" não é um identificador válido; a forma é a sigla da célula, "-", a letra do papel (R, Q, C, V, T ou J) e um número a partir de 1, como "PED-R1"`);
+      const p = l.id.match(/^([A-Z]{2,5})-([RQCVTJ])(.+)$/);
+      if (!p || !numeroDe(p[3])) {
+        acusar(a.caminho, l.n, 'IDT-R1', `"${l.id}" não é um identificador válido; a forma é a sigla da célula, "-", a letra do papel (R, Q, C, V, T ou J) e ${FORMA_DO_NUMERO}`);
         continue;
       }
       const chave = chaveDe(p[1], p[2], p[3]);
       const anterior = ids.get(chave);
       if (anterior) acusar(a.caminho, l.n, 'IDT-R1', `o identificador ${l.id} já existe em ${anterior.arquivo}, linha ${anterior.linha}; cada identificador é único na especificação`);
-      else ids.set(chave, { arquivo: a.caminho, linha: l.n, id: l.id, sequencia: `${p[1]}-${p[2]}`, papel: p[2], numero: Number(p[3]), noLugar: a.tipo === 'produto' || p[2] !== 'J' });
+      else ids.set(chave, { arquivo: a.caminho, linha: l.n, papel: p[2] });
       if (p[1] === dona) continue;
       acusar(a.caminho, l.n, 'IDT-R3', a.tipo === 'produto'
         ? `em _produto.md a sigla dos identificadores é PRD, e não ${p[1]}`
@@ -163,15 +168,16 @@ function checarCodigos(e, acusar) {
 
   const decisoes = new Map();
   for (const a of e.arquivos.filter((x) => x.tipo === 'decisao')) {
-    const numero = Number(a.codigo.slice(1));
-    if (decisoes.has(numero)) acusar(a.caminho, null, 'DEC-R8', `o código ${a.codigo} já é o de ${decisoes.get(numero).caminho}; o código de uma decisão é único no produto`);
-    else decisoes.set(numero, { caminho: a.caminho, camada: a.camada ?? null });
+    const numero = numeroDe(a.codigo.slice(1));
+    if (!numero) acusar(a.caminho, null, 'DEC-R22.2', `"${a.codigo}" não é um código de decisão válido; a forma é "D" e ${FORMA_DO_NUMERO}`);
+    const chave = numero ?? a.codigo.slice(1);
+    if (decisoes.has(chave)) acusar(a.caminho, null, 'DEC-R22.1', `o código ${a.codigo} já é o de ${decisoes.get(chave).caminho}; o código de uma decisão é único no produto`);
+    else decisoes.set(chave, { caminho: a.caminho, camada: a.camada ?? null });
   }
   // A decisão citada existe e é de uma pasta que o arquivo pode citar: a própria ou uma de que ela depende.
   const citarDecisao = (a, n, codigo) => {
-    const d = codigo.match(/^D(\d+)$/);
-    if (!d) return;
-    const alvo = decisoes.get(Number(d[1]));
+    if (!codigo.startsWith('D')) return;
+    const alvo = decisoes.get(numeroDe(codigo.slice(1)) ?? codigo.slice(1));
     const de = a.camada ?? null;
     if (!alvo) acusar(a.caminho, n, 'REF-R1', `a decisão ${codigo} não tem arquivo em decisoes/`);
     else if (alvo.camada && alvo.camada !== de && !(de === 'interface' && alvo.camada === 'arquitetura')) {
@@ -182,10 +188,16 @@ function checarCodigos(e, acusar) {
   const talvezPergunta = new Set();
   const arquivoDePerguntas = e.arquivos.find((x) => x.tipo === 'perguntas');
   for (const l of arquivoDePerguntas?.linhas ?? []) {
-    if (l.forma === 'pergunta') perguntas.set(Number(l.codigo.slice(1)), l);
+    if (l.forma === 'pergunta') {
+      const numero = numeroDe(l.codigo.slice(1));
+      if (!numero) acusar(arquivoDePerguntas.caminho, l.n, 'PER-R22.1', `"${l.codigo}" não é um código de pergunta válido; a forma é "P" e ${FORMA_DO_NUMERO}`);
+      const chave = numero ?? l.codigo.slice(1);
+      if (perguntas.has(chave)) acusar(arquivoDePerguntas.caminho, l.n, 'PER-R22.2', `o código ${l.codigo} já é o da pergunta da linha ${perguntas.get(chave).n}; o código de uma pergunta é único na especificação`);
+      else perguntas.set(chave, l);
+    }
     if (l.forma === 'subitem-pergunta' && l.prefixo === 'sobre') l.pai.temSobre = true;
-    const m = l.forma === 'desconhecida' ? l.bruto.match(/^- P(\d+)/) : null;
-    if (m) talvezPergunta.add(Number(m[1]));
+    const m = l.forma === 'desconhecida' ? l.bruto.match(new RegExp(`^- P(${NUMERO})`)) : null;
+    if (m) talvezPergunta.add(numeroDe(m[1]) ?? m[1]);
   }
 
   const citadas = new Set();
@@ -195,23 +207,23 @@ function checarCodigos(e, acusar) {
       if (SEM_TEXTO.includes(l.forma)) continue;
       const texto = mascarar(l.bruto);
       for (const m of texto.matchAll(/Ao \*\*([^*]+)\*\*:/g)) reacoes.add(m[1].toLowerCase());
-      for (const m of texto.matchAll(/⟵ \[P(\d+)\]/g)) citadas.add(Number(m[1]));
+      for (const m of texto.matchAll(PERGUNTA_CITADA)) citadas.add(numeroDe(m[1]) ?? m[1]);
       if (l.forma === 'desconhecida') continue;
       for (const m of texto.matchAll(/⟸ \[([^\]]*)\]/g)) {
         for (const codigo of m[1].split(/,\s*/)) citarDecisao(a, l.n, codigo);
       }
       if (a.tipo === 'decisao') continue;
-      for (const m of texto.matchAll(/⟵ \[P(\d+)\]/g)) {
-        const numero = Number(m[1]);
+      for (const m of texto.matchAll(PERGUNTA_CITADA)) {
+        const numero = numeroDe(m[1]) ?? m[1];
         if (!perguntas.has(numero) && !talvezPergunta.has(numero)) acusar(a.caminho, l.n, 'REF-R1', `a pergunta P${m[1]} não está em _perguntas.md`);
       }
-      for (const m of texto.matchAll(/\[([A-Z]{2,5})-([A-Z])(\d+)\]/g)) {
+      for (const m of texto.matchAll(ID_CITADO)) {
         const chave = chaveDe(m[1], m[2], m[3]);
         if (!ids.has(chave) && !talvez.has(chave)) acusar(a.caminho, l.n, 'REF-R1', `${m[0]} cita um identificador que não existe na especificação`);
       }
       if (l.forma === 'jornada') {
         for (const passo of l.passos) {
-          const p = passo.match(/^([A-Z]{2,5})-([A-Z])(\d+)$/);
+          const p = passo.match(/^([A-Z]{2,5})-([A-Z])(.+)$/);
           const alvo = ids.get(chaveDe(p[1], p[2], p[3]));
           if (alvo && alvo.papel !== 'C' && alvo.papel !== 'V') acusar(a.caminho, l.n, 'JOR-R3', `a jornada cita [${passo}], de papel ${alvo.papel}; jornada só cita capacidades (C) e visões (V)`);
         }
@@ -222,7 +234,7 @@ function checarCodigos(e, acusar) {
   for (const a of e.livres) {
     for (const l of a.linhas) {
       for (const m of mascarar(l.bruto).matchAll(/⟸(?: \[([^\]]*)\])?/g)) {
-        if (!/^D\d+(?:, D\d+)*$/.test(m[1] ?? '')) acusar(a.caminho, l.n, 'REF-R9', 'citação de decisão fora da forma; a marca é "⟸ [D07]", com os códigos separados por vírgula quando são vários, como "⟸ [D07, D12]"');
+        if (!DECISOES_CITADAS.test(m[1] ?? '')) acusar(a.caminho, l.n, 'REF-R9', 'citação de decisão fora da forma; a marca é "⟸ [D7.1]", com os códigos separados por vírgula quando são vários, como "⟸ [D7.1, D12.1]"');
         else for (const codigo of m[1].split(', ')) citarDecisao(a, l.n, codigo);
       }
     }
@@ -236,52 +248,10 @@ function checarCodigos(e, acusar) {
     if (!l.temSobre && !citadas.has(numero)) acusar(arquivoDePerguntas.caminho, l.n, 'PER-R5', `nenhuma linha termina com "⟵ [${l.codigo}]"; a pergunta que não tem linha provisória diz a célula num sub-item "sobre:"`);
   }
 
-  const contadores = e.arquivos.find((x) => x.tipo === 'contadores');
-  if (contadores) checarNumeracao(contadores, { ids, decisoes, perguntas, arquivoDePerguntas }, acusar);
-}
-
-function checarNumeracao(contadores, { ids, decisoes, perguntas, arquivoDePerguntas }, acusar) {
-  const { caminho, linhas } = contadores;
-  const titulos = linhas.filter((l) => l.forma === 'titulo-secao');
-  const nomes = ['Identificadores', 'Perguntas', 'Decisões'];
-  const errado = nomes.findIndex((nome, i) => titulos[i]?.nome !== nome);
-  if (errado >= 0 || titulos.length !== nomes.length) {
-    acusar(caminho, (titulos[errado] ?? titulos.at(-1))?.n ?? null, 'CTD-R2', `as seções de _contadores.md são ${lista(nomes)}, cada uma uma vez e nesta ordem`);
-  }
-  // A sequência de um contador mal escrito conta como talvez guardada.
-  const talvez = new Set(linhas.filter((l) => l.forma === 'desconhecida').map((l) => l.bruto.match(/^- (\S+)/)?.[1]));
-  const guardado = new Map();
-  let anterior = '';
-  for (const l of linhas.filter((x) => x.forma === 'contador')) {
-    if (guardado.has(l.sequencia)) acusar(caminho, l.n, 'CTD-R1', `a sequência ${l.sequencia} já tem contador; cada sequência tem um item só`);
-    else guardado.set(l.sequencia, l.numero);
-    if (l.secao !== 'Identificadores') continue;
-    if (l.sequencia < anterior) acusar(caminho, l.n, 'CTD-R1', `${l.sequencia} está fora da ordem alfabética: vem depois de ${anterior}`);
-    else anterior = l.sequencia;
-  }
-  const secao = (nome) => titulos.find((l) => l.nome === nome);
-
-  const semContador = new Set();
-  for (const id of ids.values()) {
-    if (!id.noLugar || talvez.has(id.sequencia)) continue;
-    if (!guardado.has(id.sequencia)) semContador.add(id.sequencia);
-    else if (id.numero > guardado.get(id.sequencia)) acusar(id.arquivo, id.linha, 'CTD-R4', `${id.id} passa do maior número guardado em _contadores.md para ${id.sequencia}, que é ${guardado.get(id.sequencia)}; quem aloca um número atualiza o contador`);
-  }
-  for (const sequencia of [...semContador].sort()) acusar(caminho, secao('Identificadores')?.n ?? null, 'CTD-R1', `falta o contador de ${sequencia}, que já tem identificador na especificação`);
-
-  for (const [letra, nome, emUso] of [['P', 'Perguntas', perguntas], ['D', 'Decisões', decisoes]]) {
-    if (talvez.has(letra) || !secao(nome)) continue;
-    if (!guardado.has(letra)) { acusar(caminho, secao(nome).n, 'CTD-R2', `a seção ${nome} tem um item, como "- ${letra}  0", com o maior código já usado`); continue; }
-    for (const [numero, onde] of emUso) {
-      if (numero <= guardado.get(letra)) continue;
-      const [arquivo, linha] = letra === 'P' ? [arquivoDePerguntas.caminho, onde.n] : [onde.caminho, null];
-      acusar(arquivo, linha, 'CTD-R4', `${letra}${numero} passa do maior código guardado em _contadores.md, que é ${guardado.get(letra)}; quem aloca um código atualiza o contador`);
-    }
-  }
 }
 
 function checarSubitem(l, bloco, acusado, acusar) {
-  if (/^\[[^\]]*\] /.test(l.texto) || /^[A-Z]{2,5}-[A-Z]\d+/.test(l.texto)) acusar(l.n, 'CRT-R1', 'sub-item não leva marca nem identificador; se precisa ser citado sozinho, vira uma regra');
+  if (/^\[[^\]]*\] /.test(l.texto) || new RegExp(`^${CODIGO}`).test(l.texto)) acusar(l.n, 'CRT-R1', 'sub-item não leva marca nem identificador; se precisa ser citado sozinho, vira uma regra');
   const cabe = l.pai.forma === 'afirmacao' && (l.pai.papel === 'C' || l.pai.papel === 'V');
   if (cabe || acusado.has(l.pai)) return;
   acusado.add(l.pai);
@@ -316,15 +286,6 @@ function checarTabela(linhas, i, acusar) {
   }
   for (let k = j + 2; linhas[k]?.forma === 'tabela-fileira'; k++) {
     if (linhas[k].celulas.length !== cabecalho.celulas.length) acusar(linhas[k].n, 'LIN-R11', `fileira com ${linhas[k].celulas.length} colunas; o cabeçalho da tabela tem ${cabecalho.celulas.length}`);
-  }
-}
-
-function checarContadores(arquivo, acusar) {
-  const forma = { Identificadores: /^[A-Z]{2,5}-[A-Z]$/, Perguntas: /^P$/, Decisões: /^D$/ };
-  for (const l of arquivo.linhas.filter((x) => x.forma === 'contador')) {
-    if (!forma[l.secao].test(l.sequencia)) acusar(l.n, 'CTD-R8', `"${l.sequencia}" não é uma sequência da seção ${l.secao}; em Identificadores vai sigla e papel, como "PED-R", em Perguntas vai "P" e em Decisões vai "D"`);
-    else if (l.numero > 0 && !l.nomeCurto) acusar(l.n, 'CTD-R8', 'falta o nome curto da última alocação, depois do número e de dois espaços');
-    else if (l.numero === 0 && l.nomeCurto) acusar(l.n, 'CTD-R8', 'contador em 0 ainda não teve alocação e não leva nome curto');
   }
 }
 

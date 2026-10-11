@@ -127,27 +127,6 @@ Econômica leve,ECO,12
   - opção: 30 dias
   - opção: 60 dias
 `,
-  '_contadores.md': `# Contadores
-Maior número já usado em cada sequência.
-
-## Identificadores
-- EMB-R  1  embalagens
-- ITE-R  1  quantidade-nao-muda
-- MOD-R  1  modalidades
-- PED-C  1  fechar-pedido
-- PED-Q  1  lista-abre-rapido
-- PED-R  5  frete-por-regiao
-- PED-V  1  ver-pedidos-dia
-- PRD-J  1  comprar
-- PRD-Q  1  tela-responde
-- TAR-R  1  tarifas
-
-## Perguntas
-- P  1  prazo-cancelamento
-
-## Decisões
-- D  1  pedido-pago-fixo
-`,
   'decisoes/pedidos/D1-pedido-pago-fixo.md': `# Um pedido pago pode mudar?  \`D1\`
 Não, fica como está.
 - Contexto: o pagamento já foi feito sobre aquele total

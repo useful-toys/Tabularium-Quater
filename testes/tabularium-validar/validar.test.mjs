@@ -34,7 +34,6 @@ const casos = [
   ['VRF-R8', 'recuo de sub-item com número ímpar de espaços', troca('pedidos.md', '  - exige:', '   - exige:')],
   ['VRF-R8', 'sub-item num termo da linguagem', troca('pedidos.md', 'que ainda não foi fechado\n', 'que ainda não foi fechado\n  - também dito cesta\n')],
   ['VRF-R8', 'arquivo estranho numa pasta de decisões', { 'decisoes/pedidos/notas.md': '# Notas\n' }],
-  ['VRF-R10', 'falta _contadores.md', { '_contadores.md': null }],
   ['VRF-R12', 'falta AGENTS.md', { 'AGENTS.md': null }],
   ['VRF-R12', 'falta a legenda das decisões', { 'decisoes/_convencoes.md': null }],
 
@@ -91,10 +90,6 @@ const casos = [
   ['APR-R10', 'sub-item de externo com verbo desconhecido', troca('_produto.md', '  - fornece:', '  - devolve:')],
   ['APR-R10', 'fora de escopo sem horizonte', troca('_produto.md', ' · nesta versão', '')],
   ['APR-R10', 'regra global que não é afirmação', troca('_produto.md', '- [ ] PRD-Q1  Toda tela', '- Toda tela')],
-  ['CTD-R8', 'contador com um só espaço', troca('_contadores.md', '- PED-R  5  frete-por-regiao', '- PED-R 5 frete-por-regiao')],
-  ['CTD-R8', 'contador sem nome curto', troca('_contadores.md', '- PED-R  5  frete-por-regiao', '- PED-R  5')],
-  ['CTD-R8', 'contador em 0 com nome curto', troca('_contadores.md', '- ITE-R  1', '- ITE-C  0  nada-ainda\n- ITE-R  1')],
-  ['CTD-R8', 'sequência que não é da seção', troca('_contadores.md', '- D  1  pedido-pago-fixo', '- D  1  pedido-pago-fixo\n- DEC-R  1  outra-coisa')],
   ['APG-R5', 'pergunta sem interrogação', troca('_perguntas.md', 'é de 30 dias?', 'é de 30 dias')],
   ['APG-R5', 'sub-item de pergunta com prefixo desconhecido', troca('_perguntas.md', '  - opção: 60 dias', '  - talvez: 60 dias')],
   ['DEC-R19', 'contexto em sub-item', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', '- Contexto: o pagamento já foi feito sobre aquele total\n', '- Contexto\n  - o pagamento já foi feito sobre aquele total\n')],
@@ -118,15 +113,22 @@ const casos = [
   ['JOR-R3', 'jornada que cita uma regra', troca('_produto.md', '[PED-C1] → [PED-V1]', '[PED-C1] → [PED-R1]')],
   ['EVT-R2', 'evento sem reação', troca('pedidos.md', 'Ao **Pedido pago**: a quantidade', 'A quantidade')],
   ['PER-R5', 'pergunta sem linha que a cite e sem sobre', troca('pedidos.md', ' ⟵ [P1]', '')],
-  ['CTD-R1', 'sequência em uso sem contador', troca('_contadores.md', '- PED-V  1  ver-pedidos-dia\n', '')],
-  ['CTD-R1', 'contadores fora da ordem alfabética', troca('_contadores.md', '- PED-C  1  fechar-pedido\n- PED-Q  1  lista-abre-rapido\n', '- PED-Q  1  lista-abre-rapido\n- PED-C  1  fechar-pedido\n')],
-  ['CTD-R1', 'sequência com dois contadores', troca('_contadores.md', '- PED-C  1  fechar-pedido\n', '- PED-C  1  fechar-pedido\n- PED-C  1  fechar-pedido\n')],
-  ['CTD-R2', 'seção Perguntas sem item', troca('_contadores.md', '- P  1  prazo-cancelamento\n', '')],
-  ['CTD-R2', 'seções dos contadores fora de ordem', troca('_contadores.md', '## Perguntas\n- P  1  prazo-cancelamento\n\n## Decisões\n- D  1  pedido-pago-fixo\n', '## Decisões\n- D  1  pedido-pago-fixo\n\n## Perguntas\n- P  1  prazo-cancelamento\n')],
-  ['CTD-R4', 'identificador acima do contador', troca('_contadores.md', '- PED-R  5  frete-por-regiao', '- PED-R  3  frete-por-regiao')],
-  ['CTD-R4', 'pergunta acima do contador', troca('_perguntas.md', '  - opção: 60 dias\n', '  - opção: 60 dias\n- P2  O frete do interior muda?\n  - sobre: **Pedido**\n')],
-  ['CTD-R4', 'decisão acima do contador', { 'decisoes/pedidos/D2-outra.md': (t) => exemploDeDecisao('D2') }],
-  ['DEC-R8', 'código de decisão repetido em outra pasta', { 'decisoes/_produto/D1-outra.md': (t) => exemploDeDecisao('D1') }],
+  ['DEC-R22.1', 'código de decisão repetido em outra pasta', { 'decisoes/_produto/D1-outra.md': (t) => exemploDeDecisao('D1') }],
+  ['DEC-R22.1', 'código de decisão repetido, com prefixo de mudança', { 'decisoes/pedidos/D9.1-outra.md': exemploDeDecisao('D9.1'), 'decisoes/_produto/D9.1-mais-uma.md': exemploDeDecisao('D9.1') }],
+  ['DEC-R22.2', 'código de decisão com zero à esquerda no prefixo', { 'decisoes/pedidos/D09.1-outra.md': exemploDeDecisao('D09.1') }],
+  ['DEC-R22.2', 'código de decisão sorteado com vogal', { 'decisoes/pedidos/Dkaq2.1-outra.md': exemploDeDecisao('Dkaq2.1') }],
+  ['IDT-R1', 'prefixo de issue com zero à esquerda', troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-Q09.1')],
+  ['IDT-R1', 'número de ordem 0', troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-Q9.0')],
+  ['IDT-R1', 'número de ordem com zero à esquerda', troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-Q9.01')],
+  ['IDT-R1', 'código sorteado começado por dígito', troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-Q2k7q.1')],
+  ['IDT-R1', 'código sorteado com vogal', troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-Qkaq2.1')],
+  ['IDT-R1', 'código sorteado com 5 caracteres', troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-Qk7q2b.1')],
+  ['IDT-R1', 'código sorteado sem número de ordem', troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-Qk7q2')],
+  ['IDT-R1', 'identificador com prefixo de mudança repetido', troca('pedidos.md', '- [ ] PED-Q1  A lista', '- [ ] PED-Q9.1  A lista de pedidos cabe numa tela\n- [ ] PED-Q9.1  A lista')],
+  ['REF-R1', 'referência a identificador com prefixo de mudança que não existe', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos um **Item de pedido**, conforme [ITE-R9.1]')],
+  ['PER-R22.1', 'código de pergunta com zero à esquerda no prefixo', troca('_perguntas.md', '  - opção: 60 dias\n', '  - opção: 60 dias\n- P09.1  O frete do interior muda?\n  - sobre: **Pedido**\n')],
+  ['PER-R22.2', 'código de pergunta repetido', troca('_perguntas.md', '  - opção: 60 dias\n', '  - opção: 60 dias\n- P1  O frete do interior muda?\n  - sobre: **Pedido**\n')],
+  ['ARE-R1', '_contadores.md que sobrou de antes do prefixo de mudança', { '_contadores.md': '# Contadores\n' }],
 
   ['TRM-R22', 'termo definido duas vezes', troca('pedidos.md', 'que ainda não foi fechado\n', 'que ainda não foi fechado\n- **carrinho**: outra coisa\n')],
   ['TRM-R22', 'termo da linguagem com o nome de um ator', troca('pedidos.md', '- **carrinho**:', '- **Cliente**: quem compra\n- **carrinho**:')],
@@ -166,10 +168,10 @@ const casos = [
   ['TRM-R19', 'sinônimo proibido que é o plural de um termo', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~Clientes~~)')],
   ['TRM-R19', 'sinônimo proibido que é atributo de outra célula', troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~prazo~~)')],
 
-  ['DRF-R4', 'arquivo de dados citado por uma qualidade', { ...troca('pedidos.md', '- [ ] TAR-R1  As tarifas', '- [ ] TAR-Q1  As tarifas'), ...troca('_contadores.md', '- TAR-R  1  tarifas', '- TAR-Q  1  tarifas') }],
+  ['DRF-R4', 'arquivo de dados citado por uma qualidade', { ...troca('pedidos.md', '- [ ] TAR-R1  As tarifas', '- [ ] TAR-Q1  As tarifas') }],
   ['DRF-R8', 'arquivo de dados em célula sem identidade', troca('pedidos.md', '- **código**: texto; identidade\n- [ ] EMB-R1', '- **código**: texto\n- [ ] EMB-R1')],
   ['DRF-R8', 'arquivo de dados citado numa regra global', troca('_produto.md', 'responde em até 3 s', 'responde em até 3 s: [PRD-telas.csv]')],
-  ['DRF-R9', 'duas regras de dados na mesma célula', { ...troca('pedidos.md', '| EXP | Expressa | |\n', '| EXP | Expressa | |\n\n- [ ] MOD-R2  Outras modalidades, por **código**: [MOD-outras.csv]\n'), ...troca('_contadores.md', '- MOD-R  1  modalidades', '- MOD-R  2  outras-modalidades'), 'dados/MOD-outras.csv': 'código\nRET\n' }],
+  ['DRF-R9', 'duas regras de dados na mesma célula', { ...troca('pedidos.md', '| EXP | Expressa | |\n', '| EXP | Expressa | |\n\n- [ ] MOD-R2  Outras modalidades, por **código**: [MOD-outras.csv]\n'), 'dados/MOD-outras.csv': 'código\nRET\n' }],
   ['DRF-R10', 'coluna que não é atributo da célula', troca('pedidos.md', '| Código | Nome | Prazo |', '| Código | Nome | Dias |')],
   ['DRF-R11', 'identidade repetida na tabela', troca('pedidos.md', '| EXP | Expressa | |', '| ECO | Expressa | |')],
   ['DRF-R11', 'identidade repetida no CSV', troca('dados/TAR-tarifas.csv', '"Expressa leve, até 1 kg",EXP,21', 'Econômica leve,EXP,21')],
@@ -195,6 +197,23 @@ for (const [regra, erro, mudanca] of casos) {
     assert.deepEqual(regrasDe(violacoesCom(mudanca)), [regra]);
   });
 }
+
+test('IDT-R1: o código com prefixo de mudança, de issue ou sorteado, convive com o anterior a ele', () => {
+  assert.deepEqual(violacoesCom({
+    'pedidos.md': (t) => t
+      .replace('- [ ] PED-Q1  A lista', '- [ ] PED-R9.1  O pedido fechado não volta a aberto ⟸ [D1, D9.1]\n- [ ] PED-Rk7q2.1  O pedido cancelado não é pago, conforme: [PED-R9.1] ⟵ [Pk7q2.1]\n- [ ] PED-Q1  A lista')
+      .replace('ao menos um **Item de pedido**', 'ao menos um **Item de pedido**, conforme [PED-Rk7q2.1]'),
+    ...troca('_produto.md', '[PED-C1] → [PED-V1]', '[PED-C1] → [PED-V1]\n- PRD-J9.1  Conferir: [PED-V1]'),
+    ...troca('_perguntas.md', '  - opção: 60 dias\n', '  - opção: 60 dias\n- Pk7q2.1  O pedido cancelado pode ser reaberto?\n- P9.1  O frete do interior muda?\n  - sobre: **Pedido**\n'),
+    'decisoes/pedidos/D9.1-fechado-nao-reabre.md': exemploDeDecisao('D9.1'),
+    'decisoes/pedidos/Dk7q2.1-outra.md': exemploDeDecisao('Dk7q2.1').replace('sobre aquele total', 'sobre aquele total ⟸ [D9.1]'),
+  }), []);
+});
+
+test('IDT-R1: no código anterior ao prefixo de mudança, o zero à esquerda não faz outro código', () => {
+  assert.deepEqual(violacoesCom(troca('pedidos.md', 'o pedido não muda ⟸ [D1]', 'o pedido não muda ⟸ [D01]')), []);
+  assert.deepEqual(regrasDe(violacoesCom(troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-R01'))), ['IDT-R1']);
+});
 
 test('ARE-R12: a área em pasta é lida, com _area.md e um arquivo por célula', () => {
   const [inicio, itens] = exemplo['pedidos.md'].split('## **Item de pedido**');
@@ -382,7 +401,7 @@ test('VRF-R7: a linha de comando imprime as violações, o total e sai com 1', (
   const saida = spawnSync(process.execPath, [script, join(raiz, 'testes', 'tabularium-validar', 'invalida')], { encoding: 'utf8' });
   assert.equal(saida.status, 1);
   assert.match(saida.stdout, /invalida\/_produto\.md {2}VRF-R10 {2}falta este arquivo/);
-  assert.match(saida.stdout, /\n4 violações\n$/);
+  assert.match(saida.stdout, /\n3 violações\n$/);
 });
 
 test('VRF-R7: a linha de comando sai com 0 numa especificação válida', () => {
@@ -403,7 +422,6 @@ test('VAL-I1: a linha de comando sai com 2 quando o argumento é um arquivo, nã
 // Uma decisão na arquitetura e outra na interface, com os arquivos que as citam.
 // A interface cita as três pastas; o resto das linhas dela e da arquitetura não é julgado.
 const camadas = {
-  ...troca('_contadores.md', '- D  1  pedido-pago-fixo', '- D  3  cores-fixas'),
   'arquitetura/_sistema.md': '# Sistema\nqualquer coisa\n- [ok] ARQ-R1  Nenhum componente tem dependências ⟸ [D2]\n',
   'arquitetura/validacao.md': '# Validação\n- usa 1 **Node.js** ⟸ [D2, D1]\n',
   'arquitetura/decisoes/_sistema/D2-sem-dependencias.md': exemploDeDecisao('D2'),
@@ -434,9 +452,8 @@ const casosDasCamadas = [
   ['DEC-R1', 'decisão de interface com o código do título diferente do arquivo', troca(D3, '`D3`', '`D4`')],
   ['DEC-R2', 'decisão de arquitetura sem Histórico', troca(D2, '\n## Histórico\n- 2026-01-10: decisão criada\n', '')],
   ['DEC-R19', 'decisão de arquitetura com alternativa sem motivo', troca(D2, ': exige uma segunda cobrança', '')],
-  ['DEC-R8', 'código de decisão repetido entre a arquitetura e a interface', { 'interface/decisoes/_interface/D2-outra.md': exemploDeDecisao('D2') }],
-  ['DEC-R8', 'código de decisão repetido entre a especificação e a arquitetura', { 'arquitetura/decisoes/validacao/D1-outra.md': exemploDeDecisao('D1') }],
-  ['CTD-R4', 'decisão de arquitetura acima do contador', { 'arquitetura/decisoes/validacao/D4-nova.md': exemploDeDecisao('D4') }],
+  ['DEC-R22.1', 'código de decisão repetido entre a arquitetura e a interface', { 'interface/decisoes/_interface/D2-outra.md': exemploDeDecisao('D2') }],
+  ['DEC-R22.1', 'código de decisão repetido entre a especificação e a arquitetura', { 'arquitetura/decisoes/validacao/D1-outra.md': exemploDeDecisao('D1') }],
   ['REF-R1', 'arquivo de arquitetura cita decisão que não existe', troca('arquitetura/validacao.md', '[D2, D1]', '[D2, D9]')],
   ['REF-R1', 'decisão de interface cita decisão que não existe', troca(D3, 'sobre aquele total', 'sobre aquele total ⟸ [D9]')],
   ['REF-R9', 'citação de decisão sem colchetes', troca('arquitetura/validacao.md', '⟸ [D2, D1]', '⟸ D2')],

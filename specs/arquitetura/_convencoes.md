@@ -5,8 +5,7 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - `AGENTS.md`: instruções para agentes de IA sobre a arquitetura
 - `_convencoes.md`: esta legenda
 - `_sistema.md`: o que vale para o sistema inteiro; lido antes das áreas
-- `_contadores.md`: o maior número já usado em cada sequência da arquitetura, como na especificação
-- `decisoes/`: decisões da arquitetura, uma por arquivo, em subpastas por área e em `_sistema/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` saem da sequência do produto, em `../_contadores.md`
+- `decisoes/`: decisões da arquitetura, uma por arquivo, em subpastas por área e em `_sistema/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` levam o prefixo de mudança, como na especificação
 - `_achados.md`: o que o formato não serviu a escrever, por tipo de problema, com o estado; opcional; fora do formato, e o validador não o lê
 - `<area>.md`: uma área; lida em qualquer ordem
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato

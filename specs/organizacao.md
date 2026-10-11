@@ -10,7 +10,6 @@ Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que 
 - 1 **Arquivo de convenções**
 - 1 **Arquivo de produto**
 - 0..1 **Arquivo de perguntas**
-- 1 **Arquivo de contadores**
 - 1..N **Área** ⟸ [D31]
 - 0..N **Arquivo de dados**
 - evento: **Especificação alterada**
@@ -65,17 +64,15 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 | `Fora de escopo` | `- texto · permanente` ou `- texto · nesta versão` |
 
 ## **Arquivo de contadores**  `CTD`
-Arquivo que guarda o maior número já usado em cada sequência da **Especificação**, para que nenhum volte.
-- **arquivo**: `_contadores.md`; imutável
-- **seções**: `Identificadores`, `Perguntas`, `Decisões`, nesta ordem
-- [x] CTD-R1  `Identificadores` tem um item por **Sigla de célula** e **Letra de papel** já usadas, em ordem alfabética, com o maior número já usado e um nome curto da última alocação
-- [x] CTD-R2  `Perguntas` e `Decisões` têm um item cada, com o maior **Código de pergunta** e o maior **Código de decisão** já usados e um nome curto da última alocação
-- [x] CTD-R3  Um número guardado só cresce, e uma **Sigla de célula** nunca sai, mesmo extinta
-- [x] CTD-R4  Nenhum **Identificador**, **Código de pergunta** ou **Código de decisão** da **Especificação** passa do número guardado
-- [x] CTD-R5  Alocar é usar o número guardado mais um e, na mesma mudança, atualizar o número e o nome curto ⟸ [D22]
-- [x] CTD-R6  Código alocado fora da linha principal do **Controle de versão** é provisório, e quem entra depois renumera o que colidir; depois de entrar, nunca é renumerado ⟸ [D23]
-- [x] CTD-R7  O nome curto serve só para que duas alocações do mesmo número, feitas em paralelo, escrevam itens diferentes e conflitem ⟸ [D22]
-- [x] CTD-R8  Forma do item: `- SEQUÊNCIA  número  nome-curto`, com dois espaços entre as partes; sem nome curto enquanto o número é 0
+Arquivo extinto, que guardava o maior número já usado em cada sequência da **Especificação**.
+- [x] CTD-R1  removida
+- [x] CTD-R2  removida
+- [x] CTD-R3  removida
+- [x] CTD-R4  removida
+- [x] CTD-R5  removida
+- [x] CTD-R6  removida
+- [x] CTD-R7  removida
+- [x] CTD-R8  removida
 
 ## **Arquivo de dados**  `ADA`
 Arquivo de texto com as instâncias que os **Dados de referência** de uma **Célula** citam, guardado à parte das **Áreas** e lido só sob demanda.
@@ -140,11 +137,11 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R13  Não lê o conteúdo das seções geradas
 - [x] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R21] ⟸ [D77]
 - [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ESP-R9], [ARE-R1], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2], [DEC-R21]
-- [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [CTD-R8], [APG-R5], [DEC-R19]
-- [x] VRF-R17  Checa os **Identificadores**: [IDT-R1], [IDT-R3]
+- [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [APG-R5], [DEC-R19]
+- [x] VRF-R17  Checa os **Identificadores**, os **Códigos de decisão** e os **Códigos de pergunta**: [IDT-R1], [IDT-R3], [DEC-R22.1], [DEC-R22.2], [PER-R22.1], [PER-R22.2]
 - [x] VRF-R18  Checa as **Referências**: [REF-R1], [REF-R9], [JOR-R3], [EVT-R2], [PER-R5], [DEC-R22]
 - [x] VRF-R19  Checa os **Termos**: [TRM-R4], [TRM-R11], [TRM-R13], [TRM-R14], [TRM-R17], [TRM-R18], [TRM-R19], [TRM-R20], [TRM-R22], [TRM-R23], [TRM-R24], [TRM-R25], [DEC-R11]
-- [x] VRF-R20  Checa a numeração: [CTD-R1], [CTD-R2], [CTD-R4], [DEC-R8]
+- [x] VRF-R20  removida
 - [x] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
 - [x] VRF-R22  Ignora as pastas que não são de **Área**, de **Decisões**, de **Arquivos de dados**, de arquitetura nem de interface
 - [x] VRF-R23  Das pastas de arquitetura e de interface, checa só as **Decisões** e as **Referências** a elas ⟸ [D82]
@@ -153,6 +150,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R26  removida
 - [x] VRF-R27  Nas pastas de arquitetura e de interface, não lê `_achados.md`
 - [x] VRF-R28  Quanto aos **Termos**, checa só o negrito e as definições; o texto sem negrito não é checado ⟸ [D114]
+- [x] VRF-R22.1  Acusa como arquivo fora da tabela de **Áreas** o `_contadores.md` que sobrou de antes do **Prefixo de mudança**
 - [ ] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
@@ -171,7 +169,7 @@ Programa que produz as partes geradas da **Especificação**, sem interpretar o 
   - lista de dados que identificam pessoas, a partir dos **Atributos** marcados **pessoal**
   - definições de link das **Referências** a **Linhas** [REF-R4]
   - definições de link das citações de **Arquivos de dados** [DRF-R15]
-  - índice de cada pasta de **Decisões**, com **Decisão.código**, **questão**, **resolução** e os itens que citam cada uma ⟸ [D19]
+  - índice de cada pasta de **Decisões**, com **Decisão.código**, **questão**, **resolução** e os itens que citam cada uma, em ordem da data de criação escrita nas **alterações** e, na mesma data, de **Decisão.código** ⟸ [D19]
 
 ## **Índice**  `IND`
 Seção gerada no topo de uma **Área** com o que ela usa de outras áreas.
@@ -211,7 +209,7 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 - [x] DEC-R5  Registra-se quando havia ao menos uma alternativa plausível; nasce na mesma mudança que o item que a cita ⟸ [D21]
 - [x] DEC-R6  **Questão** nova cria decisão nova; só se edita uma decisão quando a mesma questão ganha outra **resolução**
 - [x] DEC-R7  Ao mudar a **resolução**, a anterior vai para as **alternativas descartadas** e as **alterações** ganham uma entrada
-- [x] DEC-R8  **Código** em sequência única para o produto; código já usado não volta ⟸ [D10]
+- [x] DEC-R8  removida
 - [x] DEC-R9  Mora na pasta da **Área** cujos itens mais a citam; citada só pelo **Arquivo de produto**, em `_produto` ⟸ [D11]
 - [x] DEC-R10  Mudar de pasta não muda o **código**
 - [x] DEC-R11  Usa os **Termos** da **Especificação**, sem negrito ⟸ [D17]
@@ -234,8 +232,10 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 - [x] DEC-R20  Decisão que nenhum item da **Especificação**, da arquitetura ou da interface e nenhuma outra decisão cita é órfã, e permanece até a limpeza ⟸ [D15]
 - [x] DEC-R21  Decisão de arquitetura ou de interface mora em `decisoes/` da pasta dela, numa subpasta por área; a que não é de área, em `_sistema` ou em `_interface` ⟸ [D92]
 - [x] DEC-R22  Item da **Especificação** cita só decisão da **Especificação**; item da arquitetura, também as da arquitetura; item da interface, também as da arquitetura e as da interface ⟸ [D93]
+- [x] DEC-R22.1  **Código** único entre as decisões da **Especificação**, da arquitetura e da interface; código já usado não volta ⟸ [D10]
+- [x] DEC-R22.2  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, de [IDT-R22.1] a [IDT-R22.5] ⟸ [D10]
 - [x] DEC-C1  Registrar uma decisão
-  - com o próximo **código** livre
+  - com **código** novo, conforme [DEC-R22.2]
   - ao menos um item passa a citá-la
 - [x] DEC-C2  Rever a **resolução** de uma decisão
   - conforme [DEC-R7]
@@ -243,4 +243,3 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
   - exige: decisão órfã, conforme [DEC-R20]
   - o arquivo é apagado
   - decisão que só a apagada citava também é apagada
-  - o **Arquivo de contadores** impede que o **código** volte

@@ -147,6 +147,12 @@ Daniel, em 10 de outubro de 2026, para a interface e para a arquitetura. Complem
 - Complemento, em 10 de outubro de 2026, depois de uma entrevista: o agente avisa uma vez por tipo de problema e junta as ocorrências; o usuário decide entre forçar o encaixe, anotar sem issue e anotar com issue. A anotação vai para `_achados.md`, na própria pasta, com o estado; `forçado` vale só no projeto. Descartado o nome `_avisos.md`: a decisão 4 trocou "aviso" por "notificação". A issue é no Tabularium-Quater, com título `Ideia: …` e rótulos `enhancement` e `em discussão`, e só o `AGENTS.md` da pasta a oferece.
 - Registrada em `D109`, de `specs/arquitetura/decisoes/_sistema/`, porque a interface cita decisões da arquitetura, e não o contrário.
 
+### 28. Sem contadores: o código leva o prefixo de mudança
+
+Daniel, em 10 de outubro de 2026, para a especificação, a arquitetura e a interface, na issue 22. Revê a parte dos códigos da decisão 15. A interface deixa de ter `_contadores.md`, e todo código novo, de identificador, de decisão ou de pergunta, leva o prefixo da mudança e o número de ordem, como `CNF-R22.1`. Registrada em `D22.1`, `D22.2` e `D22.3`, de `specs/decisoes/`.
+
+- Motivo: com cada ideia elaborada numa ramificação própria, duas mudanças em paralelo alocavam o mesmo número.
+- Os códigos anteriores, só com um número, continuam válidos.
 ## Sobre o experimento
 
 ### 18. O experimento é no Iconula, e fica no Iconula

@@ -28,9 +28,12 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 ## Tipos comuns
 - **Sigla de célula**: texto; de 2 a 5 letras maiúsculas
 - **Letra de papel**: R | Q | C | V | T | J ⟸ [D36]
-- **Código de identificador**: texto; **Sigla de célula**, `-`, **Letra de papel** e número inteiro a partir de 1
-- **Código de pergunta**: texto; `P` e número inteiro a partir de 1
-- **Código de decisão**: texto; `D` e número inteiro a partir de 1
+- **Código sorteado**: texto; 4 caracteres de `bcdfghjklmnpqrstvwxz23456789`, o primeiro uma letra ⟸ [D22.3]
+- **Prefixo de mudança**: texto; número de uma issue do **Rastreador**, inteiro a partir de 1 e sem zero à esquerda, ou **Código sorteado** ⟸ [D22.2]
+- **Número de ordem**: inteiro; a partir de 1, sem zero à esquerda (~~contador~~)
+- **Código de identificador**: texto; **Sigla de célula**, `-`, **Letra de papel**, **Prefixo de mudança**, `.` e **Número de ordem**
+- **Código de pergunta**: texto; `P`, **Prefixo de mudança**, `.` e **Número de ordem**
+- **Código de decisão**: texto; `D`, **Prefixo de mudança**, `.` e **Número de ordem**
 - **Cardinalidade**: 1 | 0..1 | 0..N | 1..N
 
 ## Jornadas
@@ -42,11 +45,12 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 ## Externos
 - **Controle de versão** · histórico
   - guarda: todas as versões dos arquivos
-  - fornece: a linha principal, a partir da qual nenhum código é renumerado
+  - fornece: a linha principal, onde se vê se o número de uma issue já serviu de **Prefixo de mudança**
 - **LGPD** · lei geral de proteção de dados
   - impõe: identificar os dados **pessoais** tratados pelo produto
 - **Rastreador** · ideias ⟸ [D60]
   - guarda: ideias e pedidos ainda não comprometidos, até amadurecerem
+  - fornece: o número da issue que pede uma mudança
 
 ## Regras globais
 - [x] PRD-Q1  O texto se lê sem renderização e se renderiza nos editores e forjas comuns ⟸ [D73]

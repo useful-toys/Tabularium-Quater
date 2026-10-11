@@ -8,7 +8,6 @@ import { join } from 'node:path';
 export const MARCADOR_GERADO = '<!-- gerado; não editar -->';
 export const SECOES_PRODUTO = ['Propósito', 'Áreas', 'Atores', 'Tipos comuns', 'Jornadas', 'Externos', 'Regras globais', 'Fora de escopo'];
 export const SECOES_AREA = ['Índice', 'Linguagem', 'Tipos'];
-export const SECOES_CONTADORES = ['Identificadores', 'Perguntas', 'Decisões'];
 export const ROTULOS_DECISAO = ['Contexto', 'Alternativas descartadas', 'Consequências'];
 export const COLUNAS_AREAS = ['Área', 'Célula central', 'Prioridade', 'Dono', 'Arquivo'];
 // As pastas de arquitetura e de interface: de cada uma só se leem as decisões e as citações de decisão.
@@ -16,7 +15,26 @@ const CAMADAS = ['arquitetura', 'interface'];
 const FORA_DA_CAMADA = ['AGENTS.md', '_convencoes.md', 'ideia.md', 'decisoes.md', '_achados.md'];
 
 const CARD = '(?:1|0\\.\\.1|0\\.\\.N|1\\.\\.N)';
-const CODIGO = '[A-Z]{2,5}-[A-Z]\\d+';
+// O número de um código: prefixo de mudança, ponto e número de ordem, ou só dígitos no código anterior ao prefixo.
+// Aqui a forma é frouxa, para a linha ser reconhecida; quem julga o número é `numeroDe`.
+export const NUMERO = '(?:[a-z0-9]+\\.\\d+|\\d+)';
+export const CODIGO = `[A-Z]{2,5}-[A-Z]${NUMERO}`;
+const DECISAO = `D${NUMERO}`;
+const PERGUNTA = `P${NUMERO}`;
+export const ALFABETO_DO_SORTEIO = 'bcdfghjklmnpqrstvwxz23456789';
+const LETRAS_DO_SORTEIO = ALFABETO_DO_SORTEIO.replace(/\d/g, '');
+const SORTEADO = new RegExp(`^[${LETRAS_DO_SORTEIO}][${ALFABETO_DO_SORTEIO}]{3}$`);
+const SEM_ZERO = /^[1-9]\d*$/;
+
+// Devolve o número de um código na forma que o identifica, ou null se ele é inválido.
+// O prefixo é um número de issue ou um código sorteado, e nenhum número começa por zero;
+// o código anterior ao prefixo traz só dígitos, e nele "07" e "7" são o mesmo.
+export function numeroDe(escrito) {
+  if (/^\d+$/.test(escrito)) return Number(escrito) > 0 ? String(Number(escrito)) : null;
+  const m = escrito.match(/^([a-z0-9]+)\.(\d+)$/);
+  if (!m) return null;
+  return (SEM_ZERO.test(m[1]) || SORTEADO.test(m[1])) && SEM_ZERO.test(m[2]) ? escrito : null;
+}
 
 const linhasDe = (caminho) => readFileSync(caminho, 'utf8').replace(/^﻿/, '').split(/\r?\n/);
 const ehProsa = (l) => l.trim() !== '' && !/^[-#|<\s]/.test(l);
@@ -31,18 +49,20 @@ const celulasDe = (bruto) => (/^\|.*\|$/.test(bruto) ? bruto.slice(1, -1).split(
 export const mascarar = (t) => t.replace(/(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)/g, (c, crases, miolo) => crases + '¤'.repeat(miolo.length) + crases);
 
 // Separa do texto as marcas de fim de item: decisões, pergunta e, numa regra, o ':' que anuncia a tabela
-// ou o arquivo de dados, como ": [PED-tarifas.json]". É o ponto no nome que distingue o arquivo de um identificador.
+// ou o arquivo de dados, como ": [PED-tarifas.json]". É o ponto no nome que distingue o arquivo de um identificador,
+// e a extensão que o distingue do identificador com prefixo de mudança, que termina em dígitos.
 // Os sinônimos proibidos, como "(~~valor, montante~~)", fecham o texto e vêm antes dessas marcas;
 // os que aparecem fora do fim também são lidos, e `declaracaoNoFim` diz se houve um no lugar certo.
 function separarCauda(texto, comTabela = false) {
   let resto = mascarar(texto);
   const cauda = { decisoes: [], pergunta: null, tabela: false, arquivo: null, caudaInvalida: false, sinonimos: [], declaracaoNoFim: false };
   let m = comTabela ? resto.match(/: \[([^[\]]*\.[^[\]]*)\]$/) : null;
+  if (m && /\.\d+$/.test(m[1])) m = null;
   if (m) { cauda.arquivo = m[1]; resto = resto.slice(0, m.index); }
   else if (comTabela && resto.endsWith(':')) { cauda.tabela = true; resto = resto.slice(0, -1); }
-  m = resto.match(/ ⟵ \[(P\d+)\]$/);
+  m = resto.match(new RegExp(` ⟵ \\[(${PERGUNTA})\\]$`));
   if (m) { cauda.pergunta = m[1]; resto = resto.slice(0, m.index); }
-  m = resto.match(/ ⟸ \[(D\d+(?:, D\d+)*)\]$/);
+  m = resto.match(new RegExp(` ⟸ \\[(${DECISAO}(?:, ${DECISAO})*)\\]$`));
   if (m) { cauda.decisoes = m[1].split(', '); resto = resto.slice(0, m.index); }
   if (/[⟸⟵]/.test(resto)) cauda.caudaInvalida = true;
   m = resto.match(/ \(~~([^~]+)~~\)$/);
@@ -66,8 +86,8 @@ function lerAfirmacao(n, bruto, corpo) {
   let t = resto.match(/^(?: · (.+?))? {2}(\S.*)$/);
   if (!t) { espacos = false; t = resto.match(/^(?: · (\S+))? +(\S.*)$/); }
   if (!t) return null;
-  const partes = id.match(/^([A-Z]{2,5})-([A-Z])(\d+)$/);
-  const linha = { n, bruto, forma: 'afirmacao', marca, id, sigla: partes?.[1] ?? null, papel: partes?.[2] ?? null, numero: partes ? Number(partes[3]) : null, ator: t[1] ?? null, espacos };
+  const partes = id.match(new RegExp(`^([A-Z]{2,5})-([A-Z])(${NUMERO})$`));
+  const linha = { n, bruto, forma: 'afirmacao', marca, id, sigla: partes?.[1] ?? null, papel: partes?.[2] ?? null, numero: partes?.[3] ?? null, ator: t[1] ?? null, espacos };
   if (t[2] === 'removida') return { ...linha, forma: 'lapide', tipo: 'removida' };
   const movida = t[2].match(new RegExp(`^movida → \\[(${CODIGO})\\]$`));
   if (movida) return { ...linha, forma: 'lapide', tipo: 'movida', destino: movida[1] };
@@ -153,7 +173,7 @@ function partir(texto) {
 function lerLinhaDeCelula(n, bruto, corpo) {
   if (/^\[/.test(corpo) || new RegExp(`^${CODIGO}`).test(corpo)) {
     return lerAfirmacao(n, bruto, corpo)
-      ?? estranha(n, bruto, 'uma afirmação, como "- [ ] PED-R1  texto", com dois espaços antes do texto', 'LIN-R11');
+      ?? estranha(n, bruto, 'uma afirmação, como "- [ ] PED-R1.1  texto", com dois espaços antes do texto', 'LIN-R11');
   }
   const item = separarCauda(corpo);
   const t = item.texto;
@@ -222,8 +242,8 @@ function lerProduto(brutas) {
       m = t.match(/^([^:]+): (\S.*)$/);
       linha = m ? { n, bruto, forma: 'tipo-valor', ...nomear(m[1]), ...item, texto: m[2] } : estranha(n, bruto, 'um tipo de valor, como "- **Quantidade**: inteiro; de 1 a 99"', 'TIP-R2');
     } else if (secao === 'Jornadas') {
-      m = corpo.match(new RegExp(`^(PRD-J\\d+) {2}([^:]+): (\\[${CODIGO}\\](?: → \\[${CODIGO}\\])*)$`));
-      linha = m ? { n, bruto, forma: 'jornada', id: m[1], nome: m[2], passos: m[3].split(' → ').map((p) => p.slice(1, -1)) } : estranha(n, bruto, 'uma jornada, como "- PRD-J1  Nome: [PED-C1] → [PED-V1]"', 'JOR-R2');
+      m = corpo.match(new RegExp(`^(PRD-J${NUMERO}) {2}([^:]+): (\\[${CODIGO}\\](?: → \\[${CODIGO}\\])*)$`));
+      linha = m ? { n, bruto, forma: 'jornada', id: m[1], nome: m[2], passos: m[3].split(' → ').map((p) => p.slice(1, -1)) } : estranha(n, bruto, 'uma jornada, como "- PRD-J1.1  Nome: [PED-C1.1] → [PED-V1.1]"', 'JOR-R2');
     } else if (secao === 'Externos') {
       m = t.match(/^([^·]+?) · (\S.*)$/);
       linha = m ? { n, bruto, forma: 'externo', ...nomear(m[1]), papelExterno: m[2], ...item } : estranha(n, bruto, 'um externo, como "- **Nome** · papel"', 'APR-R10');
@@ -239,28 +259,6 @@ function lerProduto(brutas) {
   return linhas;
 }
 
-function lerContadores(brutas) {
-  const linhas = [];
-  let secao = null;
-  brutas.forEach((bruto, i) => {
-    const n = i + 1;
-    if (bruto.trim() === '') return linhas.push(branco(n, bruto));
-    if (i === 0) return linhas.push(/^# \S/.test(bruto) ? { n, bruto, forma: 'titulo-arquivo' } : estranha(n, bruto, 'o título do arquivo, como "# Contadores"'));
-    if (i === 1 && ehProsa(bruto)) return linhas.push({ n, bruto, forma: 'frase-arquivo' });
-    if (bruto.startsWith('#')) {
-      secao = bruto.match(/^## (.+)$/)?.[1] ?? null;
-      return linhas.push(SECOES_CONTADORES.includes(secao)
-        ? { n, bruto, forma: 'titulo-secao', nome: secao }
-        : estranha(n, bruto, 'um título de seção: Identificadores, Perguntas ou Decisões'));
-    }
-    const m = bruto.match(/^- (\S+) {2}(\d+)(?: {2}(\S+))?$/);
-    linhas.push(m && secao
-      ? { n, bruto, forma: 'contador', secao, sequencia: m[1], numero: Number(m[2]), nomeCurto: m[3] ?? null }
-      : estranha(n, bruto, 'um contador, como "- PED-R  8  nome-curto", com dois espaços entre as partes', 'CTD-R8'));
-  });
-  return linhas;
-}
-
 function lerPerguntas(brutas) {
   const linhas = [];
   let pai = null;
@@ -269,13 +267,13 @@ function lerPerguntas(brutas) {
     if (bruto.trim() === '') return linhas.push(branco(n, bruto));
     if (i === 0 && /^# \S/.test(bruto)) return linhas.push({ n, bruto, forma: 'titulo-arquivo' });
     if (i === 1 && ehProsa(bruto)) return linhas.push({ n, bruto, forma: 'frase-arquivo' });
-    let m = bruto.match(/^- (P\d+) {2}(\S.*\?)$/);
+    let m = bruto.match(new RegExp(`^- (${PERGUNTA}) {2}(\\S.*\\?)$`));
     if (m) { pai = { n, bruto, forma: 'pergunta', codigo: m[1], enunciado: m[2] }; return linhas.push(pai); }
     if (bruto.startsWith(' ') && pai?.forma === 'desconhecida') return linhas.push({ n, bruto, forma: 'ignorada' });
     m = pai ? bruto.match(/^ {2}- (opção|sobre): (\S.*)$/) : null;
     if (m) return linhas.push({ n, bruto, forma: 'subitem-pergunta', prefixo: m[1], texto: m[2], pai });
     if (!bruto.startsWith(' ')) pai = { forma: 'desconhecida' };
-    linhas.push(estranha(n, bruto, 'uma pergunta, como "- P1  enunciado?", ou um sub-item dela, iniciado por "opção:" ou "sobre:"', 'APG-R5'));
+    linhas.push(estranha(n, bruto, 'uma pergunta, como "- P9.1  enunciado?", ou um sub-item dela, iniciado por "opção:" ou "sobre:"', 'APG-R5'));
   });
   return linhas;
 }
@@ -287,8 +285,8 @@ function lerDecisao(brutas) {
     const n = i + 1;
     if (bruto.trim() === '') return linhas.push(branco(n, bruto));
     if (i === 0) {
-      const m = bruto.match(/^# (.+\?) {2}`(D\d+)`$/);
-      return linhas.push(m ? { n, bruto, forma: 'titulo-decisao', questao: m[1], codigo: m[2] } : estranha(n, bruto, 'o título da decisão: a questão, terminada em "?", dois espaços e o código, como "# Quem vê um pedido?  `D07`"', 'DEC-R1'));
+      const m = bruto.match(new RegExp(`^# (.+\\?) {2}\`(${DECISAO})\`$`));
+      return linhas.push(m ? { n, bruto, forma: 'titulo-decisao', questao: m[1], codigo: m[2] } : estranha(n, bruto, 'o título da decisão: a questão, terminada em "?", dois espaços e o código, como "# Quem vê um pedido?  `D7.1`"', 'DEC-R1'));
     }
     if (i === 1 && ehProsa(bruto)) return linhas.push({ n, bruto, forma: 'resolucao' });
     if (bruto.startsWith('#')) {
@@ -331,7 +329,7 @@ export function lerEspecificacao(pasta) {
       }
       for (const arquivo of mds(join(pasta, raiz, sub))) {
         if (arquivo === 'README.md') continue;
-        const codigo = arquivo.match(/^(D\d+)-[a-z0-9-]+\.md$/)?.[1];
+        const codigo = arquivo.match(new RegExp(`^(${DECISAO})-[a-z0-9-]+\\.md$`))?.[1];
         if (codigo) ler(`${raiz}/${sub}/${arquivo}`, 'decisao', lerDecisao, { codigo, camada });
         else e.soltos.push(`${raiz}/${sub}/${arquivo}`);
       }
@@ -339,12 +337,11 @@ export function lerEspecificacao(pasta) {
   };
 
   for (const fixo of ['AGENTS.md', '_convencoes.md']) if (!ehArquivo(join(pasta, fixo))) e.faltam.push({ caminho: fixo, regra: 'VRF-R12' });
-  for (const fixo of ['_produto.md', '_contadores.md']) if (!ehArquivo(join(pasta, fixo))) e.faltam.push({ caminho: fixo, regra: 'VRF-R10' });
+  if (!ehArquivo(join(pasta, '_produto.md'))) e.faltam.push({ caminho: '_produto.md', regra: 'VRF-R10' });
   if (ehArquivo(join(pasta, '_produto.md'))) ler('_produto.md', 'produto', lerProduto);
-  if (ehArquivo(join(pasta, '_contadores.md'))) ler('_contadores.md', 'contadores', lerContadores);
   if (ehArquivo(join(pasta, '_perguntas.md'))) ler('_perguntas.md', 'perguntas', lerPerguntas);
 
-  const conhecidos = new Set(['AGENTS.md', '_convencoes.md', '_produto.md', '_contadores.md', '_perguntas.md', 'decisoes', 'dados']);
+  const conhecidos = new Set(['AGENTS.md', '_convencoes.md', '_produto.md', '_perguntas.md', 'decisoes', 'dados']);
   const areas = e.arquivos.find((a) => a.tipo === 'produto')?.linhas.filter((l) => l.forma === 'area') ?? [];
   for (const area of areas) {
     const nome = area.arquivo.replace(/\/$/, '');

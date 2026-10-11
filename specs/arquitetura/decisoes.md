@@ -104,6 +104,13 @@ Daniel, em 10 de outubro de 2026, para a arquitetura e para a interface. Complem
 
 - Vale também para o encaixe que é possível, mas fere um valor: repetir, juntar duas coisas numa linha, não poder verificar.
 
+### 16. Sem contadores: o código leva o prefixo de mudança
+
+Daniel, em 10 de outubro de 2026, para a especificação, a arquitetura e a interface, na issue 22. Revê a decisão 9 e a parte dos contadores da decisão 12. O `_contadores.md` desta pasta foi apagado, e todo código novo leva o prefixo da mudança e o número de ordem, como `VAL-R22.1`. Registrada em `D22.1`, `D22.2` e `D22.3`, de `specs/decisoes/`.
+
+- Motivo: com cada ideia elaborada numa ramificação própria, duas mudanças em paralelo alocavam o mesmo número.
+- As siglas continuam num espaço só; quem cria uma procura em toda a pasta `specs/`.
+- Os códigos anteriores, só com um número, continuam válidos.
 ## Em aberto
 
 - Onde ficam as perguntas abertas da arquitetura.
