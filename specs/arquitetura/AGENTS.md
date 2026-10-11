@@ -24,8 +24,8 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 ## Antes de qualquer tarefa
 
 1. Leia `../_convencoes.md` e depois `_convencoes.md` desta pasta, que só acrescenta à primeira.
-2. Leia `_sistema.md`: áreas, externos, restrições globais e fluxos.
-3. Leia só a área que a tarefa toca.
+2. Leia `_sistema.md`: externos, restrições globais e fluxos.
+3. Leia só a área que a tarefa toca. Para escolher, leia `README.md`, o índice gerado das áreas, que traz a frase de cada uma e os componentes dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que a legenda não lista pelo nome.
 
 `ideia.md` e `decisoes.md`, quando existem, são memória informal de como este formato nasceu. Abra-os para entender por que o formato é assim; o que vale como arquitetura são os outros arquivos.
 
@@ -68,7 +68,7 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 - **Decidir se algo é componente:** é componente o que tem responsabilidade própria e poderia ser trocado inteiro. Uma função, uma tela ou um arquivo de apoio são parte de um componente e ficam no código.
 - **Criar um componente:** escolha a sigla, conforme a regra 6, e escreva título, frase de definição compreensível fora do bloco, e as linhas na ordem: modelo, R, Q, I.
 - **Acrescentar uma afirmação:** aplique o teste, ache o componente dono e componha o identificador conforme a regra 6.
-- **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Acrescente-a na tabela de áreas de `_sistema.md`.
+- **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e a linha `- componente central: **Componente**`.
 - **Mudar um componente de lugar no repositório:** atualize `local:` na mesma mudança.
 - **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta, na subpasta da área do item, ou em `_sistema/` se o item está em `_sistema.md`; o item que a cita é desta pasta; e o código é único entre as decisões das três pastas.
 - **Citar uma decisão:** um item desta pasta cita decisão desta pasta ou da especificação, nunca da interface. A decisão que a interface também cita mora aqui.
@@ -77,6 +77,8 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 ## Depois de alterar
 
 Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa no teste do que entra; todo `local:` existe; toda referência `[ID]` resolve, aqui ou na especificação; nenhuma sigla repetida entre componentes e células; cada código novo com o prefixo da mudança, e nenhum código antigo trocado; linhas na ordem fixa; primeira menção de cada termo em negrito.
+
+Nunca edite o `README.md` desta pasta nem os das pastas de decisões: são índices, refeitos pela skill `tabularium-indexar`, que só o usuário aciona. Se a mudança criou, renomeou ou retirou uma área, um componente ou uma decisão, avise-o de que os índices ficaram desatualizados.
 
 Resuma a mudança listando os identificadores criados, alterados e retirados.
 

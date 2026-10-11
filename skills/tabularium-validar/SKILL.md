@@ -17,7 +17,7 @@ Na raiz do repositório, rode o script que está na pasta desta skill:
 node <pasta desta skill>/validar.mjs
 ```
 
-Ele valida `specs/`; para outra pasta, passe o caminho como argumento. O resto das pastas de arquitetura e de interface não é lido, nem as seções geradas: o que conferir nessas pastas está no `AGENTS.md` de cada uma, em "Depois de alterar".
+Ele valida `specs/`; para outra pasta, passe o caminho como argumento. O resto das pastas de arquitetura e de interface não é lido, nem as seções geradas e os índices `README.md`: o que conferir nessas pastas está no `AGENTS.md` de cada uma, em "Depois de alterar".
 
 Feito quando a última linha da saída traz o total: `nenhuma violação`, ou o número de violações.
 

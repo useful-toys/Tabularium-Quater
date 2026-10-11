@@ -8,8 +8,9 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional; um item por pergunta, como `- P4.1  enunciado?`, com sub-itens `opção:` e `sobre:`; título e frase de abertura são opcionais
 - `decisoes/`: decisões relevantes, uma por arquivo, lidas só sob demanda; tem a sua própria legenda e as suas instruções para agentes; os itens da especificação as citam, e elas não citam de volta
 - `dados/`: arquivos de dados de referência, em JSON ou CSV, lidos só sob demanda; cada um é citado por exatamente uma regra; o nome é a sigla da célula que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`; a pasta não tem subpastas nem outros arquivos
-- `<area>.md`: uma área; lida em qualquer ordem
-- `<area>/`: área dividida; consta da tabela de áreas pelo nome da pasta; `_area.md` traz as seções anteriores às células; cada arquivo começa pelo título e traz as células em blocos
+- `<area>.md`: uma área; lida em qualquer ordem; é área todo arquivo `.md` desta pasta cujo nome não começa por `_` e que não é `AGENTS.md` nem `README.md`
+- `<area>/`: área dividida; é área toda subpasta com `_area.md`, que traz a frase, as linhas da área e as seções anteriores às células; cada outro arquivo começa pelo título e traz as células em blocos
+- `README.md`: índice das áreas, com a frase de cada uma e as células dela; gerado por programa e nunca editado
 
 ## Estrutura
 - `#` arquivo · título de bloco · item de lista · critério (sub-item)
@@ -22,7 +23,8 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - linhas de um bloco de célula: definição, atributo, relação, `evento: **Nome**`, afirmação, lápide, critério e fileira de tabela; não há outras
 - num bloco de célula, só C e V têm sub-itens
 - afirmação: linha que pode ser verificada no produto; papéis R, Q, C, V, T e J
-- seções de uma área, antes das células: Índice (gerado), Linguagem, Tipos, nesta ordem, sem outras
+- abertura de uma área: o título, a frase que diz o que ela reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- dono: nome`, nesta ordem; só a prioridade pode faltar
+- seções de uma área, depois da abertura e antes das células: Índice (gerado), Linguagem, Tipos, nesta ordem, sem outras
 - item de Linguagem: `- **termo**: definição`; item de Tipos: `- **Nome**: base; restrições`, ou `- **Nome**:` e os valores separados por `|`
 
 ## Papéis
@@ -34,9 +36,8 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - J  jornada: sequência de C e V; só em `_produto.md`
 
 ## Arquivo de produto
-- seções: `Propósito`, `Áreas`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias, sem outras
+- seções: `Propósito`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias, sem outras
 - `Propósito`: `- Rótulo: texto`, com rótulo livre; o primeiro é `Problema`
-- `Áreas`: tabela com as colunas `Área`, `Célula central`, `Prioridade`, `Dono` e `Arquivo`
 - `Atores`: `- **Nome**: acesso`; há exatamente um padrão, que termina com `; padrão`
 - `Tipos comuns`: como os itens de Tipos
 - `Jornadas`: `- PRD-J1.1  Nome: [ID] → [ID]`
@@ -67,7 +68,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - em maiúsculas ou no plural regular (`s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis`, `ns`), é o mesmo termo
 - quanto a termos, o validador confere só o negrito e as definições; o texto sem negrito não é checado
 - negrito que casa com um termo e com um atributo é do termo
-- não são menções: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo, a própria célula no seu bloco e o nome da área na tabela de áreas
+- não são menções: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula no seu bloco
 - título que não é de célula e cabeçalho de tabela não levam negrito, mesmo em volta de um termo
 - `(~~valor, montante~~)` no fim do texto da linha que define um termo, antes das marcas de fim de item: sinônimos de não usar; não aparecem em negrito nem como nome de termo, em maiúsculas ou no plural
 - `**Célula.atributo**`: referência a atributo cujo nome se repete em outra célula
@@ -82,7 +83,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `- [ ] PED-R7.1  removida`: lápide de uma afirmação retirada; passa a `[x]` quando o produto deixa de ter o comportamento
 - `- [x] PED-C3.1  movida → [ENT-C1.1]`: lápide de uma afirmação que mudou de célula; tem a marca da afirmação nova, que herda a da antiga
 - lápide `[x]` que nada mais cita pode ser podada; o identificador dela continua sem voltar
-- `<!-- gerado; não editar -->`: seção gerada por programa; documentos derivados, como visão, casos de uso e manual, são redigidos por agente e ficam fora desta pasta
+- `<!-- gerado; não editar -->`: seção ou arquivo gerado por programa; documentos derivados, como visão, casos de uso e manual, são redigidos por agente e ficam fora desta pasta
 
 ## Dados de referência
 - instâncias de uma célula que já vêm com o produto e só mudam por uma nova versão dele; o que um ator altera é estado, e o que um externo fornece e atualiza consta só do `fornece:` dele

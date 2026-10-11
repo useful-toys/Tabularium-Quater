@@ -24,8 +24,8 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 ## Antes de qualquer tarefa
 
 1. Leia `../_convencoes.md` e depois `_convencoes.md` desta pasta, que só acrescenta à primeira.
-2. Leia `_interface.md`: áreas, meios, estilos e diretrizes.
-3. Leia só a área que a tarefa toca.
+2. Leia `_interface.md`: meios, estilos e diretrizes.
+3. Leia só a área que a tarefa toca. Para escolher, leia `README.md`, o índice gerado das áreas, que traz a frase de cada uma e os componentes dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que a legenda não lista pelo nome.
 4. Abra uma decisão de `decisoes/` só quando precisar do porquê de um item que termina em `⟸ [Dnn]`, ou antes de alterá-lo.
 
 `ideia.md` e `decisoes.md`, quando existem, são memória informal de como este formato nasceu. O que vale como interface são os outros arquivos.
@@ -89,7 +89,7 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 - **Dar nome a um componente ligado a uma célula:** se a célula é do domínio e o componente só a mostra, dê a ele um nome próprio, que diga o que ele é na tela, como `Cartão de pedido` para a célula `Pedido`. Se o componente e a célula são a mesma coisa, como um menu descrito como célula, use o mesmo nome, com outra sigla, e avise o usuário: a célula é candidata a sair da especificação. Nos dois casos, cite com `realiza:` as afirmações dela que ele apresenta.
 - **Acrescentar uma afirmação:** aplique os dois testes, ache o dono e componha o identificador conforme a regra 10.
 - **Criar um estilo:** confira antes se já existe um com o mesmo papel. Dê um nome que diga o papel, e não o valor. Escreva o valor só quando ele é compromisso.
-- **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Acrescente-a na tabela de áreas de `_interface.md`.
+- **Criar uma área:** só quando um componente central e os que dependem dele se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e a linha `- componente central: **Componente**`.
 - **Registrar uma decisão:** siga `../decisoes/AGENTS.md`, com três diferenças: o arquivo mora em `decisoes/` desta pasta, na subpasta da área do item, ou em `_interface/` se o item está em `_interface.md`; o item que a cita é desta pasta; e o código é único entre as decisões das três pastas.
 - **Citar uma decisão:** um item desta pasta cita decisão desta pasta, da arquitetura ou da especificação.
 - **Retirar ou mover uma afirmação:** lápide no lugar, como na especificação.
@@ -97,6 +97,8 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 ## Depois de alterar
 
 Rode o validador, pela skill `tabularium-validar`: desta pasta ele confere só as decisões e as citações de decisão. Confira você ao menos: cada linha nova passa nos dois testes; toda referência `[ID]` resolve, aqui ou na especificação; todo estilo, componente e padrão citado em negrito existe; todo `local:` existe; nenhuma sigla repetida; cada código novo com o prefixo da mudança, e nenhum código antigo trocado; linhas na ordem fixa.
+
+Nunca edite o `README.md` desta pasta nem os das pastas de decisões: são índices, refeitos pela skill `tabularium-indexar`, que só o usuário aciona. Se a mudança criou, renomeou ou retirou uma área, um componente, um padrão ou uma decisão, avise-o de que os índices ficaram desatualizados.
 
 Resuma a mudança listando os identificadores criados, alterados e retirados, e os estilos criados ou renomeados.
 

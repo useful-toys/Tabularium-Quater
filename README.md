@@ -6,7 +6,7 @@ Em vez de espalhar o mesmo assunto por glossário, regras de negócio e casos de
 
 A gramática é simples o bastante para um programa verificar e para pessoas e agentes de IA manterem. Serve a equipes de desenvolvimento e sustentação, da análise à implementação, e qualquer um pode adotá-lo.
 
-> **Estado: experimental.** Hoje existem a definição do formato, as instruções para agentes, as decisões do próprio formato, a skill de instalação, a skill de validação e três skills que levam uma ideia até a especificação, além de dois formatos ainda mais novos, para a arquitetura e para a interface. O gerador e as skills de geração ainda não existem: onde este README os menciona, descreve o que o formato pretende. Por ora, o alvo são produtos pequenos.
+> **Estado: experimental.** Hoje existem a definição do formato, as instruções para agentes, as decisões do próprio formato, a skill de instalação, a skill de validação, a skill de indexação e três skills que levam uma ideia até a especificação, além de dois formatos ainda mais novos, para a arquitetura e para a interface. O indexador já produz os índices das pastas; as demais partes geradas e as skills de geração ainda não existem: onde este README as menciona, descreve o que o formato pretende. Por ora, o alvo são produtos pequenos.
 
 ## A ideia
 
@@ -80,11 +80,12 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 
 ## Primeiros passos
 
-1. Escreva `_produto.md`: o problema, os atores e as primeiras áreas.
-2. Para cada célula central, crie a área e escreva os blocos: definição, modelo, regras, capacidades e visões.
+1. Escreva `_produto.md`: o problema e os atores.
+2. Para cada célula central, crie a área, um arquivo que abre com a frase dela, a célula central e o dono, e escreva os blocos: definição, modelo, regras, capacidades e visões.
 3. Marque cada afirmação com `[x]` ou `[ ]`, e dê a cada código novo o prefixo da mudança: o número da issue, ou um código de `/tabularium-sortear`.
 4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
 5. Valide cada mudança com `/tabularium-validar` e corrija o que o validador acusar.
+6. Refaça os índices das pastas com `/tabularium-indexar`: um `README.md` com as áreas e um com as decisões de cada pasta.
 
 Para mudar a especificação junto com o agente, há três skills, que você aciona nesta ordem:
 

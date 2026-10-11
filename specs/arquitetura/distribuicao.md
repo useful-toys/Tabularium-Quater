@@ -1,5 +1,6 @@
 # Distribuição
 Como o formato chega ao repositório que o adota e é mantido em dia.
+- componente central: **Instalador**
 
 ## Instalador  `INS`
 Script que copia da linha principal, para o repositório que adota o formato, as **Instruções para agentes**, o **Arquivo de convenções** e os modelos dos arquivos que faltam.

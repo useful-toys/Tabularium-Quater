@@ -1,0 +1,67 @@
+<!-- gerado; não editar -->
+# Decisões de Redação
+
+- [D05](D05-capacidade-em-varias-celulas.md) Onde mora a capacidade que altera mais de uma célula? Numa só célula, e as outras reagem a um evento dela.
+  - citada por: CAP-R2
+- [D07](D07-poda-de-lapides.md) As lápides ficam para sempre no bloco? Não, a lápide cumprida que nada mais cita pode ser podada sob demanda.
+  - citada por: LAP-R9, D15, D22, D28, D57
+- [D09](D09-item-cita-decisao.md) Quem aponta para quem, entre o item e a decisão? O item aponta para a decisão, com uma marca no fim.
+  - citada por: REF-R9, REF-R10, D10, D13, D15, D16, D67
+- [D16](D16-itens-que-citam.md) Que itens podem citar uma decisão? Qualquer item de lista da especificação.
+  - citada por: REF-R9
+- [D18](D18-afirmacao.md) O que é uma afirmação? Toda linha que pode ser verificada no produto.
+  - citada por: afirmação
+- [D28](D28-linha-muda-de-celula.md) O que acontece com uma afirmação que muda de célula? Ganha o identificador da nova dona, herda a marca de implementação e deixa no lugar antigo uma lápide que aponta para o novo.
+  - citada por: LAP-R5
+- [D37](D37-regra-sem-rotulo.md) As regras recebem rótulo de tipo? Não, o tipo vem do lugar e da forma.
+  - citada por: REG-R2, D39, D86
+- [D38](D38-tabela-de-decisao.md) Como se escreve uma regra que combina condições? Como tabela de decisão, com cada combinação aparecendo exatamente uma vez.
+  - citada por: TDD-R1
+- [D39](D39-prefixos-dos-criterios.md) Como se distinguem pré-condição, exceção e resultado nos critérios? Pelo começo do critério, que é `exige:` na pré-condição, `se …:` na alternativa ou exceção e nenhum prefixo no resultado.
+  - citada por: CRT-R3, CRT-R4, CRT-R5
+- [D40](D40-evento-com-reacao.md) Quando um evento existe na especificação? Só quando alguma regra reage a ele.
+  - citada por: EVT-R2
+- [D41](D41-ator-pelo-acesso.md) O que define um ator? O acesso que ele tem, e não o estado em que está.
+  - citada por: ATO-R3, D42
+- [D42](D42-ator-padrao.md) Toda afirmação diz qual é o seu ator? Não, só a que não é do ator padrão leva a marca do ator.
+  - citada por: ATO-R1
+- [D55](D55-forma-do-identificador.md) Como se identifica uma afirmação? Por um código com a sigla da célula dona, a letra do papel e um número sequencial.
+  - citada por: Identificador.código
+- [D56](D56-numero-nunca-volta.md) Um identificador pode ser renumerado ou reaproveitado? Não, números e siglas nunca são renumerados nem voltam a ser usados.
+  - citada por: IDT-R2
+- [D57](D57-lapide-no-lugar.md) O que acontece com uma afirmação retirada? Vira uma lápide no mesmo lugar.
+  - citada por: LAP-R1
+- [D58](D58-mudanca-de-significado.md) O que se faz quando o significado de uma afirmação muda? Retira-se a afirmação e cria-se outra, e só a correção de redação mantém o identificador.
+  - citada por: LIN-R3, D88
+- [D60](D60-ideias-no-rastreador.md) Onde ficam as ideias? Num rastreador, até amadurecerem.
+  - citada por: Rastreador, PER-R8, D22.2
+- [D61](D61-marca-de-implementacao.md) Onde se registra o estado de implementação? Na própria afirmação de regra, qualidade, capacidade, visão ou declaração.
+  - citada por: LIN-R4, D64
+- [D62](D62-sem-estado-parcial.md) Existe estado parcial de implementação? Não, a afirmação cumprida só em parte deve ser dividida.
+  - citada por: LIN-R5
+- [D64](D64-marca-sempre-explicita.md) Como se escreve a marca de implementação? Com a lista de tarefas do Markdown, sempre com um dos dois estados escrito.
+  - citada por: LIN-R4
+- [D65](D65-linha-cita-pergunta.md) Quem aponta para quem, entre a linha e a pergunta? A linha provisória aponta para a pergunta, com uma marca no fim.
+  - citada por: PER-R2, PER-R3
+- [D66](D66-responder-e-apagar.md) Como se responde uma pergunta? Apagando a pergunta e tirando a marca das linhas que a citavam, na mesma mudança.
+  - citada por: PER-R6
+- [D67](D67-varias-decisoes-por-item.md) Quantas decisões podem fundamentar um item? Várias, e uma decisão pode fundamentar vários itens.
+  - citada por: REF-R9
+- [D76](D76-perguntas-no-arquivo.md) Onde ficam as dúvidas sobre o que foi comprometido? Num arquivo de perguntas, dentro da pasta da especificação.
+  - citada por: APG-R4
+- [D83](D83-dados-fixos-na-especificacao.md) Dados fixos do produto entram na especificação? Sim, os que só mudam por uma nova versão do produto.
+  - citada por: DRF-R1
+- [D84](D84-lugar-dos-dados.md) Onde ficam os dados de referência? No bloco da célula, em tabela, os que é preciso ver para entender as linhas dela, e os demais num arquivo de dados.
+  - citada por: DRF-R5, D91
+- [D86](D86-tabela-de-dados-pela-identidade.md) Como se distingue a tabela de dados da tabela de decisão? Pela primeira coluna, que na tabela de dados é o atributo de identidade da célula.
+  - citada por: DRF-R7
+- [D87](D87-citacao-do-arquivo-de-dados.md) Como a regra cita o arquivo de dados? Pelo nome do arquivo entre colchetes, com a definição do link gerada.
+  - citada por: DRF-R15
+- [D88](D88-dados-mudam-sem-novo-identificador.md) Mudar os dados de referência cria outra afirmação? Não, o identificador fica e a marca volta a não implementada até o produto trazer os dados novos.
+  - citada por: DRF-R16
+- [D91](D91-regra-adianta-atributos.md) Como a regra diz o que o arquivo de dados traz? Cita em negrito os atributos e as partes que o arquivo traz.
+  - citada por: DRF-R14, D90
+- [D22.1](D22.1-prefixo-de-mudanca.md) Como duas mudanças feitas em paralelo não alocam o mesmo código? Cada código leva o prefixo da mudança que o alocou, e por isso é definitivo desde que nasce.
+  - citada por: IDT-R22.1, IDT-R22.4, D10, D22.2
+- [D22.2](D22.2-origem-do-prefixo.md) De onde vem o prefixo de mudança? Do número da issue que pede a mudança, e de um sorteio quando ela não tem issue ou o número já serviu de prefixo.
+  - citada por: Prefixo de mudança, IDT-R22.2, D22.3

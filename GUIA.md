@@ -4,7 +4,7 @@ Este guia explica o formato Tabularium em detalhe. Para uma apresentação curta
 
 O guia é uma explicação derivada da definição normativa do formato, que está em [`specs/`](specs/), escrita no próprio formato. Em caso de divergência, vale o que está lá. Os identificadores entre parênteses, como (TRM-R7), apontam para a regra de origem.
 
-O gerador e as skills de geração ainda não existem: onde este guia os descreve, descreve o que o formato pretende.
+O indexador já produz os índices de cada pasta. As demais partes geradas e as skills de geração ainda não existem: onde este guia as descreve, descreve o que o formato pretende.
 
 ## Índice
 
@@ -62,20 +62,22 @@ specs/
   _convencoes.md     legenda do formato; igual em todo projeto
   _produto.md        o que vale para o produto inteiro
   _perguntas.md      perguntas abertas (opcional)
+  README.md          índice das áreas, gerado por programa
   <area>.md          uma área: coleção de células de conceitos fortemente relacionadas; um arquivo por área
   decisoes/          decisões relevantes, uma por arquivo; lidas só sob demanda
     AGENTS.md        instruções para agentes sobre decisões
     _convencoes.md   legenda das decisões; igual em todo projeto
     _produto/        as que só _produto.md cita
     <area>/          as que os itens da área mais citam
+    */README.md      índice das decisões da pasta, gerado por programa
   dados/             dados de referência em JSON ou CSV, um arquivo por regra que os cita; lidos só sob demanda
   arquitetura/       como o produto é construído; formato experimental, fora da definição do formato
   interface/         como o produto se apresenta; formato experimental, fora da definição do formato
 ```
 
-Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
+Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Para escolher a área, há o `README.md`, índice gerado que traz a frase de cada uma e as células dela (GER-R23.7). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
 
-`_produto.md` guarda só o que vale para o conjunto e não pertence a nenhuma célula: o propósito (começando pelo problema que o produto resolve), a tabela de áreas, os atores, os tipos comuns, as jornadas, os externos, as regras globais e o que está fora de escopo.
+`_produto.md` guarda só o que vale para o conjunto e não pertence a nenhuma célula: o propósito (começando pelo problema que o produto resolve), os atores, os tipos comuns, as jornadas, os externos, as regras globais e o que está fora de escopo.
 
 ## Como reconhecer uma célula
 
@@ -359,6 +361,18 @@ Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14
 
 Uma área é um arquivo que agrupa células fortemente relacionadas. Ela se forma em torno de uma **célula central** e das células que dependem principalmente dela (ARE-R8). Área é só organização: não tem sigla, não redefine termos, e mover uma célula entre áreas não muda nenhum identificador.
 
+O arquivo da área abre com o título, uma frase que diz o que ela reúne e três linhas: a célula central, a prioridade, que pode faltar, e o dono (ARE-R23.5).
+
+```markdown
+# Pedidos
+Os **Pedidos** e os **Itens de pedido** que os compõem.
+- célula central: **Pedido**
+- prioridade: núcleo
+- dono: vendas
+```
+
+Não há lista de áreas escrita à mão. É área todo arquivo `.md` da pasta que não é um dos fixos, e toda subpasta com `_area.md` (ARE-R23.1). A lista delas é o índice gerado, que nunca diverge dos arquivos.
+
 A proximidade lógica é medida, não apenas declarada. Para cada célula, contam-se as referências feitas e recebidas, por área. Uma célula que troca mais referências com outra área do que com a sua é candidata a mudar de lugar (ARE-R9). Ao escrever a especificação do próprio formato, essa medição, feita ainda sem o validador, revelou uma área inteira que existia por afinidade temática, sem relação real entre suas células, e uma redundância escondida na lista de checagens que ele tinha na época.
 
 ## Perguntas abertas
@@ -418,7 +432,16 @@ Uma decisão pode citar outra, com a mesma marca, quando o contexto de uma é a 
 
 A gramática é fixa para que um programa, o **Validador**, consiga checar a forma da especificação sem interpretar o texto (VRF-R3). É um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro da skill `tabularium-validar`: o agente o executa e lê a saída, mas não o substitui (VRF-R5). O que ele checa é uma lista fechada, escrita no bloco dele, que cita cada regra pelo identificador (VRF-R14): a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, os códigos de decisão e de pergunta, as referências, os termos e os dados de referência. Nos dados, ele confere a regra, o nome do arquivo, as colunas da tabela e do CSV, as chaves do primeiro nível do JSON e a identidade repetida; as chaves dentro das partes e o tipo dos valores ficam com a revisão (VRF-R21). A gramática também é fechada: toda linha tem de casar com uma forma prevista, e a que não casa é violação (VRF-R8). Uma linha que começa com `[ok]` em vez de `[x]` é um exemplo do que ele acusa. Ele lê só os arquivos como estão, sem consultar o histórico (VRF-R9), e, das pastas de arquitetura e de interface, por ora só checa as decisões e as citações de decisão (VRF-R23). Uma especificação com ao menos uma violação é inválida, sem resultado intermediário (VRF-R7); impedir que a mudança entre é escolha de quem adota. Os sinais de reagrupamento, como áreas pouco coesas e blocos grandes demais, não são checados por ele: ficam com a revisão.
 
-Outro programa, o **Gerador**, vai produzir o que se deriva mecanicamente (GER-C1): o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais, as definições de link e o índice de cada pasta de decisões. Ele só gera a partir de uma especificação sem violações. Essas partes são sempre iguais para a mesma especificação (GER-R2).
+Outro programa, o **Indexador**, produz o que se deriva mecanicamente, e o que ele produz é sempre igual para a mesma especificação (GER-R2). Hoje ele gera os índices de pasta (GER-C23.1), entregue na skill `tabularium-indexar`: o script roda sem dependências e lê a especificação com a mesma leitura do validador.
+
+Cada índice é um arquivo `README.md`, que começa com `<!-- gerado; não editar -->` (GER-R23.1). Há dois tipos:
+
+- **Índice de áreas**, em `specs/`, `specs/arquitetura/` e `specs/interface/`: o nome e a frase do produto e, de cada área, a frase dela e cada célula com a sigla e a definição (GER-R23.7). Na arquitetura e na interface, os componentes fazem o papel das células.
+- **Índice de decisões**, em cada pasta de decisões: o código, a questão e a resolução de cada uma, em ordem de criação, e quem a cita, ou a marca de órfã (GER-R23.9, GER-R23.10).
+
+O indexador não exige uma especificação válida: indexa o que consegue ler, e o arquivo que não leu aparece no fim do índice, numa linha `não indexado:` (GER-R23.2, GER-R23.3). Ele regenera todos os índices a cada execução e grava só os que mudaram, de modo que o controle de versão mostra se algum estava desatualizado (GER-R23.4). Um `README.md` escrito à mão não é sobrescrito (GER-R23.5).
+
+As demais partes ainda não existem (GER-C23.2): o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais e as definições de link. Essas só serão geradas a partir de uma especificação sem violações.
 
 ## Documentos derivados
 

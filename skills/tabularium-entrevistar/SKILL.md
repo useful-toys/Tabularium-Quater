@@ -102,7 +102,7 @@ Feito quando a árvore foi toda percorrida: nenhuma pergunta por fazer e nenhum 
 Com a árvore percorrida, mostre o [plano](plano.md) inteiro e, antes de pedir a confirmação, diga:
 
 - que o consenso é uma proposta do autor, e que o aceite fica com o processo da equipe;
-- quais áreas a mudança toca e quem é o dono de cada uma, lido da tabela de áreas de `specs/_produto.md`;
+- quais áreas a mudança toca e quem é o dono de cada uma, lido da linha `dono:` no topo do arquivo da área;
 - se o plano só tem produto, que a mudança não tratou de arquitetura nem de interface.
 
 Peça então a confirmação do consenso, numa pergunta só para isso. Há **consenso** quando `Em aberto` está vazio, nenhuma linha está sem objeção e o autor confirmou.

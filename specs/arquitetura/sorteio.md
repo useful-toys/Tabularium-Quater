@@ -1,5 +1,6 @@
 # Sorteio
 Como se obtém o código sorteado que serve de prefixo aos códigos de uma mudança sem issue.
+- componente central: **Script de sorteio**
 
 ## Script de sorteio  `SOR`
 Script que sorteia um código que ainda não aparece na pasta da especificação.

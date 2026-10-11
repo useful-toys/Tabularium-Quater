@@ -18,10 +18,6 @@ Loja virtual pequena, para vender pela internet.
 - Problema: quem vende pouco não tem onde registrar os **Pedidos**
 - Público: pequenos vendedores
 
-## Áreas
-| Área | Célula central | Prioridade | Dono | Arquivo |
-| --- | --- | --- | --- | --- |
-| Pedidos | **Pedido** | núcleo | vendas | pedidos.md |
 
 ## Atores
 - **Cliente**: compra na loja; padrão
@@ -47,6 +43,9 @@ Loja virtual pequena, para vender pela internet.
 `,
   'pedidos.md': `# Pedidos
 Os **Pedidos** e os **Itens de pedido** que os compõem.
+- célula central: **Pedido**
+- prioridade: núcleo
+- dono: vendas
 
 ## Linguagem
 - **carrinho**: **Pedido** que ainda não foi fechado

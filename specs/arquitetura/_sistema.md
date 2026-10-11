@@ -1,21 +1,15 @@
 # Arquitetura do Tabularium
 Arquivos de texto num repositório público, levados ao repositório que adota o formato por uma skill que executa um script.
 
-## Áreas
-| Área | Componente central | Arquivo |
-| --- | --- | --- |
-| Distribuição | **Instalador** | distribuicao.md |
-| Validação | **Script de validação** | validacao.md |
-| Sorteio | **Script de sorteio** | sorteio.md |
 
 ## Externos
 - GitHub · hospedagem
   - guarda: o repositório do formato
   - fornece: cada arquivo da linha principal por URL, sem autenticação
 - npx skills · instalador de skills
-  - fornece: a instalação da **Skill de instalação**, da **Skill de validação** e da **Skill de sorteio** no repositório que adota o formato
+  - fornece: a instalação da **Skill de instalação**, da **Skill de validação**, da **Skill de sorteio** e da **Skill de indexação** no repositório que adota o formato
 - Node.js · ambiente de execução
-  - fornece: a execução do **Instalador**, do **Script de validação** e do **Script de sorteio**
+  - fornece: a execução do **Instalador**, do **Script de validação**, do **Script de sorteio** e do **Script de indexação**
 
 ## Restrições globais
 - [x] ARQ-R1  O formato é guardado num repositório público no **GitHub**, e a linha principal é a única versão distribuída ⟸ [D97, D103]
@@ -28,6 +22,7 @@ Arquivos de texto num repositório público, levados ao repositório que adota o
 - ARQ-F1  Instalar ou atualizar o formato: [SKI-I1] → [INS-I1]
 - ARQ-F2  Validar a especificação: [SKV-I1] → [VAL-I1]
 - ARQ-F22.1  Sortear o prefixo de uma mudança: [SKS-I22.1] → [SOR-I22.1]
+- ARQ-F23.1  Indexar as pastas da especificação: [SKX-I23.1] → [IDX-I23.1]
 
 ## Fora de escopo
 - Escolhas táticas, que mudam dentro de um componente sem que outro perceba · permanente

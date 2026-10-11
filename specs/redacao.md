@@ -1,5 +1,8 @@
 # Redação
 As **Linhas** de um bloco: o que cada uma afirma, quem age, a que **Eventos** reage e como são identificadas, citadas e retiradas.
+- célula central: **Linha**
+- prioridade: núcleo
+- dono: mantenedor do formato
 
 ## Linguagem
 - **reação**: **Regra** iniciada por `Ao **Evento**:`; mora no bloco da **Célula** que reage

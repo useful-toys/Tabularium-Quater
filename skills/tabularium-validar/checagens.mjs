@@ -2,7 +2,7 @@
 // Cada violação cita a regra do formato que a linha contraria e traz uma frase
 // que se entende sem ter a especificação do formato à mão.
 
-import { CODIGO, COLUNAS_AREAS, NUMERO, ROTULOS_DECISAO, SECOES_AREA, SECOES_PRODUTO, mascarar, numeroDe } from './leitura.mjs';
+import { CODIGO, DADOS_DA_AREA, NUMERO, ROTULOS_DECISAO, SECOES_AREA, SECOES_PRODUTO, mascarar, numeroDe } from './leitura.mjs';
 import { checarDados } from './dados.mjs';
 import { checarTermos } from './termos.mjs';
 
@@ -41,15 +41,14 @@ export function checar(e) {
 
 function checarPasta(e, acusar) {
   for (const { caminho, regra } of e.faltam) {
-    acusar(caminho, null, regra, regra === 'ARE-R1' ? 'falta este arquivo, que toda área em pasta tem' : 'falta este arquivo, que toda especificação tem');
+    acusar(caminho, null, regra, 'falta este arquivo, que toda especificação tem');
   }
   for (const caminho of e.soltos) {
     if (/(?:^|\/)decisoes\//.test(caminho)) acusar(caminho, null, 'VRF-R8', 'arquivo que não é decisão; o nome de uma decisão é o código, "-", um nome curto e ".md", como "D7.1-quem-ve-pedido.md"');
-    else acusar(caminho, null, 'ARE-R1', 'arquivo que não é fixo nem consta da tabela de áreas de _produto.md');
+    else acusar(caminho, null, 'ARE-R23.2', 'arquivo de nome começado por "_" que a especificação não tem; com esse início só há _convencoes.md, _produto.md e _perguntas.md');
   }
   for (const caminho of e.decisoesSoltas) acusar(caminho, null, 'DEC-R21', 'arquivo solto na pasta de decisões; a decisão de arquitetura ou de interface mora numa subpasta de área, ou em "_sistema" ou "_interface"');
-  for (const pasta of e.pastasForaDaTabela) acusar(`${pasta}/_area.md`, null, 'ARE-R1', 'pasta de área que não consta da tabela de áreas de _produto.md');
-  for (const area of e.areasSemArquivo) acusar('_produto.md', area.n, 'ARE-R1', `a área "${area.nome}" aponta para "${area.arquivo}", que não existe na pasta da especificação`);
+
 }
 
 function checarAfirmacao(l, dicionario, acusar) {
@@ -69,16 +68,14 @@ function checarProduto(arquivo, acusar) {
   let ultima = -1;
   for (const l of linhas.filter((x) => x.forma === 'titulo-secao')) {
     const posicao = SECOES_PRODUTO.indexOf(l.nome);
-    if (posicao < 0) acusar(l.n, 'APR-R9', `a seção "${l.nome}" não existe em _produto.md; as seções são ${lista(SECOES_PRODUTO)}`);
+    if (l.nome === 'Áreas') acusar(l.n, 'APR-R9', 'a tabela de áreas saiu de _produto.md; leve a célula central, a prioridade e o dono de cada área para o arquivo dela, abaixo da frase, como "- célula central: **Pedido**", "- prioridade: núcleo" e "- dono: nome", e apague esta seção');
+    else if (posicao < 0) acusar(l.n, 'APR-R9', `a seção "${l.nome}" não existe em _produto.md; as seções são ${lista(SECOES_PRODUTO)}`);
     else if (posicao <= ultima) acusar(l.n, 'APR-R9', `a seção "${l.nome}" está repetida ou fora da ordem; a ordem é ${lista(SECOES_PRODUTO)}`);
     else ultima = posicao;
   }
   const primeiro = linhas.find((l) => l.forma === 'proposito');
   if (primeiro && primeiro.rotulo !== 'Problema') acusar(primeiro.n, 'APR-R10', 'o primeiro item do Propósito é o problema que o produto resolve, como "- Problema: texto"');
-  const cabecalho = linhas.find((l) => l.forma === 'tabela-cabecalho');
-  if (cabecalho && cabecalho.celulas.join('|') !== COLUNAS_AREAS.join('|')) acusar(cabecalho.n, 'APR-R10', `as colunas da tabela de áreas são ${lista(COLUNAS_AREAS)}, nesta ordem`);
-  const separador = linhas.find((l) => l.forma === 'tabela-separador');
-  if (separador && !ehSeparador(separador, COLUNAS_AREAS.length)) acusar(separador.n, 'APR-R10', 'a segunda linha da tabela de áreas é o separador, como "| --- | --- | --- | --- | --- |"');
+
   const padroes = linhas.filter((l) => l.forma === 'ator' && l.padrao).length;
   if (padroes !== 1) {
     const atores = linhas.find((l) => l.forma === 'titulo-secao' && l.nome === 'Atores');
@@ -88,8 +85,28 @@ function checarProduto(arquivo, acusar) {
 
 const ehSeparador = (l, colunas) => l.celulas.length === colunas && l.celulas.every((c) => /^:?-+:?$/.test(c));
 
+// A frase e os dados da área moram no arquivo principal: o da área, ou o _area.md da pasta.
+function checarCabecalhoDaArea(arquivo, acusar) {
+  const dados = arquivo.linhas.filter((l) => l.forma === 'dado-area');
+  if (!arquivo.principal) {
+    if (dados.length) acusar(dados[0].n, 'ARE-R23.5', 'numa área em pasta, só o _area.md traz as linhas "célula central", "prioridade" e "dono"');
+    return;
+  }
+  if (arquivo.linhas[1]?.forma !== 'frase-arquivo') acusar(2, 'ARE-R23.4', 'a frase da área, que diz o que ela reúne, vem na linha seguinte ao título do arquivo');
+  let ultimo = -1;
+  for (const l of dados) {
+    const posicao = DADOS_DA_AREA.indexOf(l.dado);
+    if (posicao <= ultimo) acusar(l.n, 'ARE-R23.5', `a linha "${l.dado}" está repetida ou fora da ordem; ${lista(DADOS_DA_AREA)} vêm nesta ordem, abaixo da frase`);
+    else ultimo = posicao;
+  }
+  for (const dado of ['célula central', 'dono']) {
+    if (!dados.some((l) => l.dado === dado)) acusar(1, 'ARE-R23.5', `falta a linha "- ${dado}: …" abaixo da frase da área`);
+  }
+}
+
 function checarArea(arquivo, dicionario, acusar) {
   const { linhas } = arquivo;
+  checarCabecalhoDaArea(arquivo, acusar);
   let ultimaSecao = -1, haCelula = false, bloco = null;
   const comSubitemAcusado = new Set();
   linhas.forEach((l, i) => {

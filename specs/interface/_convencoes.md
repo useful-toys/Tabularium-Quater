@@ -8,7 +8,8 @@ Legenda para ler e escrever a interface neste formato, que é experimental. Ela 
 - `_perguntas.md`: dúvidas sobre a interface já comprometida; opcional; os códigos `Pnn` levam o prefixo de mudança, como na especificação
 - `decisoes/`: decisões que só a interface cita, uma por arquivo, em subpastas por área e em `_interface/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` levam o prefixo de mudança, como na especificação
 - `_achados.md`: o que o formato não serviu a escrever, por tipo de problema, com o estado; opcional; fora do formato, e o validador não o lê
-- `<area>.md`: uma área; lida em qualquer ordem
+- `<area>.md`: uma área; lida em qualquer ordem; é área todo arquivo `.md` desta pasta que não é um dos outros desta lista
+- `README.md`: índice das áreas, com a frase de cada uma e os componentes dela; gerado por programa e nunca editado
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato
 
 ## Formato experimental
@@ -72,11 +73,10 @@ Palavras desta legenda, iguais em todos os projetos; não são termos do produto
 - o componente herda as linhas do tipo da aplicação que ele cita, sem repeti-las
 - bloco de tela: componente de `tipo: tela`; não tem `partes:`; as linhas `usa` listam os componentes dela, na ordem em que aparecem; as afirmações são só as que valem para a tela inteira
 - ordem da lista: modelo (linhas sem identificador), R, Q, I
-- área: um componente central e os componentes e padrões que dependem dele, num arquivo
+- área: um componente central e os componentes e padrões que dependem dele, num arquivo; abaixo do título vêm a frase que diz o que ela reúne e a linha `- componente central: **Componente**`
 - siglas de componentes, de padrões, de células e de componentes da arquitetura formam um só conjunto: nenhuma se repete
 - componente que é a mesma coisa que uma célula da especificação tem o nome dela, com outra sigla; componente que só mostra uma célula do domínio tem nome próprio, que diz o que ele é na tela, como `Cartão de pedido`
-- seções de `_interface.md`: `Áreas`, `Meios`, `Estilos`, `Diretrizes`, `Fora de escopo`, nesta ordem, omitidas as vazias; sigla das afirmações: `IFC`
-- `Áreas`: tabela com as colunas `Área`, `Componente central` e `Arquivo`
+- seções de `_interface.md`: `Meios`, `Estilos`, `Diretrizes`, `Fora de escopo`, nesta ordem, omitidas as vazias; sigla das afirmações: `IFC`
 - `Meios`: `- nome: descrição`
 - `Estilos`: `- nome: tipo; papel`, com tipo `cor`, `tipografia` ou `medida`; sub-item `valor: …` quando o valor é compromisso e é o mesmo em todos os meios, ou um sub-item por meio, como `terminal: …`
 - `Diretrizes`: afirmações R e Q de sigla `IFC`

@@ -10,15 +10,8 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - Diferencial: cada **afirmação** existe uma vez e é citável por **Identificador**
 - Diferencial: as **Decisões** relevantes ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação**
 - Diferencial: legível por pessoas sem renderização e econômica para agentes de IA, que leem só a **Área** de que precisam
-- Diferencial: um programa, o **Validador**, checa a forma da **Especificação**, e outro, o **Gerador**, produz o **Índice**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
+- Diferencial: um programa, o **Validador**, checa a forma da **Especificação**, e outro, o **Indexador**, produz o **Índice**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
 - Diferencial: os **Documentos derivados** são redigidos por agente de IA a partir da **Especificação**, com a origem de cada frase
-
-## Áreas
-| Área | Célula central | Prioridade | Dono | Arquivo |
-| --- | --- | --- | --- | --- |
-| Organização | **Especificação** | apoio | mantenedor do formato | organizacao.md |
-| Modelagem | **Célula** | núcleo | mantenedor do formato | modelagem.md |
-| Redação | **Linha** | núcleo | mantenedor do formato | redacao.md |
 
 ## Atores
 - **Autor**: altera a **Especificação**; pessoa ou agente de IA; padrão
@@ -39,7 +32,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 ## Jornadas
 - PRD-J1  Acrescentar uma **Regra**: [CEL-V1] → [LIN-C1] → [VRF-V1]
 - PRD-J2  Retirar uma **afirmação**: [LIN-C2] → [VRF-V1]
-- PRD-J3  Extrair um documento: [GER-C1] → [DER-V1]
+- PRD-J3  Extrair um documento: [GER-C23.2] → [DER-V1]
 - PRD-J4  Responder uma **Pergunta**: [PER-C2] → [VRF-V1]
 
 ## Externos

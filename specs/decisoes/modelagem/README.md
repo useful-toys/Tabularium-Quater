@@ -1,0 +1,53 @@
+<!-- gerado; não editar -->
+# Decisões de Modelagem
+
+- [D04](D04-efeito-na-celula-afetada.md) Onde se escreve o efeito de uma célula sobre outra? No bloco da célula afetada, como reação a um evento da outra.
+  - citada por: CEL-R5, D05
+- [D25](D25-o-que-e-uma-celula.md) O que faz de algo uma célula? Haver algo a afirmar sobre ela que não pertence a nenhuma outra.
+  - citada por: CEL-R9
+- [D26](D26-testes-de-classificacao.md) Como se decide se um item é uma célula? Por uma lista ordenada de testes, parando no primeiro com resposta sim.
+  - citada por: CEL-R9
+- [D27](D27-celulas-evoluem.md) As células são fixas depois de criadas? Não, uma célula pode se dividir, se fundir, ser rebaixada a atributo ou nascer de um, sem que as afirmações percam a identidade.
+  - citada por: CEL-C1, CEL-C2, CEL-C3, CEL-C4, D28
+- [D32](D32-modelo-no-bloco.md) Onde mora o modelo de uma célula? No bloco da própria célula, como as primeiras linhas da lista.
+  - citada por: modelo
+- [D33](D33-glossario-gerado.md) O glossário é escrito à mão? Não, é gerado a partir das definições.
+  - citada por: GLO-R2, D35
+- [D34](D34-estrutura-do-bloco.md) Como se estrutura o bloco de uma célula? Com um título com a sigla, a frase de definição e uma lista única em ordem fixa, sem subtítulos.
+  - citada por: CEL-R3
+- [D35](D35-definicao-fora-do-bloco.md) Que propriedade a frase de definição precisa ter? Ser compreensível fora do bloco.
+  - citada por: Célula.definição
+- [D45](D45-forma-dos-atributos.md) Como se escreve um atributo? Na forma nome, tipo e qualificadores, com os qualificadores tirados de um vocabulário fechado.
+  - citada por: ATR-R7
+- [D46](D46-atributos-que-entram.md) Quais atributos entram na especificação? Só o que o usuário vê ou do qual alguma afirmação depende.
+  - citada por: ATR-R3, D63
+- [D47](D47-dados-pessoais.md) Como se marcam os dados pessoais? Com o qualificador pessoal no atributo.
+  - citada por: pessoal
+- [D48](D48-relacoes-entre-celulas.md) Que relações existem entre células? Pertencimento, associação com cardinalidade e especialização, todas conceituais.
+  - citada por: CEL-R20
+- [D49](D49-relacao-de-um-lado.md) Em qual lado se declara uma relação? Em uma só das duas células, com o outro lado no qualificador inverso quando importa.
+  - citada por: ATR-R9
+- [D50](D50-lugar-de-definicao.md) Onde um termo é definido? Uma única vez, no lugar mais específico que o comporta.
+  - citada por: TRM-R22, D33
+- [D51](D51-negrito-na-primeira-mencao.md) Quando um termo vai em negrito? Na primeira menção dentro de cada item de lista, frase de definição ou fileira de tabela.
+  - citada por: TRM-R7, D81
+- [D52](D52-sinonimos-proibidos.md) Como se tratam os sinônimos? Os sinônimos proibidos são declarados na linha que define o termo, e o validador os acusa em negrito e como nome de termo.
+  - citada por: TRM-R24, D110
+- [D53](D53-homonimos.md) Como se trata um homônimo? Renomeando um dos lados.
+  - citada por: TRM-R5
+- [D54](D54-atributo-de-nome-repetido.md) Como se cita um atributo cujo nome se repete em outra célula? Pelo nome da célula seguido do nome do atributo, fora do bloco dela.
+  - citada por: TRM-R4
+- [D63](D63-celula-sem-estado.md) Uma célula tem estado de implementação? Não, só as suas afirmações têm.
+  - citada por: CEL-R8
+- [D81](D81-mencao-exata-sem-negrito.md) Que menção sem negrito o validador acusa? Só a que repete o nome como está na definição, e nunca a de nome de atributo.
+  - órfã
+- [D110](D110-declaracao-so-na-definicao.md) A declaração de sinônimos proibidos cabe fora da definição do termo? A declaração de sinônimos proibidos só cabe na linha que define o termo.
+  - citada por: TRM-R18
+- [D111](D111-negrito-so-de-termo.md) O negrito serve a algo além de referência a termo? Não, o negrito marca só termo, na definição e na referência.
+  - citada por: TRM-R14, D112, D113
+- [D112](D112-negrito-so-com-asteriscos.md) O negrito de termo aceita outra grafia além dos dois asteriscos? Não, toda outra grafia de negrito é violação, mesmo em volta de um termo.
+  - citada por: TRM-R20
+- [D113](D113-titulo-sem-negrito.md) Título e cabeçalho de tabela aceitam negrito em volta de um termo? Só o título do bloco da célula, no nome que ele define.
+  - citada por: TRM-R25
+- [D115](D115-definicao-em-negrito.md) A definição de um termo leva negrito? Sim, o nome vai em negrito na definição, também no título do bloco da célula.
+  - citada por: TRM-R23, D50, D111, D113

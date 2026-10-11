@@ -7,8 +7,8 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 ## Antes de qualquer tarefa
 
 1. Leia `_convencoes.md`: é a legenda de tudo o que segue.
-2. Leia `_produto.md`: propósito, áreas, atores, tipos comuns, jornadas, externos e regras globais.
-3. Leia só as áreas que a tarefa toca. O Índice no topo de cada área lista o que ela usa de outras, as reações de outras áreas aos eventos dela e as perguntas abertas que a tocam; abra essas outras só se precisar.
+2. Leia `_produto.md`: propósito, atores, tipos comuns, jornadas, externos e regras globais.
+3. Leia só as áreas que a tarefa toca. Para escolher, leia `README.md`, o índice gerado das áreas, que traz a frase de cada uma e as células dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que não começam por `_`. O Índice no topo de cada área lista o que ela usa de outras, as reações de outras áreas aos eventos dela e as perguntas abertas que a tocam; abra essas outras só se precisar.
 4. Se a tarefa toca uma linha que termina em `⟵ [Pnn]`, ou uma área com perguntas no Índice, leia a pergunta em `_perguntas.md`. A linha é provisória.
 5. Não leia `decisoes/` por rotina. Abra uma decisão só quando precisar do porquê de um item que termina em `⟸ [Dnn]`, ou antes de alterá-lo.
 6. Não leia `dados/` por rotina. A regra que cita um arquivo de dados nomeia em negrito os atributos que ele traz, e os tipos estão nas linhas de modelo do mesmo bloco; abra o arquivo só quando a tarefa precisar dos valores.
@@ -29,7 +29,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 
 1. Nunca renumere um identificador e nunca reutilize um código. Todo código novo leva o prefixo da mudança, `.` e o número de ordem, como `PED-R9.1`, `P9.1` e `D9.1`. O prefixo é o número da issue, quando o trabalho foi pedido para uma issue do rastreador e nenhum código com esse prefixo existe na linha principal; em qualquer outro caso, e na dúvida sobre haver issue, é um código sorteado, que você obtém pela skill `tabularium-sortear` e nunca escolhe por conta própria. Use o mesmo prefixo em todos os códigos da mudança. O número de ordem conta, a partir de 1, os códigos da mesma sigla e do mesmo papel que a mudança aloca: para saber o próximo, procure o prefixo na célula. O código vale desde que é escrito, mesmo fora da linha principal: nunca o troque, nem para fechar um buraco. Nunca aloque um código só com um número, como `PED-R8`: essa forma é anterior ao prefixo de mudança, e os que existem continuam valendo. Siglas de células extintas ou fundidas também não voltam.
 2. Para retirar uma afirmação, troque-a por uma lápide no mesmo lugar: `- [ ] PED-R7.1  removida`. Para mudá-la de célula, crie a afirmação na nova dona e deixe `- [x] PED-C3.1  movida → [ENT-C1.1]` no lugar antigo. Nunca apague o identificador ao retirar ou mover. A lápide não leva `⟸ [Dnn]`: a citação sai com a afirmação retirada e acompanha a afirmação movida. Lápides só saem pela poda, que o usuário pede quando acha oportuno: sai a lápide `[x]` que nenhuma linha cita, e o número dela continua sem voltar.
-3. Nunca edite seções marcadas `<!-- gerado; não editar -->`, como o Índice das áreas e o glossário. Elas são refeitas por programa.
+3. Nunca edite seções marcadas `<!-- gerado; não editar -->`, como o Índice das áreas e o glossário, nem os arquivos `README.md`, que são índices. São refeitos por programa.
 4. Defina cada termo uma única vez, com o nome em negrito, no lugar que o tipo de termo pede; a célula é definida no título do bloco, que também leva o nome em negrito. Em cada item de lista, frase de definição ou fileira de tabela, escreva em negrito a primeira menção de cada termo; as seguintes, no mesmo item, ficam sem negrito. Não contam como menção: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula dentro do seu bloco. O negrito só marca termo, na definição e na referência, e só se escreve com `**`: nunca o use para ênfase, nem em cabeçalho de tabela ou em título que não seja o de uma célula, nem como `__texto__`, `<b>` ou `<strong>`. Nunca ponha em negrito, nem defina como termo, um sinônimo que aparece tachado no fim de uma definição, como em `(~~valor, montante~~)`: cite o termo.
 5. Cada afirmação diz uma só coisa. A única prosa é a frase de definição de cada célula.
 6. Não escreva histórico, justificativas, ideias, exemplos didáticos nem explicações. Se a mudança precisa de um porquê, registre uma decisão em `decisoes/` e cite-a no item com `⟸ [Dnn]`; o texto da decisão nunca entra em área nem em `_produto.md`. Uma ideia ainda não comprometida vai para o rastreador, nunca para a especificação nem para `_perguntas.md`.
@@ -78,7 +78,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Dividir uma célula:** crie a célula nova e mova para ela as linhas que lhe pertencem.
 - **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da definição da que a absorveu; a sigla da absorvida não volta.
 - **Rebaixar ou promover:** uma célula sem afirmações vira atributo ou termo; um atributo que ganha atributos ou regras próprias vira célula, e o modelo de origem passa a citá-la.
-- **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo e acrescente a área na tabela de áreas de `_produto.md`, com a célula central.
+- **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor`, se houver, e `- dono: nome`, nesta ordem. Não há lista de áreas a atualizar: todo arquivo `.md` desta pasta que não começa por `_` é área.
 - **Mover uma célula de área:** mova o bloco inteiro; os identificadores não mudam.
 - **Abrir uma pergunta:** só para uma dúvida que surgiu sobre algo já comprometido; ideia não é pergunta. Acrescente no fim de `_perguntas.md` um item `- Pnn  enunciado?`, com o prefixo da mudança e o próximo número de ordem, conforme a regra 1; opções, se houver, como sub-itens `opção:`. Se existe uma linha provisória, ela termina com `⟵ [Pnn]`; se a lacuna é a falta de uma linha, a pergunta leva o sub-item `sobre: **Célula**`. Nunca as duas coisas.
 - **Responder uma pergunta:** na mesma mudança, apague a pergunta de `_perguntas.md`, tire `⟵ [Pnn]` de todas as linhas que a citam e deixe o texto definitivo. Se a resposta precisa de justificativa, registre uma decisão: o enunciado da pergunta vira a questão, as opções não escolhidas viram as alternativas descartadas, e as linhas passam a terminar com `⟸ [Dnn]`. Não marque a pergunta como respondida: apagar é responder.
@@ -92,6 +92,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - Rode o validador, pela skill `tabularium-validar`, e corrija as violações antes de concluir. Ele é um script determinístico: execute-o e leia a saída, sem refazer as checagens por leitura.
 - Quanto a termos, o validador confere só o negrito e as definições: confira você que a primeira menção de cada termo, em cada item, está em negrito.
 - O validador não vê o histórico: confira você que nenhum código que já existia mudou, que cada código novo leva o prefixo da mudança, e que nenhum foi alocado só com um número.
+- Os índices `README.md` são refeitos pela skill `tabularium-indexar`, que só o usuário aciona. Se a mudança criou, moveu, renomeou ou retirou uma área, uma célula ou uma decisão, ou mudou a frase de uma delas ou quem cita uma decisão, avise-o de que os índices ficaram desatualizados.
 - Resuma a mudança listando os identificadores criados, alterados e retirados, e os termos criados ou renomeados.
 
 ## Ao implementar
@@ -128,7 +129,7 @@ Confira também se toda regra motivada por uma organização de fora (um órgão
 
 ## Ao gerar documentos derivados
 
-- Documentos derivados são redigidos por você. O Índice das áreas, o mapa entre áreas, o glossário e o índice de cada pasta de decisões não são: saem do gerador, e você não os escreve à mão.
+- Documentos derivados são redigidos por você. O Índice das áreas, o mapa entre áreas, o glossário e os índices `README.md` de cada pasta não são: saem do indexador, e você não os escreve à mão.
 - Gere a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
 - Cite a origem de cada frase.
 - Documentos tradicionais saem assim: visão, de `Propósito`, atores, externos e fora de escopo; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.

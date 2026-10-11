@@ -1,5 +1,8 @@
 # Modelagem
 As **Células** do produto, seus **Atributos** e os **Termos** que os nomeiam.
+- célula central: **Célula**
+- prioridade: núcleo
+- dono: mantenedor do formato
 
 ## Linguagem
 - **modelo**: **Linhas** sem **Identificador** no início do bloco de uma **Célula**; descrevem o que ela é ⟸ [D32]
@@ -118,7 +121,7 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [x] TRM-R12  removida
 - [x] TRM-R13  Os sinônimos de **não usar** fecham o texto da linha, antes das marcas de fim de item
 - [x] TRM-R14  Negrito só marca termo, na definição e na **Referência**; não há negrito de ênfase ⟸ [D111]
-- [x] TRM-R15  O nome da **Área**, na tabela de áreas, não é menção
+- [x] TRM-R15  removida
 - [x] TRM-R16  removida
 - [x] TRM-R17  Negrito que casa com um termo e com um **Atributo** é do termo
 - [x] TRM-R18  A declaração de sinônimos de **não usar** só cabe na linha que define o termo ⟸ [D110]

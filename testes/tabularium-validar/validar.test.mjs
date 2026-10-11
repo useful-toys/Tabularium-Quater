@@ -37,9 +37,14 @@ const casos = [
   ['VRF-R12', 'falta AGENTS.md', { 'AGENTS.md': null }],
   ['VRF-R12', 'falta a legenda das decisões', { 'decisoes/_convencoes.md': null }],
 
-  ['ARE-R1', 'arquivo fora da tabela de áreas', { 'estoque.md': '# Estoque\n' }],
-  ['ARE-R1', 'área da tabela sem arquivo', troca('_produto.md', '| pedidos.md |\n', '| pedidos.md |\n| Estoque | **Pedido** | apoio | vendas | estoque.md |\n')],
-  ['ARE-R1', 'pasta de área fora da tabela', { 'estoque/_area.md': '# Estoque\n' }],
+  ['ARE-R23.2', 'arquivo começado por "_" que a especificação não tem', { '_notas.md': '# Notas\n' }],
+  ['ARE-R23.4', 'área sem a frase', troca('pedidos.md', 'Os **Pedidos** e os **Itens de pedido** que os compõem.\n', '')],
+  ['ARE-R23.4', 'área em pasta com o _area.md sem a frase', { 'estoque/_area.md': '# Estoque\n- célula central: **Pedido**\n- dono: vendas\n' }],
+  ['ARE-R23.5', 'área sem a célula central', troca('pedidos.md', '- célula central: **Pedido**\n', '')],
+  ['ARE-R23.5', 'área sem o dono', troca('pedidos.md', '- dono: vendas\n', '')],
+  ['ARE-R23.5', 'dados da área fora de ordem', troca('pedidos.md', '- prioridade: núcleo\n- dono: vendas\n', '- dono: vendas\n- prioridade: núcleo\n')],
+  ['ARE-R23.5', 'dado da área repetido', troca('pedidos.md', '- dono: vendas\n', '- dono: vendas\n- dono: compras\n')],
+  ['ARE-R23.5', 'linha que não é dado da área, antes das seções', troca('pedidos.md', '- dono: vendas\n', '- dono: vendas\n- responsável: vendas\n')],
   ['ARE-R11', 'seções da área fora de ordem', troca('pedidos.md', '## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n\n## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n', '## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n\n## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n')],
   ['APR-R9', 'seção que não existe em _produto.md', troca('_produto.md', '## Fora de escopo', '## Futuro')],
   ['APR-R9', 'seções de _produto.md fora de ordem', troca('_produto.md', '## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n\n## Fora de escopo\n- Entrega dos produtos · nesta versão\n', '## Fora de escopo\n- Entrega dos produtos · nesta versão\n\n## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n')],
@@ -85,7 +90,6 @@ const casos = [
   ['ATO-R7', 'ator sem acesso', troca('_produto.md', '- **Tempo**: dispara os prazos', '- **Tempo**: dispara os prazos\n- Visitante')],
   ['JOR-R2', 'jornada sem as setas', troca('_produto.md', '[PED-C1] → [PED-V1]', '[PED-C1], [PED-V1]')],
   ['APR-R10', 'Propósito não começa pelo problema', troca('_produto.md', '- Problema: ', '- Motivo: ')],
-  ['APR-R10', 'colunas da tabela de áreas trocadas', troca('_produto.md', '| Área | Célula central |', '| Nome | Célula central |')],
   ['APR-R10', 'externo sem papel', troca('_produto.md', '- **Banco** · pagamentos', '- Banco')],
   ['APR-R10', 'sub-item de externo com verbo desconhecido', troca('_produto.md', '  - fornece:', '  - devolve:')],
   ['APR-R10', 'fora de escopo sem horizonte', troca('_produto.md', ' · nesta versão', '')],
@@ -128,7 +132,7 @@ const casos = [
   ['REF-R1', 'referência a identificador com prefixo de mudança que não existe', troca('pedidos.md', 'ao menos um **Item de pedido**', 'ao menos um **Item de pedido**, conforme [ITE-R9.1]')],
   ['PER-R22.1', 'código de pergunta com zero à esquerda no prefixo', troca('_perguntas.md', '  - opção: 60 dias\n', '  - opção: 60 dias\n- P09.1  O frete do interior muda?\n  - sobre: **Pedido**\n')],
   ['PER-R22.2', 'código de pergunta repetido', troca('_perguntas.md', '  - opção: 60 dias\n', '  - opção: 60 dias\n- P1  O frete do interior muda?\n  - sobre: **Pedido**\n')],
-  ['ARE-R1', '_contadores.md que sobrou de antes do prefixo de mudança', { '_contadores.md': '# Contadores\n' }],
+  ['ARE-R23.2', '_contadores.md que sobrou de antes do prefixo de mudança', { '_contadores.md': '# Contadores\n' }],
 
   ['TRM-R22', 'termo definido duas vezes', troca('pedidos.md', 'que ainda não foi fechado\n', 'que ainda não foi fechado\n- **carrinho**: outra coisa\n')],
   ['TRM-R22', 'termo da linguagem com o nome de um ator', troca('pedidos.md', '- **carrinho**:', '- **Cliente**: quem compra\n- **carrinho**:')],
@@ -215,17 +219,36 @@ test('IDT-R1: no código anterior ao prefixo de mudança, o zero à esquerda nã
   assert.deepEqual(regrasDe(violacoesCom(troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-R01'))), ['IDT-R1']);
 });
 
-test('ARE-R12: a área em pasta é lida, com _area.md e um arquivo por célula', () => {
+const estoque = '# Estoque\nO que a loja tem para vender.\n- célula central: **Produto**\n- dono: compras\n\n## **Produto**  `PRO`\nCoisa que a loja vende.\n- **nome**: texto; identidade\n';
+
+test('ARE-R23.1: todo arquivo .md da pasta que não é fixo é área, e toda subpasta com _area.md', () => {
+  assert.deepEqual(violacoesCom({ 'estoque.md': estoque }), []);
+  const [cabecalho, bloco] = estoque.split('\n\n');
+  assert.deepEqual(violacoesCom({ 'estoque/_area.md': `${cabecalho}\n`, 'estoque/produto.md': `# Produto\n\n${bloco}` }), []);
+  assert.deepEqual(violacoesCom({ 'estoque/produto.md': 'qualquer coisa\n- [ok] sem forma\n' }), []);
+});
+
+test('ARE-R23.3: a área em pasta é lida, com _area.md e um arquivo por célula', () => {
   const [inicio, itens] = exemplo['pedidos.md'].split('## **Item de pedido**');
   const mudancas = {
     'pedidos.md': null,
     'pedidos/_area.md': inicio.slice(0, inicio.indexOf('## **Pedido**')),
     'pedidos/pedido.md': `# Pedido\n\n${inicio.slice(inicio.indexOf('## **Pedido**'))}`,
     'pedidos/item.md': `# Item de pedido\n\n## **Item de pedido**${itens}`,
-    ...troca('_produto.md', '| pedidos.md |', '| pedidos |'),
   };
   assert.deepEqual(violacoesCom(mudancas), []);
-  assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'pedidos/_area.md': null })), ['ARE-R1']);
+  assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'pedidos/item.md': `# Item de pedido\n- dono: vendas\n\n## **Item de pedido**${itens}` })), ['ARE-R23.5']);
+});
+
+test('VRF-R23.2: a tabela de áreas que sobrou em _produto.md é acusada, com o que fazer dela', () => {
+  const violacoes = violacoesCom(troca('_produto.md', '## Atores\n', '## Áreas\n| Área | Célula central | Prioridade | Dono | Arquivo |\n| --- | --- | --- | --- | --- |\n| Pedidos | **Pedido** | núcleo | vendas | pedidos.md |\n\n## Atores\n'));
+  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['_produto.md:9 APR-R9']);
+  assert.match(violacoes[0].frase, /leve a célula central, a prioridade e o dono de cada área para o arquivo dela/);
+});
+
+test('VRF-R23.1: o README.md não é lido, em nenhuma pasta', () => {
+  const solto = 'qualquer coisa ⟸ D9\n- [ok] sem forma\n';
+  assert.deepEqual(violacoesCom({ 'README.md': solto, 'decisoes/pedidos/README.md': solto, 'arquitetura/README.md': solto, 'interface/README.md': solto }), []);
 });
 
 test('ATR-R7: a relação leva qualificadores, como o inverso', () => {
@@ -265,9 +288,9 @@ test('TRM-R18: a violação diz onde a declaração cabe, na especificação e n
 
 test('TRM-R19: uma só violação, na declaração, que diz onde o termo está definido', () => {
   const doTermo = violacoesCom(troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~cliente~~)'));
-  assert.deepEqual(doTermo.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:14 "cliente" está em não usar, mas é termo definido em _produto.md, linha 14; tire-o da declaração ou renomeie o termo']);
+  assert.deepEqual(doTermo.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:17 "cliente" está em não usar, mas é termo definido em _produto.md, linha 10; tire-o da declaração ou renomeie o termo']);
   const doAtributo = violacoesCom(troca('pedidos.md', 'soma dos **Itens de pedido**', 'soma dos **Itens de pedido** (~~prazo~~)'));
-  assert.deepEqual(doAtributo.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:14 "prazo" está em não usar, mas é atributo de Modalidade, em pedidos.md, linha 43; tire-o da declaração ou renomeie o termo']);
+  assert.deepEqual(doAtributo.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:17 "prazo" está em não usar, mas é atributo de Modalidade, em pedidos.md, linha 46; tire-o da declaração ou renomeie o termo']);
 });
 
 test('VRF-R28: o termo sem negrito não é acusado, nem na primeira menção', () => {
@@ -321,7 +344,7 @@ test('TRM-R24: a violação diz o termo que se escreve no lugar do sinônimo', (
 
 test('TRM-R23: a violação diz o nome a pôr em negrito, e o negrito da definição não é lido como referência', () => {
   const violacoes = violacoesCom(troca('pedidos.md', '- **prazo**: inteiro', '- prazo: inteiro'));
-  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:43 na definição, o nome do termo vai em negrito: escreva **prazo**']);
+  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.frase}`), ['pedidos.md:46 na definição, o nome do termo vai em negrito: escreva **prazo**']);
   assert.deepEqual(violacoesCom({ 'pedidos.md': (t) => t.replace('- **prazo**: inteiro; opcional\n', '- **prazo**: inteiro; opcional\n- **número**: inteiro\n') }), []);
 });
 
@@ -384,7 +407,7 @@ test('VRF-R13: o conteúdo gerado não é lido', () => {
 test('VRF-V1: a violação traz arquivo, linha, regra e frase, e sai uma só por linha estranha', () => {
   const violacoes = violacoesCom(troca('pedidos.md', '- [ ] PED-C1  Fechar o pedido', '- [ok PED-C1 Fechar o pedido'));
   assert.equal(violacoes.length, 1);
-  assert.deepEqual({ ...violacoes[0], frase: undefined }, { arquivo: 'pedidos.md', linha: 28, regra: 'LIN-R11', frase: undefined });
+  assert.deepEqual({ ...violacoes[0], frase: undefined }, { arquivo: 'pedidos.md', linha: 31, regra: 'LIN-R11', frase: undefined });
   assert.match(violacoes[0].frase, /não reconhecida/);
 });
 
@@ -394,7 +417,7 @@ test('VRF-V1: as violações saem em ordem de arquivo e de linha', () => {
     ...troca('_produto.md', '- **Banco** · pagamentos', '- Banco'),
     'pedidos.md': (texto) => texto.replace('- [ ] PED-Q1', '- [ok] PED-Q1').replace('único; imutável', 'único; fixo'),
   });
-  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['_produto.md:26 APR-R10', 'pedidos.md:12 ATR-R7', 'pedidos.md:27 LIN-R4']);
+  assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['_produto.md:22 APR-R10', 'pedidos.md:15 ATR-R7', 'pedidos.md:30 LIN-R4']);
 });
 
 test('VRF-R7: a linha de comando imprime as violações, o total e sai com 1', () => {
@@ -508,14 +531,13 @@ test('VRF-R25: a marca de decisão vale em qualquer lugar da linha, e dentro de 
   }), []);
 });
 
-test('ARE-R12: a área em pasta que se chama interface é lida como área', () => {
+test('ARE-R23.1: a área em pasta que se chama interface é lida como área', () => {
   const [inicio, itens] = exemplo['pedidos.md'].split('## **Item de pedido**');
   const mudancas = {
     'pedidos.md': null,
     'interface/_area.md': inicio.slice(0, inicio.indexOf('## **Pedido**')),
     'interface/pedido.md': `# Pedido\n\n${inicio.slice(inicio.indexOf('## **Pedido**'))}`,
     'interface/item.md': `# Item de pedido\n\n## **Item de pedido**${itens}`,
-    ...troca('_produto.md', '| pedidos.md |', '| interface |'),
   };
   assert.deepEqual(violacoesCom(mudancas), []);
   assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'interface/item.md': `# Item de pedido\nTexto ⟸ D9\n\n## **Item de pedido**${itens}` })), []);

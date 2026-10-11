@@ -42,6 +42,7 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 
 - Rode o validador, pela skill `tabularium-validar`, e corrija as violações antes de concluir.
 - Confira você o que ele não checa: resolução em uma só frase, e nenhuma decisão nova sem item que a cite.
+- O `README.md` de cada pasta é refeito pela skill `tabularium-indexar`, que só o usuário aciona: avise-o de que o índice ficou desatualizado.
 - Resuma a mudança listando os códigos criados, revistos e apagados, e os itens que passaram a citar ou deixaram de citar cada um.
 
 ## Ao revisar

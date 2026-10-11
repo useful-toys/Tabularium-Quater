@@ -1,0 +1,87 @@
+<!-- gerado; não editar -->
+# Decisões de Organização
+
+- [D01](D01-verificacao-por-script.md) Quem verifica a especificação? Um script determinístico, que o agente de IA executa sem substituir.
+  - citada por: VRF-R5, D02, D68, D96
+- [D02](D02-derivados-redigidos-por-agente.md) Quem produz os documentos derivados? Um agente de IA, a partir da especificação.
+  - citada por: DER-R4, D03, D19, D71
+- [D03](D03-versionar-derivados.md) Quem decide se um documento derivado fica sob controle de versão? Quem adota o formato, assumindo o risco de o documento ficar defasado.
+  - citada por: DER-R5
+- [D06](D06-uma-linguagem-por-especificacao.md) Quantas linguagens cabem numa especificação? Uma só, para um só produto.
+  - citada por: ESP-R8, ARE-R4, D29, D52, D53
+- [D10](D10-codigo-da-decisao.md) Como se identifica uma decisão? Por um código curto, com o prefixo da mudança que a criou, que nunca volta.
+  - citada por: DEC-R22.1, DEC-R22.2, D11
+- [D11](D11-pasta-da-decisao.md) Onde mora o arquivo de uma decisão? Na pasta da área cujos itens mais a citam, numa estrutura que espelha a da especificação.
+  - citada por: DEC-R9
+- [D12](D12-fronteira-da-decisao.md) Qual é a fronteira de uma decisão? Uma só questão, cujas alternativas descartadas são outras respostas a ela.
+  - citada por: DEC-R3, D13, D20, D67
+- [D13](D13-cabecalho-da-decisao.md) Que forma tem o cabeçalho de uma decisão? Um título com a questão e o código, seguido da resolução em uma frase.
+  - citada por: DEC-R1
+- [D14](D14-historico-na-decisao.md) A decisão guarda as próprias alterações? Sim, numa seção de histórico ao fim do arquivo.
+  - citada por: Decisão.alterações
+- [D15](D15-decisao-orfa.md) O que acontece com a decisão que nenhum item cita? Permanece até uma limpeza feita sob demanda.
+  - citada por: DEC-R20
+- [D17](D17-linguagem-da-decisao.md) Que rigor de linguagem vale no texto de uma decisão? Os termos da especificação, sem negrito.
+  - citada por: DEC-R11
+- [D19](D19-indice-de-decisoes.md) Como se acha uma decisão sem ler todas? Por um índice em cada pasta de decisões, produzido pelo indexador.
+  - citada por: GER-R23.9, D23.2
+- [D20](D20-decisao-cita-decisao.md) Uma decisão pode citar outra? Sim, com a mesma marca usada pelos itens da especificação.
+  - citada por: DEC-R12
+- [D21](D21-quando-registrar.md) Quando uma escolha vira decisão? Quando havia ao menos uma alternativa plausível.
+  - citada por: DEC-R5
+- [D22](D22-arquivo-de-contadores.md) Como se percebe que dois autores alocaram o mesmo número? Por um arquivo de contadores em que cada item leva um nome curto da última alocação, de modo que a alocação repetida vira conflito no controle de versão.
+  - citada por: D23, D80
+- [D23](D23-renumerar-antes-de-entrar.md) A partir de quando um código não pode mais ser renumerado? A partir da entrada na linha principal do controle de versão.
+  - órfã
+- [D29](D29-formacao-das-areas.md) Como as células se agrupam em arquivos? Em áreas, cada uma formada em torno de uma célula central e das células que dependem principalmente dela.
+  - citada por: ARE-R8
+- [D30](D30-medicao-da-proximidade.md) Como se verifica a proximidade lógica? Pela contagem de referências, que aponta como candidata a mudar de área a célula que troca mais referências com outra área do que com a sua.
+  - citada por: ARE-R9, D77
+- [D31](D31-divisao-em-arquivos.md) Como a especificação se divide em arquivos? Num arquivo por área, mais poucos arquivos para o que vale para o conjunto.
+  - citada por: Especificação
+- [D43](D43-o-que-e-externo.md) O que é um externo? Um sistema ou uma organização fora do produto que alguma regra pressupõe.
+  - citada por: externo
+- [D44](D44-proposito-pelo-problema.md) Por onde começa o propósito do produto? Pelo problema que o produto resolve.
+  - citada por: APR-R7
+- [D59](D59-so-o-comprometido.md) O que a especificação descreve? Só o que foi comprometido.
+  - citada por: ESP-R6, D60
+- [D68](D68-checagem-sintatica.md) Que tipo de checagem o validador faz? Só checagem sintática.
+  - citada por: VRF-R3, D77, D90, D114
+- [D70](D70-indice-e-mapa-gerados.md) O índice de cada área e o mapa entre áreas são escritos ou gerados? São gerados, nunca escritos.
+  - citada por: IND-R1, MAP-R1
+- [D71](D71-derivado-nao-se-edita.md) Um documento derivado pode ser editado à mão? Não, ele é sempre refeito a partir da especificação.
+  - citada por: DER-R1
+- [D72](D72-exemplos-fora.md) Exemplos entram na especificação? Não, servem para descobrir regras ou aparecem nos documentos derivados.
+  - citada por: ESP-R5
+- [D75](D75-instrucoes-para-agentes.md) Como um agente de IA aprende a trabalhar no formato? Por um arquivo de instruções genérico, igual em todos os projetos.
+  - citada por: AGT-R1
+- [D77](D77-lista-de-checagens.md) Como a especificação diz o que o validador checa? Por uma lista fechada no bloco do validador, que cita cada regra pelo identificador.
+  - citada por: VRF-R14
+- [D78](D78-geracao-em-script-separado.md) A geração das partes derivadas fica no mesmo programa que a checagem? Não, fica num programa à parte, o indexador.
+  - citada por: GER-C23.1, GER-C23.2, D23.4, D105
+- [D79](D79-gramatica-fechada.md) O que o validador faz com uma linha que não reconhece? Acusa a linha como violação.
+  - citada por: VRF-R8
+- [D80](D80-validador-sem-historico.md) O validador consulta o histórico da especificação? Não, lê só os arquivos como estão.
+  - citada por: VRF-R9
+- [D82](D82-arquitetura-fora-da-validacao.md) O validador checa as pastas de arquitetura e de interface? Só as decisões e as citações de decisão.
+  - citada por: VRF-R23
+- [D85](D85-formato-dos-arquivos-de-dados.md) Em que formato ficam os arquivos de dados? Em JSON, os estruturados, e em CSV, os tabulares.
+  - citada por: ADA-R3, D89
+- [D89](D89-entrada-dos-dados.md) Como os dados entram num arquivo de dados? Por cópia ou por conversão feita por programa.
+  - citada por: ADA-R7
+- [D90](D90-conferencia-dos-dados.md) O que o validador confere nos dados de referência? A forma, as colunas, a identidade repetida e as chaves do primeiro nível do JSON.
+  - citada por: VRF-R21, D91
+- [D92](D92-decisoes-tecnicas-por-area.md) As decisões de arquitetura e de interface ficam em subpastas por área? Sim, como as da especificação.
+  - citada por: DEC-R21
+- [D93](D93-quem-cita-decisao.md) De quais pastas um item pode citar decisão? Da própria pasta e das pastas de que ela depende: a arquitetura, da especificação, e a interface, da arquitetura e da especificação.
+  - citada por: DEC-R22
+- [D114](D114-termos-so-no-negrito.md) O validador checa termos em texto sem negrito? Não, quanto a termos ele checa só o negrito e as definições.
+  - citada por: VRF-R28, D52, D115
+- [D23.1](D23.1-areas-listadas-por-programa.md) As áreas de uma pasta são listadas à mão ou por programa? Por programa, num índice de áreas que o indexador produz.
+  - citada por: APR-R23.1, ARE-R23.1, GER-R23.7
+- [D23.2](D23.2-nome-do-arquivo-de-indice.md) Como se chama o arquivo de índice de uma pasta? É `README.md`, em toda pasta que tem índice.
+  - citada por: GER-R23.1
+- [D23.3](D23.3-indexar-com-violacoes.md) O indexador recusa a especificação com violação? Não, indexa o que consegue ler e declara no índice o que não leu.
+  - citada por: GER-R23.2
+- [D23.4](D23.4-indice-desatualizado.md) Como se sabe que um índice de pasta está desatualizado? Regenerando todos, porque o controle de versão mostra o que mudou.
+  - citada por: GER-R23.4

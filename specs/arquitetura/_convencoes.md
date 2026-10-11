@@ -7,7 +7,8 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - `_sistema.md`: o que vale para o sistema inteiro; lido antes das áreas
 - `decisoes/`: decisões da arquitetura, uma por arquivo, em subpastas por área e em `_sistema/` para o que não é de área, na forma de `../decisoes/_convencoes.md`; os códigos `Dnn` levam o prefixo de mudança, como na especificação
 - `_achados.md`: o que o formato não serviu a escrever, por tipo de problema, com o estado; opcional; fora do formato, e o validador não o lê
-- `<area>.md`: uma área; lida em qualquer ordem
+- `<area>.md`: uma área; lida em qualquer ordem; é área todo arquivo `.md` desta pasta que não é um dos outros desta lista
+- `README.md`: índice das áreas, com a frase de cada uma e os componentes dela; gerado por programa e nunca editado
 - `ideia.md` e `decisoes.md`: memória informal da discussão que deu origem a este formato; fora do formato; só no repositório do formato
 
 ## Formato experimental
@@ -33,9 +34,9 @@ Legenda para ler e escrever a arquitetura neste formato, que é experimental. El
 - componente: peça da solução, como programa, script, skill, arquivo de dados ou serviço, com tudo o que a arquitetura afirma sobre ela e que não pertence a nenhuma outra
 - bloco de componente: título com nome e sigla (`` ## Instalador  `INS` ``), frase de definição, lista única
 - ordem da lista: modelo (linhas sem identificador), R, Q, I
-- área: um componente central e os que dependem dele, num arquivo
+- área: um componente central e os que dependem dele, num arquivo; abaixo do título vêm a frase que diz o que ela reúne e a linha `- componente central: **Componente**`
 - siglas de componentes e de células formam um só conjunto: nenhuma se repete
-- seções de `_sistema.md`: `Áreas`, `Externos`, `Restrições globais`, `Fluxos`, `Fora de escopo`, nesta ordem, omitidas as vazias; sigla das afirmações: `ARQ`
+- seções de `_sistema.md`: `Externos`, `Restrições globais`, `Fluxos`, `Fora de escopo`, nesta ordem, omitidas as vazias; sigla das afirmações: `ARQ`
 
 ## Papéis
 - R  restrição: sempre verdadeira sobre o componente, ou sobre o sistema inteiro em `Restrições globais`

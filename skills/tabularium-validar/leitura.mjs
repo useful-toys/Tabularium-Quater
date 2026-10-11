@@ -6,13 +6,17 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 export const MARCADOR_GERADO = '<!-- gerado; não editar -->';
-export const SECOES_PRODUTO = ['Propósito', 'Áreas', 'Atores', 'Tipos comuns', 'Jornadas', 'Externos', 'Regras globais', 'Fora de escopo'];
+export const SECOES_PRODUTO = ['Propósito', 'Atores', 'Tipos comuns', 'Jornadas', 'Externos', 'Regras globais', 'Fora de escopo'];
 export const SECOES_AREA = ['Índice', 'Linguagem', 'Tipos'];
 export const ROTULOS_DECISAO = ['Contexto', 'Alternativas descartadas', 'Consequências'];
-export const COLUNAS_AREAS = ['Área', 'Célula central', 'Prioridade', 'Dono', 'Arquivo'];
+// As linhas que a área traz abaixo da frase, na ordem em que vêm.
+export const DADOS_DA_AREA = ['célula central', 'prioridade', 'dono'];
+// O índice de cada pasta, que o indexador produz e o validador não lê.
+export const INDICE = 'README.md';
 // As pastas de arquitetura e de interface: de cada uma só se leem as decisões e as citações de decisão.
-const CAMADAS = ['arquitetura', 'interface'];
-const FORA_DA_CAMADA = ['AGENTS.md', '_convencoes.md', 'ideia.md', 'decisoes.md', '_achados.md'];
+export const CAMADAS = ['arquitetura', 'interface'];
+export const FORA_DA_CAMADA = ['AGENTS.md', '_convencoes.md', 'ideia.md', 'decisoes.md', '_achados.md', INDICE];
+const FIXOS = ['AGENTS.md', '_convencoes.md', '_produto.md', '_perguntas.md'];
 
 const CARD = '(?:1|0\\.\\.1|0\\.\\.N|1\\.\\.N)';
 // O número de um código: prefixo de mudança, ponto e número de ordem, ou só dígitos no código anterior ao prefixo.
@@ -129,7 +133,12 @@ function lerArea(brutas) {
       if (ehProsa(bruto)) return linhas.push({ n, bruto, forma: 'definicao', ...separarCauda(bruto) });
     }
     if (secao === 'desconhecida') return linhas.push({ n, bruto, forma: 'ignorada' });
-    if (secao === null) return linhas.push(estranha(n, bruto, 'um título de seção ou de célula antes desta linha'));
+    if (secao === null) {
+      const m = bruto.match(new RegExp(`^- (${DADOS_DA_AREA.join('|')}): (\\S.*)$`));
+      return linhas.push(m
+        ? { n, bruto, forma: 'dado-area', dado: m[1], valor: m[2] }
+        : estranha(n, bruto, 'uma linha da área, como "- célula central: **Pedido**", "- prioridade: núcleo" ou "- dono: nome", ou um título de seção ou de célula', 'ARE-R23.5'));
+    }
     if (bruto.startsWith('|')) {
       const celulas = celulasDe(bruto);
       if (tabela === null || !celulas) return linhas.push(estranha(n, bruto, 'uma tabela só depois de uma regra terminada em ":", com cada fileira entre "|"', 'LIN-R11'));
@@ -197,29 +206,21 @@ function lerLinhaDeCelula(n, bruto, corpo) {
 
 function lerProduto(brutas) {
   const linhas = [];
-  let secao = null, pai = null, fileiras = 0;
+  let secao = null, pai = null;
   brutas.forEach((bruto, i) => {
     const n = i + 1;
     if (bruto.trim() === '') return linhas.push(branco(n, bruto));
     if (i === 0) return linhas.push(/^# \S/.test(bruto) ? { n, bruto, forma: 'titulo-arquivo' } : estranha(n, bruto, 'o título do arquivo, como "# Nome do produto"'));
     if (i === 1 && ehProsa(bruto)) return linhas.push({ n, bruto, forma: 'frase-arquivo' });
     if (bruto.startsWith('#')) {
-      pai = null; fileiras = 0;
+      pai = null;
       secao = bruto.match(/^## (.+)$/)?.[1] ?? null;
       return linhas.push(secao ? { n, bruto, forma: 'titulo-secao', nome: secao } : estranha(n, bruto, 'um título de seção, como "## Propósito"'));
     }
     if (secao === null) return linhas.push(estranha(n, bruto, 'um título de seção antes desta linha'));
     // O conteúdo de uma seção que não existe não é julgado: basta acusar o título.
     if (!SECOES_PRODUTO.includes(secao)) return linhas.push({ n, bruto, forma: 'ignorada' });
-    if (secao === 'Áreas') {
-      const celulas = celulasDe(bruto);
-      if (!celulas) return linhas.push(estranha(n, bruto, 'a tabela de áreas, com cada fileira entre "|"', 'APR-R10'));
-      fileiras++;
-      if (fileiras === 1) return linhas.push({ n, bruto, forma: 'tabela-cabecalho', celulas });
-      if (fileiras === 2) return linhas.push({ n, bruto, forma: 'tabela-separador', celulas });
-      if (celulas.length !== COLUNAS_AREAS.length) return linhas.push(estranha(n, bruto, `uma fileira com as ${COLUNAS_AREAS.length} colunas da tabela de áreas`, 'APR-R10'));
-      return linhas.push({ n, bruto, forma: 'area', nome: celulas[0], central: celulas[1], prioridade: celulas[2], dono: celulas[3], arquivo: celulas[4] });
-    }
+
     if (bruto.startsWith(' ')) {
       if (pai?.forma === 'desconhecida') return linhas.push({ n, bruto, forma: 'ignorada' });
       const m = secao === 'Externos' && pai?.forma === 'externo' ? bruto.match(/^ {2}- (guarda|fornece|recebe|impõe): \S/) : null;
@@ -312,11 +313,11 @@ function lerDecisao(brutas) {
 
 const ehPasta = (caminho) => existsSync(caminho) && statSync(caminho).isDirectory();
 const ehArquivo = (caminho) => existsSync(caminho) && statSync(caminho).isFile();
-const mds = (pasta) => readdirSync(pasta).filter((nome) => nome.endsWith('.md') && ehArquivo(join(pasta, nome))).sort();
+const mds = (pasta) => readdirSync(pasta).filter((nome) => nome.endsWith('.md') && nome !== INDICE && ehArquivo(join(pasta, nome))).sort();
 
 // Devolve os arquivos lidos, com as linhas classificadas, e o que falta ou sobra na pasta.
 export function lerEspecificacao(pasta) {
-  const e = { arquivos: [], livres: [], dados: [], faltam: [], soltos: [], decisoesSoltas: [], pastasForaDaTabela: [], areasSemArquivo: [] };
+  const e = { arquivos: [], livres: [], dados: [], faltam: [], soltos: [], decisoesSoltas: [] };
   const ler = (caminho, tipo, leitor, extra = {}) => e.arquivos.push({ caminho, tipo, linhas: leitor(linhasDe(join(pasta, caminho))), ...extra });
   // As decisões de uma pasta de decisões, uma subpasta por área; a camada é null na especificação.
   // Só na especificação a pasta guarda arquivos soltos: a legenda e as instruções das decisões.
@@ -328,7 +329,6 @@ export function lerEspecificacao(pasta) {
         continue;
       }
       for (const arquivo of mds(join(pasta, raiz, sub))) {
-        if (arquivo === 'README.md') continue;
         const codigo = arquivo.match(new RegExp(`^(${DECISAO})-[a-z0-9-]+\\.md$`))?.[1];
         if (codigo) ler(`${raiz}/${sub}/${arquivo}`, 'decisao', lerDecisao, { codigo, camada });
         else e.soltos.push(`${raiz}/${sub}/${arquivo}`);
@@ -341,23 +341,19 @@ export function lerEspecificacao(pasta) {
   if (ehArquivo(join(pasta, '_produto.md'))) ler('_produto.md', 'produto', lerProduto);
   if (ehArquivo(join(pasta, '_perguntas.md'))) ler('_perguntas.md', 'perguntas', lerPerguntas);
 
-  const conhecidos = new Set(['AGENTS.md', '_convencoes.md', '_produto.md', '_perguntas.md', 'decisoes', 'dados']);
-  const areas = e.arquivos.find((a) => a.tipo === 'produto')?.linhas.filter((l) => l.forma === 'area') ?? [];
-  for (const area of areas) {
-    const nome = area.arquivo.replace(/\/$/, '');
-    conhecidos.add(nome);
-    if (/[\\/]/.test(nome) || nome.startsWith('.')) e.areasSemArquivo.push(area);
-    else if (ehArquivo(join(pasta, nome))) ler(nome, 'area', lerArea, { area: area.nome });
-    else if (ehPasta(join(pasta, nome))) {
-      if (!ehArquivo(join(pasta, nome, '_area.md'))) e.faltam.push({ caminho: `${nome}/_area.md`, regra: 'ARE-R1' });
-      for (const arquivo of mds(join(pasta, nome))) ler(`${nome}/${arquivo}`, 'area', lerArea, { area: area.nome });
-    } else e.areasSemArquivo.push(area);
-  }
+  // É área todo arquivo .md da pasta que não é fixo, índice nem parte gerada, e toda subpasta com _area.md.
+  // O arquivo que traz a frase e os dados da área é o principal: o da área, ou o _area.md da pasta.
+  const pastasDeArea = new Set();
   for (const nome of readdirSync(pasta).sort()) {
-    if (conhecidos.has(nome)) continue;
     const caminho = join(pasta, nome);
-    if (ehPasta(caminho)) { if (ehArquivo(join(caminho, '_area.md'))) e.pastasForaDaTabela.push(nome); }
-    else if (nome.endsWith('.md') && linhasDe(caminho)[0] !== MARCADOR_GERADO) e.soltos.push(nome);
+    if (ehPasta(caminho)) {
+      if (nome === 'decisoes' || nome === 'dados' || !ehArquivo(join(caminho, '_area.md'))) continue;
+      pastasDeArea.add(nome);
+      for (const arquivo of mds(caminho)) ler(`${nome}/${arquivo}`, 'area', lerArea, { area: nome, principal: arquivo === '_area.md' });
+    } else if (nome.endsWith('.md') && !FIXOS.includes(nome) && nome !== INDICE && linhasDe(caminho)[0] !== MARCADOR_GERADO) {
+      if (nome.startsWith('_')) e.soltos.push(nome);
+      else ler(nome, 'area', lerArea, { area: nome.slice(0, -3), principal: true });
+    }
   }
 
   if (ehPasta(join(pasta, 'decisoes'))) {
@@ -368,7 +364,7 @@ export function lerEspecificacao(pasta) {
   // Da arquitetura e da interface, as decisões são lidas como decisões; os outros arquivos vêm
   // com as linhas sem classificar, só para a citação de decisão. A área com esse nome é área.
   for (const camada of CAMADAS) {
-    if (conhecidos.has(camada) || !ehPasta(join(pasta, camada))) continue;
+    if (pastasDeArea.has(camada) || !ehPasta(join(pasta, camada))) continue;
     lerDecisoes(`${camada}/decisoes`, camada);
     const percorrer = (rel) => {
       for (const nome of readdirSync(join(pasta, rel)).sort()) {
