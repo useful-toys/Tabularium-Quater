@@ -60,9 +60,12 @@ Código que torna uma **Linha** citável.
 - [x] IDT-R22.1  O **prefixo** é o da mudança que aloca o **código**, o mesmo em todos os códigos que ela aloca ⟸ [D22.1]
 - [x] IDT-R22.2  O número de uma issue só serve de **prefixo** à mudança pedida por ela, e enquanto nenhum código com esse prefixo existe na linha principal do **Controle de versão**; nos demais casos, o prefixo é um **Código sorteado** ⟸ [D22.2]
 - [x] IDT-R22.3  A **ordem** conta, a partir de 1, os códigos de mesma **sigla** e mesmo **papel** que a mudança aloca
-- [x] IDT-R22.4  O **código** é definitivo desde que é alocado, mesmo fora da linha principal do **Controle de versão** ⟸ [D22.1]
+- [x] IDT-R22.4  removida
 - [x] IDT-R22.5  O **código** sem **prefixo**, que traz só um número depois do **papel**, é anterior ao **Prefixo de mudança**: continua válido, e nenhum outro é alocado
 - [x] IDT-R22.6  O **Código sorteado** sai de um programa, que confere que ele ainda não aparece na **Especificação**; nunca é escolhido por pessoa nem por agente de IA
+- [x] IDT-Rknnk.1  O **código** é definitivo desde que entra na linha principal do **Controle de versão** ⟸ [Dknnk.1]
+- [x] IDT-Rknnk.2  Enquanto o **código** não é definitivo, a mudança que o alocou reescreve ou apaga a **Linha** dele, sem **Lápide** ⟸ [Dknnk.1]
+- [x] IDT-Rknnk.3  [IDT-R2], [LIN-R3] e [LAP-R1] valem só para o **código** definitivo
 
 ## **Lápide**  `LAP`
 **Linha** que ocupa o lugar de uma **afirmação** que foi retirada, para que as **Referências** antigas continuem resolvendo.
@@ -117,6 +120,8 @@ Lacuna conhecida da **Especificação**, ainda sem resposta.
 - [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta ⟸ [D60]
 - [x] PER-R22.1  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, de [IDT-R22.1] a [IDT-R22.5]
 - [x] PER-R22.2  **Código** único na **Especificação**
+- [x] PER-Rknnk.1  O **código** fica definitivo como o do **Identificador**, conforme [IDT-Rknnk.1] e [IDT-Rknnk.2]
+- [x] PER-Rknnk.2  [PER-R1] vale só para o **código** definitivo
 - [x] PER-C1  Abrir uma pergunta
   - no fim do **Arquivo de perguntas**, com **código** novo, conforme [PER-R22.1]
 - [x] PER-C2  Responder uma pergunta

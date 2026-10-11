@@ -302,7 +302,9 @@ O prefixo é o da mudança que aloca o código, o mesmo em todos os códigos del
 
 O número de ordem conta, a partir de 1, os códigos da mesma sigla e do mesmo papel que a mudança aloca (IDT-R22.3). As perguntas e as decisões seguem a mesma forma: `P9.1`, `D9.1`, `Dk7q2.1`.
 
-O prefixo existe para que duas mudanças feitas em paralelo, cada uma na sua ramificação, nunca aloquem o mesmo código. Quem distribui os números de issue é o rastreador, e o sorteio confere o que já existe; por isso não há arquivo de contadores a manter nem código a renumerar quando as mudanças se juntam. O código vale desde que é escrito, mesmo fora da linha principal (IDT-R22.4).
+O prefixo existe para que duas mudanças feitas em paralelo, cada uma na sua ramificação, nunca aloquem o mesmo código. Quem distribui os números de issue é o rastreador, e o sorteio confere o que já existe; por isso não há arquivo de contadores a manter nem código a renumerar quando as mudanças se juntam.
+
+O código é definitivo desde que entra na linha principal (IDT-Rknnk.1). Antes disso, a mudança que o alocou reescreve ou apaga a linha dele, sem lápide: quem discute uma ideia na ramificação dela muda de rumo sem deixar marca na especificação (IDT-Rknnk.2).
 
 Uma especificação mais antiga traz códigos só com um número, como `PED-R8` e `D07`. Eles continuam válidos e nunca mudam, mas nenhum outro é alocado assim (IDT-R22.5).
 
@@ -553,16 +555,17 @@ Não entram desenhos de tela nem posição em pixels. O formato foi posto à pro
 
 O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especificação: o que ler antes de cada tarefa, onde colocar cada tipo de informação, as regras que nunca se quebram (como não renumerar e não editar seções geradas) e quando parar e perguntar em vez de inventar. A revisão por categorias FURPS+ não gera requisitos: gera perguntas abertas, porque uma categoria vazia pode ser uma lacuna ou uma escolha consciente.
 
-Seis skills acompanham o formato, e `npx skills` instala todas de uma vez. A de validação e a de sorteio o agente aciona por conta própria; as outras esperam o seu comando.
+Sete skills acompanham o formato, e `npx skills` instala todas de uma vez. A de validação e a de sorteio o agente aciona por conta própria; as outras esperam o seu comando.
 
 | Skill | O que faz |
 | --- | --- |
 | `/tabularium-instalar` | Instala ou atualiza o formato em `specs/` |
 | `/tabularium-validar` | Confere a forma da especificação com um script |
 | `/tabularium-sortear` | Sorteia, com um script, o prefixo dos códigos de uma mudança sem issue |
-| `/tabularium-entrevistar` | Amadurece uma ideia com o autor até o consenso sobre o que muda, e mostra o plano |
-| `/tabularium-registrar` | Grava numa issue do GitHub o estado da entrevista; opcional |
-| `/tabularium-aplicar` | Escreve em `specs/` o plano que chegou ao consenso |
+| `/tabularium-entrevistar` | Amadurece uma ideia com o autor, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia |
+| `/tabularium-sugerir` | Sugere ideias que complementam a que foi discutida; a aceita volta para a entrevista |
+| `/tabularium-registrar` | Guarda numa issue do GitHub o que ainda está em aberto na ideia; opcional |
+| `/tabularium-aplicar` | Confere a ramificação da ideia e a entrega na linha principal |
 
 ## Valores
 
