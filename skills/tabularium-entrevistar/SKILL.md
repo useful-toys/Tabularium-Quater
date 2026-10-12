@@ -35,15 +35,18 @@ Veja a ramificação atual com `git branch --show-current` e pare no primeiro ca
 | --- | --- |
 | Retomada | Passe para a ramificação que a linha `Ramificação` do plano nomeia |
 | A atual não é a linha principal | Continue nela: é a ramificação da ideia |
-| A ideia veio de uma issue | Crie a ramificação ligada a ela, com `gh issue develop <número> --checkout` |
+| A ideia veio de uma issue | Veja com `gh issue develop --list <número>` se ela já tem ramificação. Se tem, outra entrevista já trata dessa issue: mostre a ramificação ao autor, e continue nela ou pare, como ele escolher. Senão, crie a ramificação ligada à issue, com `gh issue develop <número> --checkout` |
 | A ideia veio sem issue | Crie uma ramificação local a partir da linha principal, com um nome curto tirado da ideia |
 
 Alterações sem commit em `specs/` não são desta entrevista: mostre-as ao autor e pare.
 
+A ramificação nova nasce da linha principal atualizada, porque o número de ordem de cada código sai do que `specs/` já traz: rode `git fetch` antes de criá-la, e parta da linha principal do servidor. A que já existe segue como está: o que a linha principal ganhou depois dela é tratado na entrega, por `/tabularium-aplicar`.
+
 Ache o **prefixo** da mudança, que entra em todo código que a entrevista alocar:
 
 1. Se a ramificação já acrescentou códigos, o prefixo é o deles: veja com `git diff <linha principal>...HEAD -- specs/`.
-2. Senão, siga a regra 1 de `specs/AGENTS.md`: o número da issue, quando a ideia veio de uma e nenhum código com esse prefixo existe na linha principal; em qualquer outro caso, um código da skill `tabularium-sortear`.
+2. Senão, se a ideia veio de uma issue, é o número dela.
+3. Senão, é um código sorteado, da skill `tabularium-alocar-codigo`.
 
 Feito quando você está numa ramificação que não é a linha principal, sem alteração pendente em `specs/`, e sabe o prefixo.
 
@@ -136,7 +139,7 @@ Feito quando cada pergunta da rodada foi respondida, inclusive as que as respost
 
 Tem **consenso** a parte com redação final que o autor respondeu ou confirmou. Só ela é gravada; o resto fica em `Em aberto`, no [plano](plano.md).
 
-1. Escreva cada parte com consenso pela receita que ela pede: "Receitas" de `specs/AGENTS.md` para o produto, as do `AGENTS.md` da pasta para arquitetura e interface, e as de `specs/decisoes/AGENTS.md` para as decisões. Todo código leva o prefixo do passo 2.
+1. Escreva cada parte com consenso pela receita que ela pede: "Receitas" de `specs/AGENTS.md` para o produto, as do `AGENTS.md` da pasta para arquitetura e interface, e as de `specs/decisoes/AGENTS.md` para as decisões. Todo código sai da skill `tabularium-alocar-codigo`, com o prefixo do passo 2.
 2. Rode o validador, pela skill `tabularium-validar`, depois o indexador, pela skill `tabularium-indexar`, e siga "Depois de alterar" do `AGENTS.md` de cada registro tocado. Corrija o que for só de forma; a correção que muda o significado de uma linha volta a ser pergunta.
 3. Faça um commit com o que a rodada gravou, com a rodada e o assunto na mensagem, na convenção do repositório. Acionar esta skill é o pedido desse commit; o envio ao servidor continua a pedido.
 4. Mostre o resumo da rodada:

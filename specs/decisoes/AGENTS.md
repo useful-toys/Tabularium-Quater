@@ -21,7 +21,7 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 
 1. Uma decisão responde a uma só questão. Questão nova cria decisão nova; nunca acrescente uma segunda resolução a uma decisão existente.
 2. Só edite a resolução quando a mesma questão ganha outra resposta.
-3. Nunca reutilize nem troque um código. O código novo é `D`, o prefixo da mudança, `.` e o número de ordem, que conta a partir de 1 as decisões que a mudança cria, como `D9.1` e `D9.2`; o prefixo é o da regra 1 de `../AGENTS.md`. O código é definitivo desde que entra na linha principal, e antes disso a mudança que o alocou reescreve ou apaga a decisão, conforme a regra 1 de `../AGENTS.md`. Nunca aloque um código só com um número, como `D07`: essa forma é anterior ao prefixo de mudança.
+3. Nunca reutilize nem troque um código. O código novo é `D`, o prefixo da mudança, `.` e o número de ordem, como `D9.1` e `D9.2`; os dois saem como manda a regra 1 de `../AGENTS.md`. O código é definitivo desde que entra na linha principal, e antes disso a mudança que o alocou reescreve ou apaga a decisão, conforme a regra 1 de `../AGENTS.md`. Nunca aloque um código só com um número, como `D07`: essa forma é anterior ao prefixo de mudança.
 4. Só registre uma decisão quando havia ao menos uma alternativa plausível. Não invente alternativas nem motivos: se o porquê não foi dito, pergunte.
 5. A ligação é de mão única. Na especificação entra só a marca `⟸ [Dnn]` no fim do item; o texto da decisão nunca entra em área nem em `_produto.md`, e a decisão não cita os itens que a citam.
 6. Use os termos da especificação, sem negrito. A decisão não leva negrito nenhum, nem de ênfase.

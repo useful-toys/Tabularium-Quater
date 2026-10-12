@@ -8,11 +8,11 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { ALFABETO, sortear, sortearLivre } from '../../skills/tabularium-sortear/sortear.mjs';
+import { ALFABETO, sortear, sortearLivre } from '../../skills/tabularium-alocar-codigo/sortear.mjs';
 import { ALFABETO_DO_SORTEIO, numeroDe } from '../../skills/tabularium-validar/leitura.mjs';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const script = join(raiz, 'skills', 'tabularium-sortear', 'sortear.mjs');
+const script = join(raiz, 'skills', 'tabularium-alocar-codigo', 'sortear.mjs');
 
 // Devolve um sorteio que entrega, em ordem, os caracteres dos códigos dados.
 const roteiro = (...codigos) => {

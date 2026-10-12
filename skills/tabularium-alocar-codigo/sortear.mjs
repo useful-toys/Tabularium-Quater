@@ -23,7 +23,7 @@ export function sortear(inteiroAte = randomInt) {
 }
 
 // O texto de todos os arquivos da pasta e os nomes deles: é nos dois que um código aparece.
-function textoDe(pasta) {
+export function textoDe(pasta) {
   let texto = '';
   for (const nome of readdirSync(pasta).sort()) {
     const caminho = join(pasta, nome);
@@ -41,11 +41,16 @@ export function sortearLivre(pasta, inteiroAte = randomInt) {
   return codigo;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const pasta = (process.argv[2] ?? 'specs').replace(/\\/g, '/').replace(/\/+$/, '');
+// A pasta da especificação dada na linha de comando, ou specs/; sai com 2 se ela não existe.
+export function pastaDada(argumento) {
+  const pasta = (argumento ?? 'specs').replace(/\\/g, '/').replace(/\/+$/, '');
   if (!existsSync(pasta) || !statSync(pasta).isDirectory()) {
     console.error(`${pasta}: pasta não encontrada`);
     process.exit(2);
   }
-  console.log(sortearLivre(pasta));
+  return pasta;
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  console.log(sortearLivre(pastaDada(process.argv[2])));
 }

@@ -63,7 +63,7 @@
   - citada por: DRF-R14, D90
 - [D22.1](D22.1-prefixo-de-mudanca.md) Como duas mudanças feitas em paralelo não alocam o mesmo código? Cada código leva o prefixo da mudança que o alocou.
   - citada por: IDT-R22.1, D10, D22.2, Dknnk.1
-- [D22.2](D22.2-origem-do-prefixo.md) De onde vem o prefixo de mudança? Do número da issue que pede a mudança, e de um sorteio quando ela não tem issue ou o número já serviu de prefixo.
-  - citada por: Prefixo de mudança, IDT-R22.2, D22.3
+- [D22.2](D22.2-origem-do-prefixo.md) De onde vem o prefixo de mudança? Do número da issue que pede a mudança, e de um sorteio quando ela não tem issue.
+  - citada por: Prefixo de mudança, IDT-Rbvc2.1, D22.1, D22.3
 - [Dknnk.1](Dknnk.1-codigo-definitivo-na-linha-principal.md) A partir de quando um código é definitivo? A partir da entrada na linha principal do controle de versão.
   - citada por: IDT-Rknnk.1, IDT-Rknnk.2, D56

@@ -7,9 +7,9 @@ Arquivos de texto num repositório público, levados ao repositório que adota o
   - guarda: o repositório do formato
   - fornece: cada arquivo da linha principal por URL, sem autenticação
 - npx skills · instalador de skills
-  - fornece: a instalação da **Skill de instalação**, da **Skill de validação**, da **Skill de sorteio** e da **Skill de indexação** no repositório que adota o formato
+  - fornece: a instalação da **Skill de instalação**, da **Skill de validação**, da **Skill de alocação** e da **Skill de indexação** no repositório que adota o formato
 - Node.js · ambiente de execução
-  - fornece: a execução do **Instalador**, do **Script de validação**, do **Script de sorteio** e do **Script de indexação**
+  - fornece: a execução do **Instalador**, do **Script de validação**, do **Script de sorteio**, do **Script de próximo código** e do **Script de indexação**
 
 ## Restrições globais
 - [x] ARQ-R1  O formato é guardado num repositório público no **GitHub**, e a linha principal é a única versão distribuída ⟸ [D97, D103]
@@ -21,7 +21,8 @@ Arquivos de texto num repositório público, levados ao repositório que adota o
 ## Fluxos
 - ARQ-F1  Instalar ou atualizar o formato: [SKI-I1] → [INS-I1]
 - ARQ-F2  Validar a especificação: [SKV-I1] → [VAL-I1]
-- ARQ-F22.1  Sortear o prefixo de uma mudança: [SKS-I22.1] → [SOR-I22.1]
+- ARQ-F22.1  Sortear o prefixo de uma mudança: [SKS-Ibvc2.1] → [SOR-I22.1]
+- ARQ-Fbvc2.1  Obter o próximo código de uma mudança: [SKS-Ibvc2.1] → [PRX-Ibvc2.1]
 - ARQ-F23.1  Indexar as pastas da especificação: [SKX-I23.1] → [IDX-I23.1]
 
 ## Fora de escopo

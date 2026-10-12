@@ -82,7 +82,7 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 
 1. Escreva `_produto.md`: o problema e os atores.
 2. Para cada célula central, crie a área, um arquivo que abre com a frase dela, a célula central e o dono, e escreva os blocos: definição, modelo, regras, capacidades e visões.
-3. Marque cada afirmação com `[x]` ou `[ ]`, e dê a cada código novo o prefixo da mudança: o número da issue, ou um código de `/tabularium-sortear`.
+3. Marque cada afirmação com `[x]` ou `[ ]`, e peça cada código novo a `/tabularium-alocar-codigo`, que dá o prefixo da mudança, o número da issue ou um código sorteado, e o número de ordem.
 4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
 5. Valide cada mudança com `/tabularium-validar` e corrija o que o validador acusar.
 6. Refaça os índices das pastas com `/tabularium-indexar`: um `README.md` com as áreas e um com as decisões de cada pasta.

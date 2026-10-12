@@ -298,11 +298,11 @@ Uma célula com dados de referência pode ter também atributos que um ator alte
 
 Toda afirmação tem um identificador no formato `SIGLA-PN`: a sigla da célula, a letra do papel e um número. O número tem duas partes, separadas por um ponto: o **prefixo de mudança** e o **número de ordem**. `PED-C9.2` é a segunda capacidade do Pedido que a mudança 9 criou. Os identificadores nunca são renumerados, e um código usado nunca volta (IDT-R2).
 
-O prefixo é o da mudança que aloca o código, o mesmo em todos os códigos dela (IDT-R22.1). Quando a mudança foi pedida por uma issue do rastreador, o prefixo é o número da issue. Quando não há issue, ou o número dela já serviu de prefixo na linha principal, é um **código sorteado**, de 4 caracteres, como em `PED-Rk7q2.1` (IDT-R22.2). O sorteio usa só consoantes minúsculas e os dígitos de 2 a 9, para o código nunca formar palavra, e começa sempre por letra, para não se confundir com um número de issue. Quem sorteia é um script, entregue na skill `tabularium-sortear`, que confere que o código ainda não aparece na especificação; nem a pessoa nem o agente o escolhem (IDT-R22.6).
+O prefixo é o da mudança que aloca o código, o mesmo em todos os códigos dela (IDT-R22.1). Quando a mudança foi pedida por uma issue do rastreador, o prefixo é o número da issue. Quando não há issue, é um **código sorteado**, de 4 caracteres, como em `PED-Rk7q2.1` (IDT-Rbvc2.1). O sorteio usa só consoantes minúsculas e os dígitos de 2 a 9, para o código nunca formar palavra, e começa sempre por letra, para não se confundir com um número de issue. Quem sorteia é um script, entregue na skill `tabularium-alocar-codigo`, que confere que o código ainda não aparece na especificação; nem a pessoa nem o agente o escolhem (IDT-R22.6).
 
-O número de ordem conta, a partir de 1, os códigos da mesma sigla e do mesmo papel que a mudança aloca (IDT-R22.3). As perguntas e as decisões seguem a mesma forma: `P9.1`, `D9.1`, `Dk7q2.1`.
+O número de ordem é o seguinte ao maior já usado com a mesma sigla, o mesmo papel e o mesmo prefixo, a partir de 1 (IDT-Rbvc2.2). Quem o calcula é outro script da mesma skill, que recebe o tipo do código e o prefixo e devolve o código inteiro; nem a pessoa nem o agente contam (IDT-Rbvc2.3). As perguntas e as decisões seguem a mesma forma: `P9.1`, `D9.1`, `Dk7q2.1`.
 
-O prefixo existe para que duas mudanças feitas em paralelo, cada uma na sua ramificação, nunca aloquem o mesmo código. Quem distribui os números de issue é o rastreador, e o sorteio confere o que já existe; por isso não há arquivo de contadores a manter nem código a renumerar quando as mudanças se juntam.
+O prefixo existe para que duas mudanças feitas em paralelo, cada uma na sua ramificação, não aloquem o mesmo código. Quem distribui os números de issue é o rastreador, e o sorteio confere o que já existe; por isso não há arquivo de contadores a manter nem código a renumerar quando as mudanças se juntam. A exceção são duas mudanças abertas ao mesmo tempo para a mesma issue, que alocam o mesmo código: a que entra depois na linha principal troca os seus, que ainda não são definitivos.
 
 O código é definitivo desde que entra na linha principal (IDT-Rknnk.1). Antes disso, a mudança que o alocou reescreve ou apaga a linha dele, sem lápide: quem discute uma ideia na ramificação dela muda de rumo sem deixar marca na especificação (IDT-Rknnk.2).
 
@@ -555,14 +555,14 @@ Não entram desenhos de tela nem posição em pixels. O formato foi posto à pro
 
 O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especificação: o que ler antes de cada tarefa, onde colocar cada tipo de informação, as regras que nunca se quebram (como não renumerar e não editar seções geradas) e quando parar e perguntar em vez de inventar. A revisão por categorias FURPS+ não gera requisitos: gera perguntas abertas, porque uma categoria vazia pode ser uma lacuna ou uma escolha consciente.
 
-Oito skills acompanham o formato, e `npx skills` instala todas de uma vez. A de validação, a de indexação e a de sorteio o agente aciona por conta própria; as outras esperam o seu comando.
+Oito skills acompanham o formato, e `npx skills` instala todas de uma vez. A de validação, a de indexação e a de alocação de código o agente aciona por conta própria; as outras esperam o seu comando.
 
 | Skill | O que faz |
 | --- | --- |
 | `/tabularium-instalar` | Instala ou atualiza o formato em `specs/` |
 | `/tabularium-validar` | Confere a forma da especificação com um script |
 | `/tabularium-indexar` | Regenera, com um script, os índices `README.md` de cada pasta |
-| `/tabularium-sortear` | Sorteia, com um script, o prefixo dos códigos de uma mudança sem issue |
+| `/tabularium-alocar-codigo` | Dá cada código novo, com scripts: sorteia o prefixo da mudança sem issue e calcula o número de ordem |
 | `/tabularium-entrevistar` | Amadurece uma ideia com o autor, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia |
 | `/tabularium-sugerir` | Sugere ideias que complementam a que foi discutida; a aceita volta para a entrevista |
 | `/tabularium-registrar` | Guarda numa issue do GitHub o que ainda está em aberto na ideia; opcional |

@@ -26,10 +26,11 @@ A linha principal pode ter mudado desde que a ideia começou. Atualize-a e mescl
 Confronte com o que a ramificação gravou cada mudança que veio da linha principal, e devolva se:
 
 - uma linha que a ramificação alterou ou retirou mudou também na linha principal;
-- algo que entrou contraria o que a ramificação gravou: uma regra nova, um termo com o mesmo nome, uma decisão revista;
-- a linha principal passou a ter um código com o prefixo desta ramificação.
+- algo que entrou contraria o que a ramificação gravou: uma regra nova, um termo com o mesmo nome, uma decisão revista.
 
 O conflito de mesclagem que é só de posição, como duas linhas acrescentadas no fim do mesmo papel, você resolve mantendo as duas. O que pede escolher entre dois textos, você devolve.
+
+Se a linha principal passou a ter um código que a ramificação também criou, o da ramificação ainda não é definitivo e é ele que muda: peça um código novo à skill `tabularium-alocar-codigo`, com o mesmo prefixo, e troque-o na linha e em cada citação que a ramificação fez dele. A troca é de forma: faça um commit com ela e siga.
 
 Feito quando a ramificação contém a linha principal, e cada mudança que veio dela foi confrontada.
 

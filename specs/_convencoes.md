@@ -58,9 +58,9 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 ## Marcas
 - `- [x] SIGLA-PN` ou `- [ ] SIGLA-PN`: afirmação R, Q, C, V ou T, implementada por inteiro ou não; não há estado parcial; dois espaços entre o identificador e o texto; J e linhas de modelo não levam marca
 - `SIGLA-PN`: identificador; P é o papel e N o número, formado pelo prefixo de mudança, `.` e o número de ordem, como em `PED-R9.1`; códigos e siglas nunca mudam nem voltam
-- prefixo de mudança: o número da issue que pede a mudança, sem zero à esquerda, ou um código sorteado, como em `PED-Rk7q2.1`; é o mesmo em todos os códigos que a mudança aloca
+- prefixo de mudança: o número da issue que pede a mudança, sem zero à esquerda, ou um código sorteado quando ela não tem issue, como em `PED-Rk7q2.1`; é o mesmo em todos os códigos que a mudança aloca
 - código sorteado: 4 caracteres de `bcdfghjklmnpqrstvwxz23456789`, o primeiro uma letra; sai de um programa, nunca de pessoa nem de agente
-- número de ordem: conta, a partir de 1, os códigos da mesma sigla e do mesmo papel que a mudança aloca; perguntas e decisões têm cada uma a sua contagem, como em `P9.1` e `D9.1`
+- número de ordem: o seguinte ao maior já usado com a mesma sigla, o mesmo papel e o mesmo prefixo, a partir de 1; sai de um programa, nunca de pessoa nem de agente; perguntas e decisões têm cada uma a sua contagem, como em `P9.1` e `D9.1`
 - `PED-R8`, `P04` ou `D07`, só com um número: código anterior ao prefixo de mudança; continua válido, e nenhum outro é alocado assim
 - `[PED-R1.1]`: referência a identificador
 - `**Termo**`: termo; na definição, o nome vai em negrito, também no título de célula; na referência, vai em negrito a primeira menção de cada item, frase de definição ou fileira de tabela; negrito só marca termo, nunca ênfase
