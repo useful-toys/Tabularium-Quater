@@ -102,7 +102,7 @@ A especificação diz o que o produto faz, nunca como ele é construído. As esc
 - **Cada componente diz em que é feito, onde mora e o que cumpre.** A linha `realiza:` aponta as afirmações da especificação que ele atende.
 - **Restrições, limites e contratos.** Um componente tem restrições, limites técnicos e o que oferece aos outros. Os fluxos mostram como os componentes colaboram.
 
-O formato ainda não faz parte da definição do Tabularium, e o validador não o lê. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um exemplo real, abra a [arquitetura do próprio Tabularium](specs/arquitetura/distribuicao.md).
+O formato ainda não faz parte da definição do Tabularium, e o validador só confere na pasta as decisões e as citações de decisão. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um exemplo real, abra a [arquitetura do próprio Tabularium](specs/arquitetura/distribuicao.md).
 
 ## Interface, em experimento
 
@@ -113,7 +113,7 @@ A especificação diz o que o produto faz, em qualquer meio: web, desktop ou ter
 - **Estilos e diretrizes.** Cores, fontes e medidas ganham nome e são citadas por ele. As diretrizes valem para a interface inteira.
 - **Só o que precisa ser igual em mais de um lugar.** O detalhe de uma tela só, como um espaçamento, fica no código.
 
-O formato ainda não faz parte da definição do Tabularium, e o validador não o lê. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
+O formato ainda não faz parte da definição do Tabularium, e o validador só confere na pasta as decisões e as citações de decisão. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
 
 ## Limites
 
