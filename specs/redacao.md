@@ -117,7 +117,7 @@ Lacuna conhecida da **Especificação**, ainda sem resposta.
 - [x] PER-R2  **Linha** provisória termina com `⟵ [Pnn]` ⟸ [D65]
 - [x] PER-R3  A pergunta não lista as **Linhas** que a citam ⟸ [D65]
 - [x] PER-R4  **sobre** só existe quando nenhuma **Linha** cita a pergunta
-- [x] PER-R5  Pergunta sem **sobre** e sem **Linha** que a cite
+- [x] PER-R5  Pergunta sem **sobre** e sem **Linha** que a cite é violação
 - [x] PER-R6  Estar no **Arquivo de perguntas** é estar aberta; não há estado de respondida ⟸ [D66]
 - [x] PER-R7  Responde o **Dono de área** da **Área** afetada
 - [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta ⟸ [D60]
