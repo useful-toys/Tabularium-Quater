@@ -238,7 +238,7 @@ O que um texto do produto afirma, sem implicar comportamento; papel T.
 Sequência de **Capacidades** e **Visões** cuja ordem é escolha de produto; papel J.
 - especializa **Linha**
 - [x] JOR-R1  Só no **Arquivo de produto**
-- [x] JOR-R2  Forma: `PRD-Jn  Nome: [ID] → [ID] → …`
+- [x] JOR-R2  Forma: `- PRD-Jn  Nome: [ID] → [ID] → …`
 - [x] JOR-R3  Só cita **afirmações** de papel C e V
 - [x] JOR-R4  Jornada não tem marca; está implementada quando todas as **afirmações** que cita estão
 
