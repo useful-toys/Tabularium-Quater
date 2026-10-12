@@ -2,7 +2,7 @@
 
 A issue de especificação guarda uma ideia sobre o que está em `specs/`. O corpo dela tem uma de duas formas:
 
-- **sugestão:** texto em qualquer forma, escrito por uma pessoa ou por `/tabularium-registrar`;
+- **sugestão:** texto em qualquer forma, escrito por uma pessoa, por `/tabularium-registrar` ou por `/tabularium-sugerir`;
 - **andamento:** o corpo na forma de `andamento.md`, na pasta da skill `tabularium-entrevistar`. É a linha `Ramificação` que o distingue da sugestão.
 
 A sugestão vira andamento na primeira vez que uma entrevista grava nela. O rastreador é o GitHub, pelo comando `gh`. Escreva cada texto num arquivo temporário e passe-o com `--body-file`: os acentos chegam inteiros.
@@ -33,7 +33,7 @@ Cada skill ajusta o estado no acontecimento que é dela:
 | A ideia inteira é defeito | `/tabularium-entrevistar` | Segue [Virar defeito](#virar-defeito) | Aberta |
 | A entrega devolve a ideia | `/tabularium-aplicar` | Troca o estado por `em-entrevista` | Aberta |
 | A entrega chega à linha principal do servidor | `/tabularium-aplicar` | Mantém `consenso` | Fecha |
-| Uma sugestão é criada | `/tabularium-registrar` | `especificação` | Nova, aberta |
+| Uma sugestão é criada | `/tabularium-registrar`, `/tabularium-sugerir` | `especificação` | Nova, aberta |
 | Um defeito é separado | `/tabularium-registrar` | `defeito` | Nova, aberta |
 
 A issue fechada fica fechada: nenhuma skill a reabre. A ideia que volta é uma sugestão nova, que cita a antiga.
