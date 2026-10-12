@@ -163,7 +163,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R22.1  movida → [ARE-R23.2]
 - [x] VRF-R23.1  Não lê os arquivos `README.md`, que são índices produzidos pelo **Indexador**
 - [x] VRF-R23.2  Acusa a seção `Áreas` que sobrou no **Arquivo de produto**, com uma frase que diz para onde vão a **célula central**, a **prioridade** e o **dono**
-- [ ] VRF-C1  movida → [GER-C1]
+- [x] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
   - cada uma cita o arquivo, a **Linha**, o **Identificador** da **Regra** violada e uma frase que se entende sem a **Especificação** do formato
