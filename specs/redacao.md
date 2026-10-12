@@ -148,7 +148,7 @@ Fato do produto, no particípio, ao qual alguma **Regra** reage.
 - **produtora**: 1 **Célula**
 - [ ] EVT-R1  Não é uma mensagem do sistema; a arquitetura decide como realizá-lo
 - [x] EVT-R2  Só existe se ao menos uma **reação** o cita ⟸ [D40]
-- [ ] EVT-R3  Transição de estado cita o evento que a dispara, como `aguardando pagamento → pago: ao **Pagamento confirmado**`
+- [x] EVT-R3  removida
 
 ## **Regra**  `REG`
 **Afirmação** sempre verdadeira sobre uma **Célula**, independente de ação de um **Ator**; papel R.
