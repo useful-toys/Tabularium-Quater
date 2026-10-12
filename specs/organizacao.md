@@ -108,7 +108,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - **caminho**: nome da área em minúsculas e sem acento, com `.md` se é arquivo; único
 - **célula central**: 1 **Célula**
 - **prioridade**: núcleo | apoio | genérico; opcional
-- **responsável**: 1 **Responsável de área**
+- **responsável**: nome de quem age como **Responsável de área** nela
 - **seções**: `Fronteira`, `Linguagem`, `Tipos` e as **Células**, nesta ordem, sendo opcionais as três primeiras
 - [x] ARE-R1  removida
 - [ ] ARE-R2  Área não tem sigla
