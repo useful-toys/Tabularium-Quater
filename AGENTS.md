@@ -15,7 +15,7 @@ Este repositório define o formato Tabularium. Este arquivo vale para quem traba
 - Cada issue é trabalhada numa branch dedicada, vinculada à issue com `gh issue develop <número>` ou chamada similar.
 - A issue é considerada entregue quando a branch é mesclada na `main`.
 - Depois do push da `main`, a issue é fechada à mão, com `gh issue close <número>`.
-- Todo commit menciona o número da issue na mensagem, na forma `(#7)`, conforme a skill `git-commit-message`.
+- O commit menciona o número da issue na mensagem, na forma `(#7)`, conforme a skill `git-commit-message`, só quando a issue está no contexto do trabalho; sem issue no contexto, o commit sai sem número.
 - Commit e push só são feitos a pedido.
 
 ## Valores
