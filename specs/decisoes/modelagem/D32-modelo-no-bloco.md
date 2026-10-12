@@ -4,8 +4,9 @@ No bloco da própria célula, como as primeiras linhas da lista.
 - Alternativas descartadas
   - Um arquivo de modelo à parte: duas fontes para a mesma informação
 - Consequências
-  - Ganha: definição, modelo e regras de uma célula no mesmo lugar
+  - Ganha: frase de definição, modelo e regras de uma célula no mesmo lugar
   - Aceita: o diagrama de domínio só existe como documento derivado
 
 ## Histórico
+- 2026-10-12: a frase da célula passa a ser chamada de frase de definição em todo o texto
 - 2026-10-05: decisão criada

@@ -19,7 +19,7 @@ Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que 
 - 0..N **Arquivo de dados**
 - evento: **Especificação alterada**
 - [x] ESP-R1  removida
-- [x] ESP-R2  A única prosa é a **definição** de cada **Célula**
+- [x] ESP-R2  A única prosa é a **frase de definição** de cada **Célula**
 - [x] ESP-R3  removida
 - [x] ESP-R4  Ordem de leitura: **Arquivo de convenções**, **Arquivo de produto**, qualquer **Área**
 - [x] ESP-R5  Histórico, justificativas e explicações didáticas ficam fora do texto ⟸ [D72]
@@ -161,7 +161,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R25  Nas pastas de arquitetura e de interface, confere da **Referência** a uma **Decisão** a forma da marca e a existência da decisão, e não o lugar da marca na **Linha**
 - [x] VRF-R26  removida
 - [x] VRF-R27  Nas pastas de arquitetura e de interface, não lê `_achados.md`
-- [x] VRF-R28  Quanto aos **Termos**, checa só o negrito e as definições; o texto sem negrito não é checado ⟸ [D114]
+- [x] VRF-R28  Quanto aos **Termos**, checa só o negrito e as **definições**; o texto sem negrito não é checado ⟸ [D114]
 - [x] VRF-R22.1  movida → [ARE-R23.2]
 - [x] VRF-R23.1  Não lê os arquivos `README.md`, que são o **Índice de áreas** e o **Índice de decisões**
 - [x] VRF-R23.2  Acusa a seção `Áreas` que sobrou no **Arquivo de produto**, com uma frase que diz para onde vão a **célula central**, a **prioridade** e o **dono**
@@ -181,7 +181,7 @@ Programa que produz as partes geradas da **Especificação**, sem interpretar o 
 - [x] GER-R23.4  Regenera sempre todo **Índice de áreas** e todo **Índice de decisões**, e grava só o arquivo cujo conteúdo mudou ⟸ [D23.4]
 - [x] GER-R23.5  Não sobrescreve o `README.md` que não começa com `<!-- gerado; não editar -->`
 - [x] GER-R23.6  Apaga o **Índice de áreas** ou o **Índice de decisões** da pasta que ficou sem o que indexar
-- [x] GER-R23.7  O **Índice de áreas** traz o nome e a frase do produto e, de cada **Área**, em ordem de **Área.arquivo**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **definição** ⟸ [D23.1]
+- [x] GER-R23.7  O **Índice de áreas** traz o nome e a frase do produto e, de cada **Área**, em ordem de **Área.arquivo**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **frase de definição** ⟸ [D23.1]
 - [x] GER-R23.8  No **Índice de áreas** da arquitetura e no da interface, os componentes fazem o papel das **Células**
 - [x] GER-R23.9  O **Índice de decisões** traz, de cada **Decisão**, **Decisão.código**, **questão**, **resolução** e os itens e as decisões que a citam, em ordem da data de criação escrita nas **alterações** e, na mesma data, de **Decisão.código** ⟸ [D19]
 - [x] GER-R23.10  No **Índice de decisões**, a **Decisão** que nada cita consta como órfã

@@ -27,7 +27,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 
 | Linha | Forma | Regra |
 | --- | --- | --- |
-| **definição** | prosa, logo após o título | [CEL-R2] |
+| **frase de definição** | prosa, logo após o título | [CEL-R2] |
 | **Atributo** | `- **nome**: tipo; qualificadores` | [ATR-R1] |
 | associação sem papel | `- CARD **Célula**`, com qualificadores depois de `;` | [ATR-R8] |
 | pertencimento | `- pertence a 1 **Célula**`, com qualificadores depois de `;` | [CEL-R15] |
@@ -101,7 +101,7 @@ Citação, em um lugar, de algo definido em outro.
 - [x] REF-R8  removida
 - [x] REF-R9  Qualquer item de lista cita **Decisões** com `⟸ [Dnn]` no fim, várias separadas por vírgula; uma decisão pode ser citada por vários itens ⟸ [D09, D16, D67]
 - [x] REF-R10  A **Decisão** não cita os itens que a citam ⟸ [D09]
-- [x] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
+- [x] REF-R11  **Frase de definição** e **Lápide** não citam **Decisão**
 - [x] REF-R12  removida
 - [x] REF-R13  **Afirmação** que muda de **Célula** leva consigo as suas citações de **Decisão**
 - [x] REF-R14  Ordem das marcas no fim de um item: `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão** e em **Dados de referência**, antes do `:`

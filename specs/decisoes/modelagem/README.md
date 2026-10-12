@@ -16,7 +16,7 @@
 - [D34](D34-estrutura-do-bloco.md) Como se estrutura o bloco de uma célula? Com um título com a sigla, a frase de definição e uma lista única em ordem fixa, sem subtítulos.
   - citada por: CEL-R3
 - [D35](D35-definicao-fora-do-bloco.md) Que propriedade a frase de definição precisa ter? Ser compreensível fora do bloco.
-  - citada por: Célula.definição
+  - citada por: Célula.frase de definição
 - [D45](D45-forma-dos-atributos.md) Como se escreve um atributo? Na forma nome, tipo e qualificadores, com os qualificadores tirados de um vocabulário fechado.
   - citada por: ATR-R7
 - [D46](D46-atributos-que-entram.md) Quais atributos entram na especificação? Só o que o usuário vê ou do qual alguma afirmação depende.

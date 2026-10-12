@@ -438,7 +438,7 @@ Outro programa, o **Indexador**, produz o que se deriva mecanicamente, e o que e
 
 Cada índice é um arquivo `README.md`, que começa com `<!-- gerado; não editar -->` (GER-R23.1). Há dois tipos:
 
-- **Índice de áreas**, em `specs/`, `specs/arquitetura/` e `specs/interface/`: o nome e a frase do produto e, de cada área, a frase dela e cada célula com a sigla e a definição (GER-R23.7). Na arquitetura e na interface, os componentes fazem o papel das células.
+- **Índice de áreas**, em `specs/`, `specs/arquitetura/` e `specs/interface/`: o nome e a frase do produto e, de cada área, a frase dela e cada célula com a sigla e a frase de definição (GER-R23.7). Na arquitetura e na interface, os componentes fazem o papel das células.
 - **Índice de decisões**, em cada pasta de decisões: o código, a questão e a resolução de cada uma, em ordem de criação, e quem a cita, ou a marca de órfã (GER-R23.9, GER-R23.10).
 
 O indexador não exige uma especificação válida: indexa o que consegue ler, e o arquivo que não leu aparece no fim do índice, numa linha `não indexado:` (GER-R23.2, GER-R23.3). Ele regenera todos os índices a cada execução e grava só os que mudaram, de modo que o controle de versão mostra se algum estava desatualizado (GER-R23.4). Um `README.md` escrito à mão não é sobrescrito (GER-R23.5).

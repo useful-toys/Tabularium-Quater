@@ -76,7 +76,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Podar lápides:** só a pedido. Para cada lápide `[x]`, procure o identificador na especificação; se nada o cita, apague a lápide. Lápides `[ ]` e lápides citadas ficam.
 - **Registrar, rever, dividir ou limpar uma decisão:** siga `decisoes/AGENTS.md`, que traz as receitas e a legenda das decisões.
 - **Dividir uma célula:** crie a célula nova e mova para ela as linhas que lhe pertencem.
-- **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da definição da que a absorveu; a sigla da absorvida não volta.
+- **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da frase de definição da que a absorveu; a sigla da absorvida não volta.
 - **Rebaixar ou promover:** uma célula sem afirmações vira atributo ou termo; um atributo que ganha atributos ou regras próprias vira célula, e o modelo de origem passa a citá-la.
 - **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor`, se houver, e `- dono: nome`, nesta ordem. Não há lista de áreas a atualizar: é área todo arquivo `.md` desta pasta que não começa por `_` e não é `AGENTS.md` nem `README.md`, e toda subpasta com `_area.md`.
 - **Mover uma célula de área:** mova o bloco inteiro; os identificadores não mudam.

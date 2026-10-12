@@ -20,11 +20,11 @@ As **Células** do produto, seus **Atributos** e os **Termos** que os nomeiam.
 Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a **Especificação** afirma sobre ela e que não pertence a nenhuma outra.
 - **sigla**: **Sigla de célula**; identidade; único
 - **nome**: texto; único
-- **definição**: uma frase compreensível fora do bloco ⟸ [D35]
+- **frase de definição**: uma frase compreensível fora do bloco ⟸ [D35]
 - **entidade**: sim | não; derivado: tem um **Atributo** marcado **identidade**
 - [x] CEL-R1  Título do bloco: nome e sigla em código, como `` ## **Pedido**  `PED` ``
-- [x] CEL-R2  A **definição** vem logo após o título
-- [x] CEL-R3  Depois da **definição**, uma **lista única** nesta ordem: **modelo**, **Linhas** `evento:`, R, Q, C, V, T ⟸ [D34]
+- [x] CEL-R2  A **frase de definição** vem logo após o título
+- [x] CEL-R3  Depois da **frase de definição**, uma **lista única** nesta ordem: **modelo**, **Linhas** `evento:`, R, Q, C, V, T ⟸ [D34]
 - [x] CEL-R4  removida
 - [x] CEL-R5  Efeito sobre outra célula é uma **reação** no bloco dessa outra célula ⟸ [D04]
 - [x] CEL-R6  removida
@@ -58,7 +58,7 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
 - [x] CEL-R20  Pertencimento, associação e especialização descrevem como o negócio vê o domínio, não como os dados são guardados ⟸ [D48]
 - [x] CEL-C1  Dividir uma célula ⟸ [D27]
   - as **Linhas** que passam à célula nova são movidas, conforme [LAP-R5]
-  - a célula nova ganha **Sigla de célula** e **definição** próprias
+  - a célula nova ganha **Sigla de célula** e **frase de definição** próprias
 - [x] CEL-C2  Fundir duas células ⟸ [D27]
   - as **Linhas** da célula absorvida são movidas, conforme [LAP-R5]
   - o nome da absorvida vira **não usar** na que a absorveu, se for sinônimo
@@ -94,13 +94,14 @@ Valor sem **identidade** usado por **Atributos**, como uma contagem ou um códig
 ## **Termo**  `TRM`
 Palavra ou expressão com significado definido uma única vez na **Especificação**.
 - **nome**: texto que não se repete na **Especificação**, exceto nome de **Atributo**, que não se repete na sua **Célula**
+- **definição**: o que o termo significa, escrito no lugar que o tipo de termo pede
 - **não usar**: sinônimos proibidos, tachados e entre parênteses no fim da linha que define o termo, como `(~~valor, montante~~)`; opcional
 - evento: **Termo renomeado**
-- [x] TRM-R1  Lugar de definição por tipo de termo:
+- [x] TRM-R1  Lugar da **definição** por tipo de termo:
 
 | Tipo de termo | Lugar |
 | --- | --- |
-| **Célula** | título do bloco e **definição** |
+| **Célula** | título do bloco e **frase de definição** |
 | **Atributo**, estado ou **derivado** | **modelo** da **Célula**; o nome antes de `:` |
 | **Tipo de valor** | tipos da **Área**, ou tipos comuns do **Arquivo de produto** |
 | **Evento** | **Linha** `evento:` da **Célula** que o produz |
@@ -113,14 +114,14 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [x] TRM-R4  **Atributo** cujo nome se repete em outra **Célula** é referenciado como `**Célula.atributo**`, exceto no próprio bloco ⟸ [D54]
 - [ ] TRM-R5  Homônimo se resolve renomeando um dos lados ⟸ [D53]
 - [x] TRM-R6  removida
-- [x] TRM-R7  Referenciado em negrito na primeira menção dentro de cada item de lista, frase de definição ou fileira de tabela; maiúsculas e plural não alteram o termo ⟸ [D51]
+- [x] TRM-R7  Referenciado em negrito na primeira menção dentro de cada item de lista, **frase de definição** ou fileira de tabela; maiúsculas e plural não alteram o termo ⟸ [D51]
 - [x] TRM-R8  Não são menções: títulos, cabeçalhos de tabela, código, marcas de **Ator**, qualificadores no **modelo** e a própria **Célula** dentro do seu bloco
 - [x] TRM-R9  Termo da linguagem de uma **Área** é um item `- **termo**: definição` na seção `Linguagem`
 - [x] TRM-R10  removida
 - [x] TRM-R11  Plural se reconhece palavra por palavra, pelas terminações regulares: `s`, `es`, `ões`, `ães`, `ais`, `éis`, `eis`, `óis` e `ns`
 - [x] TRM-R12  removida
 - [x] TRM-R13  Os sinônimos de **não usar** fecham o texto da linha, antes das marcas de fim de item
-- [x] TRM-R14  Negrito só marca termo, na definição e na **Referência**; não há negrito de ênfase ⟸ [D111]
+- [x] TRM-R14  Negrito só marca termo, na **definição** e na **Referência**; não há negrito de ênfase ⟸ [D111]
 - [x] TRM-R15  removida
 - [x] TRM-R16  removida
 - [x] TRM-R17  Negrito que casa com um termo e com um **Atributo** é do termo
@@ -129,7 +130,7 @@ Palavra ou expressão com significado definido uma única vez na **Especificaç�
 - [x] TRM-R20  Negrito se escreve só com `**`; `__texto__`, `<b>` e `<strong>` são violação, fora de código, mesmo em volta de um termo ⟸ [D112]
 - [x] TRM-R21  removida
 - [x] TRM-R22  Definido uma única vez ⟸ [D50]
-- [x] TRM-R23  Na definição, o nome vai em negrito, também no título do bloco da **Célula** ⟸ [D115]
+- [x] TRM-R23  Na **definição**, o nome vai em negrito, também no título do bloco da **Célula** ⟸ [D115]
 - [x] TRM-R24  Sinônimo de **não usar** não aparece em negrito, nem em maiúsculas ou no plural ⟸ [D52]
 - [x] TRM-R25  Título que não é de **Célula** e cabeçalho de tabela não levam negrito, mesmo em volta de um termo ⟸ [D113]
 - [x] TRM-C1  Renomear um termo

@@ -20,7 +20,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - célula de conceitos, ou só célula: coisa do domínio, com tudo o que se afirma sobre ela e que não pertence a nenhuma outra
 - bloco de célula: título com nome, em negrito, e sigla (`` ## **Pedido**  `PED` ``), frase de definição, lista única
 - ordem da lista: modelo (linhas sem identificador), linhas `evento:`, R, Q, C, V, T
-- linhas de um bloco de célula: definição, atributo, relação, `evento: **Nome**`, afirmação, lápide, critério e fileira de tabela; não há outras
+- linhas de um bloco de célula: frase de definição, atributo, relação, `evento: **Nome**`, afirmação, lápide, critério e fileira de tabela; não há outras
 - num bloco de célula, só C e V têm sub-itens
 - afirmação: linha que pode ser verificada no produto; papéis R, Q, C, V, T e J
 - abertura de uma área: o título, a frase que diz o que ela reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- dono: nome`, nesta ordem; só a prioridade pode faltar
