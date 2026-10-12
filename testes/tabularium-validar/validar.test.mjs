@@ -39,12 +39,12 @@ const casos = [
 
   ['ARE-R23.2', 'arquivo começado por "_" que a especificação não tem', { '_notas.md': '# Notas\n' }],
   ['ARE-R23.4', 'área sem a frase', troca('pedidos.md', 'Os **Pedidos** e os **Itens de pedido** que os compõem.\n', '')],
-  ['ARE-R23.4', 'área em pasta com o _area.md sem a frase', { 'estoque/_area.md': '# Estoque\n- célula central: **Pedido**\n- dono: vendas\n' }],
+  ['ARE-R23.4', 'área em pasta com o _area.md sem a frase', { 'estoque/_area.md': '# Estoque\n- célula central: **Pedido**\n- responsável: vendas\n' }],
   ['ARE-R23.5', 'área sem a célula central', troca('pedidos.md', '- célula central: **Pedido**\n', '')],
-  ['ARE-R23.5', 'área sem o dono', troca('pedidos.md', '- dono: vendas\n', '')],
-  ['ARE-R23.5', 'dados da área fora de ordem', troca('pedidos.md', '- prioridade: núcleo\n- dono: vendas\n', '- dono: vendas\n- prioridade: núcleo\n')],
-  ['ARE-R23.5', 'dado da área repetido', troca('pedidos.md', '- dono: vendas\n', '- dono: vendas\n- dono: compras\n')],
-  ['ARE-R23.5', 'linha que não é dado da área, antes das seções', troca('pedidos.md', '- dono: vendas\n', '- dono: vendas\n- responsável: vendas\n')],
+  ['ARE-R23.5', 'área sem o responsável', troca('pedidos.md', '- responsável: vendas\n', '')],
+  ['ARE-R23.5', 'dados da área fora de ordem', troca('pedidos.md', '- prioridade: núcleo\n- responsável: vendas\n', '- responsável: vendas\n- prioridade: núcleo\n')],
+  ['ARE-R23.5', 'dado da área repetido', troca('pedidos.md', '- responsável: vendas\n', '- responsável: vendas\n- responsável: compras\n')],
+  ['ARE-R23.5', 'linha que não é dado da área, antes das seções', troca('pedidos.md', '- responsável: vendas\n', '- responsável: vendas\n- gerente: vendas\n')],
   ['ARE-R11', 'seções da área fora de ordem', troca('pedidos.md', '## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n\n## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n', '## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n\n## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n')],
   ['APR-R9', 'seção que não existe em _produto.md', troca('_produto.md', '## Fora de escopo', '## Futuro')],
   ['APR-R9', 'seções de _produto.md fora de ordem', troca('_produto.md', '## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n\n## Fora de escopo\n- Entrega dos produtos · nesta versão\n', '## Fora de escopo\n- Entrega dos produtos · nesta versão\n\n## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n')],
@@ -219,7 +219,7 @@ test('IDT-R1: no código anterior ao prefixo de mudança, o zero à esquerda nã
   assert.deepEqual(regrasDe(violacoesCom(troca('pedidos.md', '- [ ] PED-Q1', '- [ ] PED-R01'))), ['IDT-R1']);
 });
 
-const estoque = '# Estoque\nO que a loja tem para vender.\n- célula central: **Produto**\n- dono: compras\n\n## **Produto**  `PRO`\nCoisa que a loja vende.\n- **nome**: texto; identidade\n';
+const estoque = '# Estoque\nO que a loja tem para vender.\n- célula central: **Produto**\n- responsável: compras\n\n## **Produto**  `PRO`\nCoisa que a loja vende.\n- **nome**: texto; identidade\n';
 
 test('ARE-R23.1: todo arquivo .md da pasta que não é fixo é área, e toda subpasta com _area.md', () => {
   assert.deepEqual(violacoesCom({ 'estoque.md': estoque }), []);
@@ -237,13 +237,13 @@ test('ARE-R23.3: a área em pasta é lida, com _area.md e um arquivo por célula
     'pedidos/item.md': `# Item de pedido\n\n## **Item de pedido**${itens}`,
   };
   assert.deepEqual(violacoesCom(mudancas), []);
-  assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'pedidos/item.md': `# Item de pedido\n- dono: vendas\n\n## **Item de pedido**${itens}` })), ['ARE-R23.5']);
+  assert.deepEqual(regrasDe(violacoesCom({ ...mudancas, 'pedidos/item.md': `# Item de pedido\n- responsável: vendas\n\n## **Item de pedido**${itens}` })), ['ARE-R23.5']);
 });
 
 test('VRF-R23.2: a tabela de áreas que sobrou em _produto.md é acusada, com o que fazer dela', () => {
   const violacoes = violacoesCom(troca('_produto.md', '## Atores\n', '## Áreas\n| Área | Célula central | Prioridade | Dono | Arquivo |\n| --- | --- | --- | --- | --- |\n| Pedidos | **Pedido** | núcleo | vendas | pedidos.md |\n\n## Atores\n'));
   assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['_produto.md:9 APR-R9']);
-  assert.match(violacoes[0].frase, /leve a célula central, a prioridade e o dono de cada área para o arquivo dela/);
+  assert.match(violacoes[0].frase, /leve a célula central, a prioridade e o responsável de cada área para o arquivo dela/);
 });
 
 test('VRF-R23.1: o README.md não é lido, em nenhuma pasta', () => {

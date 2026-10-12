@@ -2,7 +2,7 @@
 Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validador** checa e o **Indexador** produz a partir dela, e como se guardam as **Decisões** e os **Arquivos de dados**.
 - célula central: **Especificação**
 - prioridade: apoio
-- dono: mantenedor do formato
+- responsável: mantenedor do formato
 
 ## Linguagem
 - **externo**: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
@@ -107,7 +107,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - **arquivo**: nome da área em minúsculas, sem acento, com `.md`; único
 - **célula central**: 1 **Célula**
 - **prioridade**: núcleo | apoio | genérico; opcional
-- **dono**: 1 **Dono de área**
+- **responsável**: 1 **Responsável de área**
 - **seções**: `Fronteira`, `Linguagem`, `Tipos` e as **Células**, nesta ordem, sendo opcionais as três primeiras
 - [x] ARE-R1  removida
 - [ ] ARE-R2  Área não tem sigla
@@ -118,16 +118,16 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [ ] ARE-R7  Não há pasta dentro de pasta
 - [x] ARE-R8  A área reúne uma **célula central** e as **Células** que dependem principalmente dela ⟸ [D29]
 - [x] ARE-R9  **Célula** que troca mais **Referências**, feitas e recebidas, com outra área do que com a sua é candidata a mudar de área ⟸ [D30]
-- [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **dono**, vira pasta
+- [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **responsável**, vira pasta
 - [x] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
 - [x] ARE-R12  removida
 - [x] ARE-R23.1  É área todo arquivo `.md` da pasta da **Especificação** cujo nome não começa por `_` e que não é as **Instruções para agentes** nem parte gerada, e toda subpasta com `_area.md` ⟸ [D23.1]
 - [x] ARE-R23.2  Na pasta da **Especificação**, o arquivo `.md` de nome começado por `_` é o **Arquivo de convenções**, o **Arquivo de produto** ou o **Arquivo de perguntas**
 - [x] ARE-R23.3  Cada arquivo de uma área em pasta começa pelo título e traz as **Células** em blocos
 - [x] ARE-R23.4  A **frase** vem na linha seguinte ao título do arquivo da área, ou do `_area.md` da pasta
-- [x] ARE-R23.5  Depois da **frase** e antes das **seções** vêm as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- dono: nome`, nesta ordem; só a **prioridade** pode faltar
+- [x] ARE-R23.5  Depois da **frase** e antes das **seções** vêm as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- responsável: nome`, nesta ordem; só a **prioridade** pode faltar
 - [x] ARE-C1  Criar uma área
-  - o arquivo nasce com a **frase**, a **célula central** e o **dono**, conforme [ARE-R23.5]
+  - o arquivo nasce com a **frase**, a **célula central** e o **responsável**, conforme [ARE-R23.5]
 - [ ] ARE-C2  Dividir uma área em duas
   - indicado quando partes da área mal se referenciam
   - as **Células** mudam de arquivo; os **Identificadores**, não
@@ -164,7 +164,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R28  Quanto aos **Termos**, checa só o negrito e as **definições**; o texto sem negrito não é checado ⟸ [D114]
 - [x] VRF-R22.1  movida → [ARE-R23.2]
 - [x] VRF-R23.1  Não lê os arquivos `README.md`, que são o **Índice de áreas** e o **Índice de decisões**
-- [x] VRF-R23.2  Acusa a seção `Áreas` que sobrou no **Arquivo de produto**, com uma frase que diz para onde vão a **célula central**, a **prioridade** e o **dono**
+- [x] VRF-R23.2  Acusa a seção `Áreas` que sobrou no **Arquivo de produto**, com uma frase que diz para onde vão a **célula central**, a **prioridade** e o **responsável**
 - [x] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**

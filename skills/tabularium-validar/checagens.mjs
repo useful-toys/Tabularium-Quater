@@ -68,7 +68,7 @@ function checarProduto(arquivo, acusar) {
   let ultima = -1;
   for (const l of linhas.filter((x) => x.forma === 'titulo-secao')) {
     const posicao = SECOES_PRODUTO.indexOf(l.nome);
-    if (l.nome === 'Áreas') acusar(l.n, 'APR-R9', 'a tabela de áreas saiu de _produto.md; leve a célula central, a prioridade e o dono de cada área para o arquivo dela, abaixo da frase, como "- célula central: **Pedido**", "- prioridade: núcleo" e "- dono: nome", e apague esta seção');
+    if (l.nome === 'Áreas') acusar(l.n, 'APR-R9', 'a tabela de áreas saiu de _produto.md; leve a célula central, a prioridade e o responsável de cada área para o arquivo dela, abaixo da frase, como "- célula central: **Pedido**", "- prioridade: núcleo" e "- responsável: nome", e apague esta seção');
     else if (posicao < 0) acusar(l.n, 'APR-R9', `a seção "${l.nome}" não existe em _produto.md; as seções são ${lista(SECOES_PRODUTO)}`);
     else if (posicao <= ultima) acusar(l.n, 'APR-R9', `a seção "${l.nome}" está repetida ou fora da ordem; a ordem é ${lista(SECOES_PRODUTO)}`);
     else ultima = posicao;
@@ -89,7 +89,7 @@ const ehSeparador = (l, colunas) => l.celulas.length === colunas && l.celulas.ev
 function checarCabecalhoDaArea(arquivo, acusar) {
   const dados = arquivo.linhas.filter((l) => l.forma === 'dado-area');
   if (!arquivo.principal) {
-    if (dados.length) acusar(dados[0].n, 'ARE-R23.5', 'numa área em pasta, só o _area.md traz as linhas "célula central", "prioridade" e "dono"');
+    if (dados.length) acusar(dados[0].n, 'ARE-R23.5', 'numa área em pasta, só o _area.md traz as linhas "célula central", "prioridade" e "responsável"');
     return;
   }
   if (arquivo.linhas[1]?.forma !== 'frase-arquivo') acusar(2, 'ARE-R23.4', 'a frase da área, que diz o que ela reúne, vem na linha seguinte ao título do arquivo');
@@ -99,7 +99,7 @@ function checarCabecalhoDaArea(arquivo, acusar) {
     if (posicao <= ultimo) acusar(l.n, 'ARE-R23.5', `a linha "${l.dado}" está repetida ou fora da ordem; ${lista(DADOS_DA_AREA)} vêm nesta ordem, abaixo da frase`);
     else ultimo = posicao;
   }
-  for (const dado of ['célula central', 'dono']) {
+  for (const dado of ['célula central', 'responsável']) {
     if (!dados.some((l) => l.dado === dado)) acusar(1, 'ARE-R23.5', `falta a linha "- ${dado}: …" abaixo da frase da área`);
   }
 }

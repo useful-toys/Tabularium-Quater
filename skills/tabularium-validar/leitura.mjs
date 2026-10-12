@@ -10,7 +10,7 @@ export const SECOES_PRODUTO = ['Propósito', 'Atores', 'Tipos comuns', 'Jornadas
 export const SECOES_AREA = ['Fronteira', 'Linguagem', 'Tipos'];
 export const ROTULOS_DECISAO = ['Contexto', 'Alternativas descartadas', 'Consequências'];
 // As linhas que a área traz abaixo da frase, na ordem em que vêm.
-export const DADOS_DA_AREA = ['célula central', 'prioridade', 'dono'];
+export const DADOS_DA_AREA = ['célula central', 'prioridade', 'responsável'];
 // O índice de cada pasta, que o indexador produz e o validador não lê.
 export const INDICE = 'README.md';
 // As pastas de arquitetura e de interface: de cada uma só se leem as decisões e as citações de decisão.
@@ -137,7 +137,7 @@ function lerArea(brutas) {
       const m = bruto.match(new RegExp(`^- (${DADOS_DA_AREA.join('|')}): (\\S.*)$`));
       return linhas.push(m
         ? { n, bruto, forma: 'dado-area', dado: m[1], valor: m[2] }
-        : estranha(n, bruto, 'uma linha da área, como "- célula central: **Pedido**", "- prioridade: núcleo" ou "- dono: nome", ou um título de seção ou de célula', 'ARE-R23.5'));
+        : estranha(n, bruto, 'uma linha da área, como "- célula central: **Pedido**", "- prioridade: núcleo" ou "- responsável: nome", ou um título de seção ou de célula', 'ARE-R23.5'));
     }
     if (bruto.startsWith('|')) {
       const celulas = celulasDe(bruto);

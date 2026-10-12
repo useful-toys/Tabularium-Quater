@@ -45,7 +45,7 @@ Loja virtual pequena, para vender pela internet.
 Os **Pedidos** e os **Itens de pedido** que os compõem.
 - célula central: **Pedido**
 - prioridade: núcleo
-- dono: vendas
+- responsável: vendas
 
 ## Linguagem
 - **carrinho**: **Pedido** que ainda não foi fechado

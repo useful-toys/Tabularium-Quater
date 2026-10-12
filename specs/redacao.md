@@ -2,11 +2,12 @@
 As **Linhas** de um bloco: o que cada uma afirma, quem age, a que **Eventos** reage e como são identificadas, citadas e retiradas.
 - célula central: **Linha**
 - prioridade: núcleo
-- dono: mantenedor do formato
+- responsável: mantenedor do formato
 
 ## Linguagem
 - **reação**: **Regra** iniciada por `Ao **Evento**:`; mora no bloco da **Célula** que reage
 - **afirmação**: **Linha** que pode ser verificada no produto; de papel R, Q, C, V, T ou J ⟸ [D18]
+- **célula dona**: a **Célula** em cujo bloco uma **Linha** está escrita
 
 ## **Linha**  `LIN`
 Item da **lista única** de um bloco; com **Identificador**, é citável.
@@ -20,7 +21,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 - [x] LIN-R5  Não há estado parcial; **afirmação** cumprida em parte é agregada demais e deve ser dividida ⟸ [D62]
 - [x] LIN-R6  removida
 - [x] LIN-R7  Linha de **modelo** não tem marca de implementação
-- [x] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de dono
+- [x] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de **célula dona**
 - [x] LIN-R9  **Afirmação** nova nasce `[ ]`, exceto a movida, que herda a marca
 - [x] LIN-R10  **Afirmação** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
 - [x] LIN-R11  Num bloco de **Célula**, toda linha tem uma destas formas:
@@ -42,7 +43,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 | **Dados de referência** em arquivo | `- [ ] CÓDIGO  texto: [SIGLA-nome-curto.json]`, ou com `.csv` | [DRF-R15] |
 
 - [x] LIN-C1  Acrescentar uma **afirmação**
-  - no bloco da **Célula** dona, depois das **Linhas** do mesmo papel
+  - no bloco da **célula dona**, depois das **Linhas** do mesmo papel
   - com **Identificador** novo, conforme [IDT-R22.1] e de [IDT-Rbvc2.1] a [IDT-Rbvc2.3]
 - [x] LIN-C2  Retirar uma **afirmação**
 - [x] LIN-C3  Corrigir a redação de uma **afirmação**
@@ -56,7 +57,7 @@ Código que torna uma **Linha** citável.
 - **ordem**: **Número de ordem**
 - [x] IDT-R1  Código válido e **único** na **Especificação**
 - [x] IDT-R2  Nunca é renumerado; número já usado não volta ⟸ [D56]
-- [x] IDT-R3  A sigla é a da **Célula** dona da **Linha**, ou `PRD` no **Arquivo de produto**
+- [x] IDT-R3  A sigla é a da **célula dona** da **Linha**, ou `PRD` no **Arquivo de produto**
 - [x] IDT-R22.1  O **prefixo** é o da mudança que aloca o **código**, o mesmo em todos os códigos que ela aloca ⟸ [D22.1]
 - [x] IDT-R22.2  removida
 - [x] IDT-R22.3  removida
@@ -73,12 +74,12 @@ Código que torna uma **Linha** citável.
 ## **Lápide**  `LAP`
 **Linha** que ocupa o lugar de uma **afirmação** que foi retirada, para que as **Referências** antigas continuem resolvendo.
 - especializa **Linha**
-- **forma**: `- [ ] CÓDIGO  removida`, para **afirmação** retirada, ou `- [x] CÓDIGO  movida → [NOVO]`, para a que mudou de dono
+- **forma**: `- [ ] CÓDIGO  removida`, para **afirmação** retirada, ou `- [x] CÓDIGO  movida → [NOVO]`, para a que mudou de **célula dona**
 - [x] LAP-R1  Ao **Afirmação retirada**: o **Identificador** vira lápide no mesmo lugar ⟸ [D57]
 - [x] LAP-R2  Lápide nunca volta a ser **afirmação**
 - [ ] LAP-R3  **Referência** a lápide continua válida, mas indica texto a revisar
 - [x] LAP-R4  removida
-- [x] LAP-R5  **Afirmação** que muda de **Célula** dona ganha **Identificador** da nova dona e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
+- [x] LAP-R5  **Afirmação** que muda de **célula dona** ganha **Identificador** da nova e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
 - [x] LAP-R6  Lápide `removida` nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado
 - [x] LAP-R7  Lápide `movida` tem a mesma marca da **afirmação** para onde aponta
 - [ ] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
@@ -119,7 +120,7 @@ Lacuna conhecida da **Especificação**, ainda sem resposta.
 - [x] PER-R4  **sobre** só existe quando nenhuma **Linha** cita a pergunta
 - [x] PER-R5  Pergunta sem **sobre** e sem **Linha** que a cite é violação
 - [x] PER-R6  Estar no **Arquivo de perguntas** é estar aberta; não há estado de respondida ⟸ [D66]
-- [x] PER-R7  Responde o **Dono de área** da **Área** afetada
+- [x] PER-R7  Responde o **Responsável de área** da **Área** afetada
 - [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta ⟸ [D60]
 - [x] PER-R22.1  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, conforme [IDT-R22.1], [IDT-R22.5] e de [IDT-Rbvc2.1] a [IDT-Rbvc2.3]
 - [x] PER-R22.2  **Código** único na **Especificação**

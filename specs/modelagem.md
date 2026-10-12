@@ -2,7 +2,7 @@
 As **Células** do produto, seus **Atributos** e os **Termos** que os nomeiam.
 - célula central: **Célula**
 - prioridade: núcleo
-- dono: mantenedor do formato
+- responsável: mantenedor do formato
 
 ## Linguagem
 - **modelo**: **Linhas** sem **Identificador** no início do bloco de uma **Célula**; descrevem o que ela é ⟸ [D32]
@@ -45,12 +45,12 @@ Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio,
 | Há algo a afirmar sobre ela que não pertence a nenhuma outra? | célula |
 | nenhuma | **Termo** na linguagem da **Área** |
 
-- [x] CEL-R10  **Capacidade** ou **Visão** sem dono natural indica uma célula que falta
+- [x] CEL-R10  **Capacidade** ou **Visão** sem **célula dona** natural indica uma célula que falta
 - [x] CEL-R11  Célula sem **afirmação** e com no máximo uma **Linha** de **modelo** é candidata a **Atributo** ou **Termo**
 - [x] CEL-R12  **Atributo** que ganha atributos ou **Regras** próprias vira célula
 - [x] CEL-R13  Duas células citadas quase sempre juntas, uma delas só pela outra, são candidatas a fusão
 - [x] CEL-R14  **Sigla de célula** extinta ou fundida nunca volta
-- [x] CEL-R15  Pertencimento: **Linha** de **modelo** `pertence a 1 **Célula**`; a parte tem um só dono e não existe sem ele
+- [x] CEL-R15  Pertencimento: **Linha** de **modelo** `pertence a 1 **Célula**`; a parte tem um só todo e não existe sem ele
 - [x] CEL-R16  Especialização: **Linha** de **modelo** `especializa **Célula**`; a célula é um caso particular da outra
 - [x] CEL-R17  A célula especializada herda o **modelo** e as **Linhas** do geral e só declara o que acrescenta
 - [x] CEL-R18  Uma célula especializa no máximo uma outra

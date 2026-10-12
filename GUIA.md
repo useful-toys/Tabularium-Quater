@@ -98,7 +98,7 @@ Para classificar um item, para-se no primeiro teste com resposta sim (CEL-R9):
 | Há algo a afirmar sobre ela que não pertence a nenhuma outra? | Célula |
 | Nenhum dos anteriores | Termo na linguagem da área |
 
-Uma tela não é célula: é um conjunto de visões. Uma capacidade ou visão sem dono natural revela uma célula que falta (CEL-R10). Uma capacidade que altera mais de uma célula mora numa só, e as outras reagem a um evento dela (CAP-R2).
+Uma tela não é célula: é um conjunto de visões. Uma capacidade ou visão sem célula dona natural revela uma célula que falta (CEL-R10). Uma capacidade que altera mais de uma célula mora numa só, e as outras reagem a um evento dela (CAP-R2).
 
 ## O bloco de célula
 
@@ -177,7 +177,7 @@ Três relações ligam as células, todas escritas como linhas de modelo e todas
 
 | Relação | Forma | Significa |
 | --- | --- | --- |
-| Pertencimento | `pertence a 1 **Pedido**` | A parte tem um só dono e não existe sem ele |
+| Pertencimento | `pertence a 1 **Pedido**` | A parte tem um só todo e não existe sem ele |
 | Associação | `1 **Produto**` ou `**comprador**: 1 **Cliente**` | Uma coisa se refere a outra, que existe por si; o nome do papel só aparece quando difere do nome da célula |
 | Especialização | `especializa **Pagamento**` | Caso particular, que herda o modelo e as linhas do geral e só declara o que acrescenta |
 
@@ -343,7 +343,7 @@ Não existe glossário escrito à mão. Ele é gerado por programa, juntando tod
 
 As células são a forma de organizar o conhecimento, e o conhecimento muda. À medida que a especificação cresce, uma célula pode se dividir, se fundir com outra, ser rebaixada a atributo, ser promovida a partir de um atributo ou mudar de área. O que precisa ser estável não é o agrupamento, e sim as afirmações e suas identidades.
 
-Quando uma afirmação muda de dono, ela ganha o identificador da nova célula e herda a marca de implementação, porque o comportamento não mudou. No lugar antigo fica uma lápide que redireciona as referências (LAP-R5, LAP-R7):
+Quando uma afirmação muda de célula dona, ela ganha o identificador da nova célula e herda a marca de implementação, porque o comportamento não mudou. No lugar antigo fica uma lápide que redireciona as referências (LAP-R5, LAP-R7):
 
 ```markdown
 - [x] PED-C3.1  movida → [ENT-C1.1]
@@ -363,14 +363,14 @@ Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14
 
 Uma área é um arquivo que agrupa células fortemente relacionadas. Ela se forma em torno de uma **célula central** e das células que dependem principalmente dela (ARE-R8). Área é só organização: não tem sigla, não redefine termos, e mover uma célula entre áreas não muda nenhum identificador.
 
-O arquivo da área abre com o título, uma frase que diz o que ela reúne e três linhas: a célula central, a prioridade, que pode faltar, e o dono (ARE-R23.5).
+O arquivo da área abre com o título, uma frase que diz o que ela reúne e três linhas: a célula central, a prioridade, que pode faltar, e o responsável (ARE-R23.5).
 
 ```markdown
 # Pedidos
 Os **Pedidos** e os **Itens de pedido** que os compõem.
 - célula central: **Pedido**
 - prioridade: núcleo
-- dono: vendas
+- responsável: vendas
 ```
 
 Não há lista de áreas escrita à mão. É área todo arquivo `.md` da pasta que não é um dos fixos, e toda subpasta com `_area.md` (ARE-R23.1). A lista delas é o índice de áreas, gerado, que nunca diverge dos arquivos.

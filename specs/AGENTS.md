@@ -78,7 +78,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Dividir uma célula:** crie a célula nova e mova para ela as linhas que lhe pertencem.
 - **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da frase de definição da que a absorveu; a sigla da absorvida não volta.
 - **Rebaixar ou promover:** uma célula sem afirmações vira atributo ou termo; um atributo que ganha atributos ou regras próprias vira célula, e o modelo de origem passa a citá-la.
-- **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor`, se houver, e `- dono: nome`, nesta ordem. Não há lista de áreas a atualizar: é área todo arquivo `.md` desta pasta que não começa por `_` e não é `AGENTS.md` nem `README.md`, e toda subpasta com `_area.md`.
+- **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor`, se houver, e `- responsável: nome`, nesta ordem. Não há lista de áreas a atualizar: é área todo arquivo `.md` desta pasta que não começa por `_` e não é `AGENTS.md` nem `README.md`, e toda subpasta com `_area.md`.
 - **Mover uma célula de área:** mova o bloco inteiro; os identificadores não mudam.
 - **Abrir uma pergunta:** só para uma dúvida que surgiu sobre algo já comprometido; ideia não é pergunta. Acrescente no fim de `_perguntas.md` um item `- Pnn  enunciado?`, com o prefixo da mudança e o próximo número de ordem, conforme a regra 1; opções, se houver, como sub-itens `opção:`. Se existe uma linha provisória, ela termina com `⟵ [Pnn]`; se a lacuna é a falta de uma linha, a pergunta leva o sub-item `sobre: **Célula**`. Nunca as duas coisas.
 - **Responder uma pergunta:** na mesma mudança, apague a pergunta de `_perguntas.md`, tire `⟵ [Pnn]` de todas as linhas que a citam e deixe o texto definitivo. Se a resposta precisa de justificativa, registre uma decisão: o enunciado da pergunta vira a questão, as opções não escolhidas viram as alternativas descartadas, e as linhas passam a terminar com `⟸ [Dnn]`. Não marque a pergunta como respondida: apagar é responder.
@@ -104,7 +104,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 
 ## Ao revisar
 
-Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma pergunta em `_perguntas.md`. Não escreva o requisito por conta própria: uma categoria vazia pode ser uma lacuna ou uma escolha consciente, e só o dono da área sabe qual.
+Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma pergunta em `_perguntas.md`. Não escreva o requisito por conta própria: uma categoria vazia pode ser uma lacuna ou uma escolha consciente, e só o responsável da área sabe qual.
 
 - Funcionalidade transversal: segurança, permissões, auditoria
 - Usabilidade: acessibilidade, idioma, consistência
@@ -113,7 +113,7 @@ Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma 
 - Suportabilidade: plataformas, navegadores, manutenção, configuração
 - Restrições: de projeto, de implementação, de interface, físicas, legais
 
-Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem afirmação e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem dono natural (falta uma célula); afirmação que cita outra célula mais do que a própria (mover a afirmação); duas células citadas quase sempre juntas, uma só pela outra (fundir); célula que troca mais referências com outra área do que com a sua (mudar de área); área com mais de 300 linhas ou com mais de um dono (virar pasta); bloco com muitas lápides `[x]` que nada cita (podar); tabela de dados de referência com mais de 30 fileiras, ou que não é preciso ver para entender a célula (mover para um arquivo de `dados/`). Os sinais sobre decisões estão em `decisoes/AGENTS.md`.
+Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem afirmação e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem célula dona natural (falta uma célula); afirmação que cita outra célula mais do que a própria (mover a afirmação); duas células citadas quase sempre juntas, uma só pela outra (fundir); célula que troca mais referências com outra área do que com a sua (mudar de área); área com mais de 300 linhas ou com mais de um responsável (virar pasta); bloco com muitas lápides `[x]` que nada cita (podar); tabela de dados de referência com mais de 30 fileiras, ou que não é preciso ver para entender a célula (mover para um arquivo de `dados/`). Os sinais sobre decisões estão em `decisoes/AGENTS.md`.
 
 Proponha também, sem fazer por conta própria, reescrever ou retirar a afirmação que cita tecnologia, armazenamento, estrutura do código ou forma de implantação: reescrever, se há uma consequência que um ator ou o negócio observa; retirar, com lápide, se não há. Nas categorias acima, uma restrição de implementação só entra quando é imposta de fora ao produto, como por um externo ou por lei; a escolha feita pela equipe é arquitetura.
 
@@ -134,6 +134,6 @@ Confira também se toda regra motivada por uma organização de fora (um órgão
 - Cite a origem de cada frase.
 - Documentos tradicionais saem assim: visão, de `Propósito`, atores, externos e fora de escopo; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.
 - Caso de uso: ator e objetivo vêm da C; pré-condições, dos critérios `exige:`; fluxos alternativos e exceções, dos critérios `se …:`; pós-condições, dos critérios sem prefixo; efeitos em outras células, das reações; sequência entre capacidades, das jornadas. Não invente passos de interface.
-- Liste no fim as frases que precisaram de algo que não está na especificação: são lacunas a levar ao dono da área.
+- Liste no fim as frases que precisaram de algo que não está na especificação: são lacunas a levar ao responsável da área.
 - Nunca grave um documento derivado dentro desta pasta, nem copie dele de volta para a especificação.
 - Guardar um documento derivado sob controle de versão é escolha da equipe. Se ele já existe e a especificação mudou, gere-o de novo em vez de emendá-lo.

@@ -15,7 +15,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 
 ## Atores
 - **Autor**: altera a **Especificação**; pessoa ou agente de IA; padrão
-- **Dono de área**: responde por uma **Área**; aceita as mudanças nela
+- **Responsável de área**: responde por uma **Área**; aceita as mudanças nela
 - **Leitor**: consulta a **Especificação** e os **Documentos derivados**; nunca altera
 
 ## Tipos comuns
