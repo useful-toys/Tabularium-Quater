@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Entrevistar o autor sobre uma ideia
 
-Você conduz uma **entrevista**: amadurece uma ideia com o autor, em rodadas de perguntas, e ao fim de cada rodada grava em `specs/` o que chegou ao **consenso**, sempre na **ramificação da ideia**, nunca na linha principal. O que ainda não tem consenso fica na conversa, no [plano](plano.md). `/tabularium-registrar` guarda a ideia numa issue e `/tabularium-aplicar` a entrega na linha principal: sugira cada uma na hora dela e deixe o autor acioná-la.
+Você conduz uma **entrevista**: amadurece uma ideia com o autor, em rodadas de perguntas, e ao fim de cada rodada grava em `specs/` o que chegou ao **consenso**, sempre na **ramificação da ideia**, nunca na linha principal. O que ainda não tem consenso fica na conversa, no [andamento](andamento.md). Quando a ideia tem issue, você grava nela o andamento a cada rodada, conforme [A issue da ideia](#a-issue-da-ideia). `/tabularium-registrar` cria a issue que não existe e `/tabularium-aplicar` entrega a ideia na linha principal: sugira cada uma na hora dela e deixe o autor acioná-la.
 
 Quatro coisas fazem a entrevista, em todos os passos:
 
@@ -21,11 +21,11 @@ As regras do formato estão em `specs/AGENTS.md` e `specs/_convencoes.md`; as de
 
 O que veio junto com o comando decide o começo:
 
-- **Número ou link de uma issue:** leia com `gh issue view <número ou link> --json number,title,body,labels,state`; se falhar, diga que a issue não foi encontrada e encerre. Corpo com `## Resumo` e `## Em aberto` é uma **retomada**: o corpo é o plano, e os comentários ficam sem ler. Senão, o corpo é a descrição da ideia.
+- **Número ou link de uma issue:** leia com `gh issue view <número ou link> --json number,title,body,labels,state`; se falhar, diga que a issue não foi encontrada e encerre. Se a issue está fechada, diga ao autor que ela não se reabre e que a ideia pede uma sugestão nova, que cite esta, e encerre. Corpo com a linha `Ramificação` é uma **retomada**: o corpo é o andamento, e os comentários ficam sem ler. Senão, a issue é uma sugestão, e o corpo é a descrição da ideia, qualquer que seja a forma dele.
 - **Uma frase ou um texto:** é a descrição da ideia, e a entrevista corre sem issue.
 - **Nada:** na ramificação de uma ideia, pergunte se o autor quer continuá-la; senão, pergunte qual ideia ele quer discutir.
 
-Feito quando você tem a descrição da ideia, ou o plano de uma retomada.
+Feito quando você tem a descrição da ideia, ou o andamento de uma retomada.
 
 ## 2. Preparar a ramificação
 
@@ -33,7 +33,7 @@ Veja a ramificação atual com `git branch --show-current` e pare no primeiro ca
 
 | Situação | O que fazer |
 | --- | --- |
-| Retomada | Passe para a ramificação que a linha `Ramificação` do plano nomeia |
+| Retomada | Passe para a ramificação que a linha `Ramificação` do andamento nomeia |
 | A atual não é a linha principal | Continue nela: é a ramificação da ideia |
 | A ideia veio de uma issue | Veja com `gh issue develop --list <número>` se ela já tem ramificação. Se tem, outra entrevista já trata dessa issue: mostre a ramificação ao autor, e continue nela ou pare, como ele escolher. Senão, crie a ramificação ligada à issue, com `gh issue develop <número> --checkout` |
 | A ideia veio sem issue | Crie uma ramificação local a partir da linha principal, com um nome curto tirado da ideia |
@@ -48,7 +48,9 @@ Ache o **prefixo** da mudança, que entra em todo código que a entrevista aloca
 2. Senão, se a ideia veio de uma issue, é o número dela.
 3. Senão, é um código sorteado, da skill `tabularium-alocar-codigo`.
 
-Feito quando você está numa ramificação que não é a linha principal, sem alteração pendente em `specs/`, e sabe o prefixo.
+Se a ideia veio de uma sugestão, ajuste o estado da issue, conforme [A issue da ideia](#a-issue-da-ideia).
+
+Feito quando você está numa ramificação que não é a linha principal, sem alteração pendente em `specs/`, sabe o prefixo, e a issue, se há uma, tem `em-entrevista`.
 
 ## 3. Ler a especificação
 
@@ -56,7 +58,7 @@ Siga "Antes de qualquer tarefa" de `specs/AGENTS.md`, lendo por inteiro cada ár
 
 A especificação sempre existe, nem que seja só com os arquivos que a instalação criou. Se `specs/_produto.md` ainda traz os textos de exemplo do modelo, a primeira rodada trata do que ele pede: o produto, o problema que resolve, o público e os atores.
 
-Numa retomada, passe pelo [confronto](#confronto-com-o-existente) o que a ramificação já gravou, porque a linha principal pode ter mudado; o que deixou de valer vira pergunta da primeira rodada. Depois dela, siga por `Para retomar` e pelos itens de `Em aberto`.
+Numa retomada, passe pelo [confronto](#confronto-com-o-existente) o que a ramificação já gravou, porque a linha principal pode ter mudado; o que deixou de valer vira pergunta da primeira rodada. Depois dela, siga pelos itens de `Em aberto`, na ordem.
 
 Feito quando cada área tocada foi lida por inteiro e, na retomada, o que a ramificação gravou foi confrontado.
 
@@ -89,7 +91,7 @@ Feito quando cada parte tem registro, classificação, resultado do confronto e 
 
 ## 5. Perguntar em rodadas
 
-Uma **rodada** reúne as perguntas da fronteira sobre um mesmo assunto. Passe cada uma pela [busca](#buscar-antes-de-perguntar): a que a busca responde sai da rodada, e o achado entra como fato. Conte as perguntas e envie **uma por vez**, esperando a resposta de cada uma. As rodadas são numeradas em sequência; na retomada, continue a partir da última guardada no plano.
+Uma **rodada** reúne as perguntas da fronteira sobre um mesmo assunto. Passe cada uma pela [busca](#buscar-antes-de-perguntar): a que a busca responde sai da rodada, e o achado entra como fato. Conte as perguntas e envie **uma por vez**, esperando a resposta de cada uma. As rodadas são numeradas em sequência; na retomada, continue a partir da última guardada no andamento.
 
 A rodada **vai fundo**: a dúvida que uma resposta abre sobre o mesmo assunto é a próxima pergunta, antes das que já esperavam. Siga o fio até ele fechar; o título da pergunta mostra o total novo. A dúvida de outro assunto, e a parte nova que o autor traz no meio da rodada, passam pelo passo 4 e vão para a fronteira.
 
@@ -137,12 +139,13 @@ Feito quando cada pergunta da rodada foi respondida, inclusive as que as respost
 
 ## 6. Gravar a rodada
 
-Tem **consenso** a parte com redação final que o autor respondeu ou confirmou. Só ela é gravada; o resto fica em `Em aberto`, no [plano](plano.md).
+Tem **consenso** a parte com redação final que o autor respondeu ou confirmou. Só ela é gravada. O [andamento](andamento.md) guarda o resto: em `Em aberto`, toda pergunta ainda sem consenso, feita ou por fazer; em `Fora da ideia`, o que o autor respondeu deixando de fora.
 
 1. Escreva cada parte com consenso pela receita que ela pede: "Receitas" de `specs/AGENTS.md` para o produto, as do `AGENTS.md` da pasta para arquitetura e interface, e as de `specs/decisoes/AGENTS.md` para as decisões. Todo código sai da skill `tabularium-alocar-codigo`, com o prefixo do passo 2.
 2. Rode o validador, pela skill `tabularium-validar`, depois o indexador, pela skill `tabularium-indexar`, e siga "Depois de alterar" do `AGENTS.md` de cada registro tocado. Corrija o que for só de forma; a correção que muda o significado de uma linha volta a ser pergunta.
-3. Faça um commit com o que a rodada gravou, com a rodada e o assunto na mensagem, na convenção do repositório. Acionar esta skill é o pedido desse commit; o envio ao servidor continua a pedido.
-4. Mostre o resumo da rodada:
+3. Faça um commit com o que a rodada gravou, com a rodada e o assunto na mensagem, na convenção do repositório. Acionar esta skill é o pedido desse commit.
+4. Se a ideia tem issue, grave nela o andamento e comente a rodada, conforme [A issue da ideia](#a-issue-da-ideia). Sem issue, o envio ao servidor continua a pedido.
+5. Mostre o resumo da rodada:
 
 ```markdown
 ## Rodada 3 · Gravado
@@ -165,25 +168,38 @@ Voltar atrás em algo que uma rodada gravou depende de o código já estar na li
 | Linha da linha principal que esta ramificação alterou ou retirou | Devolva-a ao texto da linha principal, e apague a lápide e a linha nova que a substituía |
 | Linha da linha principal, ainda intacta | É mudança do existente: siga o [confronto](#confronto-com-o-existente) |
 
-Feito quando o validador responde `nenhuma violação`, o commit da rodada existe e o resumo foi mostrado. Havendo pergunta por fazer, volte ao passo 5.
+Feito quando o validador responde `nenhuma violação`, o commit da rodada existe, a issue, se há uma, traz o andamento e o comentário da rodada, e o resumo foi mostrado. Havendo item em `Em aberto`, volte ao passo 5.
 
 ## 7. Encerrar
 
 1. Confira que a fronteira está vazia:
-   - nenhuma pergunta por fazer, e `Em aberto` vazio;
+   - `Em aberto` vazio;
    - cada parte do passo 4 tem veredito, e cada condição de contorno dela tem resposta ou foi dada pelo autor como fora da ideia;
    - tudo o que a ramificação gravou foi respondido ou confirmado pelo autor: releia o que foi gravado, e o que saiu de suposição sua volta como pergunta.
 2. Diga ao autor que `/tabularium-sugerir` traz ideias que complementam esta. A sugestão que ele aceitar é uma parte nova: passa pelo passo 4, e a entrevista volta ao passo 5.
 3. Diga que o consenso é uma proposta do autor, e que o aceite fica com o processo da equipe; quais áreas a mudança toca e o dono de cada uma, lido da linha `dono:` no topo do arquivo da área; e o que a ramificação gravou ao todo, registro por registro.
-4. Peça a confirmação do consenso sobre a ideia inteira, numa pergunta só para isso. Até ela, a ideia segue em discussão: nada é entregue, e o rótulo não passa a `consenso`. Uma parte que não amadureceu impede o encerramento: o autor escolhe esperar por ela nesta ideia ou separá-la numa ideia própria, para entregar o resto.
+4. Peça a confirmação do consenso sobre a ideia inteira, numa pergunta só para isso. Até ela, a ideia segue em entrevista: nada é entregue, e o rótulo não passa a `consenso`. Uma parte que não amadureceu impede o encerramento: o autor escolhe esperar por ela nesta ideia ou separá-la numa ideia própria, para entregar o resto.
+5. Depois do sim, se a ideia tem issue, grave o andamento e ajuste o estado para `consenso`, conforme [A issue da ideia](#a-issue-da-ideia).
 
-Feito quando o autor confirmou e você sugeriu `/tabularium-aplicar`, para entregar a ramificação, e `/tabularium-registrar`, se ele quiser a ideia numa issue.
+Feito quando o autor confirmou, a issue, se há uma, tem `consenso` e o andamento final, e você sugeriu `/tabularium-aplicar`, para entregar a ramificação.
 
 ## Pausa e rejeição
 
-O autor pode parar a qualquer momento. Grave a rodada em curso até onde há consenso, mostre o [plano](plano.md) com o que falta em `Em aberto` e sugira `/tabularium-registrar`: sem ele, o que está em aberto vive só nesta conversa.
+O autor pode parar a qualquer momento. Grave a rodada em curso até onde há consenso, pelo passo 6, e mostre o [andamento](andamento.md). Sem issue, o andamento vive só nesta conversa: sugira `/tabularium-registrar`, que cria a issue.
 
-Só o autor rejeita uma ideia. Quando a discussão ficar inviável, sugira a rejeição. Se ele rejeitar, o plano guarda o motivo, nada é entregue, e apagar a ramificação fica com o autor.
+Só o autor rejeita uma ideia. Quando a discussão ficar inviável, sugira a rejeição. Se ele rejeitar, nada é entregue, e apagar a ramificação fica com o autor. Se a ideia tem issue, feche-a conforme [A issue da ideia](#a-issue-da-ideia).
+
+## A issue da ideia
+
+A entrevista que começou numa issue, ou que ganhou uma por `/tabularium-registrar`, grava nela. A forma da issue, os rótulos e as receitas estão em `issue.md`, na pasta da skill `tabularium-registrar`, ao lado da pasta desta: leia-o assim que souber que a ideia tem issue. Começar ou retomar a entrevista numa issue é o pedido do envio da ramificação da ideia ao servidor, a cada gravação.
+
+| Momento | O que fazer, pelas receitas de `issue.md` |
+| --- | --- |
+| A entrevista começa numa sugestão | Ajuste o estado. O corpo continua sendo a sugestão |
+| Fim de cada rodada | "Gravar o andamento" e "Comentar a rodada". A primeira gravação é a que troca a sugestão pelo andamento |
+| O autor confirma o consenso | "Gravar o andamento", com `Em aberto` vazio, e ajuste o estado |
+| O autor rejeita a ideia | "Gravar o andamento" e ajuste o estado, com o motivo que o autor deu |
+| A ideia inteira é defeito | "Virar defeito". Nada é entregue |
 
 ## Buscar antes de perguntar
 
@@ -231,10 +247,11 @@ Cada parte termina com um veredito. Para a afirmação que já diz o que o autor
 | --- | --- | --- |
 | Mudança | A parte tem redação final e consenso | Gravada na rodada |
 | Pergunta aberta | A parte principal é compromisso e falta um detalhe; pergunte ao autor se é o caso | Gravada na rodada, em `_perguntas.md` |
-| Já existe | Escrito, implementado, e o produto faz | `Fora do plano` |
-| Defeito | Escrito, implementado, e o produto não faz; sugira registrá-lo | `Fora do plano` |
-| Pendente | Escrito e ainda não implementado; diga que falta implementar | `Fora do plano` |
-| Codificação | Não passa nos testes de arquitetura nem de interface | `Fora do plano` |
+| Já existe | Escrito, implementado, e o produto faz | `Fora da ideia` |
+| Defeito | Escrito, implementado, e o produto não faz; sugira registrá-lo | `Fora da ideia` |
+| Pendente | Escrito e ainda não implementado; diga que falta implementar | `Fora da ideia` |
+| Codificação | Não passa nos testes de arquitetura nem de interface | `Fora da ideia` |
+| Recusado | O autor respondeu deixando a parte de fora | `Fora da ideia` |
 | Não amadureceu | O autor ainda não decidiu | `Em aberto` |
 
-Em `Fora do plano`, aponte a afirmação quando houver.
+Em `Fora da ideia`, aponte a afirmação quando houver.

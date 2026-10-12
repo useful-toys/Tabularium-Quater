@@ -1,100 +1,65 @@
 ---
 name: tabularium-registrar
-description: Guarda numa issue do GitHub o estado de uma ideia do Tabularium discutida numa ramificação.
+description: Cria no GitHub a issue de uma sugestão ou de uma entrevista do Tabularium, separa partes de uma ideia em issues próprias e cria os rótulos da especificação.
 disable-model-invocation: true
 ---
 
-# Registrar a ideia na issue
+# Registrar uma ideia numa issue
 
-Você guarda numa issue do GitHub o estado de uma ideia: o **plano** que `/tabularium-entrevistar` mantém nesta conversa, ou o resultado de `/tabularium-aplicar`. A issue é opcional: a ideia que começa e termina numa conversa só não precisa dela. Cada vez que você grava é um **registro**. A issue fica assim:
+Você cria **issues de especificação**. A forma delas, os rótulos e o estado estão em [issue.md](issue.md): leia-o antes de começar. A issue é opcional: a ideia que começa e termina numa conversa só não precisa dela.
 
-- o corpo é o plano no estado mais recente;
-- o primeiro comentário é a ideia como chegou, com o título `## Ideia original`;
-- cada registro acrescenta um comentário;
-- um rótulo diz o estado: `em discussão`, `consenso`, `defeito` ou `rejeitada`.
+Quem grava o andamento na issue, a cada rodada, é `/tabularium-entrevistar`. Você entra onde ela não alcança: a issue que ainda não existe e a parte que sai da ideia.
 
-O que tem consenso não está na issue: está em `specs/`, na ramificação da ideia, que o plano nomeia. A forma do plano está em `plano.md`, na pasta da skill `tabularium-entrevistar`, ao lado da pasta desta. O rastreador é o GitHub, pelo comando `gh`.
+## 1. Garantir os rótulos
 
-## 1. Reunir o que gravar
+Crie no repositório cada rótulo de [issue.md](issue.md) que faltar: `especificação`, `em-entrevista`, `consenso`, `rejeitada` e `defeito`.
 
-Tire da conversa:
+Feito quando `gh label list` mostra os cinco.
 
-- o plano, com tudo o que foi respondido até agora; se as últimas respostas ainda não estão nele, atualize-o antes;
-- o rótulo: `em discussão` enquanto há item em `Em aberto` ou pergunta por fazer, `consenso` depois que o autor confirmou o encerramento, `rejeitada` se ele rejeitou;
-- os números das rodadas feitas desde o último registro, e o que cada uma gravou;
-- a issue de onde a conversa partiu, se partiu de uma.
+## 2. Escolher o que fazer
 
-Se a conversa não tem entrevista nem entrega, diga isso ao autor e encerre.
+Pare no primeiro caso que servir:
 
-Feito quando você tem o plano atualizado, o rótulo, as rodadas e a issue de origem, ou a certeza de que não há uma.
-
-## 2. Enviar a ramificação
-
-A issue aponta para a ramificação, e quem retoma a ideia precisa achá-la no servidor. Envie a ramificação da ideia: acionar esta skill é o pedido desse envio. Se há consenso gravado sem commit, pare e diga ao autor: quem grava e faz o commit é a entrevista.
-
-Depois da entrega pela `/tabularium-aplicar`, não há o que enviar: siga para o passo 3.
-
-Feito quando a ramificação que a linha `Ramificação` do plano nomeia está no servidor.
-
-## 3. Gravar o corpo
-
-Escreva cada texto num arquivo temporário e passe-o com `--body-file`: os acentos chegam inteiros.
-
-- **A conversa partiu de uma issue que já tinha um plano:** releia a issue. Se o corpo mudou desde que a entrevista o leu, pare e mostre a diferença ao autor. Senão, troque o corpo pelo plano.
-- **A conversa partiu de uma issue de texto livre:** crie o comentário `## Ideia original` com o corpo atual, sem alterar uma palavra, e só então troque o corpo pelo plano.
-- **A conversa não partiu de uma issue:** crie a issue com o plano no corpo e um título curto tirado de `Proposto`. Crie o comentário `## Ideia original` com o que o autor disse sobre a ideia ao começar. A ramificação e o prefixo continuam os mesmos: os códigos já gravados não passam a usar o número da issue nova.
-
-Feito quando o corpo da issue é o plano, e a issue tem o comentário `## Ideia original`.
-
-## 4. Comentar o registro
-
-Acrescente um comentário com o que aconteceu desde o registro anterior:
-
-```markdown
-## Registro de 2026-10-08 · rodadas 3 a 5
-
-### Discutido
-- Rodada 3 · Cancelamento de pedido
-
-### Estabelecido
-- A capacidade "Cancelar um pedido" (`PED-C4.1`) não dizia até quando vale
-
-### Decidido
-- O cliente cancela até o envio
-
-### Gravado
-- Criado: "Pedido enviado não pode ser cancelado" (`PED-R31.1`)
-```
-
-`Estabelecido` traz os fatos encontrados na especificação; `Decidido`, o que o autor escolheu ou confirmou; `Gravado`, o que as rodadas escreveram na ramificação. O comentário é histórico: um código citado nele pode ser reescrito ou apagado numa rodada posterior, e o comentário fica como está. No registro do consenso, da rejeição ou da entrega, o título troca as rodadas pelo acontecimento: `## Registro de 2026-10-08 · consenso`.
-
-Feito quando o comentário está na issue.
-
-## 5. Ajustar o estado
-
-Crie no repositório o rótulo que faltar, e deixe na issue só um dos quatro.
-
-| Estado | O que fazer |
+| O que há | O que fazer |
 | --- | --- |
-| Em discussão | Rótulo `em discussão`. Se a issue estava fechada, reabra |
-| Consenso | Rótulo `consenso`. Na linha `Estado` do Resumo, ponha a data: `consenso em 2026-10-08` |
-| Entregue | Mantém `consenso`. O comentário do registro lista o que a entrega criou, alterou e retirou. Feche a issue |
-| Rejeitada | Rótulo `rejeitada`. A linha `Estado` guarda o motivo. Feche a issue como não planejada |
-| Defeito, a ideia inteira | Rótulo `defeito`. A issue fica aberta: quem trata o defeito é o processo da equipe |
+| Uma parte a separar, que a entrevista ou `/tabularium-sugerir` apontou | Passo 5; antes dele, o passo 4, se a entrevista ainda não tem issue |
+| Uma entrevista nesta conversa, sem issue | Passo 4 |
+| Um texto junto com o comando, sem entrevista nesta conversa | Passo 3 |
+| Uma entrevista com issue, e nada a separar | Diga ao autor que a entrevista já grava o andamento nela, e encerre |
+| Nada | Pergunte ao autor qual ideia ele quer sugerir |
 
-Feito quando a issue tem um só rótulo de estado, e está aberta ou fechada conforme a tabela.
+## 3. Criar uma sugestão
 
-## 6. Separar partes
+Crie a issue com o texto do autor no corpo, sem reescrevê-lo, e um título curto tirado dele. Ajuste os rótulos pela linha "Uma sugestão é criada" de [issue.md](issue.md).
+
+Feito quando a sugestão existe, com `especificação` e sem rótulo de estado. Siga para o passo 6.
+
+## 4. Criar a issue da entrevista
+
+A entrevista desta conversa começou sem issue, e passa a ter uma:
+
+1. Atualize o andamento com tudo o que foi respondido até agora. Se há consenso gravado sem commit, pare e diga ao autor: quem grava e faz o commit é a entrevista.
+2. Envie a ramificação da ideia ao servidor: acionar esta skill é o pedido desse envio.
+3. Crie a issue com o andamento no corpo e um título curto tirado de `Objetivo`.
+4. Crie o comentário `## Ideia original` com o que o autor disse sobre a ideia ao começar.
+5. Crie um comentário para cada rodada já feita, em ordem, na forma de "Comentar a rodada" de [issue.md](issue.md).
+6. Ponha `especificação` e o rótulo de estado: `em-entrevista` enquanto há item em `Em aberto`, `consenso` depois que o autor confirmou o encerramento.
+
+A ramificação e o prefixo continuam os mesmos: os códigos já gravados não passam a usar o número da issue nova. Daqui em diante, a entrevista grava nela sozinha.
+
+Feito quando a issue existe com o andamento no corpo, o comentário `## Ideia original`, um comentário por rodada feita e os dois rótulos, e a ramificação que o andamento nomeia está no servidor.
+
+## 5. Separar partes
 
 Uma parte sai para uma issue própria em dois casos:
 
-- **A parte é defeito, e o resto da ideia segue:** crie uma issue com o rótulo `defeito`. O corpo traz a afirmação que o produto não cumpre, com o texto e o código, e o que o autor relatou.
-- **A parte fica para depois, e o autor quer entregar o resto:** crie uma issue com o rótulo `em discussão`. O corpo é um plano só com essa parte, sem a linha `Ramificação`, e o comentário `## Ideia original` traz o que já foi dito sobre ela.
+- **A parte fica para depois:** o autor quer entregar o resto, ou guardou uma sugestão de `/tabularium-sugerir`. Crie uma sugestão, como no passo 3: o corpo conta, em texto livre, o que já foi dito sobre a parte.
+- **A parte é defeito, e o resto da ideia segue:** crie uma issue só com o rótulo `defeito`. O corpo traz a afirmação que o produto não cumpre, com o texto e o código, e o que o autor relatou.
 
-Nos dois casos, a issue nova cita a original, e o plano da original passa a listar a parte em `Fora do plano`, com o número da issue nova.
+A issue nova cita a original. No andamento da original, a parte passa a `Fora da ideia`, com o número da issue nova: grave-o por "Gravar o andamento" de [issue.md](issue.md).
 
-Feito quando cada parte separada tem a sua issue, e as duas se citam.
+Feito quando cada parte separada tem a sua issue, as duas se citam, e o corpo da original traz a parte em `Fora da ideia`.
 
-## 7. Relatar
+## 6. Relatar
 
-Diga ao autor o link de cada issue gravada, o rótulo de cada uma e o que foi escrito. Depois de um consenso, sugira `/tabularium-aplicar` com o número da issue, e deixe o autor acioná-la.
+Diga ao autor o link de cada issue criada, os rótulos de cada uma e o que foi escrito. Para a sugestão, diga que `/tabularium-entrevistar` a recebe pelo número.

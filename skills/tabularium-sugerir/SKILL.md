@@ -13,7 +13,7 @@ Você traz **sugestões**: ideias suas que complementam uma funcionalidade, a de
 O **alvo** é aquilo que as sugestões complementam. Pare no primeiro caso que servir:
 
 - **O autor nomeou uma área ou uma célula:** o alvo é ela, como está escrita.
-- **Há uma entrevista nesta conversa:** o alvo é a ideia dela, com o que a ramificação gravou e o que está no plano.
+- **Há uma entrevista nesta conversa:** o alvo é a ideia dela, com o que a ramificação gravou e o que está no andamento.
 - **Nenhum dos dois:** pergunte ao autor o que ele quer complementar.
 
 Feito quando você sabe o alvo.
@@ -47,7 +47,7 @@ Reflita sobre o que mais o produto poderia ter por causa do alvo. As **direçõe
 A sugestão que não veio de nenhuma direção vale como as outras, se tem motivo. Cada sugestão tem um **motivo**: a linha da especificação que a provoca, ou a ausência que você procurou e confirmou. Para confirmar a ausência, procure em toda a pasta `specs/` os termos da sugestão, como manda "Antes de qualquer tarefa". Descarte a que não tem motivo, e também:
 
 - o que a especificação já diz, implementado ou pendente;
-- o que `Fora de escopo` exclui, e o que o plano já traz em `Fora do plano`;
+- o que `Fora de escopo` exclui, e o que o andamento já traz em `Fora da ideia`;
 - o que falta dentro da própria funcionalidade, como um limite ou uma exceção: é condição de contorno, e pertence à entrevista;
 - qualidade geral, como auditoria, desempenho ou acessibilidade: pertence a "Ao revisar" de `specs/AGENTS.md`;
 - escolha de arquitetura, de interface ou de código.
@@ -77,7 +77,7 @@ Feito quando cada sugestão tem um destino dado pelo autor.
 | Destino | Com entrevista nesta conversa | Sem entrevista |
 | --- | --- | --- |
 | Aceita | É uma parte nova da ideia: entra na fronteira, pelo passo "Quebrar a ideia em partes" de `/tabularium-entrevistar` | Sugira acionar `/tabularium-entrevistar` com ela |
-| Recusada | Entra em `Fora do plano`, como `Sugestão recusada: …`, para não voltar numa retomada | É só descartada |
-| Guardada | É uma ideia própria: sugira `/tabularium-registrar`, que a separa numa issue | Mostre o texto dela pronto para o autor abrir a issue; `/tabularium-entrevistar` a recebe depois pelo número |
+| Recusada | Entra em `Fora da ideia`, como `Recusado: …`, para não voltar numa retomada | É só descartada |
+| Guardada | É uma ideia própria: sugira `/tabularium-registrar`, que a separa numa issue | Sugira `/tabularium-registrar` com o texto dela, que cria a sugestão; `/tabularium-entrevistar` a recebe depois pelo número |
 
 Feito quando cada sugestão foi encaminhada, e você disse ao autor quais voltaram para a entrevista.

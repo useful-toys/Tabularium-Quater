@@ -563,9 +563,9 @@ Oito skills acompanham o formato, e `npx skills` instala todas de uma vez. A de 
 | `/tabularium-validar` | Confere a forma da especificação com um script |
 | `/tabularium-indexar` | Regenera, com um script, os índices `README.md` de cada pasta |
 | `/tabularium-alocar-codigo` | Dá cada código novo, com scripts: sorteia o prefixo da mudança sem issue e calcula o número de ordem |
-| `/tabularium-entrevistar` | Amadurece uma ideia com o autor, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia |
+| `/tabularium-entrevistar` | Amadurece uma ideia com o autor, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia; se a ideia tem issue, guarda nela o andamento, para outra sessão retomar |
 | `/tabularium-sugerir` | Sugere ideias que complementam a que foi discutida; a aceita volta para a entrevista |
-| `/tabularium-registrar` | Guarda numa issue do GitHub o que ainda está em aberto na ideia; opcional |
+| `/tabularium-registrar` | Cria no GitHub a issue de uma sugestão ou de uma entrevista em curso, e os rótulos da especificação; opcional |
 | `/tabularium-aplicar` | Confere a ramificação da ideia e a entrega na linha principal |
 
 ## Valores
