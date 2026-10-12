@@ -32,6 +32,6 @@ A notação é densa e hierárquica: títulos, uma coisa por linha, sub-itens pa
 - **Resumo:** o objetivo, o que está em discussão e a ramificação. `Objetivo` diz, em palavras do negócio, para que a ideia serve, e não muda com as rodadas. `Em discussão` diz os assuntos de `Em aberto`, numa linha.
 - **Ramificação:** o nome da ramificação da ideia, o prefixo dos códigos dela e o número da última rodada. É por essa linha que uma retomada acha onde continuar.
 - **Em aberto:** toda pergunta ainda sem consenso, feita ou por fazer, na ordem em que será perguntada: a primeira é o próximo ponto. A pergunta que depende da resposta de outra é sub-item dela. A que já foi discutida leva as opções levantadas e a sua sugestão. Seção sem item fica vazia.
-- **Fora da ideia:** o que o autor respondeu deixando de fora, como `Recusado: …`, inclusive a sugestão de `/tabularium-sugerir` que ele recusou; as partes com veredito já existe, defeito, pendente ou codificação; e a parte que saiu para uma issue própria, com o número dela.
+- **Fora da ideia:** o que o autor respondeu deixando de fora, como `Recusado: …`, inclusive a sugestão de `/tabularium-sugerir` que ele descartou; as partes com veredito já existe, defeito, pendente ou codificação; e a parte que saiu para uma issue própria, com o número dela.
 
 O estado da ideia não está no andamento: está no rótulo da issue.

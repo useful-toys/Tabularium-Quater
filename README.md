@@ -90,7 +90,7 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 Para mudar a especificação junto com o agente, há quatro skills, que você aciona:
 
 - `/tabularium-entrevistar` amadurece uma ideia com você, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia. Se a ideia tem issue, guarda nela o andamento, para outra sessão retomar.
-- `/tabularium-sugerir` sugere ideias que complementam a que foi discutida. A que você aceita volta para a entrevista. É opcional.
+- `/tabularium-sugerir` sugere ideias que complementam a que foi discutida. A que você incorpora volta para a entrevista, e a que fica para depois vira uma issue. É opcional.
 - `/tabularium-registrar` cria no GitHub a issue de uma sugestão ou de uma entrevista em curso, e os rótulos da especificação. É opcional.
 - `/tabularium-aplicar` confere a ramificação da ideia e a entrega na linha principal.
 

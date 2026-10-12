@@ -46,7 +46,7 @@ Toda mudança de estado numa issue com andamento grava também o corpo: os dois 
 
 1. Releia o corpo da issue. Se ele não é o que esta sessão leu ou gravou por último, outra sessão escreveu nela: pare e mostre a diferença ao autor.
 2. Envie a ramificação da ideia ao servidor: a sessão que retoma precisa achá-la lá.
-3. Se o corpo ainda é uma sugestão, crie o comentário `## Ideia original` com ele, sem alterar uma palavra.
+3. Se o corpo ainda é uma sugestão e a issue não tem o comentário `## Ideia original`, crie-o com o corpo, sem alterar uma palavra.
 4. Troque o corpo pelo andamento.
 
 Feito quando o corpo da issue é o andamento desta conversa, a ramificação que ele nomeia está no servidor, e a issue tem o comentário `## Ideia original`.

@@ -22,7 +22,7 @@ Pare no primeiro caso que servir:
 
 | O que há | O que fazer |
 | --- | --- |
-| Uma parte a separar, que a entrevista ou `/tabularium-sugerir` apontou | Passo 5; antes dele, o passo 4, se a entrevista ainda não tem issue |
+| Uma parte a separar, que a entrevista apontou | Passo 5; antes dele, o passo 4, se a entrevista ainda não tem issue |
 | Uma entrevista nesta conversa, sem issue | Passo 4 |
 | Um texto junto com o comando, sem entrevista nesta conversa | Passo 3 |
 | Uma entrevista com issue, e nada a separar | Diga ao autor que a entrevista já grava o andamento nela, e encerre |
@@ -53,7 +53,7 @@ Feito quando a issue existe com o andamento no corpo, o comentário `## Ideia or
 
 Uma parte sai para uma issue própria em dois casos:
 
-- **A parte fica para depois:** o autor quer entregar o resto, ou guardou uma sugestão de `/tabularium-sugerir`. Crie uma sugestão, como no passo 3: o corpo conta, em texto livre, o que já foi dito sobre a parte.
+- **A parte fica para depois, e o autor quer entregar o resto:** crie uma sugestão, como no passo 3: o corpo conta, em texto livre, o que já foi dito sobre a parte.
 - **A parte é defeito, e o resto da ideia segue:** crie uma issue só com o rótulo `defeito`. O corpo traz a afirmação que o produto não cumpre, com o texto e o código, e o que o autor relatou.
 
 A issue nova cita a original. No andamento da original, a parte passa a `Fora da ideia`, com o número da issue nova: grave-o por "Gravar o andamento" de [issue.md](issue.md).
