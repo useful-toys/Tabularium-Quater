@@ -83,3 +83,5 @@
   - citada por: GER-R23.2
 - [D23.4](D23.4-indice-desatualizado.md) Como se sabe que um índice de áreas ou de decisões está desatualizado? Regenerando todos, porque o controle de versão mostra o que mudou.
   - citada por: GER-R23.4
+- [Ds5rs.1](Ds5rs.1-area-com-mais-de-um-responsavel.md) O que se faz com a área que pede mais de um responsável? É candidata a divisão em duas, cada uma com o seu responsável.
+  - citada por: ARE-Rs5rs.2

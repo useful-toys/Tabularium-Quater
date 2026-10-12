@@ -119,7 +119,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [ ] ARE-R7  Não há pasta dentro de pasta
 - [x] ARE-R8  A área reúne uma **célula central** e as **Células** que dependem principalmente dela ⟸ [D29]
 - [x] ARE-R9  **Célula** que troca mais **Referências**, feitas e recebidas, com outra área do que com a sua é candidata a mudar de área ⟸ [D30]
-- [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **responsável**, vira pasta
+- [x] ARE-R10  removida
 - [x] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
 - [x] ARE-R12  removida
 - [x] ARE-R23.1  É área todo arquivo `.md` da pasta da **Especificação** cujo nome não começa por `_` e que não é as **Instruções para agentes** nem **parte gerada**, e toda subpasta com `_area.md` ⟸ [D23.1]
@@ -127,6 +127,8 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R23.3  Cada arquivo de uma área em pasta começa pelo título e traz as **Células** em blocos
 - [x] ARE-R23.4  A **frase** vem na linha seguinte ao título do arquivo da área, ou do `_area.md` da pasta
 - [x] ARE-R23.5  Depois da **frase** e antes das **seções** vêm as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- responsável: nome`, nesta ordem; só a **prioridade** pode faltar
+- [x] ARE-Rs5rs.1  Área com mais de 300 **Linhas** vira pasta
+- [x] ARE-Rs5rs.2  Área que pede mais de um **responsável** é candidata a divisão ⟸ [Ds5rs.1]
 - [x] ARE-C1  Criar uma área
   - o arquivo nasce com a **frase**, a **célula central** e o **responsável**, conforme [ARE-R23.5]
 - [ ] ARE-C2  Dividir uma área em duas
