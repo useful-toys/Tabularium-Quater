@@ -18,7 +18,7 @@ Como a Especificação se divide em arquivos e Áreas, o que o Validador checa e
 - Arquivo de produto `APR`: Arquivo com o que vale para o produto inteiro e não pertence a nenhuma Célula.
 - Arquivo de contadores `CTD`: Arquivo extinto, que guardava o maior número já usado em cada sequência da Especificação.
 - Arquivo de dados `ADA`: Arquivo de texto com as instâncias que os Dados de referência de uma Célula citam, guardado à parte das Áreas e lido só sob demanda.
-- Área `ARE`: Agrupamento de Células fortemente relacionadas entre si, guardado em um arquivo.
+- Área `ARE`: Agrupamento de Células fortemente relacionadas entre si, guardado em um arquivo ou em uma pasta.
 - Validador `VRF`: Programa que checa a forma da Especificação, sem interpretar o texto.
 - Indexador `GER`: Programa que produz as partes geradas da Especificação, sem interpretar o texto.
 - Fronteira da área `IND`: Seção gerada no topo de uma Área com o que ela usa de outras áreas e quem reage a ela.

@@ -102,10 +102,10 @@ Arquivo de texto com as instâncias que os **Dados de referência** de uma **Cé
 - [x] ADA-R16  As chaves do primeiro nível do JSON estão entre os **Atributos** e as partes que a regra nomeia, conforme [DRF-R14]
 
 ## **Área**  `ARE`
-Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo.
+Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo ou em uma pasta.
 - **nome**: texto; único
 - **frase**: uma frase que diz o que a área reúne
-- **arquivo**: nome da área em minúsculas, sem acento, com `.md`; único
+- **caminho**: nome da área em minúsculas e sem acento, com `.md` se é arquivo; único
 - **célula central**: 1 **Célula**
 - **prioridade**: núcleo | apoio | genérico; opcional
 - **responsável**: 1 **Responsável de área**
@@ -182,7 +182,7 @@ Programa que produz as **partes geradas** da **Especificação**, sem interpreta
 - [x] GER-R23.4  Regenera sempre todo **Índice de áreas** e todo **Índice de decisões**, e grava só o arquivo cujo conteúdo mudou ⟸ [D23.4]
 - [x] GER-R23.5  Não sobrescreve o `README.md` que não começa com `<!-- gerado; não editar -->`
 - [x] GER-R23.6  Apaga o **Índice de áreas** ou o **Índice de decisões** da pasta que ficou sem o que indexar
-- [x] GER-R23.7  O **Índice de áreas** traz o nome e a frase do produto e, de cada **Área**, em ordem de **Área.arquivo**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **frase de definição** ⟸ [D23.1]
+- [x] GER-R23.7  O **Índice de áreas** traz o nome e a frase do produto e, de cada **Área**, em ordem de **caminho**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **frase de definição** ⟸ [D23.1]
 - [x] GER-R23.8  No **Índice de áreas** da arquitetura e no da interface, os componentes fazem o papel das **Células**
 - [x] GER-R23.9  O **Índice de decisões** traz, de cada **Decisão**, **Decisão.código**, **questão**, **resolução** e os itens e as decisões que a citam, em ordem da data de criação escrita nas **alterações** e, na mesma data, de **Decisão.código** ⟸ [D19]
 - [x] GER-R23.10  No **Índice de decisões**, a **Decisão** que nada cita consta como órfã

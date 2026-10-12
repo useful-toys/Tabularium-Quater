@@ -361,7 +361,7 @@ Siglas de células extintas ou fundidas, como os números, nunca voltam (CEL-R14
 
 ## Áreas
 
-Uma área é um arquivo que agrupa células fortemente relacionadas. Ela se forma em torno de uma **célula central** e das células que dependem principalmente dela (ARE-R8). Área é só organização: não tem sigla, não redefine termos, e mover uma célula entre áreas não muda nenhum identificador.
+Uma área é um arquivo, ou uma pasta, que agrupa células fortemente relacionadas. Ela se forma em torno de uma **célula central** e das células que dependem principalmente dela (ARE-R8). Área é só organização: não tem sigla, não redefine termos, e mover uma célula entre áreas não muda nenhum identificador.
 
 O arquivo da área abre com o título, uma frase que diz o que ela reúne e três linhas: a célula central, a prioridade, que pode faltar, e o responsável (ARE-R23.5).
 
