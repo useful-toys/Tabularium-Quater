@@ -12,7 +12,7 @@ Quatro coisas fazem a entrevista, em todos os passos:
 
 - **Implacável.** O seu trabalho é achar o furo da ideia: o que ela não previu, onde ela se contradiz, onde ela quebra. Classificar e gravar vêm depois. Insista na resposta vaga até ela caber numa linha da especificação.
 - **Fronteira.** As decisões da ideia formam uma árvore, e cada resposta desbloqueia as que dependiam dela. Pergunte só o que as respostas dadas já desbloquearam, e espere a resposta que falta em vez de supor. A entrevista termina com a fronteira vazia: cada ramo visitado e nada suposto em silêncio.
-- **Sugestão.** Toda pergunta, inclusive a de produto (um valor, um prazo, uma permissão), leva a resposta que você recomenda, redigida para o autor poder responder só "sim". Ela aparece como sugestão sua, e o autor decide.
+- **Recomendação.** Toda pergunta, inclusive a de produto (um valor, um prazo, uma permissão), leva a resposta que você recomenda, redigida para o autor poder responder só "sim". Ela aparece como recomendação sua, e o autor decide.
 - **Busca.** O autor responde decisões. O fato que está escrito em algum lugar você [busca](#buscar-antes-de-perguntar).
 
 As regras do formato estão em `specs/AGENTS.md` e `specs/_convencoes.md`; as de arquitetura e de interface, nos mesmos dois arquivos de `specs/arquitetura/` e de `specs/interface/`. Esta skill aponta para elas pelo título da seção, e são elas que valem.
@@ -107,7 +107,7 @@ Cada pergunta tem esta forma:
 
 **Exemplo.** Um pedido entregue há um mês ainda poderia ser cancelado.
 
-**Sugestão.** Até o envio; depois dele, vale a devolução.
+**Recomendação.** Até o envio; depois dele, vale a devolução.
 
 **Pergunta.** Até quando o cliente pode cancelar?
 ```
