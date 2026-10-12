@@ -30,9 +30,7 @@
 - [D21](D21-quando-registrar.md) Quando uma escolha vira decisão? Quando havia ao menos uma alternativa plausível.
   - citada por: DEC-R5
 - [D22](D22-arquivo-de-contadores.md) Como se percebe que dois autores alocaram o mesmo número? Por um arquivo de contadores em que cada item leva um nome curto da última alocação, de modo que a alocação repetida vira conflito no controle de versão.
-  - citada por: D23, D80
-- [D23](D23-renumerar-antes-de-entrar.md) A partir de quando um código não pode mais ser renumerado? A partir da entrada na linha principal do controle de versão.
-  - órfã
+  - citada por: D80
 - [D29](D29-formacao-das-areas.md) Como as células se agrupam em arquivos? Em áreas, cada uma formada em torno de uma célula central e das células que dependem principalmente dela.
   - citada por: ARE-R8
 - [D30](D30-medicao-da-proximidade.md) Como se verifica a proximidade lógica? Pela contagem de referências, que aponta como candidata a mudar de área a célula que troca mais referências com outra área do que com a sua.
