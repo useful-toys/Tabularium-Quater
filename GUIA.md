@@ -314,7 +314,7 @@ Uma afirmação retirada vira **lápide** no mesmo lugar, para que as referênci
 - [ ] PED-R7.1  removida
 ```
 
-A lápide nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado (LAP-R4).
+A lápide nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado (LAP-R6).
 
 Uma correção de redação mantém o identificador e a marca. Uma mudança de significado retira a afirmação e cria outra (LIN-R3), que nasce `[ ]`: a lápide e a afirmação nova ficam pendentes até o produto acompanhar, e o agente enxerga a mudança sem precisar comparar versões. Mover uma célula de uma área para outra não muda nenhum identificador (ARE-R3).
 
