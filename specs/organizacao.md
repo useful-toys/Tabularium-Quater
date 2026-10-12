@@ -6,6 +6,7 @@ Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validad
 
 ## Linguagem
 - **externo**: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
+- **frase de abertura**: a frase na linha seguinte ao título de um arquivo, que diz o que ele reúne
 - **parte gerada**: seção ou arquivo que o **Indexador** produz, iniciado por `<!-- gerado; não editar -->`
 - **Índice de áreas**: **parte gerada**, no arquivo `README.md`, que lista as **Áreas** de uma pasta e as **Células** de cada uma
 - **Índice de decisões**: **parte gerada**, no arquivo `README.md`, que lista as **Decisões** de uma pasta
@@ -20,7 +21,7 @@ Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que 
 - 0..N **Arquivo de dados**
 - evento: **Especificação alterada**
 - [x] ESP-R1  removida
-- [x] ESP-R2  A única prosa é a **frase de definição** de cada **Célula**
+- [x] ESP-R2  A única prosa é uma frase logo abaixo de um título: a **frase de definição** de cada **Célula** e a **frase de abertura** de um arquivo
 - [x] ESP-R3  removida
 - [x] ESP-R4  Ordem de leitura: **Arquivo de convenções**, **Arquivo de produto**, qualquer **Área**
 - [x] ESP-R5  Histórico, justificativas e explicações didáticas ficam fora do texto ⟸ [D72]
@@ -104,7 +105,7 @@ Arquivo de texto com as instâncias que os **Dados de referência** de uma **Cé
 ## **Área**  `ARE`
 Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arquivo ou em uma pasta.
 - **nome**: texto; único
-- **frase**: uma frase que diz o que a área reúne
+- **frase**: a **frase de abertura** da área
 - **caminho**: nome da área em minúsculas e sem acento, com `.md` se é arquivo; único
 - **célula central**: 1 **Célula**
 - **prioridade**: núcleo | apoio | genérico; opcional
@@ -184,7 +185,7 @@ Programa que produz as **partes geradas** da **Especificação**, sem interpreta
 - [x] GER-R23.4  Regenera sempre todo **Índice de áreas** e todo **Índice de decisões**, e grava só o arquivo cujo conteúdo mudou ⟸ [D23.4]
 - [x] GER-R23.5  Não sobrescreve o `README.md` que não começa com `<!-- gerado; não editar -->`
 - [x] GER-R23.6  Apaga o **Índice de áreas** ou o **Índice de decisões** da pasta que ficou sem o que indexar
-- [x] GER-R23.7  O **Índice de áreas** traz o nome e a frase do produto e, de cada **Área**, em ordem de **caminho**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **frase de definição** ⟸ [D23.1]
+- [x] GER-R23.7  O **Índice de áreas** traz o nome e a **frase de abertura** do **Arquivo de produto** e, de cada **Área**, em ordem de **caminho**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **frase de definição** ⟸ [D23.1]
 - [x] GER-R23.8  No **Índice de áreas** da arquitetura e no da interface, os componentes fazem o papel das **Células**
 - [x] GER-R23.9  O **Índice de decisões** traz, de cada **Decisão**, **Decisão.código**, **questão**, **resolução** e os itens e as decisões que a citam, em ordem da data de criação escrita nas **alterações** e, na mesma data, de **Decisão.código** ⟸ [D19]
 - [x] GER-R23.10  No **Índice de decisões**, a **Decisão** que nada cita consta como órfã
