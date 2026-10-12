@@ -48,6 +48,7 @@ const casos = [
   ['ARE-R11', 'seções da área fora de ordem', troca('pedidos.md', '## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n\n## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n', '## Tipos\n- **Quantidade**: inteiro; de 1 a 99\n\n## Linguagem\n- **carrinho**: **Pedido** que ainda não foi fechado\n')],
   ['APR-R9', 'seção que não existe em _produto.md', troca('_produto.md', '## Fora de escopo', '## Futuro')],
   ['APR-R9', 'seções de _produto.md fora de ordem', troca('_produto.md', '## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n\n## Fora de escopo\n- Entrega dos produtos · nesta versão\n', '## Fora de escopo\n- Entrega dos produtos · nesta versão\n\n## Regras globais\n- [ ] PRD-Q1  Toda tela responde em até 3 s\n')],
+  ['APR-R9', 'Diferenciais depois de Atores', troca('_produto.md', '## Tipos comuns\n', '## Diferenciais\n- Vende sem cadastro prévio\n\n## Tipos comuns\n')],
   ['CEL-R2', 'célula sem frase de definição', troca('pedidos.md', 'Produto e **Quantidade** dentro de um **Pedido**.\n', '')],
   ['CEL-R2', 'linha em branco entre o título e a definição', troca('pedidos.md', '## **Item de pedido**  `ITE`\n', '## **Item de pedido**  `ITE`\n\n')],
   ['CEL-R3', 'visão antes de capacidade', troca('pedidos.md', '- [ ] PED-C1  Fechar o pedido\n  - exige: ao menos um **Item de pedido**\n  - o pedido passa a esperar o pagamento\n- [ ] PED-V1 · atendente  Ver os pedidos do dia\n', '- [ ] PED-V1 · atendente  Ver os pedidos do dia\n- [ ] PED-C1  Fechar o pedido\n  - exige: ao menos um **Item de pedido**\n  - o pedido passa a esperar o pagamento\n')],
@@ -90,6 +91,7 @@ const casos = [
   ['ATO-R7', 'ator sem acesso', troca('_produto.md', '- **Tempo**: dispara os prazos', '- **Tempo**: dispara os prazos\n- Visitante')],
   ['JOR-R2', 'jornada sem as setas', troca('_produto.md', '[PED-C1] → [PED-V1]', '[PED-C1], [PED-V1]')],
   ['APR-R10', 'Propósito não começa pelo problema', troca('_produto.md', '- Problema: ', '- Motivo: ')],
+  ['APR-R10', 'diferencial com sub-item', troca('_produto.md', '## Atores\n', '## Diferenciais\n- Vende sem cadastro prévio\n  - nem senha\n\n## Atores\n')],
   ['APR-R10', 'externo sem papel', troca('_produto.md', '- **Banco** · pagamentos', '- Banco')],
   ['APR-R10', 'sub-item de externo com verbo desconhecido', troca('_produto.md', '  - fornece:', '  - devolve:')],
   ['APR-R10', 'fora de escopo sem horizonte', troca('_produto.md', ' · nesta versão', '')],
@@ -244,6 +246,10 @@ test('VRF-R23.2: a tabela de áreas que sobrou em _produto.md é acusada, com o 
   const violacoes = violacoesCom(troca('_produto.md', '## Atores\n', '## Áreas\n| Área | Célula central | Prioridade | Dono | Arquivo |\n| --- | --- | --- | --- | --- |\n| Pedidos | **Pedido** | núcleo | vendas | pedidos.md |\n\n## Atores\n'));
   assert.deepEqual(violacoes.map((v) => `${v.arquivo}:${v.linha} ${v.regra}`), ['_produto.md:9 APR-R9']);
   assert.match(violacoes[0].frase, /leve a célula central, a prioridade e o dono de cada área para o arquivo dela/);
+});
+
+test('APR-R10: a seção Diferenciais vem depois do Propósito, com itens de texto livre', () => {
+  assert.deepEqual(violacoesCom(troca('_produto.md', '## Atores\n', '## Diferenciais\n- Vende sem cadastro prévio\n- Registra o **Pedido** num passo ⟸ [D1]\n\n## Atores\n')), []);
 });
 
 test('VRF-R23.1: o README.md não é lido, em nenhuma pasta', () => {

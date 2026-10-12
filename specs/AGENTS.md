@@ -7,7 +7,7 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 ## Antes de qualquer tarefa
 
 1. Leia `_convencoes.md`: é a legenda de tudo o que segue.
-2. Leia `_produto.md`: propósito, atores, tipos comuns, jornadas, externos e regras globais.
+2. Leia `_produto.md`: propósito, diferenciais, atores, tipos comuns, jornadas, externos e regras globais.
 3. Leia só as áreas que a tarefa toca. Para escolher, leia `README.md`, o índice gerado das áreas, que traz a frase de cada uma e as células dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que não começam por `_`. O Índice no topo de cada área lista o que ela usa de outras, as reações de outras áreas aos eventos dela e as perguntas abertas que a tocam; abra essas outras só se precisar.
 4. Se a tarefa toca uma linha que termina em `⟵ [Pnn]`, ou uma área com perguntas no Índice, leia a pergunta em `_perguntas.md`. A linha é provisória.
 5. Não leia `decisoes/` por rotina. Abra uma decisão só quando precisar do porquê de um item que termina em `⟸ [Dnn]`, ou antes de alterá-lo.
@@ -60,6 +60,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 | Sistema ou organização fora do produto que alguma regra pressupõe | `Externos` em `_produto.md`, com sub-itens do que guarda, fornece, recebe ou impõe |
 | O porquê de uma escolha não óbvia, que tinha alternativa | Decisão em `decisoes/_produto/` ou `decisoes/<area>/`, na pasta da área cujos itens mais a citam; no item, só a marca `⟸ [Dnn]` no fim |
 | Problema que o produto resolve | Primeira linha de `Propósito` em `_produto.md` |
+| O que distingue o produto das alternativas | Item de `Diferenciais` em `_produto.md` |
 | Escolha técnica: como o produto é construído | Fora da especificação, no documento de arquitetura; aqui, só a consequência que um ator ou o negócio observa, se houver |
 
 A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira cada linha na posição do seu papel.
@@ -132,7 +133,7 @@ Confira também se toda regra motivada por uma organização de fora (um órgão
 - Documentos derivados são redigidos por você. O Índice das áreas, o mapa entre áreas, o glossário e os índices `README.md` de cada pasta não são: saem do indexador, e você não os escreve à mão.
 - Gere a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
 - Cite a origem de cada frase.
-- Documentos tradicionais saem assim: visão, de `Propósito`, atores, externos e fora de escopo; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.
+- Documentos tradicionais saem assim: visão, de `Propósito`, diferenciais, atores, externos e fora de escopo; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.
 - Caso de uso: ator e objetivo vêm da C; pré-condições, dos critérios `exige:`; fluxos alternativos e exceções, dos critérios `se …:`; pós-condições, dos critérios sem prefixo; efeitos em outras células, das reações; sequência entre capacidades, das jornadas. Não invente passos de interface.
 - Liste no fim as frases que precisaram de algo que não está na especificação: são lacunas a levar ao dono da área.
 - Nunca grave um documento derivado dentro desta pasta, nem copie dele de volta para a especificação.

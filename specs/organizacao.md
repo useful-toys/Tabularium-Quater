@@ -43,7 +43,7 @@ Legenda que ensina a ler e escrever no formato, igual em todos os projetos.
 ## **Arquivo de produto**  `APR`
 Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célula**.
 - **arquivo**: `_produto.md`; imutável
-- **seções**: `Propósito`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias
+- **seções**: `Propósito`, `Diferenciais`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias
 - [ ] APR-R1  Sigla das **afirmações**: `PRD`
 - [x] APR-R2  Tudo o que um **Documento derivado** precisaria afirmar sobre o conjunto, e não se deduz das **Áreas**, mora aqui
 - [x] APR-R3  **Regra** global que cita uma **Célula** pertence ao bloco dessa célula
@@ -58,6 +58,7 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 | Seção | Forma |
 | --- | --- |
 | `Propósito` | `- Rótulo: texto`, com rótulo livre; o primeiro é `Problema`, conforme [APR-R7] |
+| `Diferenciais` | `- texto` |
 | `Atores` | conforme [ATO-R7] |
 | `Tipos comuns` | conforme [TIP-R2] |
 | `Jornadas` | conforme [JOR-R2] |

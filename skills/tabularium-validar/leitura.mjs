@@ -6,7 +6,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 export const MARCADOR_GERADO = '<!-- gerado; não editar -->';
-export const SECOES_PRODUTO = ['Propósito', 'Atores', 'Tipos comuns', 'Jornadas', 'Externos', 'Regras globais', 'Fora de escopo'];
+export const SECOES_PRODUTO = ['Propósito', 'Diferenciais', 'Atores', 'Tipos comuns', 'Jornadas', 'Externos', 'Regras globais', 'Fora de escopo'];
 export const SECOES_AREA = ['Índice', 'Linguagem', 'Tipos'];
 export const ROTULOS_DECISAO = ['Contexto', 'Alternativas descartadas', 'Consequências'];
 // As linhas que a área traz abaixo da frase, na ordem em que vêm.
@@ -236,6 +236,8 @@ function lerProduto(brutas) {
     if (secao === 'Propósito') {
       m = t.match(/^([^:]+): (\S.*)$/);
       linha = m ? { n, bruto, forma: 'proposito', rotulo: m[1], ...item } : estranha(n, bruto, 'um item de propósito, como "- Problema: texto"', 'APR-R10');
+    } else if (secao === 'Diferenciais') {
+      linha = { n, bruto, forma: 'diferencial', ...item };
     } else if (secao === 'Atores') {
       m = t.match(/^([^:]+): (\S.*)$/);
       linha = m ? { n, bruto, forma: 'ator', ...nomear(m[1]), padrao: /; padrão$/.test(m[2]), ...item } : estranha(n, bruto, 'um ator, como "- **Nome**: acesso"', 'ATO-R7');

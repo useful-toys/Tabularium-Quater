@@ -36,8 +36,9 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - J  jornada: sequência de C e V; só em `_produto.md`
 
 ## Arquivo de produto
-- seções: `Propósito`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias, sem outras
+- seções: `Propósito`, `Diferenciais`, `Atores`, `Tipos comuns`, `Jornadas`, `Externos`, `Regras globais`, `Fora de escopo`, nesta ordem, omitidas as vazias, sem outras
 - `Propósito`: `- Rótulo: texto`, com rótulo livre; o primeiro é `Problema`
+- `Diferenciais`: `- texto`
 - `Atores`: `- **Nome**: acesso`; há exatamente um padrão, que termina com `; padrão`
 - `Tipos comuns`: como os itens de Tipos
 - `Jornadas`: `- PRD-J1.1  Nome: [ID] → [ID]`

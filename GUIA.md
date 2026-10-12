@@ -77,7 +77,7 @@ specs/
 
 Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Para escolher a área, há o `README.md`, índice gerado que traz a frase de cada uma e as células dela (GER-R23.7). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
 
-`_produto.md` guarda só o que vale para o conjunto e não pertence a nenhuma célula: o propósito (começando pelo problema que o produto resolve), os atores, os tipos comuns, as jornadas, os externos, as regras globais e o que está fora de escopo.
+`_produto.md` guarda só o que vale para o conjunto e não pertence a nenhuma célula: o propósito (começando pelo problema que o produto resolve), os diferenciais, os atores, os tipos comuns, as jornadas, os externos, as regras globais e o que está fora de escopo.
 
 ## Como reconhecer uma célula
 
@@ -453,7 +453,7 @@ Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de
 
 | Documento | De onde sai |
 | --- | --- |
-| Visão | `Propósito`, atores, externos e fora de escopo |
+| Visão | `Propósito`, diferenciais, atores, externos e fora de escopo |
 | Modelo de domínio | Linhas de modelo e relações entre células |
 | Catálogo de regras de negócio | Todas as R |
 | Especificação suplementar | As Q e as regras globais |

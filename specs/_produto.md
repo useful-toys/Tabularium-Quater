@@ -4,14 +4,14 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 ## Propósito
 - Problema: **Especificações** espalhadas em documentos por tipo repetem informação, divergem entre si e não podem ser verificadas por programa
 - Público: quem especifica produtos e quer extrair da **Especificação** os demais documentos
-- Não técnico: descreve o que o sistema é e o que faz para o negócio; os assuntos técnicos começam no documento de arquitetura ⟸ [D74]
-- Não é documentação do negócio: como o negócio funciona sem o sistema fica fora
-- Diferencial: tudo o que se sabe sobre uma **Célula** mora num só bloco ⟸ [D24]
-- Diferencial: cada **afirmação** existe uma vez e é citável por **Identificador**
-- Diferencial: as **Decisões** relevantes ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação**
-- Diferencial: legível por pessoas sem renderização e econômica para agentes de IA, que leem só a **Área** de que precisam
-- Diferencial: um programa, o **Validador**, checa a forma da **Especificação**, e outro, o **Indexador**, produz o **Índice**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
-- Diferencial: os **Documentos derivados** são redigidos por agente de IA a partir da **Especificação**, com a origem de cada frase
+
+## Diferenciais
+- Tudo o que se sabe sobre uma **Célula** mora num só bloco ⟸ [D24]
+- Cada **afirmação** existe uma vez e é citável por **Identificador**
+- As **Decisões** relevantes ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação**
+- Legível por pessoas sem renderização e econômica para agentes de IA, que leem só a **Área** de que precisam
+- Um programa, o **Validador**, checa a forma da **Especificação**, e outro, o **Indexador**, produz o **Índice**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
+- Os **Documentos derivados** são redigidos por agente de IA a partir da **Especificação**, com a origem de cada frase
 
 ## Atores
 - **Autor**: altera a **Especificação**; pessoa ou agente de IA; padrão
@@ -50,7 +50,8 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - [ ] PRD-Q2  O texto está no idioma do produto especificado
 
 ## Fora de escopo
-- Arquitetura e detalhes técnicos · permanente
+- Arquitetura e detalhes técnicos · permanente ⟸ [D74]
+- Documentação do negócio: como ele funciona sem o sistema · permanente
 - Detalhe de interface: formato, máscara, leiaute · permanente
 - Histórico e justificativas no texto · permanente
 - Ideias e pedidos não comprometidos · permanente
