@@ -54,7 +54,7 @@ const casos = [
   ['CEL-R3', 'linha de modelo depois de afirmação', troca('pedidos.md', '- [x] PED-R2  removida\n', '- [x] PED-R2  removida\n- **observação**: texto\n')],
   ['CEL-R3', 'papel que não cabe em bloco de célula', troca('pedidos.md', '- [ ] ITE-R1', '- [ ] ITE-J1')],
   ['CRT-R6', 'sub-item numa regra', troca('pedidos.md', 'o pedido não muda ⟸ [D1]\n', 'o pedido não muda ⟸ [D1]\n  - nem a pedido do cliente\n')],
-  ['IND-R2', 'Índice escrito à mão', troca('pedidos.md', '## Linguagem\n', '## Índice\n- usa **Cliente**, de fora\n\n## Linguagem\n')],
+  ['IND-R2', 'Fronteira escrita à mão', troca('pedidos.md', '## Linguagem\n', '## Fronteira\n- usa **Cliente**, de fora\n\n## Linguagem\n')],
   ['DEC-R1', 'código do título difere do arquivo', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', '`D1`', '`D2`')],
   ['DEC-R1', 'título sem interrogação', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'pode mudar?', 'pode mudar')],
   ['DEC-R1', 'decisão sem resolução', troca('decisoes/pedidos/D1-pedido-pago-fixo.md', 'Não, fica como está.\n', '')],
@@ -398,7 +398,7 @@ test('VRF-R22: pasta que não é de área, de decisões nem de dados é ignorada
 test('VRF-R13: o conteúdo gerado não é lido', () => {
   const gerado = '<!-- gerado; não editar -->';
   assert.deepEqual(violacoesCom({
-    ...troca('pedidos.md', '## Linguagem\n', `## Índice\n${gerado}\nqualquer coisa\n- [ok] sem forma\n\n## Linguagem\n`),
+    ...troca('pedidos.md', '## Linguagem\n', `## Fronteira\n${gerado}\nqualquer coisa\n- [ok] sem forma\n\n## Linguagem\n`),
     'glossario.md': `${gerado}\nqualquer coisa\n`,
     'decisoes/pedidos/README.md': `${gerado}\nqualquer coisa\n`,
   }), []);

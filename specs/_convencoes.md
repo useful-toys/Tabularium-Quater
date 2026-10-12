@@ -10,7 +10,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - `dados/`: arquivos de dados de referência, em JSON ou CSV, lidos só sob demanda; cada um é citado por exatamente uma regra; o nome é a sigla da célula que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`; a pasta não tem subpastas nem outros arquivos
 - `<area>.md`: uma área; lida em qualquer ordem; é área todo arquivo `.md` desta pasta cujo nome não começa por `_` e que não é `AGENTS.md` nem `README.md`
 - `<area>/`: área dividida; é área toda subpasta com `_area.md`, que traz a frase, as linhas da área e as seções anteriores às células; cada outro arquivo começa pelo título e traz as células em blocos
-- `README.md`: índice das áreas, com a frase de cada uma e as células dela; gerado por programa e nunca editado
+- `README.md`: índice de áreas, com a frase de cada uma e as células dela; gerado por programa e nunca editado
 
 ## Estrutura
 - `#` arquivo · título de bloco · item de lista · critério (sub-item)
@@ -24,7 +24,7 @@ Legenda para ler e escrever uma especificação neste formato. Este arquivo é i
 - num bloco de célula, só C e V têm sub-itens
 - afirmação: linha que pode ser verificada no produto; papéis R, Q, C, V, T e J
 - abertura de uma área: o título, a frase que diz o que ela reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- dono: nome`, nesta ordem; só a prioridade pode faltar
-- seções de uma área, depois da abertura e antes das células: Índice (gerado), Linguagem, Tipos, nesta ordem, sem outras
+- seções de uma área, depois da abertura e antes das células: Fronteira (gerada), Linguagem, Tipos, nesta ordem, sem outras
 - item de Linguagem: `- **termo**: definição`; item de Tipos: `- **Nome**: base; restrições`, ou `- **Nome**:` e os valores separados por `|`
 
 ## Papéis

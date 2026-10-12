@@ -25,7 +25,7 @@ Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes
 
 1. Leia `../_convencoes.md` e depois `_convencoes.md` desta pasta, que só acrescenta à primeira.
 2. Leia `_interface.md`: meios, estilos e diretrizes.
-3. Leia só a área que a tarefa toca. Para escolher, leia `README.md`, o índice gerado das áreas, que traz a frase de cada uma e os componentes dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que a legenda não lista pelo nome.
+3. Leia só a área que a tarefa toca. Para escolher, leia `README.md`, o índice de áreas, gerado, que traz a frase de cada uma e os componentes dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que a legenda não lista pelo nome.
 4. Abra uma decisão de `decisoes/` só quando precisar do porquê de um item que termina em `⟸ [Dnn]`, ou antes de alterá-lo.
 
 `ideia.md` e `decisoes.md`, quando existem, são memória informal de como este formato nasceu. O que vale como interface são os outros arquivos.

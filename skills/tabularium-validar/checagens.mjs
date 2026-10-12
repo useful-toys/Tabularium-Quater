@@ -116,7 +116,7 @@ function checarArea(arquivo, dicionario, acusar) {
       const posicao = SECOES_AREA.indexOf(l.nome);
       if (haCelula || posicao <= ultimaSecao) acusar(l.n, 'ARE-R11', `a seção "${l.nome}" está repetida ou fora da ordem; ${lista(SECOES_AREA)} vêm nesta ordem, antes das células`);
       else ultimaSecao = posicao;
-      if (l.nome === 'Índice' && seguinte?.forma !== 'marcador-gerado') acusar(l.n, 'IND-R2', 'o Índice é gerado por programa e começa com a linha "<!-- gerado; não editar -->"; não o escreva à mão');
+      if (l.nome === 'Fronteira' && seguinte?.forma !== 'marcador-gerado') acusar(l.n, 'IND-R2', 'a Fronteira é gerada por programa e começa com a linha "<!-- gerado; não editar -->"; não a escreva à mão');
     }
     if (l.forma === 'titulo-celula') {
       haCelula = true;

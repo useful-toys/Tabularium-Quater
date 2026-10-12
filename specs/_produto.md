@@ -10,7 +10,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - Diferencial: cada **afirmação** existe uma vez e é citável por **Identificador**
 - Diferencial: as **Decisões** relevantes ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação**
 - Diferencial: legível por pessoas sem renderização e econômica para agentes de IA, que leem só a **Área** de que precisam
-- Diferencial: um programa, o **Validador**, checa a forma da **Especificação**, e outro, o **Indexador**, produz o **Índice**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
+- Diferencial: um programa, o **Validador**, checa a forma da **Especificação**, e outro, o **Indexador**, produz o **Índice de áreas**, o **Índice de decisões**, a **Fronteira da área**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
 - Diferencial: os **Documentos derivados** são redigidos por agente de IA a partir da **Especificação**, com a origem de cada frase
 
 ## Atores

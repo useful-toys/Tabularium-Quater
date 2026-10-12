@@ -23,7 +23,7 @@
   - citada por: DEC-R20
 - [D17](D17-linguagem-da-decisao.md) Que rigor de linguagem vale no texto de uma decisão? Os termos da especificação, sem negrito.
   - citada por: DEC-R11
-- [D19](D19-indice-de-decisoes.md) Como se acha uma decisão sem ler todas? Por um índice em cada pasta de decisões, produzido pelo indexador.
+- [D19](D19-indice-de-decisoes.md) Como se acha uma decisão sem ler todas? Por um índice de decisões em cada pasta de decisões, produzido pelo indexador.
   - citada por: GER-R23.9, D23.2
 - [D20](D20-decisao-cita-decisao.md) Uma decisão pode citar outra? Sim, com a mesma marca usada pelos itens da especificação.
   - citada por: DEC-R12
@@ -45,7 +45,7 @@
   - citada por: ESP-R6, D60
 - [D68](D68-checagem-sintatica.md) Que tipo de checagem o validador faz? Só checagem sintática.
   - citada por: VRF-R3, D77, D90, D114
-- [D70](D70-indice-e-mapa-gerados.md) O índice de cada área e o mapa entre áreas são escritos ou gerados? São gerados, nunca escritos.
+- [D70](D70-fronteira-e-mapa-gerados.md) A fronteira de cada área e o mapa entre áreas são escritos ou gerados? São gerados, nunca escritos.
   - citada por: IND-R1, MAP-R1
 - [D71](D71-derivado-nao-se-edita.md) Um documento derivado pode ser editado à mão? Não, ele é sempre refeito a partir da especificação.
   - citada por: DER-R1
@@ -77,9 +77,9 @@
   - citada por: VRF-R28, D52, D115
 - [D23.1](D23.1-areas-listadas-por-programa.md) As áreas de uma pasta são listadas à mão ou por programa? Por programa, num índice de áreas que o indexador produz.
   - citada por: APR-R23.1, ARE-R23.1, GER-R23.7
-- [D23.2](D23.2-nome-do-arquivo-de-indice.md) Como se chama o arquivo de índice de uma pasta? É `README.md`, em toda pasta que tem índice.
+- [D23.2](D23.2-nome-do-arquivo-de-indice.md) Como se chama o arquivo de um índice de áreas ou de decisões? É `README.md`, em toda pasta que tem índice.
   - citada por: GER-R23.1
 - [D23.3](D23.3-indexar-com-violacoes.md) O indexador recusa a especificação com violação? Não, indexa o que consegue ler e declara no índice o que não leu.
   - citada por: GER-R23.2
-- [D23.4](D23.4-indice-desatualizado.md) Como se sabe que um índice de pasta está desatualizado? Regenerando todos, porque o controle de versão mostra o que mudou.
+- [D23.4](D23.4-indice-desatualizado.md) Como se sabe que um índice de áreas ou de decisões está desatualizado? Regenerando todos, porque o controle de versão mostra o que mudou.
   - citada por: GER-R23.4

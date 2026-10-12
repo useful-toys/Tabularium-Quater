@@ -21,7 +21,7 @@ Como a Especificação se divide em arquivos e Áreas, o que o Validador checa e
 - Área `ARE`: Agrupamento de Células fortemente relacionadas entre si, guardado em um arquivo.
 - Validador `VRF`: Programa que checa a forma da Especificação, sem interpretar o texto.
 - Indexador `GER`: Programa que produz as partes geradas da Especificação, sem interpretar o texto.
-- Índice `IND`: Seção gerada no topo de uma Área com o que ela usa de outras áreas.
+- Fronteira da área `IND`: Seção gerada no topo de uma Área com o que ela usa de outras áreas e quem reage a ela.
 - Mapa entre áreas `MAP`: Lista gerada de quais Áreas usam Termos e reagem a Eventos de quais outras.
 - Documento derivado `DER`: Documento produzido a partir da Especificação para um público ou uma finalidade, como um manual ou um plano de testes.
 - Decisão `DEC`: Justificativa de um ponto não óbvio do produto, guardada à parte das Áreas e do Arquivo de produto e lida só sob demanda.

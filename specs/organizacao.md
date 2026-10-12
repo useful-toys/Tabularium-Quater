@@ -6,6 +6,8 @@ Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validad
 
 ## Linguagem
 - **externo**: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
+- **Índice de áreas**: arquivo `README.md` gerado que lista as **Áreas** de uma pasta e as **Células** de cada uma
+- **Índice de decisões**: arquivo `README.md` gerado que lista as **Decisões** de uma pasta
 
 ## **Especificação**  `ESP`
 Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que descreve um produto inteiro e é a fonte única da verdade sobre ele.
@@ -26,7 +28,7 @@ Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que 
 - [ ] ESP-R8  Uma especificação descreve um só produto, com uma só linguagem; significados de um **Termo** que não se conciliam indicam dois produtos, cada um com a sua especificação ⟸ [D06]
 - [x] ESP-R9  Abaixo do título do arquivo, todo título é de **Célula** ou de seção prevista
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
-  - o **Índice** da **Área** diz o que ela usa de fora
+  - a **Fronteira da área** diz o que ela usa de fora
 
 ## **Instruções para agentes**  `AGT`
 Arquivo que ensina agentes de IA a trabalhar no formato, igual em todos os projetos.
@@ -65,7 +67,7 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 | `Regras globais` | **afirmações** de sigla `PRD` |
 | `Fora de escopo` | `- texto · permanente` ou `- texto · nesta versão` |
 
-- [x] APR-R23.1  Não lista as **Áreas**; a lista delas é o índice de áreas, que o **Indexador** produz ⟸ [D23.1]
+- [x] APR-R23.1  Não lista as **Áreas**; a lista delas é o **Índice de áreas**, que o **Indexador** produz ⟸ [D23.1]
 
 ## **Arquivo de contadores**  `CTD`
 Arquivo extinto, que guardava o maior número já usado em cada sequência da **Especificação**.
@@ -106,7 +108,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - **célula central**: 1 **Célula**
 - **prioridade**: núcleo | apoio | genérico; opcional
 - **dono**: 1 **Dono de área**
-- **seções**: `Índice`, `Linguagem`, `Tipos` e as **Células**, nesta ordem, sendo opcionais as três primeiras
+- **seções**: `Fronteira`, `Linguagem`, `Tipos` e as **Células**, nesta ordem, sendo opcionais as três primeiras
 - [x] ARE-R1  removida
 - [ ] ARE-R2  Área não tem sigla
 - [x] ARE-R3  Mover uma **Célula** de área não muda nenhum **Identificador**
@@ -161,7 +163,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R27  Nas pastas de arquitetura e de interface, não lê `_achados.md`
 - [x] VRF-R28  Quanto aos **Termos**, checa só o negrito e as definições; o texto sem negrito não é checado ⟸ [D114]
 - [x] VRF-R22.1  movida → [ARE-R23.2]
-- [x] VRF-R23.1  Não lê os arquivos `README.md`, que são índices produzidos pelo **Indexador**
+- [x] VRF-R23.1  Não lê os arquivos `README.md`, que são o **Índice de áreas** e o **Índice de decisões**
 - [x] VRF-R23.2  Acusa a seção `Áreas` que sobrou no **Arquivo de produto**, com uma frase que diz para onde vão a **célula central**, a **prioridade** e o **dono**
 - [x] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação**
@@ -173,34 +175,34 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 Programa que produz as partes geradas da **Especificação**, sem interpretar o texto. (~~gerador~~)
 - [ ] GER-R1  Ao **Especificação alterada**: regenera as partes geradas
 - [x] GER-R2  É determinístico: a mesma **Especificação** dá sempre as mesmas partes geradas
-- [x] GER-R23.1  Cada índice de pasta é um arquivo `README.md`, que começa com `<!-- gerado; não editar -->` ⟸ [D23.2]
+- [x] GER-R23.1  O **Índice de áreas** e o **Índice de decisões** são arquivos `README.md`, que começam com `<!-- gerado; não editar -->` ⟸ [D23.2]
 - [x] GER-R23.2  Indexa o que consegue ler, mesmo de uma **Especificação** com violações ⟸ [D23.3]
-- [x] GER-R23.3  O arquivo que não consegue ler consta do índice da pasta dele como não indexado
-- [x] GER-R23.4  Regenera sempre todos os índices de pasta, e grava só o arquivo cujo conteúdo mudou ⟸ [D23.4]
+- [x] GER-R23.3  O arquivo que não consegue ler consta do **Índice de áreas** ou do **Índice de decisões** da pasta dele como não indexado
+- [x] GER-R23.4  Regenera sempre todo **Índice de áreas** e todo **Índice de decisões**, e grava só o arquivo cujo conteúdo mudou ⟸ [D23.4]
 - [x] GER-R23.5  Não sobrescreve o `README.md` que não começa com `<!-- gerado; não editar -->`
-- [x] GER-R23.6  Apaga o índice da pasta que ficou sem o que indexar
-- [x] GER-R23.7  O índice de áreas traz o nome e a frase do produto e, de cada **Área**, em ordem de **Área.arquivo**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **definição** ⟸ [D23.1]
-- [x] GER-R23.8  No índice de áreas da arquitetura e no da interface, os componentes fazem o papel das **Células**
-- [x] GER-R23.9  O índice de uma pasta de **Decisões** traz, de cada uma, **Decisão.código**, **questão**, **resolução** e os itens e as decisões que a citam, em ordem da data de criação escrita nas **alterações** e, na mesma data, de **Decisão.código** ⟸ [D19]
-- [x] GER-R23.10  No índice, a **Decisão** que nada cita consta como órfã
+- [x] GER-R23.6  Apaga o **Índice de áreas** ou o **Índice de decisões** da pasta que ficou sem o que indexar
+- [x] GER-R23.7  O **Índice de áreas** traz o nome e a frase do produto e, de cada **Área**, em ordem de **Área.arquivo**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **definição** ⟸ [D23.1]
+- [x] GER-R23.8  No **Índice de áreas** da arquitetura e no da interface, os componentes fazem o papel das **Células**
+- [x] GER-R23.9  O **Índice de decisões** traz, de cada **Decisão**, **Decisão.código**, **questão**, **resolução** e os itens e as decisões que a citam, em ordem da data de criação escrita nas **alterações** e, na mesma data, de **Decisão.código** ⟸ [D19]
+- [x] GER-R23.10  No **Índice de decisões**, a **Decisão** que nada cita consta como órfã
 - [x] GER-C1  removida
 - [x] GER-C23.1  Indexar as pastas ⟸ [D78]
-  - índice de áreas na pasta da **Especificação**, na de arquitetura e na de interface, conforme [GER-R23.7]
-  - índice em cada pasta de **Decisões**, conforme [GER-R23.9]
+  - **Índice de áreas** na pasta da **Especificação**, na de arquitetura e na de interface, conforme [GER-R23.7]
+  - **Índice de decisões** em cada pasta de **Decisões**, conforme [GER-R23.9]
   - se algum arquivo não pôde ser lido: os demais são indexados, conforme [GER-R23.2]
 - [ ] GER-C23.2  Gerar as demais partes derivadas ⟸ [D78]
   - exige: nenhuma violação da **Especificação**
-  - **Índice** de cada **Área**
+  - **Fronteira da área**, em cada **Área**
   - **Mapa entre áreas**
   - **Glossário**
   - lista de dados que identificam pessoas, a partir dos **Atributos** marcados **pessoal**
   - definições de link das **Referências** a **Linhas** [REF-R4]
   - definições de link das citações de **Arquivos de dados** [DRF-R15]
 
-## **Índice**  `IND`
-Seção gerada no topo de uma **Área** com o que ela usa de outras áreas.
+## **Fronteira da área**  `IND`
+Seção gerada no topo de uma **Área** com o que ela usa de outras áreas e quem reage a ela.
 - **conteúdo**: lista de **Termos** e **Eventos** de outras **Áreas** usados aqui, de **reações** de outras áreas a eventos daqui e de **Perguntas** que tocam a área
-- [x] IND-R1  Nunca é editado à mão ⟸ [D70]
+- [x] IND-R1  Nunca é editada à mão ⟸ [D70]
 - [x] IND-R2  Começa com `<!-- gerado; não editar -->`
 
 ## **Mapa entre áreas**  `MAP`

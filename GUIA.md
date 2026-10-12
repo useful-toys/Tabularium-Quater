@@ -47,7 +47,7 @@ Este é o ganho principal: quem lê uma célula encontra ali tudo o que a especi
 
 Disso decorre quase todo o resto:
 
-- **A célula é dona das suas afirmações.** Uma célula é composta por afirmações, e cada afirmação pertence a uma única célula. Quando algo numa célula afeta outra, o efeito é escrito na afetada, e quem lê um bloco vê tudo o que pode acontecer com ela. O custo fica do outro lado: quem lê a célula que produz o fato não vê ali quem reage a ele, e encontra essa lista no Índice gerado da área.
+- **A célula é dona das suas afirmações.** Uma célula é composta por afirmações, e cada afirmação pertence a uma única célula. Quando algo numa célula afeta outra, o efeito é escrito na afetada, e quem lê um bloco vê tudo o que pode acontecer com ela. O custo fica do outro lado: quem lê a célula que produz o fato não vê ali quem reage a ele, e encontra essa lista na Fronteira gerada da área.
 - **As células se agrupam por relação, não por tipo.** Células fortemente relacionadas ficam juntas num mesmo arquivo, chamado **área**: uma célula central e as que dependem dela. Essa proximidade é medida, não apenas declarada.
 - **As células evoluem.** Uma célula pode se dividir, se fundir, virar atributo ou nascer de um; as afirmações e seus identificadores sobrevivem a qualquer reagrupamento.
 - **Os documentos tradicionais são vistas sobre as células.** Glossário, regras de negócio e casos de uso são derivados das células, e não escritos à parte.
@@ -62,20 +62,20 @@ specs/
   _convencoes.md     legenda do formato; igual em todo projeto
   _produto.md        o que vale para o produto inteiro
   _perguntas.md      perguntas abertas (opcional)
-  README.md          índice das áreas, gerado por programa
+  README.md          índice de áreas, gerado por programa
   <area>.md          uma área: coleção de células de conceitos fortemente relacionadas; um arquivo por área
   decisoes/          decisões relevantes, uma por arquivo; lidas só sob demanda
     AGENTS.md        instruções para agentes sobre decisões
     _convencoes.md   legenda das decisões; igual em todo projeto
     _produto/        as que só _produto.md cita
     <area>/          as que os itens da área mais citam
-    */README.md      índice das decisões da pasta, gerado por programa
+    */README.md      índice de decisões da pasta, gerado por programa
   dados/             dados de referência em JSON ou CSV, um arquivo por regra que os cita; lidos só sob demanda
   arquitetura/       como o produto é construído; formato experimental, fora da definição do formato
   interface/         como o produto se apresenta; formato experimental, fora da definição do formato
 ```
 
-Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Para escolher a área, há o `README.md`, índice gerado que traz a frase de cada uma e as células dela (GER-R23.7). Cada área pode ser lida sozinha, porque o Índice gerado no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
+Lê-se primeiro `_convencoes.md`, depois `_produto.md`, depois qualquer área (ESP-R4). Para escolher a área, há o `README.md`, índice de áreas, gerado, que traz a frase de cada uma e as células dela (GER-R23.7). Cada área pode ser lida sozinha, porque a Fronteira gerada no seu topo lista o que ela usa de outras, quem reage aos seus eventos e as perguntas abertas que a tocam.
 
 `_produto.md` guarda só o que vale para o conjunto e não pertence a nenhuma célula: o propósito (começando pelo problema que o produto resolve), os atores, os tipos comuns, as jornadas, os externos, as regras globais e o que está fora de escopo.
 
@@ -209,7 +209,7 @@ Quando algo que acontece numa célula afeta outra, o efeito é escrito na célul
 - [x] PED-R2.1  Ao **Cliente excluído**: pedidos em aberto são cancelados
 ```
 
-Quem lê o bloco do Pedido vê tudo o que pode acontecer com ele, inclusive o que vem de fora. Quem lê o bloco do Cliente não vê o que a exclusão provoca: essa visão inversa, de quem reage a cada evento, está no Índice gerado. Um evento só existe se alguma regra reage a ele (EVT-R2), o que evita listar toda mudança de estado. Eventos são fatos do domínio, não mensagens do sistema: a arquitetura decide como realizá-los.
+Quem lê o bloco do Pedido vê tudo o que pode acontecer com ele, inclusive o que vem de fora. Quem lê o bloco do Cliente não vê o que a exclusão provoca: essa visão inversa, de quem reage a cada evento, está na Fronteira gerada da área. Um evento só existe se alguma regra reage a ele (EVT-R2), o que evita listar toda mudança de estado. Eventos são fatos do domínio, não mensagens do sistema: a arquitetura decide como realizá-los.
 
 ## Onde mora cada regra
 
@@ -373,7 +373,7 @@ Os **Pedidos** e os **Itens de pedido** que os compõem.
 - dono: vendas
 ```
 
-Não há lista de áreas escrita à mão. É área todo arquivo `.md` da pasta que não é um dos fixos, e toda subpasta com `_area.md` (ARE-R23.1). A lista delas é o índice gerado, que nunca diverge dos arquivos.
+Não há lista de áreas escrita à mão. É área todo arquivo `.md` da pasta que não é um dos fixos, e toda subpasta com `_area.md` (ARE-R23.1). A lista delas é o índice de áreas, gerado, que nunca diverge dos arquivos.
 
 A proximidade lógica é medida, não apenas declarada. Para cada célula, contam-se as referências feitas e recebidas, por área. Uma célula que troca mais referências com outra área do que com a sua é candidata a mudar de lugar (ARE-R9). Ao escrever a especificação do próprio formato, essa medição, feita ainda sem o validador, revelou uma área inteira que existia por afinidade temática, sem relação real entre suas células, e uma redundância escondida na lista de checagens que ele tinha na época.
 
@@ -426,7 +426,7 @@ O título é uma **questão**, terminada em `?`, com o código da decisão. A fr
 
 A fronteira de uma decisão é a questão: uma decisão responde a uma só, e as alternativas descartadas são outras respostas a ela (DEC-R3). Se uma alternativa responde a outra questão, ou se dá para reverter só uma parte da resolução, são duas decisões. Por isso uma questão nova sempre cria uma decisão nova, e só se edita uma decisão quando a mesma questão ganha outra resolução (DEC-R6). A revisão deve apontar quando a resolução tem mais de uma frase, quando o arquivo passa de 25 linhas e quando o Histórico passa de 5 entradas; os dois números são provisórios.
 
-Registra-se uma decisão quando havia ao menos uma alternativa plausível, na mesma mudança que o item que ela fundamenta (DEC-R5). O código `Dnn` leva o prefixo de mudança e o número de ordem, como o identificador, é único no produto e nunca volta (DEC-R22.1, DEC-R22.2). A pasta `specs/decisoes/` espelha a especificação e tem a sua própria legenda e as suas instruções para agentes, para que quem não vai mexer em decisões não precise lê-las (DEC-R18): a decisão mora na pasta da área cujos itens mais a citam, ou em `_produto/`, e mudar de pasta não muda o código (DEC-R9, DEC-R10). Cada pasta tem um índice gerado por programa, com o código, a questão, a resolução e quem cita cada decisão.
+Registra-se uma decisão quando havia ao menos uma alternativa plausível, na mesma mudança que o item que ela fundamenta (DEC-R5). O código `Dnn` leva o prefixo de mudança e o número de ordem, como o identificador, é único no produto e nunca volta (DEC-R22.1, DEC-R22.2). A pasta `specs/decisoes/` espelha a especificação e tem a sua própria legenda e as suas instruções para agentes, para que quem não vai mexer em decisões não precise lê-las (DEC-R18): a decisão mora na pasta da área cujos itens mais a citam, ou em `_produto/`, e mudar de pasta não muda o código (DEC-R9, DEC-R10). Cada pasta tem um índice de decisões, gerado por programa, com o código, a questão, a resolução e quem cita cada decisão.
 
 Uma decisão pode citar outra, com a mesma marca, quando o contexto de uma é a resolução da outra. A decisão que ninguém mais cita permanece até uma limpeza feita sob demanda, a mesma que poda as lápides (DEC-R20).
 
@@ -434,7 +434,7 @@ Uma decisão pode citar outra, com a mesma marca, quando o contexto de uma é a 
 
 A gramática é fixa para que um programa, o **Validador**, consiga checar a forma da especificação sem interpretar o texto (VRF-R3). É um script determinístico, em Node e só com módulos nativos, entregue neste repositório dentro da skill `tabularium-validar`: o agente o executa e lê a saída, mas não o substitui (VRF-R5). O que ele checa é uma lista fechada, escrita no bloco dele, que cita cada regra pelo identificador (VRF-R14): a hierarquia dos arquivos e dos blocos, a forma das linhas, os identificadores, os códigos de decisão e de pergunta, as referências, os termos e os dados de referência. Nos dados, ele confere a regra, o nome do arquivo, as colunas da tabela e do CSV, as chaves do primeiro nível do JSON e a identidade repetida; as chaves dentro das partes e o tipo dos valores ficam com a revisão (VRF-R21). A gramática também é fechada: toda linha tem de casar com uma forma prevista, e a que não casa é violação (VRF-R8). Uma linha que começa com `[ok]` em vez de `[x]` é um exemplo do que ele acusa. Ele lê só os arquivos como estão, sem consultar o histórico (VRF-R9), e, das pastas de arquitetura e de interface, por ora só checa as decisões e as citações de decisão (VRF-R23). Uma especificação com ao menos uma violação é inválida, sem resultado intermediário (VRF-R7); impedir que a mudança entre é escolha de quem adota. Os sinais de reagrupamento, como áreas pouco coesas e blocos grandes demais, não são checados por ele: ficam com a revisão.
 
-Outro programa, o **Indexador**, produz o que se deriva mecanicamente, e o que ele produz é sempre igual para a mesma especificação (GER-R2). Hoje ele gera os índices de pasta (GER-C23.1), entregue na skill `tabularium-indexar`: o script roda sem dependências e lê a especificação com a mesma leitura do validador.
+Outro programa, o **Indexador**, produz o que se deriva mecanicamente, e o que ele produz é sempre igual para a mesma especificação (GER-R2). Hoje ele gera os índices de áreas e de decisões (GER-C23.1), entregue na skill `tabularium-indexar`: o script roda sem dependências e lê a especificação com a mesma leitura do validador.
 
 Cada índice é um arquivo `README.md`, que começa com `<!-- gerado; não editar -->` (GER-R23.1). Há dois tipos:
 
@@ -443,7 +443,7 @@ Cada índice é um arquivo `README.md`, que começa com `<!-- gerado; não edita
 
 O indexador não exige uma especificação válida: indexa o que consegue ler, e o arquivo que não leu aparece no fim do índice, numa linha `não indexado:` (GER-R23.2, GER-R23.3). Ele regenera todos os índices a cada execução e grava só os que mudaram, de modo que o controle de versão mostra se algum estava desatualizado (GER-R23.4). Um `README.md` escrito à mão não é sobrescrito (GER-R23.5).
 
-As demais partes ainda não existem (GER-C23.2): o Índice de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais e as definições de link. Essas só serão geradas a partir de uma especificação sem violações.
+As demais partes ainda não existem (GER-C23.2): a Fronteira de cada área, o mapa entre áreas, o glossário, a lista de dados pessoais e as definições de link. Essas só serão geradas a partir de uma especificação sem violações.
 
 ## Documentos derivados
 

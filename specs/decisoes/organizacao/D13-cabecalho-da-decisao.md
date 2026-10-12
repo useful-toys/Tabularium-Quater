@@ -6,8 +6,9 @@ Um título com a questão e o código, seguido da resolução em uma frase.
   - Frontmatter com um campo que diz quando abrir a decisão: a marca no item já diz ⟸ [D09]
   - Título com o tema, em forma de nome: deixa caber mais de uma escolha
 - Consequências
-  - Ganha: a decisão se lê como um bloco de célula, e o índice sai do título e da frase
+  - Ganha: a decisão se lê como um bloco de célula, e o índice de decisões sai do título e da frase
   - Aceita: nenhuma decisão pode ter um título que não seja pergunta
 
 ## Histórico
+- 2026-10-12: o índice de pasta passa a se chamar índice de áreas ou índice de decisões
 - 2026-10-04: decisão criada

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Produz os índices de pasta de uma especificação Tabularium: um README.md com as áreas de cada pasta
+// Produz os índices de áreas e de decisões de uma especificação Tabularium: um README.md com as áreas de cada pasta
 // e um com as decisões de cada pasta de decisões. Não interpreta o texto nem roda as checagens do validador.
 // Uso: node indexar.mjs [pasta-da-especificação]
 // Sem argumento, indexa specs/ a partir da pasta atual.

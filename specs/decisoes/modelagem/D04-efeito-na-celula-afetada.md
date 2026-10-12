@@ -6,7 +6,8 @@ No bloco da célula afetada, como reação a um evento da outra.
   - Nos dois blocos: a mesma regra escrita duas vezes
 - Consequências
   - Ganha: o bloco de uma célula mostra tudo o que pode acontecer com ela, inclusive o que vem de fora
-  - Aceita: quem lê a célula que produz o evento só descobre quem reage pelo índice gerado da área
+  - Aceita: quem lê a célula que produz o evento só descobre quem reage pela fronteira gerada da área
 
 ## Histórico
+- 2026-10-12: o índice da área passa a se chamar fronteira da área
 - 2026-10-04: decisão criada

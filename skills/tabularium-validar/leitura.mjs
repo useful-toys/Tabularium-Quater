@@ -7,7 +7,7 @@ import { join } from 'node:path';
 
 export const MARCADOR_GERADO = '<!-- gerado; não editar -->';
 export const SECOES_PRODUTO = ['Propósito', 'Atores', 'Tipos comuns', 'Jornadas', 'Externos', 'Regras globais', 'Fora de escopo'];
-export const SECOES_AREA = ['Índice', 'Linguagem', 'Tipos'];
+export const SECOES_AREA = ['Fronteira', 'Linguagem', 'Tipos'];
 export const ROTULOS_DECISAO = ['Contexto', 'Alternativas descartadas', 'Consequências'];
 // As linhas que a área traz abaixo da frase, na ordem em que vêm.
 export const DADOS_DA_AREA = ['célula central', 'prioridade', 'dono'];
@@ -121,10 +121,10 @@ function lerArea(brutas) {
       const celula = bruto.match(/^(#{2,}) (.+?) {2}`([^`]*)`$/);
       if (celula) { secao = 'célula'; esperaDefinicao = true; return linhas.push({ n, bruto, forma: 'titulo-celula', nivel: celula[1].length, ...nomear(celula[2]), sigla: celula[3] }); }
       const nome = bruto.match(/^## (.+)$/)?.[1];
-      if (SECOES_AREA.includes(nome)) { secao = nome; gerado = nome === 'Índice'; return linhas.push({ n, bruto, forma: 'titulo-secao', nome }); }
+      if (SECOES_AREA.includes(nome)) { secao = nome; gerado = nome === 'Fronteira'; return linhas.push({ n, bruto, forma: 'titulo-secao', nome }); }
       // O conteúdo sob um título estranho não é julgado: basta acusar o título.
       secao = 'desconhecida';
-      return linhas.push(estranha(n, bruto, 'um título de célula, como "## **Pedido**  `PED`", ou de seção: Índice, Linguagem ou Tipos', 'ESP-R9'));
+      return linhas.push(estranha(n, bruto, 'um título de célula, como "## **Pedido**  `PED`", ou de seção: Fronteira, Linguagem ou Tipos', 'ESP-R9'));
     }
     if (bruto === MARCADOR_GERADO) { gerado = true; return linhas.push({ n, bruto, forma: 'marcador-gerado' }); }
     if (gerado) return linhas.push({ n, bruto, forma: 'gerado' });
