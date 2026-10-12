@@ -127,13 +127,13 @@ Confira também se toda regra motivada por uma organização de fora (um órgão
 - Não está claro a qual célula a linha pertence, ou se é preciso uma célula nova.
 - O pedido usa um termo que não existe na especificação e pode ser sinônimo de um que existe.
 
-## Ao gerar documentos derivados
+## Ao redigir documentos derivados
 
 - Documentos derivados são redigidos por você. A `Fronteira` de cada área, o mapa entre áreas, o glossário e os índices `README.md` de cada pasta não são: saem do indexador, e você não os escreve à mão.
-- Gere a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
+- Redija a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
 - Cite a origem de cada frase.
 - Documentos tradicionais saem assim: visão, de `Propósito`, atores, externos e fora de escopo; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.
 - Caso de uso: ator e objetivo vêm da C; pré-condições, dos critérios `exige:`; fluxos alternativos e exceções, dos critérios `se …:`; pós-condições, dos critérios sem prefixo; efeitos em outras células, das reações; sequência entre capacidades, das jornadas. Não invente passos de interface.
 - Liste no fim as frases que precisaram de algo que não está na especificação: são lacunas a levar ao responsável da área.
 - Nunca grave um documento derivado dentro desta pasta, nem copie dele de volta para a especificação.
-- Guardar um documento derivado sob controle de versão é escolha da equipe. Se ele já existe e a especificação mudou, gere-o de novo em vez de emendá-lo.
+- Guardar um documento derivado sob controle de versão é escolha da equipe. Se ele já existe e a especificação mudou, redija-o de novo em vez de emendá-lo.

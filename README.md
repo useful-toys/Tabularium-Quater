@@ -121,7 +121,7 @@ O formato ainda não faz parte da definição do Tabularium, e o validador só c
 - **O validador não vê tudo.** Ele checa a forma, a unicidade e as referências, mas não o histórico dos números nem a coesão das áreas, que continuam dependendo de disciplina.
 - **O trabalho em equipe não está resolvido.** O formato ainda não diz quem aprova uma mudança, nem sobre qual texto.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Nada prova, por ora, que ela continua verdadeira.
-- **A densidade cobra de quem chega.** A resposta são os documentos derivados, que devem ser gerados, nunca editados.
+- **A densidade cobra de quem chega.** A resposta são os documentos derivados, que devem ser redigidos de novo, nunca editados.
 
 Os limites por extenso estão no [guia](GUIA.md#limites-e-cuidados).
 

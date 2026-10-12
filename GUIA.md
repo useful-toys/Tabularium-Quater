@@ -447,9 +447,9 @@ As demais partes ainda não existem (GER-C23.2): a Fronteira de cada área, o ma
 
 ## Documentos derivados
 
-Os documentos tradicionais são outra classe: são redigidos por um agente de IA a partir da especificação, com um prompt especializado para cada documento (DER-R4). Nunca são editados à mão, e cada frase cita o identificador ou o termo de origem (DER-R1, DER-R2). Uma frase sem origem é invenção de quem gerou ou lacuna da especificação, e as duas descobertas são úteis.
+Os documentos tradicionais são outra classe: são redigidos por um agente de IA a partir da especificação, com um prompt especializado para cada documento (DER-R4). Nunca são editados à mão, e cada frase cita o identificador ou o termo de origem (DER-R1, DER-R2). Uma frase sem origem é invenção de quem redigiu ou lacuna da especificação, e as duas descobertas são úteis.
 
-Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de versão é escolha da equipe, que assume o risco de ficarem defasados; ela pode também automatizar a regeração a cada mudança na especificação. Propagar essas atualizações não é responsabilidade do formato (DER-R5).
+Duas redações do mesmo documento não saem iguais. Guardá-los sob controle de versão é escolha da equipe, que assume o risco de ficarem defasados; ela pode também automatizar a nova redação a cada mudança na especificação. Propagar essas atualizações não é responsabilidade do formato (DER-R5).
 
 | Documento | De onde sai |
 | --- | --- |
@@ -620,6 +620,6 @@ O Tabularium adota ideias de cada uma dessas abordagens e deixa outras de fora, 
 - **Um produto, uma linguagem.** Uma especificação descreve um só produto, com um significado por termo (ESP-R8). Quando dois significados legítimos do mesmo termo não se conciliam, são dois produtos, cada um com a sua especificação.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Ela precisa ser atualizada a cada evolução do código, e o formato ainda não diz o que prova que continua verdadeira. Numa especificação guardada longe do código, como nos repositórios de exemplo, as marcas são um retrato datado.
 - **O trabalho em equipe ainda não está resolvido.** O prefixo de mudança evita que duas mudanças em paralelo aloquem o mesmo código, mas o validador não vê o histórico: não acusa o código antigo que foi trocado, nem o código novo alocado só com um número. O formato também não trata, por ora, de quem do negócio aprova uma mudança e sobre qual texto.
-- **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato são os documentos derivados. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser gerados, nunca copiados.
+- **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato são os documentos derivados. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser redigidos de novo, nunca copiados.
 - **O formato não substitui a conversa.** Ele registra decisões de produto, mas não as toma. As perguntas abertas existem justamente para que a especificação mostre o que ainda não foi decidido.
 - **A justificativa de cada escolha deste formato deveria estar em `specs/decisoes/`.** A maior parte já está lá. As que não têm um item da especificação que as cite, como as escolhas sobre o README e sobre este guia, ainda só aparecem aqui, que, pelas regras do próprio formato, é o lugar errado para guardá-las.

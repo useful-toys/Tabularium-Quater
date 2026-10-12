@@ -6,8 +6,9 @@ Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validad
 
 ## Linguagem
 - **externo**: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
-- **Índice de áreas**: arquivo `README.md` gerado que lista as **Áreas** de uma pasta e as **Células** de cada uma
-- **Índice de decisões**: arquivo `README.md` gerado que lista as **Decisões** de uma pasta
+- **parte gerada**: seção ou arquivo que o **Indexador** produz, iniciado por `<!-- gerado; não editar -->`
+- **Índice de áreas**: **parte gerada**, no arquivo `README.md`, que lista as **Áreas** de uma pasta e as **Células** de cada uma
+- **Índice de decisões**: **parte gerada**, no arquivo `README.md`, que lista as **Decisões** de uma pasta
 
 ## **Especificação**  `ESP`
 Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que descreve um produto inteiro e é a fonte única da verdade sobre ele.
@@ -121,7 +122,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **responsável**, vira pasta
 - [x] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
 - [x] ARE-R12  removida
-- [x] ARE-R23.1  É área todo arquivo `.md` da pasta da **Especificação** cujo nome não começa por `_` e que não é as **Instruções para agentes** nem parte gerada, e toda subpasta com `_area.md` ⟸ [D23.1]
+- [x] ARE-R23.1  É área todo arquivo `.md` da pasta da **Especificação** cujo nome não começa por `_` e que não é as **Instruções para agentes** nem **parte gerada**, e toda subpasta com `_area.md` ⟸ [D23.1]
 - [x] ARE-R23.2  Na pasta da **Especificação**, o arquivo `.md` de nome começado por `_` é o **Arquivo de convenções**, o **Arquivo de produto** ou o **Arquivo de perguntas**
 - [x] ARE-R23.3  Cada arquivo de uma área em pasta começa pelo título e traz as **Células** em blocos
 - [x] ARE-R23.4  A **frase** vem na linha seguinte ao título do arquivo da área, ou do `_area.md` da pasta
@@ -146,7 +147,7 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R10  Lê sempre a **Especificação** inteira, com as **Decisões**
 - [x] VRF-R11  removida
 - [x] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
-- [x] VRF-R13  Não lê o conteúdo das seções geradas
+- [x] VRF-R13  Não lê o conteúdo das **partes geradas**
 - [x] VRF-R14  Checa só as **Regras** citadas de [VRF-R15] a [VRF-R21] ⟸ [D77]
 - [x] VRF-R15  Checa a hierarquia dos arquivos e dos blocos: [ESP-R9], [ARE-R23.2], [ARE-R23.4], [ARE-R11], [APR-R9], [CEL-R2], [CEL-R3], [CRT-R6], [IND-R2], [DEC-R1], [DEC-R2], [DEC-R21]
 - [x] VRF-R16  Checa a forma das **Linhas**: [LIN-R4], [LIN-R11], [CRT-R1], [REF-R14], [ATR-R6], [ATR-R7], [CEL-R18], [TIP-R2], [TRM-R9], [ATO-R2], [ATO-R5], [ATO-R6], [ATO-R7], [JOR-R2], [APR-R10], [ARE-R23.5], [APG-R5], [DEC-R19]
@@ -169,12 +170,12 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-V1  Ver as violações da **Especificação**
   - todas, em ordem de arquivo e de **Linha**
   - cada uma cita o arquivo, a **Linha**, o **Identificador** da **Regra** violada e uma frase que se entende sem a **Especificação** do formato
-  - **Linha** que não casa com nenhuma forma gera uma só violação
+  - **Linha** que não casa com nenhuma forma dá uma só violação
 
 ## **Indexador**  `GER`
-Programa que produz as partes geradas da **Especificação**, sem interpretar o texto. (~~gerador~~)
-- [ ] GER-R1  Ao **Especificação alterada**: regenera as partes geradas
-- [x] GER-R2  É determinístico: a mesma **Especificação** dá sempre as mesmas partes geradas
+Programa que produz as **partes geradas** da **Especificação**, sem interpretar o texto. (~~gerador~~)
+- [ ] GER-R1  Ao **Especificação alterada**: regenera as **partes geradas**
+- [x] GER-R2  É determinístico: a mesma **Especificação** dá sempre as mesmas **partes geradas**
 - [x] GER-R23.1  O **Índice de áreas** e o **Índice de decisões** são arquivos `README.md`, que começam com `<!-- gerado; não editar -->` ⟸ [D23.2]
 - [x] GER-R23.2  Indexa o que consegue ler, mesmo de uma **Especificação** com violações ⟸ [D23.3]
 - [x] GER-R23.3  O arquivo que não consegue ler consta do **Índice de áreas** ou do **Índice de decisões** da pasta dele como não indexado
@@ -190,7 +191,7 @@ Programa que produz as partes geradas da **Especificação**, sem interpretar o 
   - **Índice de áreas** na pasta da **Especificação**, na de arquitetura e na de interface, conforme [GER-R23.7]
   - **Índice de decisões** em cada pasta de **Decisões**, conforme [GER-R23.9]
   - se algum arquivo não pôde ser lido: os demais são indexados, conforme [GER-R23.2]
-- [ ] GER-C23.2  Gerar as demais partes derivadas ⟸ [D78]
+- [ ] GER-C23.2  Gerar as demais **partes geradas** ⟸ [D78]
   - exige: nenhuma violação da **Especificação**
   - **Fronteira da área**, em cada **Área**
   - **Mapa entre áreas**
@@ -214,8 +215,8 @@ Lista gerada de quais **Áreas** usam **Termos** e reagem a **Eventos** de quais
 Documento produzido a partir da **Especificação** para um público ou uma finalidade, como um manual ou um plano de testes.
 - [x] DER-R1  É descartável: nunca é editado nem citado como fonte ⟸ [D71]
 - [x] DER-R2  Cada frase cita o **Identificador** ou o **Termo** de origem
-- [x] DER-R3  Frase sem origem é invenção de quem gerou ou lacuna da **Especificação**
-- [x] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Indexador** ⟸ [D02]
+- [x] DER-R3  Frase sem origem é invenção de quem redigiu ou lacuna da **Especificação**
+- [x] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é **parte gerada** ⟸ [D02]
 - [x] DER-R5  Guardá-lo sob **Controle de versão** cabe a quem adota, que assume a divergência; mantê-lo em dia não cabe ao formato ⟸ [D03]
 - [x] DER-V1 · leitor  Ler um documento derivado
   - cada frase leva a sua origem
