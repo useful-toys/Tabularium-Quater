@@ -38,7 +38,7 @@
 - [D30](D30-medicao-da-proximidade.md) Como se verifica a proximidade lógica? Pela contagem de referências, que aponta como candidata a mudar de área a célula que troca mais referências com outra área do que com a sua.
   - citada por: ARE-R9, D77
 - [D31](D31-divisao-em-arquivos.md) Como a especificação se divide em arquivos? Num arquivo por área, mais poucos arquivos para o que vale para o conjunto.
-  - citada por: Especificação
+  - citada por: Especificação do produto
 - [D43](D43-o-que-e-externo.md) O que é um externo? Um sistema ou uma organização fora do produto que alguma regra pressupõe.
   - citada por: externo
 - [D44](D44-proposito-pelo-problema.md) Por onde começa o propósito do produto? Pelo problema que o produto resolve.

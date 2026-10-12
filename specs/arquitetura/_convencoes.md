@@ -1,5 +1,5 @@
 # Convenções da arquitetura
-Legenda para ler e escrever a arquitetura neste formato, que é experimental. Ela só acrescenta à legenda da especificação, `../_convencoes.md`: o que não está aqui vale como lá.
+Legenda para ler e escrever a especificação de arquitetura neste formato, que é experimental. Ela só acrescenta à legenda da especificação do produto, `../_convencoes.md`: o que não está aqui vale como lá.
 
 ## Arquivos
 - `AGENTS.md`: instruções para agentes de IA sobre a arquitetura

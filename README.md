@@ -38,7 +38,7 @@ Estes treze valores guiaram a criação do formato. Cada regra dele existe para 
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
 10. **Fundamentada em decisões.** Cada decisão relevante é registrada à parte, com as alternativas descartadas, e o item que ela fundamenta aponta para ela.
 11. **Explícita sobre lacunas.** Dúvidas viram perguntas abertas, versionadas com o texto, em vez de suposições.
-12. **Não técnica.** Descreve o que o sistema faz para o negócio; as questões técnicas começam na arquitetura.
+12. **Não técnica.** Descreve o que o sistema faz para o negócio; as questões técnicas começam na especificação de arquitetura.
 13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização; o agente lê só a área de que precisa.
 
 Os valores por extenso estão no [guia](GUIA.md#valores).
@@ -96,7 +96,7 @@ Para mudar a especificação junto com o agente, há quatro skills, que você ac
 
 ## Arquitetura, em experimento
 
-A especificação diz o que o produto faz, nunca como ele é construído. As escolhas técnicas têm um formato experimental, em [`specs/arquitetura/`](specs/arquitetura/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente**, uma peça da solução, como um programa, um script ou um serviço.
+A especificação do produto diz o que ele faz, nunca como ele é construído. As escolhas técnicas ficam na especificação de arquitetura, que tem um formato experimental, em [`specs/arquitetura/`](specs/arquitetura/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente**, uma peça da solução, como um programa, um script ou um serviço.
 
 - **Só a escolha estratégica.** Entra o que guia a implementação e é caro de trocar depois. O resto é escolha tática e fica no código.
 - **Cada componente diz em que é feito, onde mora e o que cumpre.** A linha `realiza:` aponta as afirmações da especificação que ele atende.
@@ -106,7 +106,7 @@ O formato ainda não faz parte da definição do Tabularium, e o validador não 
 
 ## Interface, em experimento
 
-A especificação diz o que o produto faz, em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela. Para isso há um formato experimental, em [`specs/interface/`](specs/interface/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente de interface**, um conjunto de controles coordenados para um objetivo.
+A especificação do produto diz o que ele faz, em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica na especificação de interface, que tem um formato experimental, em [`specs/interface/`](specs/interface/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente de interface**, um conjunto de controles coordenados para um objetivo.
 
 - **Componentes, e não desenhos de tela.** Cada componente é escrito uma vez e reusado. A tela é um componente especial, que só lista os componentes de que é feita.
 - **Tipos e padrões.** Um tipo diz o que o componente é, e a aplicação pode definir os seus. Um padrão diz um comportamento que vários componentes seguem.

@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Esta pasta descreve a arquitetura do produto: as escolhas técnicas estratégicas, que guiam a implementação e são caras de trocar depois. O formato é experimental e ainda não faz parte da definição do Tabularium. A arquitetura é lida sob demanda, e quem decide o produto não precisa abri-la.
+Esta pasta é a especificação de arquitetura do produto: as escolhas técnicas estratégicas, que guiam a implementação e são caras de trocar depois. O formato é experimental e ainda não faz parte da definição do Tabularium. A arquitetura é lida sob demanda, e quem decide o produto não precisa abri-la.
 
 A gramática é a da especificação. As instruções de `../AGENTS.md` valem aqui, salvo o que este arquivo muda: identificadores que nunca voltam, lápides, termos em negrito na primeira menção, uma coisa por afirmação, e nada de histórico, justificativa ou explicação no texto.
 

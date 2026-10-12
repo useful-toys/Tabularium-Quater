@@ -1,5 +1,5 @@
 # Convenções
-Legenda para ler e escrever uma especificação neste formato. Este arquivo é igual em todos os projetos. A definição completa é a especificação do formato, que prevalece sobre esta legenda.
+Legenda para ler e escrever a especificação do produto neste formato. Este arquivo é igual em todos os projetos. A definição completa é a especificação do formato, que prevalece sobre esta legenda.
 
 ## Arquivos
 - `AGENTS.md`: instruções para agentes de IA

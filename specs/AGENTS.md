@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Esta pasta é uma especificação de produto no formato Tabularium. Ela é a fonte única da verdade sobre o produto: descreve só o que foi comprometido, e marca em cada afirmação se o produto já a cumpre (`[x]`) ou não (`[ ]`). O que não está escrito aqui não é requisito, e o que está escrito vale exatamente como está.
+Esta pasta é a especificação do produto, no formato Tabularium; neste arquivo, "a especificação" é sempre ela. Ela é a fonte única da verdade sobre o produto: descreve só o que foi comprometido, e marca em cada afirmação se o produto já a cumpre (`[x]`) ou não (`[ ]`). O que não está escrito aqui não é requisito, e o que está escrito vale exatamente como está.
 
 Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regras do formato estão na especificação do formato, que prevalece em caso de conflito.
 
@@ -61,7 +61,7 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 | O porquê de uma escolha não óbvia, que tinha alternativa | Decisão em `decisoes/_produto/` ou `decisoes/<area>/`, na pasta da área cujos itens mais a citam; no item, só a marca `⟸ [Dnn]` no fim |
 | Problema que o produto resolve | Primeira linha de `Propósito` em `_produto.md` |
 | O que distingue o produto das alternativas | Item de `Diferenciais` em `_produto.md` |
-| Escolha técnica: como o produto é construído | Fora da especificação, no documento de arquitetura; aqui, só a consequência que um ator ou o negócio observa, se houver |
+| Escolha técnica: como o produto é construído | Fora da especificação do produto, na especificação de arquitetura; aqui, só a consequência que um ator ou o negócio observa, se houver |
 
 A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira cada linha na posição do seu papel.
 

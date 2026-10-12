@@ -1,13 +1,15 @@
 # Organização
-Como a **Especificação** se divide em arquivos e **Áreas**, o que o **Validador** checa e o **Indexador** produz a partir dela, e como se guardam as **Decisões** e os **Arquivos de dados**.
-- célula central: **Especificação**
+Como a **Especificação do produto** se divide em arquivos e **Áreas**, o que o **Validador** checa e o **Indexador** produz a partir dela, e como se guardam as **Decisões** e os **Arquivos de dados**.
+- célula central: **Especificação do produto**
 - prioridade: apoio
 - dono: mantenedor do formato
 
 ## Linguagem
 - **externo**: sistema ou organização fora do produto que alguma **Regra** pressupõe; declarado em `Externos` do **Arquivo de produto** ⟸ [D43]
+- **Especificação de arquitetura**: arquivos que descrevem como o produto é construído (~~documento de arquitetura~~)
+- **Especificação de interface**: arquivos que descrevem como o produto se apresenta e como a pessoa interage com ele
 
-## **Especificação**  `ESP`
+## **Especificação do produto**  `ESP`
 Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que descreve um produto inteiro e é a fonte única da verdade sobre ele.
 - 1 **Instruções para agentes**
 - 1 **Arquivo de convenções**
@@ -32,13 +34,13 @@ Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que 
 Arquivo que ensina agentes de IA a trabalhar no formato, igual em todos os projetos.
 - **arquivo**: `AGENTS.md`; imutável
 - [x] AGT-R1  Não contém nada específico do produto ⟸ [D75]
-- [x] AGT-R2  Descreve procedimentos; em conflito, prevalece a **Especificação** do formato
+- [x] AGT-R2  Descreve procedimentos; em conflito, prevalece a **Especificação do produto** que define o formato
 
 ## **Arquivo de convenções**  `CNV`
 Legenda que ensina a ler e escrever no formato, igual em todos os projetos.
 - **arquivo**: `_convencoes.md`; imutável
 - [x] CNV-R1  Não contém nada específico do produto
-- [x] CNV-R2  Resume o formato; em conflito, prevalece a **Especificação** do formato
+- [x] CNV-R2  Resume o formato; em conflito, prevalece a **Especificação do produto** que define o formato
 
 ## **Arquivo de produto**  `APR`
 Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célula**.
@@ -69,7 +71,7 @@ Arquivo com o que vale para o produto inteiro e não pertence a nenhuma **Célul
 - [x] APR-R23.1  Não lista as **Áreas**; a lista delas é o índice de áreas, que o **Indexador** produz ⟸ [D23.1]
 
 ## **Arquivo de contadores**  `CTD`
-Arquivo extinto, que guardava o maior número já usado em cada sequência da **Especificação**.
+Arquivo extinto, que guardava o maior número já usado em cada sequência da **Especificação do produto**.
 - [x] CTD-R1  removida
 - [x] CTD-R2  removida
 - [x] CTD-R3  removida
@@ -82,12 +84,12 @@ Arquivo extinto, que guardava o maior número já usado em cada sequência da **
 ## **Arquivo de dados**  `ADA`
 Arquivo de texto com as instâncias que os **Dados de referência** de uma **Célula** citam, guardado à parte das **Áreas** e lido só sob demanda.
 - **formato**: JSON | CSV
-- [x] ADA-R1  Mora na pasta `dados/`, junto dos arquivos da **Especificação**; a pasta não tem subpastas
+- [x] ADA-R1  Mora na pasta `dados/`, junto dos arquivos da **Especificação do produto**; a pasta não tem subpastas
 - [x] ADA-R2  O nome é a **Sigla de célula** da **Célula** que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`
 - [x] ADA-R3  Só há dois **formatos**: JSON, para dado estruturado, e CSV, para dado tabular ⟸ [D85]
 - [x] ADA-R4  É citado por exatamente uma regra de **Dados de referência**
 - [x] ADA-R5  Traz só instâncias da **Célula** que o cita e das partes dela
-- [x] ADA-R6  Dado que chega em outro **formato** é convertido, e o original não fica na **Especificação**
+- [x] ADA-R6  Dado que chega em outro **formato** é convertido, e o original não fica na **Especificação do produto**
 - [x] ADA-R7  Entra por cópia ou por conversão feita por programa, nunca por transcrição ⟸ [D89]
 - [x] ADA-R8  É texto em UTF-8
 - [x] ADA-R9  Em JSON, é uma lista de objetos, um por instância
@@ -111,7 +113,7 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R1  removida
 - [ ] ARE-R2  Área não tem sigla
 - [x] ARE-R3  Mover uma **Célula** de área não muda nenhum **Identificador**
-- [x] ARE-R4  A área não redefine **Termos**; a linguagem é a da **Especificação** ⟸ [D06]
+- [x] ARE-R4  A área não redefine **Termos**; a linguagem é a da **Especificação do produto** ⟸ [D06]
 - [x] ARE-R5  removida
 - [x] ARE-R6  Pasta de área: `_area.md` com as seções anteriores às **Células**, e um arquivo por célula ou grupo de células
 - [ ] ARE-R7  Não há pasta dentro de pasta
@@ -120,8 +122,8 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
 - [x] ARE-R10  Área com mais de 300 **Linhas**, ou com mais de um **dono**, vira pasta
 - [x] ARE-R11  Não tem seção fora das previstas, nem fora da ordem
 - [x] ARE-R12  removida
-- [x] ARE-R23.1  É área todo arquivo `.md` da pasta da **Especificação** cujo nome não começa por `_` e que não é as **Instruções para agentes** nem parte gerada, e toda subpasta com `_area.md` ⟸ [D23.1]
-- [x] ARE-R23.2  Na pasta da **Especificação**, o arquivo `.md` de nome começado por `_` é o **Arquivo de convenções**, o **Arquivo de produto** ou o **Arquivo de perguntas**
+- [x] ARE-R23.1  É área todo arquivo `.md` da pasta da **Especificação do produto** cujo nome não começa por `_` e que não é as **Instruções para agentes** nem parte gerada, e toda subpasta com `_area.md` ⟸ [D23.1]
+- [x] ARE-R23.2  Na pasta da **Especificação do produto**, o arquivo `.md` de nome começado por `_` é o **Arquivo de convenções**, o **Arquivo de produto** ou o **Arquivo de perguntas**
 - [x] ARE-R23.3  Cada arquivo de uma área em pasta começa pelo título e traz as **Células** em blocos
 - [x] ARE-R23.4  A **frase** vem na linha seguinte ao título do arquivo da área, ou do `_area.md` da pasta
 - [x] ARE-R23.5  Depois da **frase** e antes das **seções** vêm as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- dono: nome`, nesta ordem; só a **prioridade** pode faltar
@@ -132,17 +134,17 @@ Agrupamento de **Células** fortemente relacionadas entre si, guardado em um arq
   - as **Células** mudam de arquivo; os **Identificadores**, não
 
 ## **Validador**  `VRF`
-Programa que checa a forma da **Especificação**, sem interpretar o texto.
+Programa que checa a forma da **Especificação do produto**, sem interpretar o texto.
 - [x] VRF-R1  removida
 - [x] VRF-R2  removida
 - [x] VRF-R3  Toda checagem é sintática ⟸ [D68]
 - [x] VRF-R4  removida
-- [x] VRF-R5  É determinístico: a mesma **Especificação** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui ⟸ [D01]
+- [x] VRF-R5  É determinístico: a mesma **Especificação do produto** dá sempre o mesmo resultado; um agente de IA o executa, e não o substitui ⟸ [D01]
 - [x] VRF-R6  Ao **Especificação alterada**: valida
-- [x] VRF-R7  **Especificação** com ao menos uma violação é inválida; não há resultado intermediário
+- [x] VRF-R7  **Especificação do produto** com ao menos uma violação é inválida; não há resultado intermediário
 - [x] VRF-R8  **Linha** que não casa com nenhuma forma prevista é violação ⟸ [D79]
 - [x] VRF-R9  Lê só os arquivos como estão, sem consultar o **Controle de versão** ⟸ [D80]
-- [x] VRF-R10  Lê sempre a **Especificação** inteira, com as **Decisões**
+- [x] VRF-R10  Lê sempre a **Especificação do produto** inteira, com as **Decisões**
 - [x] VRF-R11  removida
 - [x] VRF-R12  Das **Instruções para agentes** e do **Arquivo de convenções**, confere só que existem
 - [x] VRF-R13  Não lê o conteúdo das seções geradas
@@ -165,17 +167,17 @@ Programa que checa a forma da **Especificação**, sem interpretar o texto.
 - [x] VRF-R23.1  Não lê os arquivos `README.md`, que são índices produzidos pelo **Indexador**
 - [x] VRF-R23.2  Acusa a seção `Áreas` que sobrou no **Arquivo de produto**, com uma frase que diz para onde vão a **célula central**, a **prioridade** e o **dono**
 - [ ] VRF-C1  movida → [GER-C1]
-- [x] VRF-V1  Ver as violações da **Especificação**
+- [x] VRF-V1  Ver as violações da **Especificação do produto**
   - todas, em ordem de arquivo e de **Linha**
-  - cada uma cita o arquivo, a **Linha**, o **Identificador** da **Regra** violada e uma frase que se entende sem a **Especificação** do formato
+  - cada uma cita o arquivo, a **Linha**, o **Identificador** da **Regra** violada e uma frase que se entende sem a **Especificação do produto** que define o formato
   - **Linha** que não casa com nenhuma forma gera uma só violação
 
 ## **Indexador**  `GER`
-Programa que produz as partes geradas da **Especificação**, sem interpretar o texto. (~~gerador~~)
+Programa que produz as partes geradas da **Especificação do produto**, sem interpretar o texto. (~~gerador~~)
 - [ ] GER-R1  Ao **Especificação alterada**: regenera as partes geradas
-- [x] GER-R2  É determinístico: a mesma **Especificação** dá sempre as mesmas partes geradas
+- [x] GER-R2  É determinístico: a mesma **Especificação do produto** dá sempre as mesmas partes geradas
 - [x] GER-R23.1  Cada índice de pasta é um arquivo `README.md`, que começa com `<!-- gerado; não editar -->` ⟸ [D23.2]
-- [x] GER-R23.2  Indexa o que consegue ler, mesmo de uma **Especificação** com violações ⟸ [D23.3]
+- [x] GER-R23.2  Indexa o que consegue ler, mesmo de uma **Especificação do produto** com violações ⟸ [D23.3]
 - [x] GER-R23.3  O arquivo que não consegue ler consta do índice da pasta dele como não indexado
 - [x] GER-R23.4  Regenera sempre todos os índices de pasta, e grava só o arquivo cujo conteúdo mudou ⟸ [D23.4]
 - [x] GER-R23.5  Não sobrescreve o `README.md` que não começa com `<!-- gerado; não editar -->`
@@ -186,11 +188,11 @@ Programa que produz as partes geradas da **Especificação**, sem interpretar o 
 - [x] GER-R23.10  No índice, a **Decisão** que nada cita consta como órfã
 - [x] GER-C1  removida
 - [x] GER-C23.1  Indexar as pastas ⟸ [D78]
-  - índice de áreas na pasta da **Especificação**, na de arquitetura e na de interface, conforme [GER-R23.7]
+  - índice de áreas na pasta da **Especificação do produto**, na de arquitetura e na de interface, conforme [GER-R23.7]
   - índice em cada pasta de **Decisões**, conforme [GER-R23.9]
   - se algum arquivo não pôde ser lido: os demais são indexados, conforme [GER-R23.2]
 - [ ] GER-C23.2  Gerar as demais partes derivadas ⟸ [D78]
-  - exige: nenhuma violação da **Especificação**
+  - exige: nenhuma violação da **Especificação do produto**
   - **Índice** de cada **Área**
   - **Mapa entre áreas**
   - **Glossário**
@@ -210,11 +212,11 @@ Lista gerada de quais **Áreas** usam **Termos** e reagem a **Eventos** de quais
 - [x] MAP-R1  Nunca é escrito à mão ⟸ [D70]
 
 ## **Documento derivado**  `DER`
-Documento produzido a partir da **Especificação** para um público ou uma finalidade, como um manual ou um plano de testes.
+Documento produzido a partir da **Especificação do produto** para um público ou uma finalidade, como um manual ou um plano de testes.
 - [x] DER-R1  É descartável: nunca é editado nem citado como fonte ⟸ [D71]
 - [x] DER-R2  Cada frase cita o **Identificador** ou o **Termo** de origem
-- [x] DER-R3  Frase sem origem é invenção de quem gerou ou lacuna da **Especificação**
-- [x] DER-R4  É redigido por um agente de IA a partir da **Especificação**; não é parte gerada pelo **Indexador** ⟸ [D02]
+- [x] DER-R3  Frase sem origem é invenção de quem gerou ou lacuna da **Especificação do produto**
+- [x] DER-R4  É redigido por um agente de IA a partir da **Especificação do produto**; não é parte gerada pelo **Indexador** ⟸ [D02]
 - [x] DER-R5  Guardá-lo sob **Controle de versão** cabe a quem adota, que assume a divergência; mantê-lo em dia não cabe ao formato ⟸ [D03]
 - [x] DER-V1 · leitor  Ler um documento derivado
   - cada frase leva a sua origem
@@ -239,14 +241,14 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 - [x] DEC-R8  removida
 - [x] DEC-R9  Mora na pasta da **Área** cujos itens mais a citam; citada só pelo **Arquivo de produto**, em `_produto` ⟸ [D11]
 - [x] DEC-R10  Mudar de pasta não muda o **código**
-- [x] DEC-R11  Usa os **Termos** da **Especificação**, sem negrito ⟸ [D17]
+- [x] DEC-R11  Usa os **Termos** da **Especificação do produto**, sem negrito ⟸ [D17]
 - [x] DEC-R12  Um item do corpo pode citar outra decisão, com a mesma **Referência** `⟸ [Dnn]` ⟸ [D20]
 - [x] DEC-R13  removida
 - [x] DEC-R14  **Resolução** com mais de uma frase, ou com ponto e vírgula, indica mais de uma decisão
 - [x] DEC-R15  Decisão com mais de 25 linhas indica mais de uma decisão
 - [x] DEC-R16  Mais de 5 **alterações** indicam **resoluções** acumuladas
 - [x] DEC-R17  O texto da decisão nunca é escrito em **Área** nem no **Arquivo de produto**
-- [x] DEC-R18  A pasta `decisoes/` fica junto dos arquivos da **Especificação** e tem legenda e instruções para agentes próprias, `_convencoes.md` e `AGENTS.md`, iguais em todos os projetos
+- [x] DEC-R18  A pasta `decisoes/` fica junto dos arquivos da **Especificação do produto** e tem legenda e instruções para agentes próprias, `_convencoes.md` e `AGENTS.md`, iguais em todos os projetos
 - [x] DEC-R19  Forma dos itens do corpo:
 
 | Item | Forma |
@@ -256,10 +258,10 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 | consequência | sub-item de `- Consequências`, iniciado por `Ganha:` ou `Aceita:` |
 | alteração | item de `Histórico`, como `- AAAA-MM-DD: texto` |
 
-- [x] DEC-R20  Decisão que nenhum item da **Especificação**, da arquitetura ou da interface e nenhuma outra decisão cita é órfã, e permanece até a limpeza ⟸ [D15]
+- [x] DEC-R20  Decisão que nenhum item da **Especificação do produto**, da **Especificação de arquitetura** ou da **Especificação de interface** e nenhuma outra decisão cita é órfã, e permanece até a limpeza ⟸ [D15]
 - [x] DEC-R21  Decisão de arquitetura ou de interface mora em `decisoes/` da pasta dela, numa subpasta por área; a que não é de área, em `_sistema` ou em `_interface` ⟸ [D92]
-- [x] DEC-R22  Item da **Especificação** cita só decisão da **Especificação**; item da arquitetura, também as da arquitetura; item da interface, também as da arquitetura e as da interface ⟸ [D93]
-- [x] DEC-R22.1  **Código** único entre as decisões da **Especificação**, da arquitetura e da interface; código já usado não volta ⟸ [D10]
+- [x] DEC-R22  Item da **Especificação do produto** cita só decisão dela; item da **Especificação de arquitetura**, também as da arquitetura; item da **Especificação de interface**, também as da arquitetura e as da interface ⟸ [D93]
+- [x] DEC-R22.1  **Código** único entre as decisões da **Especificação do produto**, da **Especificação de arquitetura** e da **Especificação de interface**; código já usado não volta ⟸ [D10]
 - [x] DEC-R22.2  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, de [IDT-R22.1] a [IDT-R22.5] ⟸ [D10]
 - [x] DEC-Rknnk.1  O **código** fica definitivo como o do **Identificador**, conforme [IDT-Rknnk.1] e [IDT-Rknnk.2]
 - [x] DEC-Rknnk.2  Em [DEC-R22.1], só o **código** definitivo conta como já usado

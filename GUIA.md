@@ -398,8 +398,8 @@ Uma linha provisória aponta para a pergunta com `⟵ [P3.1]`. Se a lacuna é ju
 | Ideias e pedidos não comprometidos | Rastreador | Viram afirmações `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
 | Explicações e exemplos | Documentos derivados | Cada frase cita sua origem |
-| Como o produto é construído | `specs/arquitetura/`, em formato experimental; só se abre quando a tarefa cruza componentes ou troca uma tecnologia | A arquitetura cita as afirmações da especificação; a especificação não cita de volta |
-| Como o produto se apresenta | `specs/interface/`, em formato experimental; só se abre quando se mexe no que o ator vê ou opera | A interface cita as afirmações da especificação; a especificação não cita de volta |
+| Como o produto é construído | Especificação de arquitetura, em `specs/arquitetura/`, em formato experimental; só se abre quando a tarefa cruza componentes ou troca uma tecnologia | Ela cita as afirmações da especificação do produto, que não cita de volta |
+| Como o produto se apresenta | Especificação de interface, em `specs/interface/`, em formato experimental; só se abre quando se mexe no que o ator vê ou opera | Ela cita as afirmações da especificação do produto, que não cita de volta |
 
 ## Decisões
 
@@ -463,7 +463,7 @@ Duas gerações do mesmo documento não saem iguais. Guardá-los sob controle de
 
 ## Arquitetura, em experimento
 
-A especificação diz o que o produto faz, nunca como ele é construído, e `_produto.md` lista a arquitetura como fora de escopo. Para esse assunto há um formato experimental, em `specs/arquitetura/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e o modelo de `_sistema.md`. A pasta é opcional: os modelos podem ficar como vieram até a equipe decidir descrever a arquitetura.
+A especificação do produto diz o que ele faz, nunca como ele é construído, e `_produto.md` lista a arquitetura como fora do escopo dela. Esse assunto fica na especificação de arquitetura, que tem um formato experimental, em `specs/arquitetura/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e o modelo de `_sistema.md`. A pasta é opcional: os modelos podem ficar como vieram até a equipe decidir descrever a arquitetura.
 
 A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
 
@@ -505,7 +505,7 @@ O exemplo real é a arquitetura do próprio Tabularium, em [`specs/arquitetura/`
 
 ## Interface, em experimento
 
-A especificação diz o que o produto faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora de escopo. Para esse assunto há um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e o modelo de `_interface.md`. A pasta é opcional, como a de arquitetura.
+A especificação do produto diz o que ele faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora do escopo dela. Esse assunto fica na especificação de interface, que tem um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e o modelo de `_interface.md`. A pasta é opcional, como a de arquitetura.
 
 A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
 
@@ -581,7 +581,7 @@ Oito skills acompanham o formato, e `npx skills` instala todas de uma vez. A de 
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
 10. **Fundamentada em decisões.** As decisões relevantes por trás das afirmações ficam em anotações densas à parte, lidas só sob demanda. O item fundamentado leva apenas uma marca curta que aponta para a decisão.
 11. **Explícita sobre lacunas.** Dúvidas sobre o que foi comprometido viram perguntas abertas, versionadas junto do texto, em vez de serem preenchidas por suposição.
-12. **Não técnica.** Descreve o que o sistema é e o que ele faz para o negócio, sem entrar em questões técnicas, que começam no documento de arquitetura. Uma afirmação diz o que o produto faz, nunca como ele é construído (LIN-R10). Também não documenta o negócio em si, isto é, como ele funciona sem o sistema.
+12. **Não técnica.** Descreve o que o sistema é e o que ele faz para o negócio, sem entrar em questões técnicas, que começam na especificação de arquitetura. Uma afirmação diz o que o produto faz, nunca como ele é construído (LIN-R10). Também não documenta o negócio em si, isto é, como ele funciona sem o sistema.
 13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização por quem conhece a legenda; agentes leem só a área de que precisam e seguem regras explícitas.
 
 ## Diferenciais em relação a RUP, ágil, BDD e DDD
