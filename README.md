@@ -30,7 +30,7 @@ Estes treze valores guiaram a criação do formato. Cada regra dele existe para 
 1. **Organizada por células de conceitos.** Um bloco por coisa do domínio; as áreas se formam por relação medida, nunca por tipo de informação.
 2. **Densa.** Cada linha diz uma só coisa, e o significado vem da posição no texto e de marcas de sentido fixo.
 3. **Hierárquica.** Títulos organizam os blocos e sub-itens detalham as linhas, na profundidade que o conteúdo pedir.
-4. **Fonte única da verdade.** Só o que foi comprometido, com cada afirmação dizendo se está implementada.
+4. **Fonte única da verdade.** É a especificação viva: só o que foi comprometido, com cada afirmação dizendo se está implementada.
 5. **Sem redundância.** Cada termo e cada regra são escritos uma vez; o que se deriva mecanicamente é gerado por programa.
 6. **Linguagem ubíqua.** Um termo, um significado, em todo o produto.
 7. **Base para extrair outros documentos.** Visão, casos de uso, cenários de teste e manuais são redigidos por um agente de IA a partir da fonte.
@@ -50,7 +50,7 @@ O Tabularium trata só de como a especificação é guardada. Ele é compatível
 | Abordagem | O que o Tabularium aproveita | O que faz diferente |
 | --- | --- | --- |
 | RUP | Partir do problema; pré-condições e exceções em cada ação | Não há um documento por tipo de informação |
-| Ágil | Quem faz e o que quer alcançar; critérios de aceite | Descreve o produto como ele é hoje, não a pilha de histórias |
+| Ágil | Quem faz e o que quer alcançar; critérios de aceite | É a especificação viva: descreve o produto como ele é hoje, não a pilha de histórias |
 | BDD | Exemplos para descobrir regras; dúvidas por escrito | Os cenários são derivados, não a forma da especificação |
 | DDD | Linguagem ubíqua; eventos do domínio | Um vocabulário só para o produto inteiro |
 
