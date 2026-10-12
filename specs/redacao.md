@@ -2,11 +2,12 @@
 As **Linhas** de um bloco: o que cada uma afirma, quem age, a que **Eventos** reage e como são identificadas, citadas e retiradas.
 - célula central: **Linha**
 - prioridade: núcleo
-- dono: mantenedor do formato
+- responsável: mantenedor do formato
 
 ## Linguagem
 - **reação**: **Regra** iniciada por `Ao **Evento**:`; mora no bloco da **Célula** que reage
 - **afirmação**: **Linha** que pode ser verificada no produto; de papel R, Q, C, V, T ou J ⟸ [D18]
+- **célula dona**: a **Célula** em cujo bloco uma **Linha** está escrita
 
 ## **Linha**  `LIN`
 Item da **lista única** de um bloco; com **Identificador**, é citável.
@@ -20,14 +21,14 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 - [x] LIN-R5  Não há estado parcial; **afirmação** cumprida em parte é agregada demais e deve ser dividida ⟸ [D62]
 - [x] LIN-R6  removida
 - [x] LIN-R7  Linha de **modelo** não tem marca de implementação
-- [x] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de dono
+- [x] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de **célula dona**
 - [x] LIN-R9  **Afirmação** nova nasce `[ ]`, exceto a movida, que herda a marca
 - [x] LIN-R10  **Afirmação** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
 - [x] LIN-R11  Num bloco de **Célula**, toda linha tem uma destas formas:
 
 | Linha | Forma | Regra |
 | --- | --- | --- |
-| **definição** | prosa, logo após o título | [CEL-R2] |
+| **frase de definição** | prosa, logo após o título | [CEL-R2] |
 | **Atributo** | `- **nome**: tipo; qualificadores` | [ATR-R1] |
 | associação sem papel | `- CARD **Célula**`, com qualificadores depois de `;` | [ATR-R8] |
 | pertencimento | `- pertence a 1 **Célula**`, com qualificadores depois de `;` | [CEL-R15] |
@@ -42,7 +43,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 | **Dados de referência** em arquivo | `- [ ] CÓDIGO  texto: [SIGLA-nome-curto.json]`, ou com `.csv` | [DRF-R15] |
 
 - [x] LIN-C1  Acrescentar uma **afirmação**
-  - no bloco da **Célula** dona, depois das **Linhas** do mesmo papel
+  - no bloco da **célula dona**, depois das **Linhas** do mesmo papel
   - com **Identificador** novo, conforme [IDT-R22.1] e de [IDT-Rbvc2.1] a [IDT-Rbvc2.3]
 - [x] LIN-C2  Retirar uma **afirmação**
 - [x] LIN-C3  Corrigir a redação de uma **afirmação**
@@ -56,7 +57,7 @@ Código que torna uma **Linha** citável.
 - **ordem**: **Número de ordem**
 - [x] IDT-R1  Código válido e **único** na **Especificação do produto**
 - [x] IDT-R2  Nunca é renumerado; número já usado não volta ⟸ [D56]
-- [x] IDT-R3  A sigla é a da **Célula** dona da **Linha**, ou `PRD` no **Arquivo de produto**
+- [x] IDT-R3  A sigla é a da **célula dona** da **Linha**, ou `PRD` no **Arquivo de produto**
 - [x] IDT-R22.1  O **prefixo** é o da mudança que aloca o **código**, o mesmo em todos os códigos que ela aloca ⟸ [D22.1]
 - [x] IDT-R22.2  removida
 - [x] IDT-R22.3  removida
@@ -73,12 +74,12 @@ Código que torna uma **Linha** citável.
 ## **Lápide**  `LAP`
 **Linha** que ocupa o lugar de uma **afirmação** que foi retirada, para que as **Referências** antigas continuem resolvendo.
 - especializa **Linha**
-- **forma**: `- [ ] CÓDIGO  removida`, para **afirmação** retirada, ou `- [x] CÓDIGO  movida → [NOVO]`, para a que mudou de dono
+- **forma**: `- [ ] CÓDIGO  removida`, para **afirmação** retirada, ou `- [x] CÓDIGO  movida → [NOVO]`, para a que mudou de **célula dona**
 - [x] LAP-R1  Ao **Afirmação retirada**: o **Identificador** vira lápide no mesmo lugar ⟸ [D57]
 - [x] LAP-R2  Lápide nunca volta a ser **afirmação**
 - [ ] LAP-R3  **Referência** a lápide continua válida, mas indica texto a revisar
 - [x] LAP-R4  removida
-- [x] LAP-R5  **Afirmação** que muda de **Célula** dona ganha **Identificador** da nova dona e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
+- [x] LAP-R5  **Afirmação** que muda de **célula dona** ganha **Identificador** da nova e deixa no lugar antigo a lápide `movida → [NOVO]` ⟸ [D28]
 - [x] LAP-R6  Lápide `removida` nasce `[ ]` e passa a `[x]` quando o produto deixa de ter o comportamento retirado
 - [x] LAP-R7  Lápide `movida` tem a mesma marca da **afirmação** para onde aponta
 - [ ] LAP-R8  **Referência** a lápide `movida` resolve para o novo **Identificador**
@@ -101,7 +102,7 @@ Citação, em um lugar, de algo definido em outro.
 - [x] REF-R8  removida
 - [x] REF-R9  Qualquer item de lista cita **Decisões** com `⟸ [Dnn]` no fim, várias separadas por vírgula; uma decisão pode ser citada por vários itens ⟸ [D09, D16, D67]
 - [x] REF-R10  A **Decisão** não cita os itens que a citam ⟸ [D09]
-- [x] REF-R11  **Definição** de **Célula** e **Lápide** não citam **Decisão**
+- [x] REF-R11  **Frase de definição** e **Lápide** não citam **Decisão**
 - [x] REF-R12  removida
 - [x] REF-R13  **Afirmação** que muda de **Célula** leva consigo as suas citações de **Decisão**
 - [x] REF-R14  Ordem das marcas no fim de um item: `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão** e em **Dados de referência**, antes do `:`
@@ -117,9 +118,9 @@ Lacuna conhecida da **Especificação do produto**, ainda sem resposta.
 - [x] PER-R2  **Linha** provisória termina com `⟵ [Pnn]` ⟸ [D65]
 - [x] PER-R3  A pergunta não lista as **Linhas** que a citam ⟸ [D65]
 - [x] PER-R4  **sobre** só existe quando nenhuma **Linha** cita a pergunta
-- [x] PER-R5  Pergunta sem **sobre** e sem **Linha** que a cite
+- [x] PER-R5  Pergunta sem **sobre** e sem **Linha** que a cite é violação
 - [x] PER-R6  Estar no **Arquivo de perguntas** é estar aberta; não há estado de respondida ⟸ [D66]
-- [x] PER-R7  Responde o **Dono de área** da **Área** afetada
+- [x] PER-R7  Responde o **Responsável de área** da **Área** afetada
 - [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta ⟸ [D60]
 - [x] PER-R22.1  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, conforme [IDT-R22.1], [IDT-R22.5] e de [IDT-Rbvc2.1] a [IDT-Rbvc2.3]
 - [x] PER-R22.2  **Código** único na **Especificação do produto**
@@ -139,7 +140,7 @@ Arquivo com as **Perguntas** abertas da **Especificação do produto**, uma por 
 - [x] APG-R3  removida
 - [ ] APG-R4  As **Perguntas** ficam só neste arquivo, nunca num **Rastreador** ⟸ [D76]
 - [x] APG-R5  Forma do item: `- Pnn  enunciado?`, com dois espaços antes do **enunciado**; **opções** e **sobre** vêm em sub-itens `opção:` e `sobre:`
-- [x] APG-R6  O título e a frase de abertura do arquivo são opcionais
+- [x] APG-R6  O título e a **frase de abertura** do arquivo são opcionais
 
 ## **Evento**  `EVT`
 Fato do produto, no particípio, ao qual alguma **Regra** reage.
@@ -147,7 +148,7 @@ Fato do produto, no particípio, ao qual alguma **Regra** reage.
 - **produtora**: 1 **Célula**
 - [ ] EVT-R1  Não é uma mensagem do sistema; a arquitetura decide como realizá-lo
 - [x] EVT-R2  Só existe se ao menos uma **reação** o cita ⟸ [D40]
-- [ ] EVT-R3  Transição de estado cita o evento que a dispara, como `aguardando pagamento → pago: ao **Pagamento confirmado**`
+- [x] EVT-R3  removida
 
 ## **Regra**  `REG`
 **Afirmação** sempre verdadeira sobre uma **Célula**, independente de ação de um **Ator**; papel R.
@@ -238,7 +239,7 @@ O que um texto do produto afirma, sem implicar comportamento; papel T.
 Sequência de **Capacidades** e **Visões** cuja ordem é escolha de produto; papel J.
 - especializa **Linha**
 - [x] JOR-R1  Só no **Arquivo de produto**
-- [x] JOR-R2  Forma: `PRD-Jn  Nome: [ID] → [ID] → …`
+- [x] JOR-R2  Forma: `- PRD-J1.1  Nome: [ID] → [ID] → …`
 - [x] JOR-R3  Só cita **afirmações** de papel C e V
 - [x] JOR-R4  Jornada não tem marca; está implementada quando todas as **afirmações** que cita estão
 

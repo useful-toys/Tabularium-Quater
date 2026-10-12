@@ -16,7 +16,7 @@
 - [D34](D34-estrutura-do-bloco.md) Como se estrutura o bloco de uma célula? Com um título com a sigla, a frase de definição e uma lista única em ordem fixa, sem subtítulos.
   - citada por: CEL-R3
 - [D35](D35-definicao-fora-do-bloco.md) Que propriedade a frase de definição precisa ter? Ser compreensível fora do bloco.
-  - citada por: Célula.definição
+  - citada por: Célula.frase de definição
 - [D45](D45-forma-dos-atributos.md) Como se escreve um atributo? Na forma nome, tipo e qualificadores, com os qualificadores tirados de um vocabulário fechado.
   - citada por: ATR-R7
 - [D46](D46-atributos-que-entram.md) Quais atributos entram na especificação? Só o que o usuário vê ou do qual alguma afirmação depende.
@@ -30,7 +30,7 @@
 - [D50](D50-lugar-de-definicao.md) Onde um termo é definido? Uma única vez, no lugar mais específico que o comporta.
   - citada por: TRM-R22, D33
 - [D51](D51-negrito-na-primeira-mencao.md) Quando um termo vai em negrito? Na primeira menção dentro de cada item de lista, frase de definição ou fileira de tabela.
-  - citada por: TRM-R7, D81
+  - citada por: TRM-R7
 - [D52](D52-sinonimos-proibidos.md) Como se tratam os sinônimos? Os sinônimos proibidos são declarados na linha que define o termo, e o validador os acusa em negrito e como nome de termo.
   - citada por: TRM-R24, D110
 - [D53](D53-homonimos.md) Como se trata um homônimo? Renomeando um dos lados.
@@ -39,8 +39,6 @@
   - citada por: TRM-R4
 - [D63](D63-celula-sem-estado.md) Uma célula tem estado de implementação? Não, só as suas afirmações têm.
   - citada por: CEL-R8
-- [D81](D81-mencao-exata-sem-negrito.md) Que menção sem negrito o validador acusa? Só a que repete o nome como está na definição, e nunca a de nome de atributo.
-  - órfã
 - [D110](D110-declaracao-so-na-definicao.md) A declaração de sinônimos proibidos cabe fora da definição do termo? A declaração de sinônimos proibidos só cabe na linha que define o termo.
   - citada por: TRM-R18
 - [D111](D111-negrito-so-de-termo.md) O negrito serve a algo além de referência a termo? Não, o negrito marca só termo, na definição e na referência.

@@ -10,7 +10,7 @@ Legenda para ler e escrever a especificação do produto neste formato. Este arq
 - `dados/`: arquivos de dados de referência, em JSON ou CSV, lidos só sob demanda; cada um é citado por exatamente uma regra; o nome é a sigla da célula que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`; a pasta não tem subpastas nem outros arquivos
 - `<area>.md`: uma área; lida em qualquer ordem; é área todo arquivo `.md` desta pasta cujo nome não começa por `_` e que não é `AGENTS.md` nem `README.md`
 - `<area>/`: área dividida; é área toda subpasta com `_area.md`, que traz a frase, as linhas da área e as seções anteriores às células; cada outro arquivo começa pelo título e traz as células em blocos
-- `README.md`: índice das áreas, com a frase de cada uma e as células dela; gerado por programa e nunca editado
+- `README.md`: índice de áreas, com a frase de cada uma e as células dela; gerado por programa e nunca editado
 
 ## Estrutura
 - `#` arquivo · título de bloco · item de lista · critério (sub-item)
@@ -20,11 +20,11 @@ Legenda para ler e escrever a especificação do produto neste formato. Este arq
 - célula de conceitos, ou só célula: coisa do domínio, com tudo o que se afirma sobre ela e que não pertence a nenhuma outra
 - bloco de célula: título com nome, em negrito, e sigla (`` ## **Pedido**  `PED` ``), frase de definição, lista única
 - ordem da lista: modelo (linhas sem identificador), linhas `evento:`, R, Q, C, V, T
-- linhas de um bloco de célula: definição, atributo, relação, `evento: **Nome**`, afirmação, lápide, critério e fileira de tabela; não há outras
+- linhas de um bloco de célula: frase de definição, atributo, relação, `evento: **Nome**`, afirmação, lápide, critério e fileira de tabela; não há outras
 - num bloco de célula, só C e V têm sub-itens
 - afirmação: linha que pode ser verificada no produto; papéis R, Q, C, V, T e J
-- abertura de uma área: o título, a frase que diz o que ela reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- dono: nome`, nesta ordem; só a prioridade pode faltar
-- seções de uma área, depois da abertura e antes das células: Índice (gerado), Linguagem, Tipos, nesta ordem, sem outras
+- abertura de uma área: o título, a frase que diz o que ela reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor` e `- responsável: nome`, nesta ordem; só a prioridade pode faltar
+- seções de uma área, depois da abertura e antes das células: Fronteira (gerada), Linguagem, Tipos, nesta ordem, sem outras
 - item de Linguagem: `- **termo**: definição`; item de Tipos: `- **Nome**: base; restrições`, ou `- **Nome**:` e os valores separados por `|`
 
 ## Papéis
@@ -50,7 +50,7 @@ Legenda para ler e escrever a especificação do produto neste formato. Este arq
 - forma: `**nome**: tipo; qualificadores`; depois do `;`, só qualificadores
 - qualificadores: identidade · único · imutável · opcional · inicial: X · derivado: fórmula · pessoal · inverso: CARD
 - cardinalidades: 1 · 0..1 · 0..N · 1..N
-- pertencimento: `pertence a 1 **Célula**`; a parte não existe sem o dono
+- pertencimento: `pertence a 1 **Célula**`; a parte não existe sem o todo
 - associação: `**papel**: CARD **Célula**`, ou só `CARD **Célula**` quando o papel tem o nome da célula
 - especialização: `especializa **Célula**`; caso particular, que herda o modelo e as linhas do geral; uma célula especializa no máximo uma outra
 - cada relação é declarada numa só das duas células; o outro lado, quando importa, vai em `inverso:`

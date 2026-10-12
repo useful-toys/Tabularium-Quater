@@ -67,7 +67,7 @@ const DECISOES_DO_EXEMPLO = `${GERADO}
   - citada por: PED-R1, TAR-R1
 `;
 
-const estoque = '# Estoque\nO que a loja tem para vender.\n- célula central: **Produto**\n- dono: compras\n\n## **Produto**  `PRO`\nCoisa que a loja **vende**. (~~mercadoria~~)\n- **nome**: texto; identidade\n';
+const estoque = '# Estoque\nO que a loja tem para vender.\n- célula central: **Produto**\n- responsável: compras\n\n## **Produto**  `PRO`\nCoisa que a loja **vende**. (~~mercadoria~~)\n- **nome**: texto; identidade\n';
 
 test('GER-R23.7: o índice de áreas traz o produto e, de cada área, a frase e as células com sigla e definição', () => {
   const { indices, semIndexar } = indicesDe();

@@ -7,7 +7,7 @@ Legenda para ler e escrever uma decisão neste formato. Este arquivo é igual em
 - `_produto/`: decisões citadas só por `_produto.md`
 - `<area>/`: decisões que os itens da área mais citam
 - `Dnn-nome-curto.md`: uma decisão
-- `README.md` de cada pasta: índice gerado por programa
+- `README.md` de cada pasta: índice de decisões, gerado por programa
 
 ## Estrutura
 - título: a questão, terminada em `?`, e o código, como `` # Quem vê um pedido?  `D7.1` ``

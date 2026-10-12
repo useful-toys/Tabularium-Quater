@@ -8,8 +8,8 @@ Este arquivo é igual em todos os projetos. Ele descreve como trabalhar; as regr
 
 1. Leia `_convencoes.md`: é a legenda de tudo o que segue.
 2. Leia `_produto.md`: propósito, diferenciais, atores, tipos comuns, jornadas, externos e regras globais.
-3. Leia só as áreas que a tarefa toca. Para escolher, leia `README.md`, o índice gerado das áreas, que traz a frase de cada uma e as células dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que não começam por `_`. O Índice no topo de cada área lista o que ela usa de outras, as reações de outras áreas aos eventos dela e as perguntas abertas que a tocam; abra essas outras só se precisar.
-4. Se a tarefa toca uma linha que termina em `⟵ [Pnn]`, ou uma área com perguntas no Índice, leia a pergunta em `_perguntas.md`. A linha é provisória.
+3. Leia só as áreas que a tarefa toca. Para escolher, leia `README.md`, o índice de áreas, gerado, que traz a frase de cada uma e as células dela; se ele não existe, as áreas são os arquivos `.md` desta pasta que não começam por `_` e não são `AGENTS.md` nem `README.md`, e as subpastas com `_area.md`. A seção `Fronteira`, no topo de cada área, lista o que ela usa de outras, as reações de outras áreas aos eventos dela e as perguntas abertas que a tocam; abra essas outras só se precisar.
+4. Se a tarefa toca uma linha que termina em `⟵ [Pnn]`, ou uma área com perguntas na `Fronteira`, leia a pergunta em `_perguntas.md`. A linha é provisória.
 5. Não leia `decisoes/` por rotina. Abra uma decisão só quando precisar do porquê de um item que termina em `⟸ [Dnn]`, ou antes de alterá-lo.
 6. Não leia `dados/` por rotina. A regra que cita um arquivo de dados nomeia em negrito os atributos que ele traz, e os tipos estão nas linhas de modelo do mesmo bloco; abra o arquivo só quando a tarefa precisar dos valores.
 
@@ -29,9 +29,9 @@ Para achar onde algo mora, procure pelo termo em negrito ou pelo identificador. 
 
 1. Nunca renumere um identificador e nunca reutilize um código. Todo código novo leva o prefixo da mudança, `.` e o número de ordem, como `PED-R9.1`, `P9.1` e `D9.1`. O prefixo é o número da issue, quando o trabalho foi pedido para uma issue do rastreador; em qualquer outro caso, e na dúvida sobre haver issue, é um código sorteado. Use o mesmo prefixo em todos os códigos da mudança. O número de ordem é o seguinte ao maior já usado com a mesma sigla, o mesmo papel e o mesmo prefixo, a partir de 1. Obtenha cada código pela skill `tabularium-alocar-codigo`: nunca escolha o código sorteado nem conte o número de ordem por conta própria. O código é definitivo desde que entra na linha principal do controle de versão: a partir daí, nunca o troque, nem para fechar um buraco. Antes disso, só a mudança que o alocou mexe nele: ela reescreve ou apaga a linha, sem lápide, e pode alocar de novo o código que apagou. Para saber se um código é definitivo, procure-o na linha principal; na dúvida, trate-o como definitivo. Nunca aloque um código só com um número, como `PED-R8`: essa forma é anterior ao prefixo de mudança, e os que existem continuam valendo. Siglas de células extintas ou fundidas também não voltam.
 2. Para retirar uma afirmação, troque-a por uma lápide no mesmo lugar: `- [ ] PED-R7.1  removida`. Para mudá-la de célula, crie a afirmação na nova dona e deixe `- [x] PED-C3.1  movida → [ENT-C1.1]` no lugar antigo. Nunca apague o identificador ao retirar ou mover, salvo o que ainda não é definitivo, conforme a regra 1: esse sai sem lápide. A lápide não leva `⟸ [Dnn]`: a citação sai com a afirmação retirada e acompanha a afirmação movida. Lápides só saem pela poda, que o usuário pede quando acha oportuno: sai a lápide `[x]` que nenhuma linha cita, e o número dela continua sem voltar.
-3. Nunca edite seções marcadas `<!-- gerado; não editar -->`, como o Índice das áreas e o glossário, nem os arquivos `README.md`, que são índices. São refeitos por programa.
+3. Nunca edite seções marcadas `<!-- gerado; não editar -->`, como a `Fronteira` de cada área e o glossário, nem os arquivos `README.md`, que são os índices de áreas e de decisões. São refeitos por programa.
 4. Defina cada termo uma única vez, com o nome em negrito, no lugar que o tipo de termo pede; a célula é definida no título do bloco, que também leva o nome em negrito. Em cada item de lista, frase de definição ou fileira de tabela, escreva em negrito a primeira menção de cada termo; as seguintes, no mesmo item, ficam sem negrito. Não contam como menção: títulos, cabeçalhos de tabela, código, marcas de ator, qualificadores no modelo e a própria célula dentro do seu bloco. O negrito só marca termo, na definição e na referência, e só se escreve com `**`: nunca o use para ênfase, nem em cabeçalho de tabela ou em título que não seja o de uma célula, nem como `__texto__`, `<b>` ou `<strong>`. Nunca ponha em negrito, nem defina como termo, um sinônimo que aparece tachado no fim de uma definição, como em `(~~valor, montante~~)`: cite o termo.
-5. Cada afirmação diz uma só coisa. A única prosa é a frase de definição de cada célula.
+5. Cada afirmação diz uma só coisa. A única prosa é uma frase logo abaixo de um título: a frase de definição de cada célula e a frase de abertura de cada arquivo.
 6. Não escreva histórico, justificativas, ideias, exemplos didáticos nem explicações. Se a mudança precisa de um porquê, registre uma decisão em `decisoes/` e cite-a no item com `⟸ [Dnn]`; o texto da decisão nunca entra em área nem em `_produto.md`. Uma ideia ainda não comprometida vai para o rastreador, nunca para a especificação nem para `_perguntas.md`.
 7. Não acrescente nada que não foi pedido: nem regras "óbvias", nem critérios extras, nem eventos sem reação.
 8. Toda afirmação nova nasce `[ ]`. Só marque `[x]` quando o produto cumpre a afirmação por inteiro, com evidência (um teste que passa ou uma verificação feita). Se a afirmação só pode ser cumprida em parte, ela está agregada demais: proponha dividi-la.
@@ -77,9 +77,9 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 - **Podar lápides:** só a pedido. Para cada lápide `[x]`, procure o identificador na especificação; se nada o cita, apague a lápide. Lápides `[ ]` e lápides citadas ficam.
 - **Registrar, rever, dividir ou limpar uma decisão:** siga `decisoes/AGENTS.md`, que traz as receitas e a legenda das decisões.
 - **Dividir uma célula:** crie a célula nova e mova para ela as linhas que lhe pertencem.
-- **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da definição da que a absorveu; a sigla da absorvida não volta.
+- **Fundir duas células:** mova as linhas da célula absorvida; se o nome dela for sinônimo, acrescente-o, tachado e entre parênteses, ao fim da frase de definição da que a absorveu; a sigla da absorvida não volta.
 - **Rebaixar ou promover:** uma célula sem afirmações vira atributo ou termo; um atributo que ganha atributos ou regras próprias vira célula, e o modelo de origem passa a citá-la.
-- **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor`, se houver, e `- dono: nome`, nesta ordem. Não há lista de áreas a atualizar: todo arquivo `.md` desta pasta que não começa por `_` é área.
+- **Criar uma área:** só quando uma célula central e as células que dependem dela se relacionam mais entre si do que com o resto. Crie o arquivo com o título, a frase que diz o que a área reúne e as linhas `- célula central: **Célula**`, `- prioridade: valor`, se houver, e `- responsável: nome`, nesta ordem. Não há lista de áreas a atualizar: é área todo arquivo `.md` desta pasta que não começa por `_` e não é `AGENTS.md` nem `README.md`, e toda subpasta com `_area.md`.
 - **Mover uma célula de área:** mova o bloco inteiro; os identificadores não mudam.
 - **Abrir uma pergunta:** só para uma dúvida que surgiu sobre algo já comprometido; ideia não é pergunta. Acrescente no fim de `_perguntas.md` um item `- Pnn  enunciado?`, com o prefixo da mudança e o próximo número de ordem, conforme a regra 1; opções, se houver, como sub-itens `opção:`. Se existe uma linha provisória, ela termina com `⟵ [Pnn]`; se a lacuna é a falta de uma linha, a pergunta leva o sub-item `sobre: **Célula**`. Nunca as duas coisas.
 - **Responder uma pergunta:** na mesma mudança, apague a pergunta de `_perguntas.md`, tire `⟵ [Pnn]` de todas as linhas que a citam e deixe o texto definitivo. Se a resposta precisa de justificativa, registre uma decisão: o enunciado da pergunta vira a questão, as opções não escolhidas viram as alternativas descartadas, e as linhas passam a terminar com `⟸ [Dnn]`. Não marque a pergunta como respondida: apagar é responder.
@@ -105,7 +105,7 @@ A ordem das linhas num bloco é fixa: modelo, `evento:`, R, Q, C, V, T. Insira c
 
 ## Ao revisar
 
-Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma pergunta em `_perguntas.md`. Não escreva o requisito por conta própria: uma categoria vazia pode ser uma lacuna ou uma escolha consciente, e só o dono da área sabe qual.
+Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma pergunta em `_perguntas.md`. Não escreva o requisito por conta própria: uma categoria vazia pode ser uma lacuna ou uma escolha consciente, e só o responsável da área sabe qual.
 
 - Funcionalidade transversal: segurança, permissões, auditoria
 - Usabilidade: acessibilidade, idioma, consistência
@@ -114,7 +114,7 @@ Para cada categoria abaixo sem nenhuma Q nem regra global que a cubra, abra uma 
 - Suportabilidade: plataformas, navegadores, manutenção, configuração
 - Restrições: de projeto, de implementação, de interface, físicas, legais
 
-Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem afirmação e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem dono natural (falta uma célula); afirmação que cita outra célula mais do que a própria (mover a afirmação); duas células citadas quase sempre juntas, uma só pela outra (fundir); célula que troca mais referências com outra área do que com a sua (mudar de área); área com mais de 300 linhas ou com mais de um dono (virar pasta); bloco com muitas lápides `[x]` que nada cita (podar); tabela de dados de referência com mais de 30 fileiras, ou que não é preciso ver para entender a célula (mover para um arquivo de `dados/`). Os sinais sobre decisões estão em `decisoes/AGENTS.md`.
+Proponha reagrupar, sem fazer por conta própria, quando aparecer um destes sinais: célula com mais de 40 linhas (dividir); célula sem afirmação e com no máximo uma linha de modelo (rebaixar); capacidade ou visão sem célula dona natural (falta uma célula); afirmação que cita outra célula mais do que a própria (mover a afirmação); duas células citadas quase sempre juntas, uma só pela outra (fundir); célula que troca mais referências com outra área do que com a sua (mudar de área); área com mais de 300 linhas (virar pasta); área que pede mais de um responsável (dividir); bloco com muitas lápides `[x]` que nada cita (podar); tabela de dados de referência com mais de 30 fileiras, ou que não é preciso ver para entender a célula (mover para um arquivo de `dados/`). Os sinais sobre decisões estão em `decisoes/AGENTS.md`.
 
 Proponha também, sem fazer por conta própria, reescrever ou retirar a afirmação que cita tecnologia, armazenamento, estrutura do código ou forma de implantação: reescrever, se há uma consequência que um ator ou o negócio observa; retirar, com lápide, se não há. Nas categorias acima, uma restrição de implementação só entra quando é imposta de fora ao produto, como por um externo ou por lei; a escolha feita pela equipe é arquitetura.
 
@@ -128,13 +128,13 @@ Confira também se toda regra motivada por uma organização de fora (um órgão
 - Não está claro a qual célula a linha pertence, ou se é preciso uma célula nova.
 - O pedido usa um termo que não existe na especificação e pode ser sinônimo de um que existe.
 
-## Ao gerar documentos derivados
+## Ao redigir documentos derivados
 
-- Documentos derivados são redigidos por você. O Índice das áreas, o mapa entre áreas, o glossário e os índices `README.md` de cada pasta não são: saem do indexador, e você não os escreve à mão.
-- Gere a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
+- Documentos derivados são redigidos por você. A `Fronteira` de cada área, o mapa entre áreas, o glossário e os índices `README.md` de cada pasta não são: saem do indexador, e você não os escreve à mão.
+- Redija a partir da especificação, sem acrescentar fatos. Explicar, ordenar e exemplificar pode; afirmar o que não está escrito, não.
 - Cite a origem de cada frase.
 - Documentos tradicionais saem assim: visão, de `Propósito`, diferenciais, atores, externos e fora de escopo; catálogo de regras, das R; especificação suplementar, das Q e regras globais; modelo de domínio, das linhas de modelo.
 - Caso de uso: ator e objetivo vêm da C; pré-condições, dos critérios `exige:`; fluxos alternativos e exceções, dos critérios `se …:`; pós-condições, dos critérios sem prefixo; efeitos em outras células, das reações; sequência entre capacidades, das jornadas. Não invente passos de interface.
-- Liste no fim as frases que precisaram de algo que não está na especificação: são lacunas a levar ao dono da área.
+- Liste no fim as frases que precisaram de algo que não está na especificação: são lacunas a levar ao responsável da área.
 - Nunca grave um documento derivado dentro desta pasta, nem copie dele de volta para a especificação.
-- Guardar um documento derivado sob controle de versão é escolha da equipe. Se ele já existe e a especificação mudou, gere-o de novo em vez de emendá-lo.
+- Guardar um documento derivado sob controle de versão é escolha da equipe. Se ele já existe e a especificação mudou, redija-o de novo em vez de emendá-lo.

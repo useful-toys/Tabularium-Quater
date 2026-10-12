@@ -23,7 +23,7 @@ Feito quando você sabe o alvo.
 Siga "Antes de qualquer tarefa" de `specs/AGENTS.md`, com a área do alvo como a área tocada. Depois leia por inteiro o alvo e cada **vizinho** dele:
 
 - as outras células da área;
-- o que o Índice da área diz que ela usa de fora, e as reações de outras áreas aos eventos dela;
+- o que a Fronteira da área diz que ela usa de fora, e as reações de outras áreas aos eventos dela;
 - em `specs/_produto.md`, os atores, as jornadas que passam pelo alvo e o `Fora de escopo`.
 
 Se o alvo é a ideia de uma entrevista, veja o que a ramificação gravou com `git diff <linha principal>...HEAD -- specs/`.

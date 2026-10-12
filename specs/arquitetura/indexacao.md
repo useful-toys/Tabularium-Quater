@@ -1,5 +1,5 @@
 # Indexação
-Como os índices de pasta de uma especificação são produzidos no repositório que adota o formato.
+Como os índices de áreas e de decisões de uma especificação são produzidos no repositório que adota o formato.
 - componente central: **Script de indexação**
 
 ## Script de indexação  `IDX`

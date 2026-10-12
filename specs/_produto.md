@@ -10,12 +10,12 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - Cada **afirmação** existe uma vez e é citável por **Identificador**
 - As **Decisões** relevantes ficam em anotações densas à parte, citadas pelos itens que fundamentam e lidas só sob demanda, sem sobrecarregar a **Especificação do produto**
 - Legível por pessoas sem renderização e econômica para agentes de IA, que leem só a **Área** de que precisam
-- Um programa, o **Validador**, checa a forma da **Especificação do produto**, e outro, o **Indexador**, produz o **Índice**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
+- Um programa, o **Validador**, checa a forma da **Especificação do produto**, e outro, o **Indexador**, produz o **Índice de áreas**, o **Índice de decisões**, a **Fronteira da área**, o **Glossário** e o **Mapa entre áreas**, ambos sem interpretar o texto
 - Os **Documentos derivados** são redigidos por agente de IA a partir da **Especificação do produto**, com a origem de cada frase
 
 ## Atores
 - **Autor**: altera a **Especificação do produto**; pessoa ou agente de IA; padrão
-- **Dono de área**: responde por uma **Área**; aceita as mudanças nela
+- **Responsável de área**: responde por uma **Área**; aceita as mudanças nela
 - **Leitor**: consulta a **Especificação do produto** e os **Documentos derivados**; nunca altera
 
 ## Tipos comuns

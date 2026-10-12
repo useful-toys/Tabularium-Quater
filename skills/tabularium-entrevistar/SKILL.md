@@ -177,7 +177,7 @@ Feito quando o validador responde `nenhuma violação`, o commit da rodada exist
    - cada parte do passo 4 tem veredito, e cada condição de contorno dela tem resposta ou foi dada pelo autor como fora da ideia;
    - tudo o que a ramificação gravou foi respondido ou confirmado pelo autor: releia o que foi gravado, e o que saiu de suposição sua volta como pergunta.
 2. Diga ao autor que `/tabularium-sugerir` traz ideias que complementam esta. A sugestão que ele incorporar é uma parte nova: passa pelo passo 4, e a entrevista volta ao passo 5.
-3. Diga que o consenso é uma proposta do autor, e que o aceite fica com o processo da equipe; quais áreas a mudança toca e o dono de cada uma, lido da linha `dono:` no topo do arquivo da área; e o que a ramificação gravou ao todo, registro por registro.
+3. Diga que o consenso é uma proposta do autor, e que o aceite fica com o processo da equipe; quais áreas a mudança toca e o responsável de cada uma, lido da linha `responsável:` no topo do arquivo da área; e o que a ramificação gravou ao todo, registro por registro.
 4. Peça a confirmação do consenso sobre a ideia inteira, numa pergunta só para isso. Até ela, a ideia segue em entrevista: nada é entregue, e o rótulo não passa a `consenso`. Uma parte que não amadureceu impede o encerramento: o autor escolhe esperar por ela nesta ideia ou separá-la numa ideia própria, para entregar o resto.
 5. Depois do sim, se a ideia tem issue, grave o andamento e ajuste o estado para `consenso`, conforme [A issue da ideia](#a-issue-da-ideia).
 

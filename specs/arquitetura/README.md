@@ -15,7 +15,7 @@ Como o formato chega ao repositório que o adota e é mantido em dia.
 - Skill de instalação `SKI`: Instruções que levam um agente de IA a executar o Instalador e a relatar o resultado.
 
 ## [Indexação](indexacao.md)
-Como os índices de pasta de uma especificação são produzidos no repositório que adota o formato.
+Como os índices de áreas e de decisões de uma especificação são produzidos no repositório que adota o formato.
 - Script de indexação `IDX`: Script que lê a pasta da especificação e grava o `README.md` de índice de cada pasta.
 - Skill de indexação `SKX`: Instruções que levam um agente de IA a executar o Script de indexação e a relatar o que ficou sem indexar.
 

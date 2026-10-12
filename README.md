@@ -81,7 +81,7 @@ A versão instalada é sempre a mais recente da linha principal deste repositór
 ## Primeiros passos
 
 1. Escreva `_produto.md`: o problema e os atores.
-2. Para cada célula central, crie a área, um arquivo que abre com a frase dela, a célula central e o dono, e escreva os blocos: definição, modelo, regras, capacidades e visões.
+2. Para cada célula central, crie a área, um arquivo que abre com a frase dela, a célula central e o responsável, e escreva os blocos: frase de definição, modelo, regras, capacidades e visões.
 3. Marque cada afirmação com `[x]` ou `[ ]`, e peça cada código novo a `/tabularium-alocar-codigo`, que dá o prefixo da mudança, o número da issue ou um código sorteado, e o número de ordem.
 4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
 5. Valide cada mudança com `/tabularium-validar` e corrija o que o validador acusar.
@@ -102,7 +102,7 @@ A especificação do produto diz o que ele faz, nunca como ele é construído. A
 - **Cada componente diz em que é feito, onde mora e o que cumpre.** A linha `realiza:` aponta as afirmações da especificação que ele atende.
 - **Restrições, limites e contratos.** Um componente tem restrições, limites técnicos e o que oferece aos outros. Os fluxos mostram como os componentes colaboram.
 
-O formato ainda não faz parte da definição do Tabularium, e o validador não o lê. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um exemplo real, abra a [arquitetura do próprio Tabularium](specs/arquitetura/distribuicao.md).
+O formato ainda não faz parte da definição do Tabularium, e o validador só confere na pasta as decisões e as citações de decisão. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um exemplo real, abra a [arquitetura do próprio Tabularium](specs/arquitetura/distribuicao.md).
 
 ## Interface, em experimento
 
@@ -113,7 +113,7 @@ A especificação do produto diz o que ele faz, em qualquer meio: web, desktop o
 - **Estilos e diretrizes.** Cores, fontes e medidas ganham nome e são citadas por ele. As diretrizes valem para a interface inteira.
 - **Só o que precisa ser igual em mais de um lugar.** O detalhe de uma tela só, como um espaçamento, fica no código.
 
-O formato ainda não faz parte da definição do Tabularium, e o validador não o lê. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
+O formato ainda não faz parte da definição do Tabularium, e o validador só confere na pasta as decisões e as citações de decisão. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
 
 ## Limites
 
@@ -121,7 +121,7 @@ O formato ainda não faz parte da definição do Tabularium, e o validador não 
 - **O validador não vê tudo.** Ele checa a forma, a unicidade e as referências, mas não o histórico dos números nem a coesão das áreas, que continuam dependendo de disciplina.
 - **O trabalho em equipe não está resolvido.** O formato ainda não diz quem aprova uma mudança, nem sobre qual texto.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Nada prova, por ora, que ela continua verdadeira.
-- **A densidade cobra de quem chega.** A resposta são os documentos derivados, que devem ser gerados, nunca editados.
+- **A densidade cobra de quem chega.** A resposta são os documentos derivados, que devem ser redigidos de novo, nunca editados.
 
 Os limites por extenso estão no [guia](GUIA.md#limites-e-cuidados).
 
