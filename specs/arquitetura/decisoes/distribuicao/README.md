@@ -2,7 +2,7 @@
 # Decisões de Distribuição
 
 - [D94](D94-instalacao-por-skill.md) Como o formato chega ao repositório que o adota? Por uma skill de agente, instalada pelo npx skills.
-  - citada por: SKI-I1
+  - citada por: SKI-Rp7zm.1, SKI-I1
 - [D96](D96-copia-por-script.md) Quem copia os arquivos do formato na instalação? Um script, que o agente executa sem substituir.
   - citada por: SKI-R2
 - [D97](D97-download-por-url.md) De onde o instalador tira os arquivos? Da linha principal do repositório do formato, por URL, um arquivo de cada vez.
