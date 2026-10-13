@@ -1,6 +1,6 @@
 <!-- gerado; não editar -->
 # Arquitetura do Tabularium
-Arquivos de texto num repositório público, levados ao repositório que adota o formato por uma skill que executa um script.
+Arquivos de texto num repositório público, levados ao repositório que adota o formato por uma skill que executa um script, e mantidos ali por skills que conduzem a redação e por scripts que fazem a parte mecânica.
 
 ## [Alocação de códigos](alocacao.md)
 Como se obtêm o código sorteado, que serve de prefixo aos códigos de uma mudança sem issue, e o número de ordem de cada código novo.
@@ -13,6 +13,13 @@ Como o formato chega ao repositório que o adota e é mantido em dia.
 - Instalador `INS`: Script que copia da linha principal, para o repositório que adota o formato, as Instruções para agentes, o Arquivo de convenções e os modelos dos arquivos que faltam.
 - Manifesto de instalação `MAN`: Lista do que o Instalador copia, separando o que ele sobrescreve do que só cria.
 - Skill de instalação `SKI`: Instruções que levam um agente de IA a executar o Instalador e a relatar o resultado.
+
+## [Elaboração](elaboracao.md)
+Como a entrevista, a sugestão, o registro e a entrega de uma ideia são oferecidos no repositório que adota o formato.
+- Skill de entrevista `SKE`: Instruções que levam um agente de IA a entrevistar o autor sobre uma ideia e a gravar, a cada rodada, o que chegou ao consenso.
+- Skill de sugestão `SKG`: Instruções que levam um agente de IA a propor ideias que complementam uma ideia já discutida ou uma área já escrita.
+- Skill de registro `SKR`: Instruções que levam um agente de IA a criar no GitHub a issue de uma ideia, e os rótulos que guardam o estado dela.
+- Skill de entrega `SKA`: Instruções que levam um agente de IA a conferir a ramificação de uma ideia e a entregá-la na linha principal.
 
 ## [Indexação](indexacao.md)
 Como os índices de áreas e de decisões de uma especificação são produzidos no repositório que adota o formato.

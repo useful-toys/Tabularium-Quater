@@ -2,7 +2,7 @@
 # Decisões do sistema
 
 - [D95](D95-quem-aciona-skill.md) Quem pode acionar cada skill? A skill que altera arquivos escritos à mão ou acessa a rede só é acionada por uma pessoa, e a que só lê ou só grava arquivos gerados também pode ser acionada pelo agente.
-  - citada por: SKS-Ibvc2.1, SKI-I1, SKX-I23.1, SKV-I1
+  - citada por: ARQ-Rp7zm.4, SKS-Ibvc2.1, SKI-I1, SKE-Rp7zm.11, SKE-Ip7zm.1, SKG-Ip7zm.1, SKR-Ip7zm.1, SKA-Ip7zm.1, SKX-I23.1, SKV-I1
 - [D99](D99-genericos-da-propria-specs.md) Os arquivos genéricos distribuídos têm cópia própria? Não, são os da própria pasta da especificação do formato.
   - citada por: ARQ-R2
 - [D100](D100-modelos-em-branco.md) Como se distribuem os arquivos que cada repositório preenche? Como modelos em branco, que o instalador cria só onde o arquivo ainda não existe.
@@ -19,3 +19,5 @@
   - citada por: SKS-R22.1, SKS-Rbvc2.1, SKI-R1, SKI-Rp7zm.2, SKX-R23.1, SKV-R1, D23.5
 - [D109](D109-formato-cetico.md) O que o agente faz quando o formato da arquitetura ou da interface encaixa mal? Avisa o usuário uma vez por tipo de problema, e o usuário decide entre forçar o encaixe e anotá-lo em achados, com ou sem issue.
   - citada por: ARQ-R5
+- [Dp7zm.1](Dp7zm.1-skill-redige-script-executa.md) Num processo, o que fica com a skill e o que fica com um script? A skill conduz o que pede redação e julgamento, e um script faz o que é mecânico e determinístico.
+  - citada por: ARQ-Rp7zm.1, ARQ-Rp7zm.2, ARQ-Rp7zm.3

@@ -2,7 +2,7 @@
 # Decisões de Organização
 
 - [D01](D01-verificacao-por-script.md) Quem verifica a especificação? Um script determinístico, que o agente de IA executa sem substituir.
-  - citada por: VRF-R5, D02, D68, D96, Dtcwx.1
+  - citada por: VRF-R5, D02, D68, D96, Dp7zm.1, Dtcwx.1
 - [D02](D02-derivados-redigidos-por-agente.md) Quem produz os documentos derivados? Um agente de IA, a partir da especificação.
   - citada por: DER-R4, D03, D19, D71
 - [D03](D03-versionar-derivados.md) Quem decide se um documento derivado fica sob controle de versão? Quem adota o formato, assumindo o risco de o documento ficar defasado.
