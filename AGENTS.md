@@ -1,12 +1,13 @@
 # AGENTS.md
 
-Este repositório define o formato Tabularium. Este arquivo vale para quem trabalha no formato; as instruções para quem escreve uma especificação estão em `specs/AGENTS.md`.
+Este repositório define o formato **Tabularium**. Este arquivo vale para quem trabalha no formato; as instruções para quem escreve uma especificação estão em `specs/AGENTS.md`.
 
 ## Ao elaborar o formato
 
 - Toda elaboração do formato da especificação leva em conta os valores abaixo.
-- Antes de propor ou alterar uma regra, uma notação ou uma forma de linha, pese cada alternativa contra os valores e diga a quais ela serve e quais contraria.
+- Antes de propor ou alterar uma regra, uma notação ou uma forma de linha, faça à proposta a pergunta de cada valor, e diga a quais ela serve e quais contraria.
 - Se uma proposta contraria um valor, aponte o conflito em vez de escolher em silêncio.
+- Dois valores podem puxar em sentidos opostos, como **Densa** e **Atômica**. Nesse caso, diga o que cada alternativa ganha e perde em cada um, e recomende uma.
 
 ## Fluxo de git
 
@@ -20,18 +21,26 @@ Este repositório define o formato Tabularium. Este arquivo vale para quem traba
 
 ## Valores
 
-Os valores são os de `GUIA.md`, seção `Valores`, copiados por extenso. Ao mudar um valor, mude nos dois arquivos e no resumo de `README.md`.
+Cada valor traz a pergunta que ele faz a uma proposta. O que cada um quer, e o que já produziu no formato, está em `GUIA.md`, seção `Valores`: leia-a antes de propor uma mudança no formato.
 
-1. **Organizada por células de conceitos.** Cada célula reúne, num único bloco, os conceitos que um elemento do produto governa: suas definições, regras e políticas. As células se agrupam em áreas por relação forte, medida, e nunca por tipo de informação.
-2. **Densa.** Evita-se ao máximo a formatação e a separação em seções: o significado vem da posição no texto e das marcas, as do Markdown e as próprias do formato, cada uma com um sentido fixo e nunca usada como ênfase ou enfeite. A redação é objetiva e sucinta, pode usar símbolos e notações convencionadas, e não diz o que não precisa ser dito. Cada linha diz uma só coisa, e a única prosa é uma frase logo abaixo de um título, a que define cada célula e a que abre cada arquivo; explicações e exemplos ficam nos documentos derivados.
-3. **Hierárquica.** A estrutura vem de títulos, que organizam os blocos, e de sub-itens, que detalham as linhas. A profundidade de ambos é livre: usa-se a que o conteúdo pedir.
-4. **Fonte única da verdade.** Descreve só o que foi comprometido, e cada afirmação diz se está implementada ou não. Ideias, histórico e justificativas ficam fora.
-5. **Sem redundância.** Cada termo e cada regra são escritos uma vez. Índices, mapas, glossários e tudo o mais que se deriva mecanicamente são gerados por programa, de forma determinística, e nunca mantidos manualmente, nem por pessoas nem por agentes de IA.
-6. **Linguagem ubíqua.** Um termo, um significado, em todo o produto. Sinônimos proibidos são declarados e verificáveis.
-7. **Base para extrair outros documentos.** Visão, casos de uso, regras de negócio, cenários de teste e manuais são derivados: redigidos por um agente de IA a partir da fonte, por um prompt especializado, e com a origem de cada frase.
-8. **Verificável por programa.** A gramática é fixa para que um programa cheque a especificação sem interpretar o texto.
-9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
-10. **Fundamentada em decisões.** As decisões relevantes por trás das afirmações ficam em anotações densas à parte, lidas só sob demanda. O item fundamentado leva apenas uma marca curta que aponta para a decisão.
-11. **Explícita sobre lacunas.** Dúvidas sobre o que foi comprometido viram perguntas abertas, versionadas junto do texto, em vez de serem preenchidas por suposição.
-12. **Não técnica.** Descreve o que o sistema é e o que ele faz para o negócio, sem entrar em questões técnicas, que começam na especificação de arquitetura. Uma afirmação diz o que o produto faz, nunca como ele é construído (LIN-R10). Também não documenta o negócio em si, isto é, como ele funciona sem o sistema.
-13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização por quem conhece a legenda; agentes leem só a área de que precisam e seguem regras explícitas.
+1. **Coesa.** O que a proposta acrescenta fica ao lado do que mais se relaciona com ele? Agrupe por relação, e desconfie de todo agrupamento por tipo de informação.
+2. **Densa.** Dá para dizer o mesmo com menos texto, pela posição da linha ou por uma marca que já existe? Uma marca nova precisa de um sentido fixo e de uma linha na legenda.
+3. **Hierárquica.** A estrutura nova se escreve só com títulos e sub-itens?
+4. **Normativa.** A especificação continua trazendo só o que foi comprometido, com cada afirmação dizendo se o produto já a cumpre?
+5. **Sem redundância.** O que a proposta manda escrever já está escrito em outro lugar, ou pode ser derivado dele? Se pode, a proposta é gerar por programa.
+6. **Linguagem ubíqua.** O nome novo dá um segundo sentido a um termo que já existe, ou um segundo nome a algo que já tem termo? Procure o nome no repositório antes de propô-lo.
+7. **Derivável.** Com o que a proposta deixa escrito, um agente redige a visão, os casos de uso, os cenários de teste e os manuais sem acrescentar fatos?
+8. **Verificável.** Um programa confere a forma nova sem interpretar o texto? Diga o que o validador confere, e bloqueia, e o que fica para a revisão de significado por agente, que registra achados com criticidade.
+9. **Rastreável.** Todo item novo que pode ser citado ganha um código estável? Nenhum código já alocado muda nem volta a ser usado.
+10. **Fundamentada.** Quem ler a regra nova consegue recuperar por que ela é assim e o que foi descartado?
+11. **Explícita sobre lacunas.** O que a proposta deixa sem decidir aparece como pergunta aberta? Pergunte ao usuário o que você estaria supondo.
+12. **Em camadas.** Cada coisa nova está na especificação do seu assunto: o que o produto faz na do produto, em que é feito, onde fica e como é construído na de arquitetura, como se apresenta e como se interage com ele na de interface? Uma camada só cita as anteriores.
+13. **Acessível.** Uma pessoa lê a forma nova num editor de texto, só com a legenda? Um agente resolve a tarefa lendo só a área que ela toca?
+14. **Atômica.** Cada linha da forma nova diz uma só coisa, que pode ser marcada, citada e movida sozinha?
+
+### Ao mudar um valor
+
+- Um valor diz o que se quer da especificação; a regra, a notação ou a forma de linha que o atende é solução, e vai nos sub-itens do guia.
+- Um valor novo precisa pesar contra algum dos existentes. Se nunca pesa, ele é consequência de outro, e não entra.
+- Um valor novo entra no fim da lista: os números são citados fora daqui e nunca mudam.
+- Mude o valor em `GUIA.md`, a pergunta dele aqui e o resumo em `README.md`, na mesma mudança.
