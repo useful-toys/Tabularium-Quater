@@ -52,7 +52,7 @@ Formato para especificar produtos de software em Markdown, em três camadas: coe
 
 ## Fora de escopo
 - Documentação do negócio: como ele funciona sem o sistema · permanente
-- Formato da **Especificação de arquitetura** e da **Especificação de interface** · nesta versão ⟸ [Dv3r6.1]
+- Forma das **Linhas** da **Especificação de arquitetura** e da **Especificação de interface**, que fica na legenda de cada pasta · nesta versão ⟸ [Dv3r6.1]
 - Histórico e justificativas no texto · permanente
 - Ideias e pedidos não comprometidos · permanente
 - Estado parcial de implementação · permanente
