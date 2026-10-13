@@ -57,4 +57,4 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - Histórico e justificativas no texto · permanente
 - Ideias e pedidos não comprometidos · permanente
 - Estado parcial de implementação · permanente
-- Processo de mudança da **Especificação do produto**: proposta, revisão e aceite · nesta versão ⟸ [D08]
+- Aceite de uma mudança da **Especificação do produto**: quem aprova, e sobre qual texto · nesta versão ⟸ [D08]

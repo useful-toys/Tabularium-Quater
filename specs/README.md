@@ -2,6 +2,15 @@
 # Tabularium
 Formato para especificar produtos de software em Markdown: denso, hierárquico, fonte única da verdade, com linguagem ubíqua e organizado por proximidade lógica.
 
+## [Elaboração](elaboracao.md)
+Como uma Ideia amadurece numa Entrevista, ganha Sugestões, é registrada no Rastreador e chega à linha principal por uma Entrega.
+- Ideia `IDE`: Mudança pretendida numa das três especificações, desde que é proposta até ser entregue ou rejeitada.
+- Entrevista `ETV`: Conversa em rodadas em que uma Ideia amadurece com o Autor e em que só o consenso é gravado.
+- Andamento `AND`: Estado do que a ramificação da ideia não guarda: o objetivo da Ideia, o que falta decidir e o que ficou de fora.
+- Sugestão `SUG`: Ideia proposta pelo produto, e não pelo Autor, que complementa uma funcionalidade já discutida ou já escrita.
+- Entrega `ETG`: Passagem para a linha principal do que a Entrevista gravou na ramificação da ideia, depois de conferido.
+- Achado `ACH`: Problema de significado de uma das três especificações, que a forma dela não mostra, registrado para ser resolvido.
+
 ## [Modelagem](modelagem.md)
 As Células do produto, seus Atributos e os Termos que os nomeiam.
 - Célula `CEL`: Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a Especificação do produto afirma sobre ela e que não pertence a nenhuma outra.

@@ -172,6 +172,8 @@ Programa que checa a forma da **Especificação do produto**, sem interpretar o 
 - [x] VRF-R22.1  movida → [ARE-R23.2]
 - [x] VRF-R23.1  Não lê os arquivos `README.md`, que são o **Índice de áreas** e o **Índice de decisões**
 - [x] VRF-R23.2  Acusa a seção `Áreas` que sobrou no **Arquivo de produto**, com uma frase que diz para onde vão a **célula central**, a **prioridade** e o **responsável**
+- [x] VRF-Rp6wh.1  Correção de violação que muda o significado de uma **afirmação** pede a resposta do **Autor**
+- [x] VRF-Rp6wh.2  **Linha** acusada que parece certa é mostrada ao **Autor**, e não alterada
 - [x] VRF-C1  movida → [GER-C1]
 - [x] VRF-V1  Ver as violações da **Especificação do produto**
   - todas, em ordem de arquivo e de **Linha**

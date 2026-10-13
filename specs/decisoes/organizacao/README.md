@@ -2,7 +2,7 @@
 # Decisões de Organização
 
 - [D01](D01-verificacao-por-script.md) Quem verifica a especificação? Um script determinístico, que o agente de IA executa sem substituir.
-  - citada por: VRF-R5, D02, D68, D96
+  - citada por: VRF-R5, D02, D68, D96, Dtcwx.1
 - [D02](D02-derivados-redigidos-por-agente.md) Quem produz os documentos derivados? Um agente de IA, a partir da especificação.
   - citada por: DER-R4, D03, D19, D71
 - [D03](D03-versionar-derivados.md) Quem decide se um documento derivado fica sob controle de versão? Quem adota o formato, assumindo o risco de o documento ficar defasado.
@@ -42,9 +42,9 @@
 - [D44](D44-proposito-pelo-problema.md) Por onde começa o propósito do produto? Pelo problema que o produto resolve.
   - citada por: APR-R7
 - [D59](D59-so-o-comprometido.md) O que a especificação descreve? Só o que foi comprometido.
-  - citada por: ESP-R6, D60
+  - citada por: ESP-R6, D60, Dp6wh.1
 - [D68](D68-checagem-sintatica.md) Que tipo de checagem o validador faz? Só checagem sintática.
-  - citada por: VRF-R3, D77, D90, D114
+  - citada por: VRF-R3, D77, D90, D114, Dtcwx.1
 - [D70](D70-fronteira-e-mapa-gerados.md) A fronteira de cada área e o mapa entre áreas são escritos ou gerados? São gerados, nunca escritos.
   - citada por: IND-R1, MAP-R1
 - [D71](D71-derivado-nao-se-edita.md) Um documento derivado pode ser editado à mão? Não, ele é sempre refeito a partir da especificação.
