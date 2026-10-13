@@ -504,6 +504,29 @@ A ligação com a especificação é de mão única, como a das decisões: o com
 
 O exemplo real é a arquitetura do próprio Tabularium, em [`specs/arquitetura/`](specs/arquitetura/), e a legenda completa está em [`specs/arquitetura/_convencoes.md`](specs/arquitetura/_convencoes.md). A memória de como o formato nasceu está em `specs/arquitetura/ideia.md`.
 
+### A arquitetura do próprio Tabularium
+
+O **Tabularium** não é um programa que se instala e se abre. Ele chega ao repositório como um conjunto de skills, e cada processo é oferecido por uma delas. A regra que organiza tudo é a divisão entre a skill e o script (ARQ-Rp7zm.1):
+
+- **A skill conduz o que pede redação e julgamento:** perguntar, confrontar uma ideia com o que está escrito, redigir uma linha, propor uma sugestão.
+- **Um script faz o que é mecânico e determinístico:** validar, indexar, sortear um prefixo, contar o próximo código e copiar arquivos. O agente o executa e lê a saída, e nunca o substitui (ARQ-Rp7zm.2).
+
+O motivo é que o resultado de um agente varia de uma execução para outra, e o de um script é sempre o mesmo. Por isso entrevistar, sugerir, registrar e entregar não têm script próprio: usam os das outras skills (ARQ-Rp7zm.3).
+
+A arquitetura tem cinco áreas:
+
+| Área | O que descreve |
+| --- | --- |
+| Distribuição | O instalador, o manifesto do que ele copia e a skill de instalação |
+| Validação | O script de validação e a skill que o executa |
+| Indexação | O script que grava os índices de pasta, e a skill dele |
+| Alocação de códigos | Os scripts de sorteio e de próximo código, e a skill deles |
+| Elaboração | As skills de entrevista, de sugestão, de registro e de entrega |
+
+A instalação tem dois passos: o `npx skills` traz as skills, e a skill de instalação traz os arquivos de `specs/`. O instalador baixa cada arquivo da linha principal, e só escreve depois de baixar tudo, para uma falha de rede não deixar a instalação pela metade. Ele sobrescreve as instruções e as legendas, que são iguais em todos os projetos, e cria os modelos só onde o arquivo ainda não existe.
+
+A entrevista guarda o trabalho em dois lugares. O que tem consenso é gravado a cada rodada, na ramificação da ideia. O que falta decidir fica no andamento, que é o corpo da issue da ideia, e o estado dela fica num rótulo. É isso que permite parar a entrevista numa sessão e retomá-la em outra.
+
 ## Interface, em experimento
 
 A especificação do produto diz o que ele faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica fora dela, e `_produto.md` lista o detalhe de interface como fora do escopo dela. Esse assunto fica na especificação de interface, que tem um formato experimental, em `specs/interface/`. Ele ainda não faz parte da definição do formato: o validador só confere na pasta as decisões e as citações de decisão, e as regras dele estão na legenda e nas instruções da própria pasta, e não em `specs/`. A instalação já traz essa legenda, essas instruções e o modelo de `_interface.md`. A pasta é opcional, como a de arquitetura.
@@ -552,6 +575,12 @@ A ligação com a especificação é de mão única, como a das decisões: o com
 
 Não entram desenhos de tela nem posição em pixels. O formato foi posto à prova uma vez, na conversão da descrição de interface de uma das aplicações de exemplo, e alguns pontos ficaram em aberto. Estão em `specs/interface/ideia.md`, com a memória de como o formato nasceu. O [exemplo da interface do Pedido](exemplos/interface-pedido.md) traz um trecho comentado, e a legenda completa está em [`specs/interface/_convencoes.md`](specs/interface/_convencoes.md).
 
+### A interface do próprio Tabularium
+
+O **Tabularium** não tem tela própria: quem o usa conversa com um agente de IA, que executa as skills e mostra o que os scripts imprimem. A especificação de interface dele, em [`specs/interface/_interface.md`](specs/interface/_interface.md), declara dois meios, a conversa e o terminal, e as diretrizes dessa conversa. Por exemplo: cada processo começa por um comando de barra (IFC-Rtt9n.1), cada pergunta é mostrada em quatro partes, com o contexto, o exemplo, a recomendação e a pergunta (IFC-Rtt9n.4), e as perguntas vêm uma por vez (IFC-Rtt9n.5).
+
+Componentes e padrões ainda não foram escritos. O vocabulário da legenda foi pensado para telas, e falta ver se ele serve a uma conversa.
+
 ## Trabalhando com agentes de IA
 
 O arquivo `specs/AGENTS.md` ensina um agente a ler, consultar e alterar a especificação: o que ler antes de cada tarefa, onde colocar cada tipo de informação, as regras que nunca se quebram (como não renumerar e não editar seções geradas) e quando parar e perguntar em vez de inventar. A revisão por categorias FURPS+ não gera requisitos: gera perguntas abertas, porque uma categoria vazia pode ser uma lacuna ou uma escolha consciente.
@@ -571,9 +600,9 @@ Oito skills acompanham o formato, e `npx skills` instala todas de uma vez. A de 
 
 ## A entrevista
 
-A edição à mão não é proibida, mas o caminho recomendado para escrever e mudar a especificação é a entrevista, pela skill `/tabularium-entrevistar`. Nela, o agente amadurece uma ideia com o autor e escreve só o que chega ao consenso. Serve para a primeira versão do produto e para cada mudança depois dela, nas três especificações.
+A edição à mão não é proibida, mas o caminho recomendado para escrever e mudar a especificação é a entrevista, pela skill `/tabularium-entrevistar`. Nela, o agente amadurece uma ideia com o autor e escreve só o que chega ao consenso. Serve para a primeira versão do produto e para cada mudança depois dela, nas três especificações. As regras estão na área Elaboração, em [`specs/elaboracao.md`](specs/elaboracao.md), com as células Ideia, Entrevista, Andamento, Sugestão, Entrega e Achado.
 
-Uma ideia passa por estes estados:
+Uma ideia passa por estes estados (IDE-Rp6wh.11):
 
 | Estado | Acontecimento | Novo estado |
 | --- | --- | --- |
@@ -642,7 +671,7 @@ Cada valor diz o que se quer da especificação. Os sub-itens dizem o que ele pr
    - Cada afirmação leva `[x]` ou `[ ]`, sem estado parcial, e o trabalho pendente é o conjunto das `[ ]` (LIN-R4).
    - Uma mudança de significado retira a afirmação e cria outra, que nasce `[ ]` (LIN-R3).
    - Quem implementa não ajusta o texto ao que o código faz: se os dois divergem, para e pergunta.
-   - Na entrevista, a afirmação marcada `[x]` que o produto não cumpre é um defeito do produto: corrige-se o produto, e o texto fica.
+   - Na entrevista, a afirmação marcada `[x]` que o produto não cumpre é um defeito do produto: corrige-se o produto, e o texto fica (ETV-Rp6wh.18).
 5. **Sem redundância.** Cada termo e cada regra são escritos uma vez.
    - Cada termo tem um único lugar de definição (TRM-R1).
    - Cada relação é declarada numa só das duas células (ATR-R9).
@@ -660,9 +689,9 @@ Cada valor diz o que se quer da especificação. Os sub-itens dizem o que ele pr
    - A gramática é fixa e fechada: toda linha casa com uma forma prevista (VRF-R8).
    - O validador confere a forma, os identificadores, as referências e os termos, de modo determinístico e sem interpretar o texto (VRF-R3).
    - Uma violação torna a especificação inválida, sem resultado intermediário (VRF-R7).
-   - O significado, como uma contradição entre duas afirmações, é revisado por um agente de IA, que registra cada achado com a sua criticidade. A revisão ainda não existe como skill.
-   - O achado de criticidade alta segura a entrega. O que segura é o achado registrado, e não a execução do agente, que varia de uma vez para outra.
-   - O achado só sai pelo texto: corrige-se a afirmação, ou reescreve-se para que a leitura errada deixe de ser possível. Ele não é descartado nem rebaixado.
+   - O significado, como uma contradição entre duas afirmações, é revisado por um agente de IA, que registra cada achado com a sua criticidade (ACH-Rtcwx.1). A revisão ainda não existe como skill, e as afirmações dela estão marcadas `[ ]`.
+   - O achado de criticidade alta segura a entrega (ETG-Rtcwx.1). O que segura é o achado registrado, e não a execução do agente, que varia de uma vez para outra (ETG-Rtcwx.2).
+   - O achado só sai pelo texto: corrige-se a afirmação, ou reescreve-se para que a leitura errada deixe de ser possível (ACH-Rtcwx.5). Ele não é descartado nem rebaixado (ACH-Rtcwx.6).
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
    - O identificador traz a sigla da célula, a letra do papel e um número com o prefixo da mudança, para que mudanças em paralelo não aloquem o mesmo código (IDT-R2, IDT-R22.1).
    - A afirmação retirada ou movida deixa uma lápide, e as referências antigas continuam resolvendo (LAP-R1, LAP-R5).
