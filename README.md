@@ -6,7 +6,7 @@ Em vez de espalhar o mesmo assunto vários documentos, **Tabularium** escreve tu
 
 A gramática da documentação é simples o bastante para um programa verificar e para pessoas e agentes de IA manterem. Serve a equipes de desenvolvimento e sustentação, da análise à implementação, e qualquer um pode adotá-lo.
 
-> **Estado: experimental.** Hoje, o **Tabularium** apresenta uma especificação para documentar o produto e das decisões associadas. Ainda há arestas para tratar na especificação. Temos uma sugestão para especificar arquitetura e interface (UI/UX), ainda em experimentação. Também tem skills para entrevistar requisitos, amadurecer idéias e documentar o compromisso, todas funcionando, mas ainda com ajustes pendentes.
+> **Estado: experimental.** Hoje, o **Tabularium** apresenta uma especificação para documentar o produto e das decisões associadas. Ainda há arestas para tratar na especificação. A especificação de arquitetura e a de interface (UI/UX) já fazem parte do formato, com a forma das linhas ainda em experimentação. Também tem skills para entrevistar requisitos, amadurecer idéias e documentar o compromisso, todas funcionando, mas ainda com ajustes pendentes.
 
 ## A ideia
 
