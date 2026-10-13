@@ -67,19 +67,20 @@ As linhas de modelo têm palavras fixas: `tecnologia:`, `local:`, `realiza:` e `
 
 | Valor | Na arquitetura |
 | --- | --- |
-| 1. Organizada por células | Organizada por componentes, agrupados em áreas por relação |
-| 2. Densa | Igual: uma coisa por linha, e a única prosa é a definição do componente |
+| 1. Coesa | Organizada por componentes, agrupados em áreas por relação |
+| 2. Densa | Igual: a única prosa é a definição do componente |
 | 3. Hierárquica | Igual |
-| 4. Fonte única da verdade | Igual, com a marca `[x]` ou `[ ]`: construído ou não. A fronteira é com o código, que é a fonte do que é tático |
+| 4. Normativa | Igual, com a marca `[x]` ou `[ ]`: construído ou não. A fronteira é com o código, que é a fonte do que é tático |
 | 5. Sem redundância | Igual, e mais estrita: não repete a especificação nem o código |
 | 6. Linguagem ubíqua | A mesma linguagem do produto, acrescida dos nomes dos componentes; siglas num espaço só |
-| 7. Base para outros documentos | Diagramas de contexto e de componentes sairiam por programa, das linhas `usa`; visões em prosa, por agente |
-| 8. Verificável por programa | Além da gramática, âncoras: todo `local:` existe, toda referência resolve |
+| 7. Derivável | Diagramas de contexto e de componentes sairiam por programa, das linhas `usa`; visões em prosa, por agente |
+| 8. Verificável | Além da gramática, âncoras: todo `local:` existe, toda referência resolve |
 | 9. Rastreável | Igual: identificadores que nunca voltam, com o prefixo de mudança |
-| 10. Fundamentada em decisões | Igual, e mais importante aqui, porque quase toda afirmação é uma decisão que tinha alternativa |
+| 10. Fundamentada | Igual, e mais importante aqui, porque quase toda afirmação é uma decisão que tinha alternativa |
 | 11. Explícita sobre lacunas | Igual em princípio; onde ficam as perguntas da arquitetura ainda não foi definido |
-| 12. Não técnica | Inverte: só técnica. Não repete o que o produto faz |
-| 13. Acessível e eficiente | Igual: lê-se só a área de que se precisa |
+| 12. Em camadas | É a segunda camada: só técnica. Não repete o que o produto faz |
+| 13. Acessível | Igual: lê-se só a área de que se precisa |
+| 14. Atômica | Igual: uma coisa por linha |
 
 ## O que se espera ganhar
 

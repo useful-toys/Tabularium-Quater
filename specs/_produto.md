@@ -1,5 +1,5 @@
 # Tabularium
-Formato para especificar produtos de software em Markdown: denso, hierárquico, fonte única da verdade, com linguagem ubíqua e organizado por proximidade lógica.
+Formato para especificar produtos de software em Markdown, em três camadas: coeso, denso, hierárquico, normativo e com linguagem ubíqua.
 
 ## Propósito
 - Problema: **Especificações do produto** espalhadas em documentos por tipo repetem informação, divergem entre si e não podem ser verificadas por programa
