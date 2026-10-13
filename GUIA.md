@@ -399,8 +399,8 @@ Uma linha provisória aponta para a pergunta com `⟵ [P3.1]`. Se a lacuna é ju
 | Ideias e pedidos não comprometidos | Rastreador | Viram afirmações `[ ]` quando comprometidos |
 | Histórico de mudanças | Controle de versão | Lápides e identificadores estáveis |
 | Explicações e exemplos | Documentos derivados | Cada frase cita sua origem |
-| Como o produto é construído | Especificação de arquitetura, em `specs/arquitetura/`, em formato experimental; só se abre quando a tarefa cruza componentes ou troca uma tecnologia | Ela cita as afirmações da especificação do produto, que não cita de volta |
-| Como o produto se apresenta | Especificação de interface, em `specs/interface/`, em formato experimental; só se abre quando se mexe no que o ator vê ou opera | Ela cita as afirmações da especificação do produto, que não cita de volta |
+| Como o produto é construído | Especificação de arquitetura, em `specs/arquitetura/`, em formato experimental; só se abre quando a tarefa cruza componentes ou troca uma tecnologia | Ela cita as afirmações da especificação de produto, que não cita de volta |
+| Como o produto se apresenta | Especificação de interface, em `specs/interface/`, em formato experimental; só se abre quando se mexe no que o ator vê ou opera | Ela cita as afirmações da especificação de produto, que não cita de volta |
 
 ## Decisões
 
@@ -464,7 +464,7 @@ Duas redações do mesmo documento não saem iguais. Guardá-los sob controle de
 
 ## Arquitetura, em experimento
 
-A especificação do produto diz o que ele faz, nunca como ele é construído. Esse assunto é da especificação de arquitetura, a segunda das três do **Tabularium**, em `specs/arquitetura/` (ESP-Rv3r6.1). A existência dela é parte do formato, mas a forma das linhas ainda é experimental: o validador só confere na pasta as decisões e as citações de decisão, e as regras dessa forma estão na legenda e nas instruções da própria pasta. A instalação já traz essa legenda, essas instruções e o modelo de `_sistema.md`. A pasta é opcional: os modelos podem ficar como vieram até a equipe decidir descrever a arquitetura.
+A especificação de produto diz o que ele faz, nunca como ele é construído. Esse assunto é da especificação de arquitetura, a segunda das três do **Tabularium**, em `specs/arquitetura/` (ESP-Rv3r6.1). A existência dela é parte do formato, mas a forma das linhas ainda é experimental: o validador só confere na pasta as decisões e as citações de decisão, e as regras dessa forma estão na legenda e nas instruções da própria pasta. A instalação já traz essa legenda, essas instruções e o modelo de `_sistema.md`. A pasta é opcional: os modelos podem ficar como vieram até a equipe decidir descrever a arquitetura.
 
 A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
 
@@ -529,7 +529,7 @@ A entrevista guarda o trabalho em dois lugares. O que tem consenso é gravado a 
 
 ## Interface, em experimento
 
-A especificação do produto diz o que ele faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta e como a pessoa interage com ele é assunto da especificação de interface, a terceira das três do **Tabularium**, em `specs/interface/` (ESP-Rv3r6.1). A existência dela é parte do formato, mas a forma das linhas ainda é experimental: o validador só confere na pasta as decisões e as citações de decisão, e as regras dessa forma estão na legenda e nas instruções da própria pasta. A instalação já traz essa legenda, essas instruções e o modelo de `_interface.md`. A pasta é opcional, como a de arquitetura.
+A especificação de produto diz o que ele faz, e por isso vale em qualquer meio: web, desktop ou terminal. Como ele se apresenta e como a pessoa interage com ele é assunto da especificação de interface, a terceira das três do **Tabularium**, em `specs/interface/` (ESP-Rv3r6.1). A existência dela é parte do formato, mas a forma das linhas ainda é experimental: o validador só confere na pasta as decisões e as citações de decisão, e as regras dessa forma estão na legenda e nas instruções da própria pasta. A instalação já traz essa legenda, essas instruções e o modelo de `_interface.md`. A pasta é opcional, como a de arquitetura.
 
 A gramática é a mesma das células: bloco com título e sigla, frase de definição, lista única, afirmações com identificador e marca `[x]` ou `[ ]`. O que muda é a unidade.
 
@@ -707,10 +707,10 @@ Cada valor diz o que se quer da especificação. Os sub-itens dizem o que ele pr
     - Responder é apagar a pergunta: não existe estado "respondida" (REF-R5).
     - A revisão por categorias FURPS+ gera perguntas, e não requisitos.
 12. **Em camadas.** O **Tabularium** tem três especificações, uma por camada (ESP-Rv3r6.1). Cada uma trata de um só assunto e cita apenas as anteriores, e quem decide o produto lê só a primeira.
-    - A especificação do produto diz o que o produto é e o que ele faz para o negócio: uma afirmação dela nunca diz como ele é construído (LIN-R10).
+    - A especificação de produto diz o que o produto é e o que ele faz para o negócio: uma afirmação dela nunca diz como ele é construído (LIN-R10).
     - A especificação de arquitetura diz em que ele é feito, onde cada peça fica e como ele é construído.
     - A especificação de interface diz como ele se apresenta e como se interage com ele.
-    - A de arquitetura e a de interface ficam em pastas próprias, ainda em experimento, e apontam com `realiza:` as afirmações da do produto, que nunca aponta de volta.
+    - A de arquitetura e a de interface ficam em pastas próprias, ainda em experimento, e apontam com `realiza:` as afirmações da de produto, que nunca aponta de volta.
     - Nenhuma das três documenta o negócio em si, isto é, como ele funciona sem o sistema.
 13. **Acessível.** Pessoas e agentes de IA chegam ao que precisam com pouco esforço.
     - O texto é Markdown simples, legível sem renderização por quem conhece a legenda, `_convencoes.md`.

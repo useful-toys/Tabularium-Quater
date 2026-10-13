@@ -34,7 +34,7 @@ Cada valor traz a pergunta que ele faz a uma proposta. O que cada um quer, e o q
 9. **Rastreável.** Todo item novo que pode ser citado ganha um código estável? Nenhum código já alocado muda nem volta a ser usado.
 10. **Fundamentada.** Quem ler a regra nova consegue recuperar por que ela é assim e o que foi descartado?
 11. **Explícita sobre lacunas.** O que a proposta deixa sem decidir aparece como pergunta aberta? Pergunte ao usuário o que você estaria supondo.
-12. **Em camadas.** Cada coisa nova está na especificação do seu assunto: o que o produto faz na do produto, em que é feito, onde fica e como é construído na de arquitetura, como se apresenta e como se interage com ele na de interface? Uma camada só cita as anteriores.
+12. **Em camadas.** Cada coisa nova está na especificação do seu assunto: o que o produto faz na de produto, em que é feito, onde fica e como é construído na de arquitetura, como se apresenta e como se interage com ele na de interface? Uma camada só cita as anteriores.
 13. **Acessível.** Uma pessoa lê a forma nova num editor de texto, só com a legenda? Um agente resolve a tarefa lendo só a área que ela toca?
 14. **Atômica.** Cada linha da forma nova diz uma só coisa, que pode ser marcada, citada e movida sozinha?
 

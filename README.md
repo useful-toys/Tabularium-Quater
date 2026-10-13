@@ -48,7 +48,7 @@ Estes catorze valores guiaram a criação do formato.
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
 10. **Fundamentada.** O porquê de cada escolha relevante pode ser recuperado, com as alternativas descartadas; as decisões ficam à parte, e o item aponta para elas.
 11. **Explícita sobre lacunas.** O que ainda não foi decidido aparece como não decidido: dúvidas viram perguntas abertas, versionadas com o texto, e nunca suposições.
-12. **Em camadas.** São três especificações, uma por camada. A do produto diz o que ele faz para o negócio, sem nada técnico; a de arquitetura, em que ele é feito, onde fica e como é construído; a de interface, como ele se apresenta e como se interage com ele.
+12. **Em camadas.** São três especificações, uma por camada. A de produto diz o que ele faz para o negócio, sem nada técnico; a de arquitetura, em que ele é feito, onde fica e como é construído; a de interface, como ele se apresenta e como se interage com ele.
 13. **Acessível.** Pessoas e agentes de IA chegam ao que precisam com pouco esforço: formato simples, legível sem renderização.
 14. **Atômica.** Cada afirmação diz uma só coisa, e pode ser marcada, verificada, citada e movida sozinha.
 
