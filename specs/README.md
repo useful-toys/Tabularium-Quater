@@ -21,7 +21,10 @@ As Células do produto, seus Atributos e os Termos que os nomeiam.
 
 ## [Organização](organizacao.md)
 Como a Especificação do produto se divide em arquivos e Áreas, o que o Validador checa e o Indexador produz a partir dela, e como se guardam as Decisões e os Arquivos de dados.
-- Especificação do produto `ESP`: Conjunto de arquivos Markdown, com os Arquivos de dados que eles citam, que descreve um produto inteiro e é a fonte única da verdade sobre ele.
+- Especificação `ESP`: Conjunto de arquivos Markdown que descreve um produto numa camada e é a fonte única da verdade sobre ele nessa camada.
+- Especificação do produto `EPD`: Especificação da primeira camada, que diz o que o produto é e o que ele faz para o negócio.
+- Especificação de arquitetura `EAQ`: Especificação da segunda camada, que diz em que o produto é feito, onde cada peça fica e como ele é construído.
+- Especificação de interface `EIF`: Especificação da terceira camada, que diz como o produto se apresenta e como a pessoa interage com ele.
 - Instruções para agentes `AGT`: Arquivo que ensina agentes de IA a trabalhar no formato, igual em todos os projetos.
 - Arquivo de convenções `CNV`: Legenda que ensina a ler e escrever no formato, igual em todos os projetos.
 - Arquivo de produto `APR`: Arquivo com o que vale para o produto inteiro e não pertence a nenhuma Célula.

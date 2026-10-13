@@ -111,10 +111,16 @@ Daniel, em 10 de outubro de 2026, para a especificação, a arquitetura e a inte
 - Motivo: com cada ideia elaborada numa ramificação própria, duas mudanças em paralelo alocavam o mesmo número.
 - As siglas continuam num espaço só; quem cria uma procura em toda a pasta `specs/`.
 - Os códigos anteriores, só com um número, continuam válidos.
+### 17. A arquitetura é uma das três especificações do Tabularium
+
+Daniel, em 12 de outubro de 2026, para a arquitetura e a interface. O Tabularium tem três especificações, uma por camada: a do produto, a de arquitetura e a de interface. A existência das duas últimas é compromisso do formato; a forma das linhas delas continua experimental, na legenda de cada pasta. Registrada em `Dv3r6.1`, de `specs/decisoes/`.
+
+- Motivo: a definição do formato dizia que a arquitetura estava fora de escopo, enquanto o validador, o indexador e as skills já a tratavam.
+- O valor `Não técnica` virou `Em camadas`, e as instruções e a legenda deixaram de dizer que a arquitetura segue os valores "sem" ele.
+
 ## Em aberto
 
 - Onde ficam as perguntas abertas da arquitetura.
-- Se o formato entra na definição do Tabularium, o que exige rever "Arquitetura e detalhes técnicos · permanente" em `_produto.md`.
 
 ## Decisões técnicas do Tabularium
 

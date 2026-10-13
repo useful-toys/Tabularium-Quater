@@ -10,29 +10,48 @@ Como a **Especificação do produto** se divide em arquivos e **Áreas**, o que 
 - **parte gerada**: seção ou arquivo que o **Indexador** produz, iniciado por `<!-- gerado; não editar -->`
 - **Índice de áreas**: **parte gerada**, no arquivo `README.md`, que lista as **Áreas** de uma pasta e as **Células** de cada uma
 - **Índice de decisões**: **parte gerada**, no arquivo `README.md`, que lista as **Decisões** de uma pasta
-- **Especificação de arquitetura**: arquivos que descrevem como o produto é construído (~~documento de arquitetura~~)
-- **Especificação de interface**: arquivos que descrevem como o produto se apresenta e como a pessoa interage com ele
+- **camada**: assunto de uma **Especificação**, na ordem produto, arquitetura e interface
+- **componente**: unidade da **Especificação de arquitetura** e da **Especificação de interface**, que faz nelas o papel da **Célula**
 
-## **Especificação do produto**  `ESP`
-Conjunto de arquivos Markdown, com os **Arquivos de dados** que eles citam, que descreve um produto inteiro e é a fonte única da verdade sobre ele.
+## **Especificação**  `ESP`
+Conjunto de arquivos Markdown que descreve um produto numa **camada** e é a fonte única da verdade sobre ele nessa camada.
 - 1 **Instruções para agentes**
 - 1 **Arquivo de convenções**
-- 1 **Arquivo de produto**
-- 0..1 **Arquivo de perguntas**
 - 1..N **Área** ⟸ [D31]
-- 0..N **Arquivo de dados**
 - evento: **Especificação alterada**
 - [x] ESP-R1  removida
 - [x] ESP-R2  A única prosa é uma frase logo abaixo de um título: a **frase de definição** de cada **Célula** e a **frase de abertura** de um arquivo
 - [x] ESP-R3  removida
-- [x] ESP-R4  Ordem de leitura: **Arquivo de convenções**, **Arquivo de produto**, qualquer **Área**
+- [x] ESP-R4  Ordem de leitura da **Especificação do produto**: **Arquivo de convenções**, **Arquivo de produto**, qualquer **Área**
 - [x] ESP-R5  Histórico, justificativas e explicações didáticas ficam fora do texto ⟸ [D72]
 - [x] ESP-R6  O texto descreve só o que foi comprometido; ideias ficam no **Rastreador** até amadurecerem ⟸ [D59]
 - [ ] ESP-R7  Títulos organizam os blocos em hierarquia, com profundidade livre; dentro do bloco não há subtítulos, e a profundidade dos sub-itens é livre
 - [ ] ESP-R8  Uma especificação descreve um só produto, com uma só linguagem; significados de um **Termo** que não se conciliam indicam dois produtos, cada um com a sua especificação ⟸ [D06]
 - [x] ESP-R9  Abaixo do título do arquivo, todo título é de **Célula** ou de seção prevista
+- [ ] ESP-Rv3r6.1  São três especificações, uma por **camada**: a **Especificação do produto**, a **Especificação de arquitetura** e a **Especificação de interface** ⟸ [Dv3r6.1]
 - [ ] ESP-V1 · leitor  Ler uma **Área** sem abrir as outras
   - a **Fronteira da área** diz o que ela usa de fora
+
+## **Especificação do produto**  `EPD`
+**Especificação** da primeira **camada**, que diz o que o produto é e o que ele faz para o negócio.
+- especializa **Especificação**
+- 1 **Arquivo de produto**
+- 0..1 **Arquivo de perguntas**
+- 0..N **Arquivo de dados**
+- 0..1 **Especificação de arquitetura** ⟸ [Dv3r6.1]
+- 0..1 **Especificação de interface** ⟸ [Dv3r6.1]
+
+## **Especificação de arquitetura**  `EAQ`
+**Especificação** da segunda **camada**, que diz em que o produto é feito, onde cada peça fica e como ele é construído. (~~documento de arquitetura~~)
+- especializa **Especificação**
+- **pasta**: `arquitetura/`, dentro da pasta da **Especificação do produto**; imutável
+- [ ] EAQ-Rv3r6.1  Cita **afirmações** da **Especificação do produto**, que nunca a cita de volta
+
+## **Especificação de interface**  `EIF`
+**Especificação** da terceira **camada**, que diz como o produto se apresenta e como a pessoa interage com ele.
+- especializa **Especificação**
+- **pasta**: `interface/`, dentro da pasta da **Especificação do produto**; imutável
+- [ ] EIF-Rv3r6.1  Cita **afirmações** da **Especificação do produto** e da **Especificação de arquitetura**, que nunca a citam de volta
 
 ## **Instruções para agentes**  `AGT`
 Arquivo que ensina agentes de IA a trabalhar no formato, igual em todos os projetos.
@@ -162,12 +181,12 @@ Programa que checa a forma da **Especificação do produto**, sem interpretar o 
 - [x] VRF-R19  Checa os **Termos**: [TRM-R4], [TRM-R11], [TRM-R13], [TRM-R14], [TRM-R17], [TRM-R18], [TRM-R19], [TRM-R20], [TRM-R22], [TRM-R23], [TRM-R24], [TRM-R25], [DEC-R11]
 - [x] VRF-R20  removida
 - [x] VRF-R21  Checa os **Dados de referência**: [DRF-R4], [DRF-R8], [DRF-R9], [DRF-R10], [DRF-R11], [DRF-R14], [DRF-R15], [ADA-R1], [ADA-R2], [ADA-R3], [ADA-R4], [ADA-R9], [ADA-R13], [ADA-R15], [ADA-R16] ⟸ [D90]
-- [x] VRF-R22  Ignora as pastas que não são de **Área**, de **Decisões**, de **Arquivos de dados**, de arquitetura nem de interface
-- [x] VRF-R23  Das pastas de arquitetura e de interface, checa só as **Decisões** e as **Referências** a elas ⟸ [D82]
-- [x] VRF-R24  Nas pastas de arquitetura e de interface, não lê `AGENTS.md`, `_convencoes.md`, `ideia.md` nem `decisoes.md`
-- [x] VRF-R25  Nas pastas de arquitetura e de interface, confere da **Referência** a uma **Decisão** a forma da marca e a existência da decisão, e não o lugar da marca na **Linha**
+- [x] VRF-R22  Ignora as pastas que não são de **Área**, de **Decisões**, de **Arquivos de dados**, da **Especificação de arquitetura** nem da **Especificação de interface**
+- [x] VRF-R23  Da **Especificação de arquitetura** e da **Especificação de interface**, checa só as **Decisões** e as **Referências** a elas ⟸ [D82]
+- [x] VRF-R24  Na **Especificação de arquitetura** e na **Especificação de interface**, não lê `AGENTS.md`, `_convencoes.md`, `ideia.md` nem `decisoes.md`
+- [x] VRF-R25  Na **Especificação de arquitetura** e na **Especificação de interface**, confere da **Referência** a uma **Decisão** a forma da marca e a existência da decisão, e não o lugar da marca na **Linha**
 - [x] VRF-R26  removida
-- [x] VRF-R27  Nas pastas de arquitetura e de interface, não lê `_achados.md`
+- [x] VRF-R27  Na **Especificação de arquitetura** e na **Especificação de interface**, não lê `_achados.md`
 - [x] VRF-R28  Quanto aos **Termos**, checa só o negrito e as **definições**; o texto sem negrito não é checado ⟸ [D114]
 - [x] VRF-R22.1  movida → [ARE-R23.2]
 - [x] VRF-R23.1  Não lê os arquivos `README.md`, que são o **Índice de áreas** e o **Índice de decisões**
@@ -191,12 +210,12 @@ Programa que produz as **partes geradas** da **Especificação do produto**, sem
 - [x] GER-R23.5  Não sobrescreve o `README.md` que não começa com `<!-- gerado; não editar -->`
 - [x] GER-R23.6  Apaga o **Índice de áreas** ou o **Índice de decisões** da pasta que ficou sem o que indexar
 - [x] GER-R23.7  O **Índice de áreas** traz o nome e a **frase de abertura** do **Arquivo de produto** e, de cada **Área**, em ordem de **caminho**, o **Área.nome**, a **frase** e cada **Célula** com a **Célula.sigla** e a **frase de definição** ⟸ [D23.1]
-- [x] GER-R23.8  No **Índice de áreas** da arquitetura e no da interface, os componentes fazem o papel das **Células**
+- [x] GER-R23.8  No **Índice de áreas** da **Especificação de arquitetura** e no da **Especificação de interface**, os **componentes** fazem o papel das **Células**
 - [x] GER-R23.9  O **Índice de decisões** traz, de cada **Decisão**, **Decisão.código**, **questão**, **resolução** e os itens e as decisões que a citam, em ordem da data de criação escrita nas **alterações** e, na mesma data, de **Decisão.código** ⟸ [D19]
 - [x] GER-R23.10  No **Índice de decisões**, a **Decisão** que nada cita consta como órfã
 - [x] GER-C1  removida
 - [x] GER-C23.1  Indexar as pastas ⟸ [D78]
-  - **Índice de áreas** na pasta da **Especificação do produto**, na de arquitetura e na de interface, conforme [GER-R23.7]
+  - **Índice de áreas** na pasta da **Especificação do produto**, na da **Especificação de arquitetura** e na da **Especificação de interface**, conforme [GER-R23.7]
   - **Índice de decisões** em cada pasta de **Decisões**, conforme [GER-R23.9]
   - se algum arquivo não pôde ser lido: os demais são indexados, conforme [GER-R23.2]
 - [ ] GER-C23.2  Gerar as demais **partes geradas** ⟸ [D78]
@@ -267,8 +286,8 @@ Justificativa de um ponto não óbvio do produto, guardada à parte das **Áreas
 | alteração | item de `Histórico`, como `- AAAA-MM-DD: texto` |
 
 - [x] DEC-R20  Decisão que nenhum item da **Especificação do produto**, da **Especificação de arquitetura** ou da **Especificação de interface** e nenhuma outra decisão cita é órfã, e permanece até a limpeza ⟸ [D15]
-- [x] DEC-R21  Decisão de arquitetura ou de interface mora em `decisoes/` da pasta dela, numa subpasta por área; a que não é de área, em `_sistema` ou em `_interface` ⟸ [D92]
-- [x] DEC-R22  Item da **Especificação do produto** cita só decisão dela; item da **Especificação de arquitetura**, também as da arquitetura; item da **Especificação de interface**, também as da arquitetura e as da interface ⟸ [D93]
+- [x] DEC-R21  Decisão da **Especificação de arquitetura** ou da **Especificação de interface** mora em `decisoes/` da pasta dela, numa subpasta por área; a que não é de área, em `_sistema` ou em `_interface` ⟸ [D92]
+- [x] DEC-R22  Item da **Especificação do produto** cita só decisão dela; item da **Especificação de arquitetura**, também as dela; item da **Especificação de interface**, também as da de arquitetura e as dela ⟸ [D93]
 - [x] DEC-R22.1  **Código** único entre as decisões da **Especificação do produto**, da **Especificação de arquitetura** e da **Especificação de interface**; código já usado não volta ⟸ [D10]
 - [x] DEC-R22.2  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, conforme [IDT-R22.1], [IDT-R22.5] e de [IDT-Rbvc2.1] a [IDT-Rbvc2.3] ⟸ [D10]
 - [x] DEC-Rknnk.1  O **código** fica definitivo como o do **Identificador**, conforme [IDT-Rknnk.1] e [IDT-Rknnk.2]

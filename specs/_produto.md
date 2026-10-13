@@ -53,7 +53,7 @@ Formato para especificar produtos de software em Markdown: denso, hierárquico, 
 - Arquitetura e detalhes técnicos na **Especificação do produto** · permanente ⟸ [D74]
 - Documentação do negócio: como ele funciona sem o sistema · permanente
 - Detalhe de interface na **Especificação do produto**: formato, máscara, leiaute · permanente
-- Formato da **Especificação de arquitetura** e da **Especificação de interface** · nesta versão
+- Formato da **Especificação de arquitetura** e da **Especificação de interface** · nesta versão ⟸ [Dv3r6.1]
 - Histórico e justificativas no texto · permanente
 - Ideias e pedidos não comprometidos · permanente
 - Estado parcial de implementação · permanente

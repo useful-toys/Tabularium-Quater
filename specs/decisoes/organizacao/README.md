@@ -36,7 +36,7 @@
 - [D30](D30-medicao-da-proximidade.md) Como se verifica a proximidade lógica? Pela contagem de referências, que aponta como candidata a mudar de área a célula que troca mais referências com outra área do que com a sua.
   - citada por: ARE-R9, D77
 - [D31](D31-divisao-em-arquivos.md) Como a especificação se divide em arquivos? Num arquivo por área, mais poucos arquivos para o que vale para o conjunto.
-  - citada por: Especificação do produto
+  - citada por: Especificação
 - [D43](D43-o-que-e-externo.md) O que é um externo? Um sistema ou uma organização fora do produto que alguma regra pressupõe.
   - citada por: externo
 - [D44](D44-proposito-pelo-problema.md) Por onde começa o propósito do produto? Pelo problema que o produto resolve.
@@ -62,7 +62,7 @@
 - [D80](D80-validador-sem-historico.md) O validador consulta o histórico da especificação? Não, lê só os arquivos como estão.
   - citada por: VRF-R9
 - [D82](D82-arquitetura-fora-da-validacao.md) O validador checa as pastas de arquitetura e de interface? Só as decisões e as citações de decisão.
-  - citada por: VRF-R23
+  - citada por: VRF-R23, Dv3r6.1
 - [D85](D85-formato-dos-arquivos-de-dados.md) Em que formato ficam os arquivos de dados? Em JSON, os estruturados, e em CSV, os tabulares.
   - citada por: ADA-R3, D89
 - [D89](D89-entrada-dos-dados.md) Como os dados entram num arquivo de dados? Por cópia ou por conversão feita por programa.
@@ -72,7 +72,7 @@
 - [D92](D92-decisoes-tecnicas-por-area.md) As decisões de arquitetura e de interface ficam em subpastas por área? Sim, como as da especificação.
   - citada por: DEC-R21
 - [D93](D93-quem-cita-decisao.md) De quais pastas um item pode citar decisão? Da própria pasta e das pastas de que ela depende: a arquitetura, da especificação, e a interface, da arquitetura e da especificação.
-  - citada por: DEC-R22
+  - citada por: DEC-R22, Dv3r6.1
 - [D114](D114-termos-so-no-negrito.md) O validador checa termos em texto sem negrito? Não, quanto a termos ele checa só o negrito e as definições.
   - citada por: VRF-R28, D52, D115
 - [D23.1](D23.1-areas-listadas-por-programa.md) As áreas de uma pasta são listadas à mão ou por programa? Por programa, num índice de áreas que o indexador produz.
@@ -85,3 +85,5 @@
   - citada por: GER-R23.4
 - [Ds5rs.1](Ds5rs.1-area-com-mais-de-um-responsavel.md) O que se faz com a área que pede mais de um responsável? É candidata a divisão em duas, cada uma com o seu responsável.
   - citada por: ARE-Rs5rs.2
+- [Dv3r6.1](Dv3r6.1-tres-especificacoes.md) A arquitetura e a interface de um produto fazem parte do formato? Sim, como especificações próprias, uma por camada, ao lado da especificação do produto.
+  - citada por: _produto.md, ESP-Rv3r6.1, Especificação do produto

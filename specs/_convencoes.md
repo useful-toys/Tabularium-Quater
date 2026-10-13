@@ -8,6 +8,8 @@ Legenda para ler e escrever a especificação do produto neste formato. Este arq
 - `_perguntas.md`: dúvidas sobre o que já foi comprometido; ideias não entram; opcional; um item por pergunta, como `- P4.1  enunciado?`, com sub-itens `opção:` e `sobre:`; título e frase de abertura são opcionais
 - `decisoes/`: decisões relevantes, uma por arquivo, lidas só sob demanda; tem a sua própria legenda e as suas instruções para agentes; os itens da especificação as citam, e elas não citam de volta
 - `dados/`: arquivos de dados de referência, em JSON ou CSV, lidos só sob demanda; cada um é citado por exatamente uma regra; o nome é a sigla da célula que o cita, `-`, um nome curto em minúsculas e sem acento, e a extensão, como `PED-tarifas.json`; a pasta não tem subpastas nem outros arquivos
+- `arquitetura/`: a especificação de arquitetura, que diz como o produto é construído; opcional; tem a sua própria legenda e as suas instruções para agentes; cita esta especificação, que não a cita de volta
+- `interface/`: a especificação de interface, que diz como o produto se apresenta; opcional; tem a sua própria legenda e as suas instruções para agentes; cita esta especificação e a de arquitetura, que não a citam de volta
 - `<area>.md`: uma área; lida em qualquer ordem; é área todo arquivo `.md` desta pasta cujo nome não começa por `_` e que não é `AGENTS.md` nem `README.md`
 - `<area>/`: área dividida; é área toda subpasta com `_area.md`, que traz a frase, as linhas da área e as seções anteriores às células; cada outro arquivo começa pelo título e traz as células em blocos
 - `README.md`: índice de áreas, com a frase de cada uma e as células dela; gerado por programa e nunca editado

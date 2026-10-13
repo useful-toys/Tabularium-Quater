@@ -1,12 +1,12 @@
 # AGENTS.md
 
-Esta pasta é a especificação de arquitetura do produto: as escolhas técnicas estratégicas, que guiam a implementação e são caras de trocar depois. O formato é experimental e ainda não faz parte da definição do Tabularium. A arquitetura é lida sob demanda, e quem decide o produto não precisa abri-la.
+Esta pasta é a especificação de arquitetura do produto: as escolhas técnicas estratégicas, que guiam a implementação e são caras de trocar depois. Ela é uma das três especificações do Tabularium; a forma das linhas dela ainda é experimental e fica na legenda desta pasta. A arquitetura é lida sob demanda, e quem decide o produto não precisa abri-la.
 
 A gramática é a da especificação. As instruções de `../AGENTS.md` valem aqui, salvo o que este arquivo muda: identificadores que nunca voltam, lápides, termos em negrito na primeira menção, uma coisa por afirmação, e nada de histórico, justificativa ou explicação no texto.
 
 ## O formato é uma proposta
 
-Este formato nasceu das situações vividas até agora e não está fechado. Ele existe para servir aos valores da especificação do produto, em `README.md` na raiz, seção `Valores`, lendo componente onde se lê célula, e sem o valor `Não técnica`, porque as questões técnicas começam aqui. Se o formato e um valor divergem, vale o valor.
+Este formato nasceu das situações vividas até agora e não está fechado. Ele existe para servir aos valores da especificação do produto, em `README.md` na raiz, seção `Valores`, lendo componente onde se lê célula. Se o formato e um valor divergem, vale o valor.
 
 Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes.md`:
 

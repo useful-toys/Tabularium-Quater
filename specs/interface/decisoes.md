@@ -170,3 +170,7 @@ Proposta do Claude, aceita. Dos registros de decisão de interface do Iconula, c
 ### 21. A interface do Tabularium é a conversa com um agente de IA
 
 Daniel, em 12 de outubro de 2026. O Tabularium não tem tela própria: quem o usa conversa com um agente de IA, que executa as skills e mostra o que os scripts imprimem. Isso passou a ser escrito em `_interface.md`, com dois meios, a conversa e o terminal, e as diretrizes que as skills já seguiam. Componentes e padrões ainda não foram escritos: o vocabulário da legenda foi pensado para telas, e falta ver se ele serve a uma conversa.
+
+### 22. A interface é uma das três especificações do Tabularium
+
+Daniel, em 12 de outubro de 2026, para a arquitetura e a interface. O Tabularium tem três especificações, uma por camada: a do produto, a de arquitetura e a de interface. A existência das duas últimas é compromisso do formato; a forma das linhas delas continua experimental, na legenda de cada pasta. Registrada em `Dv3r6.1`, de `specs/decisoes/`.

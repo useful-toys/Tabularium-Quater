@@ -23,7 +23,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 - [x] LIN-R7  Linha de **modelo** não tem marca de implementação
 - [x] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de **célula dona**
 - [x] LIN-R9  **Afirmação** nova nasce `[ ]`, exceto a movida, que herda a marca
-- [x] LIN-R10  **Afirmação** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
+- [x] LIN-R10  **Afirmação** da **Especificação do produto** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
 - [x] LIN-R11  Num bloco de **Célula**, toda linha tem uma destas formas:
 
 | Linha | Forma | Regra |
