@@ -1,6 +1,6 @@
 # Exemplo: a interface em torno do Pedido
 
-Este é um trecho da interface do mesmo sistema de pedidos fictício do [exemplo do Pedido](pedido.md). O formato da interface é experimental e ainda não faz parte da definição do Tabularium. Numa especificação real, o primeiro bloco estaria em `specs/interface/_interface.md`, e os outros, no arquivo de uma área da interface.
+Este é um trecho da interface do mesmo sistema de pedidos fictício do [exemplo do Pedido](pedido.md). A especificação de interface é uma das três do Tabularium, e a forma das linhas dela ainda é experimental. Numa especificação real, o primeiro bloco estaria em `specs/interface/_interface.md`, e os outros, no arquivo de uma área da interface.
 
 ```markdown
 ## Meios
