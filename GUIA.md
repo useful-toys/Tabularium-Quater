@@ -31,6 +31,7 @@ O indexador já produz os índices de cada pasta. As demais partes geradas e as 
 - [Arquitetura, em experimento](#arquitetura-em-experimento)
 - [Interface, em experimento](#interface-em-experimento)
 - [Trabalhando com agentes de IA](#trabalhando-com-agentes-de-ia)
+- [A entrevista](#a-entrevista)
 - [Valores](#valores)
 - [Diferenciais em relação a RUP, ágil, BDD e DDD](#diferenciais-em-relação-a-rup-ágil-bdd-e-ddd)
 - [Limites e cuidados](#limites-e-cuidados)
@@ -568,21 +569,129 @@ Oito skills acompanham o formato, e `npx skills` instala todas de uma vez. A de 
 | `/tabularium-registrar` | Cria no GitHub a issue de uma sugestão ou de uma entrevista em curso, e os rótulos da especificação; opcional |
 | `/tabularium-aplicar` | Confere a ramificação da ideia e a entrega na linha principal |
 
+## A entrevista
+
+A edição à mão não é proibida, mas o caminho recomendado para escrever e mudar a especificação é a entrevista, pela skill `/tabularium-entrevistar`. Nela, o agente amadurece uma ideia com o autor e escreve só o que chega ao consenso. Serve para a primeira versão do produto e para cada mudança depois dela, nas três especificações.
+
+Uma ideia passa por estes estados:
+
+| Estado | Acontecimento | Novo estado |
+| --- | --- | --- |
+| sugestão | começa a entrevista | em entrevista |
+| em entrevista | o autor confirma o consenso sobre a ideia inteira | consenso |
+| em entrevista | o autor rejeita a ideia | rejeitada |
+| em entrevista | nenhuma parte pede mudança, e alguma é defeito | virou defeito |
+| consenso | a entrega devolve a ideia | em entrevista |
+| consenso | a entrega chega à linha principal | entregue |
+
+O agente trabalha de quatro modos, do começo ao fim:
+
+- **Procura o furo.** O trabalho dele é achar o que a ideia não previu, onde ela se contradiz e onde quebra. A resposta vaga é cobrada até caber numa linha da especificação.
+- **Pergunta só o que já pode ser respondido.** As decisões de uma ideia dependem umas das outras. Ele pergunta as que as respostas dadas já liberaram, e espera a que falta em vez de supor.
+- **Recomenda uma resposta.** Toda pergunta leva a resposta que ele recomenda, escrita para o autor poder dizer só "sim". Quem decide é o autor.
+- **Busca antes de perguntar.** O que já está escrito na especificação, ou é fato de fora do produto, ele procura. O autor responde só decisões.
+
+A entrevista corre nestes passos:
+
+1. **Receber a ideia.** Ela vem numa frase, num texto ou numa issue do rastreador.
+2. **Abrir a ramificação da ideia.** Tudo o que a entrevista escreve fica numa ramificação própria, e nunca na linha principal.
+3. **Ler as áreas que a ideia toca**, cada uma por inteiro.
+4. **Quebrar a ideia em partes.** Uma parte é o que caberia numa linha. O agente diz se ela é de produto, de arquitetura, de interface ou só de codificação, e a leva às condições de contorno: o limite, o vazio, o simultâneo, o caminho que falha, o depois e quem mais é afetado.
+5. **Perguntar em rodadas.** Uma rodada reúne as perguntas de um mesmo assunto, feitas uma por vez, cada uma com o contexto, um exemplo e a recomendação.
+6. **Gravar a rodada.** Só a parte com redação final e resposta do autor é escrita. O agente aloca os códigos, valida, refaz os índices e faz um commit por rodada.
+7. **Encerrar.** A entrevista termina quando não sobra pergunta e o autor confirma o consenso sobre a ideia inteira.
+
+Cada parte nova é confrontada com o que já existe, nas três especificações. O que diz diferente é um conflito: o agente mostra os dois lados, e o autor escolhe entre retirar a parte, ajustá-la ou mudar o existente. Mudar o que já está na linha principal pede a confirmação dele, item por item. Cada palavra nova do autor é procurada antes de virar termo, porque a presunção é que o termo já existe.
+
+É no confronto que a especificação se impõe ao código. Quando a ideia do autor já está escrita, o agente pergunta se o produto faz aquilo, e cada parte termina com um veredito:
+
+| Veredito | Quando |
+| --- | --- |
+| Mudança | A parte tem redação final e consenso, e é gravada |
+| Pergunta aberta | O principal é compromisso e falta um detalhe; vai para `_perguntas.md` |
+| Já existe | Está escrito e implementado, e o produto faz |
+| Defeito | Está escrito e implementado, e o produto não faz; o que se corrige é o produto, e o texto fica |
+| Pendente | Está escrito e ainda não foi implementado |
+| Codificação | Não é de nenhuma das três especificações, e fica para quem programa |
+| Recusado | O autor deixou a parte de fora |
+| Não amadureceu | O autor ainda não decidiu, e a parte segue em aberto |
+
+O consenso é uma proposta do autor. O aceite continua com o processo da equipe, que o formato não define, e por isso o agente informa ao fim quais áreas a mudança toca e o responsável de cada uma. A entrega na linha principal é feita por `/tabularium-aplicar`.
+
+Quando a ideia tem uma issue, o andamento é gravado nela a cada rodada, e outra sessão pode retomar a entrevista de onde parou. `/tabularium-registrar` cria essa issue, e `/tabularium-sugerir` traz ideias que complementam a discutida.
+
 ## Valores
 
-1. **Organizada por células de conceitos.** Cada célula reúne, num único bloco, os conceitos que um elemento do produto governa: suas definições, regras e políticas. As células se agrupam em áreas por relação forte, medida, e nunca por tipo de informação.
-2. **Densa.** Evita-se ao máximo a formatação e a separação em seções: o significado vem da posição no texto e das marcas, as do Markdown e as próprias do formato, cada uma com um sentido fixo e nunca usada como ênfase ou enfeite. A redação é objetiva e sucinta, pode usar símbolos e notações convencionadas, e não diz o que não precisa ser dito. Cada linha diz uma só coisa, e a única prosa é uma frase logo abaixo de um título, a que define cada célula e a que abre cada arquivo; explicações e exemplos ficam nos documentos derivados.
-3. **Hierárquica.** A estrutura vem de títulos, que organizam os blocos, e de sub-itens, que detalham as linhas. A profundidade de ambos é livre: usa-se a que o conteúdo pedir.
-4. **Fonte única da verdade.** Descreve só o que foi comprometido, e cada afirmação diz se está implementada ou não. Ideias, histórico e justificativas ficam fora.
-5. **Sem redundância.** Cada termo e cada regra são escritos uma vez. Índices, mapas, glossários e tudo o mais que se deriva mecanicamente são gerados por programa, de forma determinística, e nunca mantidos manualmente, nem por pessoas nem por agentes de IA.
-6. **Linguagem ubíqua.** Um termo, um significado, em todo o produto. Sinônimos proibidos são declarados e verificáveis.
-7. **Base para extrair outros documentos.** Visão, casos de uso, regras de negócio, cenários de teste e manuais são derivados: redigidos por um agente de IA a partir da fonte, por um prompt especializado, e com a origem de cada frase.
-8. **Verificável por programa.** A gramática é fixa para que um programa cheque a especificação sem interpretar o texto.
+Cada valor diz o que se quer da especificação. Os sub-itens dizem o que ele produziu no formato.
+
+1. **Coesa.** Informações relacionadas ficam próximas, e quanto mais relacionadas, mais próximas.
+   - A unidade é a célula: um bloco único com tudo o que se afirma sobre um conceito, em vez de um documento por tipo de informação.
+   - O efeito de um fato de outra célula é escrito na célula afetada, como reação a um evento (CEL-R5).
+   - As células se agrupam em áreas, em torno de uma célula central (ARE-R8).
+   - A proximidade é medida pela contagem de referências, e a célula que troca mais referências com outra área é candidata a mudar de lugar (ARE-R9).
+2. **Densa.** A redação é concisa: diz com poucas palavras e não diz o que não precisa ser dito.
+   - O significado vem da posição da linha no bloco e de marcas de sentido fixo, como `[x]`, `⟸` e `⟵`, nunca usadas como ênfase ou enfeite.
+   - Não há subtítulos dentro do bloco: a letra do identificador já diz o papel da linha.
+   - A única prosa é a frase que define cada célula; explicações e exemplos ficam nos documentos derivados.
+   - Lápides que nenhuma linha cita podem ser podadas (LAP-R9).
+3. **Hierárquica.** A estrutura vem de títulos e de sub-itens, na profundidade que o conteúdo pedir.
+   - Títulos de vários níveis organizam os blocos.
+   - Sub-itens detalham a linha: os critérios de uma capacidade, as opções de uma pergunta, as alternativas de uma decisão.
+4. **Normativa.** A especificação é a referência do que o produto faz, e não o código: se o código se comporta de outro modo, é ele que precisa de correção.
+   - Só entra o que foi comprometido: ideias ficam no rastreador, o histórico no controle de versão e as justificativas nas decisões.
+   - Cada afirmação leva `[x]` ou `[ ]`, sem estado parcial, e o trabalho pendente é o conjunto das `[ ]` (LIN-R4).
+   - Uma mudança de significado retira a afirmação e cria outra, que nasce `[ ]` (LIN-R3).
+   - Quem implementa não ajusta o texto ao que o código faz: se os dois divergem, para e pergunta.
+   - Na entrevista, a afirmação marcada `[x]` que o produto não cumpre é um defeito do produto: corrige-se o produto, e o texto fica.
+5. **Sem redundância.** Cada termo e cada regra são escritos uma vez.
+   - Cada termo tem um único lugar de definição (TRM-R1).
+   - Cada relação é declarada numa só das duas células (ATR-R9).
+   - Índices, mapas e glossário são gerados pelo indexador, de forma determinística, e nunca mantidos à mão, nem por pessoas nem por agentes de IA (GER-R2).
+6. **Linguagem ubíqua.** Um termo, um significado, em todo o produto.
+   - O termo vem em negrito na definição e na primeira menção de cada item, e o negrito não marca mais nada (TRM-R7, TRM-R14).
+   - Sinônimos proibidos vêm tachados no fim da definição, e o validador acusa quem os usa como termo (TRM-R19).
+   - Uma especificação descreve um só produto: dois significados que não se conciliam são dois produtos (ESP-R8).
+7. **Derivável.** A especificação basta para redigir os documentos tradicionais, sem acrescentar fatos.
+   - Os critérios têm forma fixa, `exige:`, `se …:` e sem prefixo, de onde saem as pré-condições, as exceções e os resultados de um caso de uso (CRT-R3 a CRT-R5).
+   - A frase de definição é compreensível fora do bloco, porque é ela que vai para o glossário (CEL-R2).
+   - Quem redige os documentos é um agente de IA, por um prompt especializado para cada um (DER-R4).
+   - Cada frase derivada cita a origem; a que não tem origem é invenção ou lacuna (DER-R2).
+8. **Verificável.** Um erro na especificação é achado por conferência, e não por sorte de quem lê.
+   - A gramática é fixa e fechada: toda linha casa com uma forma prevista (VRF-R8).
+   - O validador confere a forma, os identificadores, as referências e os termos, de modo determinístico e sem interpretar o texto (VRF-R3).
+   - Uma violação torna a especificação inválida, sem resultado intermediário (VRF-R7).
+   - O significado, como uma contradição entre duas afirmações, é revisado por um agente de IA, que registra cada achado com a sua criticidade. A revisão ainda não existe como skill.
+   - O achado de criticidade alta segura a entrega. O que segura é o achado registrado, e não a execução do agente, que varia de uma vez para outra.
+   - O achado só sai pelo texto: corrige-se a afirmação, ou reescreve-se para que a leitura errada deixe de ser possível. Ele não é descartado nem rebaixado.
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
-10. **Fundamentada em decisões.** As decisões relevantes por trás das afirmações ficam em anotações densas à parte, lidas só sob demanda. O item fundamentado leva apenas uma marca curta que aponta para a decisão.
-11. **Explícita sobre lacunas.** Dúvidas sobre o que foi comprometido viram perguntas abertas, versionadas junto do texto, em vez de serem preenchidas por suposição.
-12. **Não técnica.** Descreve o que o sistema é e o que ele faz para o negócio, sem entrar em questões técnicas, que começam na especificação de arquitetura. Uma afirmação diz o que o produto faz, nunca como ele é construído (LIN-R10). Também não documenta o negócio em si, isto é, como ele funciona sem o sistema.
-13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização por quem conhece a legenda; agentes leem só a área de que precisam e seguem regras explícitas.
+   - O identificador traz a sigla da célula, a letra do papel e um número com o prefixo da mudança, para que mudanças em paralelo não aloquem o mesmo código (IDT-R2, IDT-R22.1).
+   - A afirmação retirada ou movida deixa uma lápide, e as referências antigas continuam resolvendo (LAP-R1, LAP-R5).
+   - Siglas de células extintas ou fundidas nunca voltam (CEL-R14).
+10. **Fundamentada.** O porquê de cada escolha relevante pode ser recuperado, com as alternativas descartadas, para que ninguém a desfaça sem saber o que foi pesado.
+    - As decisões ficam em `specs/decisoes/`, uma por arquivo, com a questão, a resolução, as alternativas descartadas e as consequências (DEC-R1).
+    - O item fundamentado leva só a marca `⟸ [Dnn]`, e a decisão não cita de volta (REF-R9, REF-R10).
+    - Registra-se a decisão quando havia ao menos uma alternativa plausível, na mesma mudança do item (DEC-R5).
+    - As decisões são lidas só sob demanda.
+11. **Explícita sobre lacunas.** O que ainda não foi decidido aparece como não decidido, e nunca é preenchido por suposição.
+    - Dúvidas sobre o que foi comprometido viram perguntas em `_perguntas.md`, versionadas junto do texto.
+    - A linha provisória aponta para a pergunta com `⟵ [Pnn]` (PER-R4).
+    - Responder é apagar a pergunta: não existe estado "respondida" (REF-R5).
+    - A revisão por categorias FURPS+ gera perguntas, e não requisitos.
+12. **Em camadas.** O **Tabularium** tem três especificações, uma por camada. Cada uma trata de um só assunto e cita apenas as anteriores, e quem decide o produto lê só a primeira.
+    - A especificação do produto diz o que o produto é e o que ele faz para o negócio: uma afirmação dela nunca diz como ele é construído (LIN-R10).
+    - A especificação de arquitetura diz em que ele é feito, onde cada peça fica e como ele é construído.
+    - A especificação de interface diz como ele se apresenta e como se interage com ele.
+    - A de arquitetura e a de interface ficam em pastas próprias, ainda em experimento, e apontam com `realiza:` as afirmações da do produto, que nunca aponta de volta.
+    - Nenhuma das três documenta o negócio em si, isto é, como ele funciona sem o sistema.
+13. **Acessível.** Pessoas e agentes de IA chegam ao que precisam com pouco esforço.
+    - O texto é Markdown simples, legível sem renderização por quem conhece a legenda, `_convencoes.md`.
+    - Cada área pode ser lida sozinha: a Fronteira gerada no topo diz o que ela usa de outras.
+    - Decisões e arquivos de dados ficam à parte, e ninguém os lê por rotina.
+    - `specs/AGENTS.md` dá ao agente regras explícitas: o que ler, onde pôr cada coisa e quando parar e perguntar.
+14. **Atômica.** Cada afirmação diz uma só coisa, para poder ser marcada como implementada, citada e movida sozinha.
+    - Cada afirmação ocupa uma linha, com identificador e marca próprios.
+    - A afirmação cumprida só em parte está agregada demais e é dividida (LIN-R5).
+    - Uma decisão responde a uma só questão (DEC-R3).
 
 ## Diferenciais em relação a RUP, ágil, BDD e DDD
 
@@ -615,11 +724,12 @@ O Tabularium adota ideias de cada uma dessas abordagens e deixa outras de fora, 
 
 ## Limites e cuidados
 
-- **As afirmações deste guia ainda são hipóteses.** As duas aplicações de exemplo vão pôr à prova: se a célula basta ao agente para uma tarefa; se um agente descobre e entende a aplicação com facilidade; se um novato aprende o sistema, pela fonte e pelos derivados; se o formato sem prosa comporta tudo o que um produto real precisa dizer; se a proximidade medida aponta agrupamentos melhores; e se é fácil exportar para outros documentos. Que as afirmações `[ ]` conduzem uma implementação é intenção, e não está entre as hipóteses em teste.
+- **As afirmações deste guia ainda são hipóteses.** Estamos usando o formato para especificar aplicações reais, que vão pôr à prova: se a célula basta ao agente para uma tarefa; se um agente descobre e entende a aplicação com facilidade; se um novato aprende o sistema, pela fonte e pelos derivados; se o formato sem prosa comporta tudo o que um produto real precisa dizer; se a proximidade medida aponta agrupamentos melhores; e se é fácil exportar para outros documentos. Que as afirmações `[ ]` conduzem uma implementação é intenção, e não está entre as hipóteses em teste.
+- **Parte do que os valores prometem ainda não existe.** Faltam a redação dos documentos derivados, as partes geradas além dos índices de pasta e a verificação de significado por agente de IA. A forma da especificação de arquitetura e da de interface é experimental, e o validador só confere nelas as decisões e as citações de decisão.
 - **O validador é parte do formato, não um acessório.** Sem ele, as regras de forma, de unicidade e de referência dependem de disciplina, que não sobrevive a muitos autores. O que ele não vê, como o histórico dos números, continua dependendo dela.
 - **Um produto, uma linguagem.** Uma especificação descreve um só produto, com um significado por termo (ESP-R8). Quando dois significados legítimos do mesmo termo não se conciliam, são dois produtos, cada um com a sua especificação.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Ela precisa ser atualizada a cada evolução do código, e o formato ainda não diz o que prova que continua verdadeira. Numa especificação guardada longe do código, como nos repositórios de exemplo, as marcas são um retrato datado.
-- **O trabalho em equipe ainda não está resolvido.** O prefixo de mudança evita que duas mudanças em paralelo aloquem o mesmo código, mas o validador não vê o histórico: não acusa o código antigo que foi trocado, nem o código novo alocado só com um número. O formato também não trata, por ora, de quem do negócio aprova uma mudança e sobre qual texto.
-- **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato são os documentos derivados. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser redigidos de novo, nunca copiados.
+- **O processo de mudança não está definido.** O formato diz quem aceita uma mudança, o responsável de área, mas não como ela é proposta, revisada e aceita: isso fica com o processo da equipe. O prefixo de mudança evita que duas mudanças em paralelo aloquem o mesmo código, mas o validador não vê o histórico: não acusa o código antigo que foi trocado, nem o código novo alocado só com um número.
+- **A densidade favorece quem consulta e cobra de quem chega.** A resposta do formato serão os documentos derivados, que nenhuma skill redige ainda. Se as pessoas passarem a editar os derivados por serem mais fáceis, a fonte apodrece. Por isso os derivados devem ser redigidos de novo, nunca copiados.
 - **O formato não substitui a conversa.** Ele registra decisões de produto, mas não as toma. As perguntas abertas existem justamente para que a especificação mostre o que ainda não foi decidido.
 - **A justificativa de cada escolha deste formato deveria estar em `specs/decisoes/`.** A maior parte já está lá. As que não têm um item da especificação que as cite, como as escolhas sobre o README e sobre este guia, ainda só aparecem aqui, que, pelas regras do próprio formato, é o lugar errado para guardá-las.
