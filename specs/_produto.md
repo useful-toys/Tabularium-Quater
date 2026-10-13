@@ -51,9 +51,7 @@ Formato para especificar produtos de software em Markdown, em três camadas: coe
 - [ ] PRD-Q2  O texto está no idioma do produto especificado
 
 ## Fora de escopo
-- Arquitetura e detalhes técnicos na **Especificação de produto** · permanente ⟸ [D74]
 - Documentação do negócio: como ele funciona sem o sistema · permanente
-- Detalhe de interface na **Especificação de produto**: formato, máscara, leiaute · permanente
 - Formato da **Especificação de arquitetura** e da **Especificação de interface** · nesta versão ⟸ [Dv3r6.1]
 - Histórico e justificativas no texto · permanente
 - Ideias e pedidos não comprometidos · permanente
