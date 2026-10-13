@@ -9,7 +9,7 @@
   - citada por: Letra de papel, D34
 - [D73](D73-texto-em-markdown.md) Qual é o formato da fonte? Texto hierárquico em Markdown, do qual o grafo de referências é derivado.
   - citada por: PRD-Q1, D84, D85
-- [D74](D74-especificacao-nao-tecnica.md) A especificação do produto é técnica? Não, ela descreve o produto como o negócio o vê.
+- [D74](D74-especificacao-nao-tecnica.md) A especificação de produto é técnica? Não, ela descreve o produto como o negócio o vê.
   - citada por: _produto.md, LIN-R10, D26, D46, Dv3r6.1
 - [D22.3](D22.3-alfabeto-do-sorteio.md) Com que caracteres se sorteia um código? Com as vinte consoantes minúsculas de b a z, sem o y, e os dígitos de 2 a 9.
   - citada por: Código sorteado

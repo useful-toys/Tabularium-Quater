@@ -6,7 +6,7 @@ A gramática é a da especificação. As instruções de `../AGENTS.md` valem aq
 
 ## O formato é uma proposta
 
-Este formato nasceu das situações vividas até agora e não está fechado. Ele existe para servir aos valores da especificação do produto, em `README.md` na raiz, seção `Valores`, lendo componente onde se lê célula. Se o formato e um valor divergem, vale o valor.
+Este formato nasceu das situações vividas até agora e não está fechado. Ele existe para servir aos valores da especificação de produto, em `README.md` na raiz, seção `Valores`, lendo componente onde se lê célula. Se o formato e um valor divergem, vale o valor.
 
 Seja cético quanto ao formato, e também quanto a este arquivo e a `_convencoes.md`:
 

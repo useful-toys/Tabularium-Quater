@@ -17,7 +17,7 @@ As **Células** do produto, seus **Atributos** e os **Termos** que os nomeiam.
 - **pessoal**: qualificador; dado que identifica ou torna identificável uma pessoa, conforme a **LGPD** ⟸ [D47]
 
 ## **Célula**  `CEL`
-Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a **Especificação do produto** afirma sobre ela e que não pertence a nenhuma outra.
+Célula de conceitos: coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a **Especificação de produto** afirma sobre ela e que não pertence a nenhuma outra.
 - **sigla**: **Sigla de célula**; identidade; único
 - **nome**: texto; único
 - **frase de definição**: uma frase compreensível fora do bloco ⟸ [D35]
@@ -92,8 +92,8 @@ Valor sem **identidade** usado por **Atributos**, como uma contagem ou um códig
 - [x] TIP-R2  Forma: `- **Nome**: base; restrições`, ou `- **Nome**:` e os valores separados por `|`
 
 ## **Termo**  `TRM`
-Palavra ou expressão com significado definido uma única vez na **Especificação do produto**.
-- **nome**: texto que não se repete na **Especificação do produto**, exceto nome de **Atributo**, que não se repete na sua **Célula**
+Palavra ou expressão com significado definido uma única vez na **Especificação**.
+- **nome**: texto que não se repete na **Especificação**, exceto nome de **Atributo**, que não se repete na sua **Célula**
 - **definição**: o que o termo significa, escrito no lugar que o tipo de termo pede
 - **não usar**: sinônimos proibidos, tachados e entre parênteses no fim da linha que define o termo, como `(~~valor, montante~~)`; opcional
 - evento: **Termo renomeado**

@@ -47,7 +47,7 @@ Proposta do Claude, aceita. Entra o que impede duas telas de resolverem a mesma 
 Daniel. O Claude tinha proposto só papéis nomeados; o Daniel pediu uma forma de documentar as convenções de estilo e de fazer referência a elas.
 
 - Forma, proposta do Claude, aceita: seção `Estilos`, com nome e papel obrigatórios e valor opcional, citados em negrito.
-- Só a interface cita estilos; a especificação do produto, não. Proposta do Claude, aceita.
+- Só a interface cita estilos; a especificação de produto, não. Proposta do Claude, aceita.
 
 ### 9. Cada produto declara os seus meios
 
@@ -140,7 +140,7 @@ Daniel, em 10 de outubro de 2026, para a interface e para a arquitetura. Revê o
 
 ### 27. O agente é cético quanto ao formato
 
-Daniel, em 10 de outubro de 2026, para a interface e para a arquitetura. Complementa a decisão 12. O formato segue os valores da especificação do produto e não está fechado: as instruções e a legenda são proposta, baseada nas situações vividas até agora. O agente não força o encaixe; verifica se o formato poderia evoluir para servir melhor à especificação e, se sim, avisa o usuário com o problema, um exemplo e uma proposta. O usuário decide se o Tabularium evolui, no repositório do Tabularium.
+Daniel, em 10 de outubro de 2026, para a interface e para a arquitetura. Complementa a decisão 12. O formato segue os valores da especificação de produto e não está fechado: as instruções e a legenda são proposta, baseada nas situações vividas até agora. O agente não força o encaixe; verifica se o formato poderia evoluir para servir melhor à especificação e, se sim, avisa o usuário com o problema, um exemplo e uma proposta. O usuário decide se o Tabularium evolui, no repositório do Tabularium.
 
 - Vale também para o encaixe que é possível, mas fere um valor: repetir, juntar duas coisas numa linha, não poder verificar.
 - A arquitetura não aplica o valor "Não técnica".
@@ -173,4 +173,4 @@ Daniel, em 12 de outubro de 2026. O Tabularium não tem tela própria: quem o us
 
 ### 22. A interface é uma das três especificações do Tabularium
 
-Daniel, em 12 de outubro de 2026, para a arquitetura e a interface. O Tabularium tem três especificações, uma por camada: a do produto, a de arquitetura e a de interface. A existência das duas últimas é compromisso do formato; a forma das linhas delas continua experimental, na legenda de cada pasta. Registrada em `Dv3r6.1`, de `specs/decisoes/`.
+Daniel, em 12 de outubro de 2026, para a arquitetura e a interface. O Tabularium tem três especificações, uma por camada: a de produto, a de arquitetura e a de interface. A existência das duas últimas é compromisso do formato; a forma das linhas delas continua experimental, na legenda de cada pasta. Registrada em `Dv3r6.1`, de `specs/decisoes/`.

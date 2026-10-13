@@ -23,7 +23,7 @@ Item da **lista única** de um bloco; com **Identificador**, é citável.
 - [x] LIN-R7  Linha de **modelo** não tem marca de implementação
 - [x] LIN-R8  **Afirmação** que cita outra **Célula** mais do que a própria é candidata a mudar de **célula dona**
 - [x] LIN-R9  **Afirmação** nova nasce `[ ]`, exceto a movida, que herda a marca
-- [x] LIN-R10  **Afirmação** da **Especificação do produto** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
+- [x] LIN-R10  **Afirmação** da **Especificação de produto** descreve o que o produto faz, nunca como ele é construído ⟸ [D74]
 - [x] LIN-R11  Num bloco de **Célula**, toda linha tem uma destas formas:
 
 | Linha | Forma | Regra |
@@ -55,7 +55,7 @@ Código que torna uma **Linha** citável.
 - **papel**: **Letra de papel**
 - **prefixo**: **Prefixo de mudança**; opcional
 - **ordem**: **Número de ordem**
-- [x] IDT-R1  Código válido e **único** na **Especificação do produto**
+- [x] IDT-R1  Código válido e **único** na **Especificação**
 - [x] IDT-R2  Nunca é renumerado; número já usado não volta ⟸ [D56]
 - [x] IDT-R3  A sigla é a da **célula dona** da **Linha**, ou `PRD` no **Arquivo de produto**
 - [x] IDT-R22.1  O **prefixo** é o da mudança que aloca o **código**, o mesmo em todos os códigos que ela aloca ⟸ [D22.1]
@@ -63,13 +63,13 @@ Código que torna uma **Linha** citável.
 - [x] IDT-R22.3  removida
 - [x] IDT-R22.4  removida
 - [x] IDT-R22.5  O **código** sem **prefixo**, que traz só um número depois do **papel**, é anterior ao **Prefixo de mudança**: continua válido, e nenhum outro é alocado
-- [x] IDT-R22.6  O **Código sorteado** sai de um programa, que confere que ele ainda não aparece na **Especificação do produto**; nunca é escolhido por pessoa nem por agente de IA
+- [x] IDT-R22.6  O **Código sorteado** sai de um programa, que confere que ele ainda não aparece na **Especificação**; nunca é escolhido por pessoa nem por agente de IA
 - [x] IDT-Rknnk.1  O **código** é definitivo desde que entra na linha principal do **Controle de versão** ⟸ [Dknnk.1]
 - [x] IDT-Rknnk.2  Enquanto o **código** não é definitivo, a mudança que o alocou reescreve ou apaga a **Linha** dele, sem **Lápide** ⟸ [Dknnk.1]
 - [x] IDT-Rknnk.3  [IDT-R2], [LIN-R3] e [LAP-R1] valem só para o **código** definitivo
 - [x] IDT-Rbvc2.1  O **prefixo** é o número da issue do **Rastreador** que pede a mudança; sem issue, é um **Código sorteado** ⟸ [D22.2]
 - [x] IDT-Rbvc2.2  A **ordem** é a seguinte à maior já usada nos códigos de mesma **sigla**, mesmo **papel** e mesmo **prefixo**; a primeira é 1
-- [x] IDT-Rbvc2.3  A **ordem** sai de um programa, que confere os códigos da **Especificação do produto**; nunca é contada por pessoa nem por agente de IA
+- [x] IDT-Rbvc2.3  A **ordem** sai de um programa, que confere os códigos da **Especificação**; nunca é contada por pessoa nem por agente de IA
 
 ## **Lápide**  `LAP`
 **Linha** que ocupa o lugar de uma **afirmação** que foi retirada, para que as **Referências** antigas continuem resolvendo.
@@ -108,7 +108,7 @@ Citação, em um lugar, de algo definido em outro.
 - [x] REF-R14  Ordem das marcas no fim de um item: `⟸ [Dnn]`, `⟵ [Pnn]`; em **Tabela de decisão** e em **Dados de referência**, antes do `:`
 
 ## **Pergunta**  `PER`
-Lacuna conhecida da **Especificação do produto**, ainda sem resposta.
+Lacuna conhecida da **Especificação**, ainda sem resposta.
 - **código**: **Código de pergunta**; identidade; único; imutável
 - **enunciado**: texto em forma de pergunta
 - **opções**: sub-itens `opção:`; opcional
@@ -123,7 +123,7 @@ Lacuna conhecida da **Especificação do produto**, ainda sem resposta.
 - [x] PER-R7  Responde o **Responsável de área** da **Área** afetada
 - [x] PER-R8  Pergunta é dúvida sobre algo já comprometido; ideia não é pergunta ⟸ [D60]
 - [x] PER-R22.1  O **código** leva **Prefixo de mudança** e **Número de ordem**, alocados como os do **Identificador**, conforme [IDT-R22.1], [IDT-R22.5] e de [IDT-Rbvc2.1] a [IDT-Rbvc2.3]
-- [x] PER-R22.2  **Código** único na **Especificação do produto**
+- [x] PER-R22.2  **Código** único na **Especificação**
 - [x] PER-Rknnk.1  O **código** fica definitivo como o do **Identificador**, conforme [IDT-Rknnk.1] e [IDT-Rknnk.2]
 - [x] PER-Rknnk.2  [PER-R1] vale só para o **código** definitivo
 - [x] PER-C1  Abrir uma pergunta
@@ -133,7 +133,7 @@ Lacuna conhecida da **Especificação do produto**, ainda sem resposta.
   - resposta que precisa de justificativa vira **Decisão**: o **enunciado** vira a **questão**, e as **opções** não escolhidas, as **alternativas descartadas**
 
 ## **Arquivo de perguntas**  `APG`
-Arquivo com as **Perguntas** abertas da **Especificação do produto**, uma por item.
+Arquivo com as **Perguntas** abertas da **Especificação**, uma por item.
 - **arquivo**: `_perguntas.md`; opcional
 - [ ] APG-R1  Lista plana, sem agrupamento; a **Área** de cada **Pergunta** é derivável
 - [ ] APG-R2  Guarda só a **Pergunta** e as opções; a discussão fica fora
@@ -253,5 +253,5 @@ Quem age sobre o produto, definido pelo acesso que tem, e não pelo estado em qu
 - [ ] ATO-R3  Estado de quem age não cria ator; fica no **modelo** da **Célula** ⟸ [D41]
 - [ ] ATO-R4  O tempo, quando dispara **Regras** por prazo, é declarado como ator
 - [x] ATO-R5  **Regra** marcada `· tempo` contém um prazo com número e unidade
-- [x] ATO-R6  Há exatamente um **Ator** padrão na **Especificação do produto**
+- [x] ATO-R6  Há exatamente um **Ator** padrão na **Especificação de produto**
 - [x] ATO-R7  Declarado em `Atores` como `- **Nome**: acesso`; o **padrão** termina com `; padrão`

@@ -1,6 +1,6 @@
 # O que o agente faz quando o formato da arquitetura ou da interface encaixa mal?  `D109`
 Avisa o usuário uma vez por tipo de problema, e o usuário decide entre forçar o encaixe e anotá-lo em achados, com ou sem issue.
-- Contexto: os dois formatos nasceram das situações vividas até agora e não estão fechados, e devem servir aos valores da especificação do produto
+- Contexto: os dois formatos nasceram das situações vividas até agora e não estão fechados, e devem servir aos valores da especificação de produto
 - Alternativas descartadas
   - Encaixar no formato atual o que não cabe bem: o texto passa a repetir, a juntar duas coisas numa linha ou a dizer o que ninguém verifica, e o formato nunca é questionado
   - O agente alterar a legenda por conta própria: o formato mudaria sem o usuário decidir, e o que for escrito antes ficaria fora do formato novo

@@ -100,7 +100,7 @@ Daniel, em 10 de outubro de 2026, para a arquitetura e para a interface. Revê o
 
 ### 15. O agente é cético quanto ao formato
 
-Daniel, em 10 de outubro de 2026, para a arquitetura e para a interface. Complementa a regra de levar ao usuário o que não se encaixa. O formato segue os valores da especificação do produto, sem o valor "Não técnica", e não está fechado: as instruções e a legenda são proposta, baseada nas situações vividas até agora. O agente não força o encaixe; verifica se o formato poderia evoluir para servir melhor à especificação e, se sim, avisa o usuário com o problema, um exemplo e uma proposta. O usuário decide se o Tabularium evolui, no repositório do Tabularium. Registrada também na decisão 27 de `specs/interface/decisoes.md`, e em `D109`, de `specs/arquitetura/decisoes/_sistema/`, citada por `ARQ-R5`. O detalhe do fluxo, com `_achados.md` e a issue, está no complemento da decisão 27.
+Daniel, em 10 de outubro de 2026, para a arquitetura e para a interface. Complementa a regra de levar ao usuário o que não se encaixa. O formato segue os valores da especificação de produto, sem o valor "Não técnica", e não está fechado: as instruções e a legenda são proposta, baseada nas situações vividas até agora. O agente não força o encaixe; verifica se o formato poderia evoluir para servir melhor à especificação e, se sim, avisa o usuário com o problema, um exemplo e uma proposta. O usuário decide se o Tabularium evolui, no repositório do Tabularium. Registrada também na decisão 27 de `specs/interface/decisoes.md`, e em `D109`, de `specs/arquitetura/decisoes/_sistema/`, citada por `ARQ-R5`. O detalhe do fluxo, com `_achados.md` e a issue, está no complemento da decisão 27.
 
 - Vale também para o encaixe que é possível, mas fere um valor: repetir, juntar duas coisas numa linha, não poder verificar.
 
@@ -113,7 +113,7 @@ Daniel, em 10 de outubro de 2026, para a especificação, a arquitetura e a inte
 - Os códigos anteriores, só com um número, continuam válidos.
 ### 17. A arquitetura é uma das três especificações do Tabularium
 
-Daniel, em 12 de outubro de 2026, para a arquitetura e a interface. O Tabularium tem três especificações, uma por camada: a do produto, a de arquitetura e a de interface. A existência das duas últimas é compromisso do formato; a forma das linhas delas continua experimental, na legenda de cada pasta. Registrada em `Dv3r6.1`, de `specs/decisoes/`.
+Daniel, em 12 de outubro de 2026, para a arquitetura e a interface. O Tabularium tem três especificações, uma por camada: a de produto, a de arquitetura e a de interface. A existência das duas últimas é compromisso do formato; a forma das linhas delas continua experimental, na legenda de cada pasta. Registrada em `Dv3r6.1`, de `specs/decisoes/`.
 
 - Motivo: a definição do formato dizia que a arquitetura estava fora de escopo, enquanto o validador, o indexador e as skills já a tratavam.
 - O valor `Não técnica` virou `Em camadas`, e as instruções e a legenda deixaram de dizer que a arquitetura segue os valores "sem" ele.

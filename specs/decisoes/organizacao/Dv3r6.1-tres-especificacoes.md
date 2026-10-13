@@ -1,5 +1,5 @@
 # A arquitetura e a interface de um produto fazem parte do formato?  `Dv3r6.1`
-Sim, como especificações próprias, uma por camada, ao lado da especificação do produto.
+Sim, como especificações próprias, uma por camada, ao lado da especificação de produto.
 - Contexto: a arquitetura e a interface já têm pasta, legenda e instruções para agentes, e o validador, o indexador e as skills já as tratam ⟸ [D82, D93]
 - Alternativas descartadas
   - Ficam fora do formato, como experimentos à parte: a existência das duas já é comprometida e em parte implementada, e a definição do formato dizia o contrário

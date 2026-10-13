@@ -1,4 +1,4 @@
-# A especificação do produto é técnica?  `D74`
+# A especificação de produto é técnica?  `D74`
 Não, ela descreve o produto como o negócio o vê.
 - Contexto: detalhes técnicos mudam com o código e pertencem à arquitetura
 - Alternativas descartadas
@@ -8,5 +8,5 @@ Não, ela descreve o produto como o negócio o vê.
   - Aceita: a arquitetura precisa de outro documento
 
 ## Histórico
-- 2026-10-12: a questão passa a nomear a especificação do produto, uma das três
+- 2026-10-12: a questão passa a nomear a especificação de produto, uma das três
 - 2026-10-05: decisão criada

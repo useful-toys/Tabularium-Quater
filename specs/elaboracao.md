@@ -63,7 +63,7 @@ Conversa em **rodadas** em que uma **Ideia** amadurece com o **Autor** e em que 
 - [x] ETV-Rp6wh.6  Quem decide cada resposta é o **Autor**
 - [x] ETV-Rp6wh.7  O que já está escrito numa **Especificação** é buscado, e não perguntado
 - [x] ETV-Rp6wh.8  Fato que não depende do produto é buscado fora da **Especificação**, e a fonte é dita ao **Autor**
-- [x] ETV-Rp6wh.9  Cada **parte** é dada como da **Especificação do produto**, da **Especificação de arquitetura**, da **Especificação de interface** ou de codificação
+- [x] ETV-Rp6wh.9  Cada **parte** é dada como da **Especificação de produto**, da **Especificação de arquitetura**, da **Especificação de interface** ou de codificação
 - [x] ETV-Rp6wh.10  **Parte** de codificação não é gravada: fica para quem programa
 - [x] ETV-Rp6wh.11  Cada **parte** é levada às condições de contorno: o limite, o vazio, o simultâneo, o caminho que falha, o depois e quem mais é afetado
 - [x] ETV-Rp6wh.12  Cada **parte** é confrontada com o que já está escrito nas três **Especificações**
