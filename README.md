@@ -1,53 +1,64 @@
 # Tabularium
 
-O Tabularium é um formato inovador para especificar produtos de software em Markdown.
+O **Tabularium** é um formato inovador para especificar produtos de software.
 
-Em vez de espalhar o mesmo assunto por glossário, regras de negócio e casos de uso, você escreve tudo sobre cada coisa do domínio num único bloco, a **célula**. Os documentos tradicionais deixam de ser escritos à mão: são derivados dela.
+Em vez de espalhar o mesmo assunto vários documentos, **Tabularium** escreve tudo de um domínio num único bloco, a **Célula**. Os documentos tradicionais deixam de ser escritos à mão, passam a ser extraídos do **Tabularium**.
 
-A gramática é simples o bastante para um programa verificar e para pessoas e agentes de IA manterem. Serve a equipes de desenvolvimento e sustentação, da análise à implementação, e qualquer um pode adotá-lo.
+A gramática da documentação é simples o bastante para um programa verificar e para pessoas e agentes de IA manterem. Serve a equipes de desenvolvimento e sustentação, da análise à implementação, e qualquer um pode adotá-lo.
 
-> **Estado: experimental.** Hoje existem a definição do formato, as instruções para agentes, as decisões do próprio formato, a skill de instalação, a skill de validação, a skill de indexação e três skills que levam uma ideia até a especificação, além de dois formatos ainda mais novos, para a arquitetura e para a interface. O indexador já produz os índices das pastas; as demais partes geradas e as skills de geração ainda não existem: onde este README as menciona, descreve o que o formato pretende. Por ora, o alvo são produtos pequenos.
+> **Estado: experimental.** Hoje, o **Tabularium** apresenta uma especificação para documentar o produto e das decisões associadas. Ainda há arestas para tratar na especificação. Temos uma sugestão para especificar arquitetura e interface (UI/UX), ainda em experimentação. Também tem skills para entrevistar requisitos, amadurecer idéias e documentar o compromisso, todas funcionando, mas ainda com ajustes pendentes.
 
 ## A ideia
 
-As metodologias tradicionais organizam a documentação por tipo de informação: um documento para o glossário, outro para as regras, outro para os casos de uso. Quem quer saber tudo sobre o Pedido percorre todos eles, e cada mudança precisa ser repetida em vários lugares.
+As metodologias tradicionais organizam a documentação por tipo de informação. Por exemplo, no RUP temos um documento para a visão do produto, outro para os requisitos, outro para o glossário, outro para as regras, outro para os casos de uso, etc. Para entender uma funcionalidade, o leitor precisa percorrer todos os documentos, e cada mudança precisa ser replicada em vários lugares.
 
-O Tabularium organiza por coisa do domínio. Quem lê uma célula encontra ali tudo o que a especificação afirma sobre ela. Para a pessoa, cada assunto se aprende num lugar só. Para o agente de IA, basta ler a célula, o que poupa contexto.
+O **Tabularium** organiza a especificação por conceito do domínio, como o pedido ou o cliente. Cada conceito tem uma célula, e **a célula contém todas as afirmações que compõem o conceito**:
 
-Disso decorre o resto:
+- as **regras**, que valem sempre;
+- as **qualidades**, como um limite de tempo;
+- as **capacidades**, o que alguém faz com ele;
+- as **visões**, o que alguém vê dele;
+- as **declarações**, o que um texto do produto afirma sobre ele.
 
-- **Cada afirmação tem uma única dona.** Quando algo numa célula afeta outra, o efeito é escrito na afetada.
-- **As células se agrupam por relação, não por tipo.** As fortemente relacionadas ficam num mesmo arquivo, a **área**, e essa proximidade é medida.
-- **As células evoluem.** Podem se dividir, se fundir ou mudar de área; os identificadores das afirmações sobrevivem.
-- **Os documentos tradicionais são vistas.** Glossário, regras de negócio e casos de uso são derivados das células.
+A célula traz também o **modelo**, que diz do que o conceito é feito e a que ele se liga, e os **eventos**, os fatos que ele produz e aos quais outras células reagem.
+
+Quem lê a célula encontra ali tudo o que a especificação afirma sobre o conceito. Para a pessoa, cada assunto se aprende num lugar só. Para o agente de IA, basta ler a célula, o que poupa contexto.
+
+Na prática:
+
+- **Cada afirmação é escrita uma vez só**, na célula a que pertence.
+- **Células relacionadas ficam juntas** num mesmo arquivo, a área.
+- **As células mudam com o produto**: podem se dividir, se fundir ou mudar de área sem quebrar as referências.
+- **Glossário, regras de negócio e casos de uso** são extraídos das células, e não escritos à mão.
 
 Para ver uma célula escrita, abra o [exemplo do Pedido](exemplos/pedido.md).
 
 ## Valores
 
-Estes treze valores guiaram a criação do formato. Cada regra dele existe para servir a algum.
+Estes catorze valores guiaram a criação do formato.
 
-1. **Organizada por células de conceitos.** Um bloco por coisa do domínio; as áreas se formam por relação medida, nunca por tipo de informação.
-2. **Densa.** Cada linha diz uma só coisa, e o significado vem da posição no texto e de marcas de sentido fixo.
+1. **Coesa.** Informações relacionadas ficam próximas: um bloco por conceito do domínio, nunca por tipo de informação.
+2. **Densa.** Redação concisa, que diz com poucas palavras; o significado vem da posição no texto e de símbolos e marcas de sentido fixo.
 3. **Hierárquica.** Títulos organizam os blocos e sub-itens detalham as linhas, na profundidade que o conteúdo pedir.
-4. **Fonte única da verdade.** Só o que foi comprometido, com cada afirmação dizendo se está implementada.
+4. **Normativa.** A especificação é a fonte da verdade, e não o código. Informa o que foi comprometido ou implementado.
 5. **Sem redundância.** Cada termo e cada regra são escritos uma vez; o que se deriva mecanicamente é gerado por programa.
 6. **Linguagem ubíqua.** Um termo, um significado, em todo o produto.
-7. **Base para extrair outros documentos.** Visão, casos de uso, cenários de teste e manuais são redigidos por um agente de IA a partir da fonte.
-8. **Verificável por programa.** A gramática é fixa, e a especificação é checada sem interpretar o texto.
+7. **Derivável.** A especificação basta para um agente de IA redigir visão, casos de uso, cenários de teste e manuais, sem acrescentar fatos.
+8. **Verificável.** A forma é validada por programa, e uma violação torna a especificação inválida. O significado é revisado por um agente de IA, que registra achados com criticidade; o de criticidade alta segura a entrega.
 9. **Rastreável.** Cada afirmação tem um identificador estável, que nunca é renumerado nem reaproveitado.
-10. **Fundamentada em decisões.** Cada decisão relevante é registrada à parte, com as alternativas descartadas, e o item que ela fundamenta aponta para ela.
-11. **Explícita sobre lacunas.** Dúvidas viram perguntas abertas, versionadas com o texto, em vez de suposições.
-12. **Não técnica.** Descreve o que o sistema faz para o negócio; as questões técnicas começam na especificação de arquitetura.
-13. **Acessível para humanos e eficiente para agentes de IA.** Markdown simples, legível sem renderização; o agente lê só a área de que precisa.
+10. **Fundamentada.** O porquê de cada escolha relevante pode ser recuperado, com as alternativas descartadas; as decisões ficam à parte, e o item aponta para elas.
+11. **Explícita sobre lacunas.** O que ainda não foi decidido aparece como não decidido: dúvidas viram perguntas abertas, versionadas com o texto, e nunca suposições.
+12. **Em camadas.** São três especificações, uma por camada. A do produto diz o que ele faz para o negócio, sem nada técnico; a de arquitetura, em que ele é feito, onde fica e como é construído; a de interface, como ele se apresenta e como se interage com ele.
+13. **Acessível.** Pessoas e agentes de IA chegam ao que precisam com pouco esforço: formato simples, legível sem renderização.
+14. **Atômica.** Cada afirmação diz uma só coisa, e pode ser marcada, verificada, citada e movida sozinha.
 
-Os valores por extenso estão no [guia](GUIA.md#valores).
+O [guia](GUIA.md#valores) mostra o que cada valor produziu no formato.
 
 ## E o RUP, o ágil, o BDD, o DDD?
 
-O Tabularium trata só de como a especificação é guardada. Ele é compatível com as quatro abordagens, aproveita ideias de todas e não impõe um processo à equipe.
+O **Tabularium** trata só de como a especificação é guardada. Ele é compatível com as quatro abordagens, aproveita ideias de todas e não impõe um processo à equipe.
 
-| Abordagem | O que o Tabularium aproveita | O que faz diferente |
+| Abordagem | O que o **Tabularium** aproveita | O que faz diferente |
 | --- | --- | --- |
 | RUP | Partir do problema; pré-condições e exceções em cada ação | Não há um documento por tipo de informação |
 | Ágil | Quem faz e o que quer alcançar; critérios de aceite | Descreve o produto como ele é hoje, não a pilha de histórias |
@@ -60,78 +71,68 @@ A comparação completa está no [guia](GUIA.md#diferenciais-em-relação-a-rup-
 
 É preciso ter o Node.js, na versão 18 ou mais recente, e um agente de IA que rode skills.
 
-Para instalar:
-
-1. Na raiz do seu repositório, instale as skills do Tabularium:
+1. Na raiz do seu repositório, instale as skills do **Tabularium**:
 
    ```bash
    npx skills add useful-toys/Tabularium-Quater
    ```
 
-2. No agente, digite `/tabularium-instalar`. A skill cria `specs/`, com as pastas `decisoes/`, `arquitetura/` e `interface/`, copia para cada uma as instruções para agentes e a legenda, e cria a partir de modelos os arquivos que você preenche: `specs/_produto.md` e os equivalentes da arquitetura e da interface.
-3. Preencha `specs/_produto.md`, que nasce com textos de exemplo, e siga pelos [primeiros passos](#primeiros-passos). A arquitetura e a interface são opcionais e ficam para depois, porque citam a especificação.
+2. No agente, digite `/tabularium-instalar`. A skill cria a pasta `specs/`, com a legenda, as instruções para agentes e os modelos dos arquivos que são seus.
 
-Para atualizar:
-
-1. No agente, digite `/tabularium-instalar` de novo. A skill sobrescreve as instruções para agentes e as legendas com a versão mais recente, cria os modelos que ainda faltam e mantém os arquivos que são seus.
-2. Se o formato mudou, a skill lista o que a sua especificação precisa ajustar e espera o seu aceite antes de alterá-la.
-
-A versão instalada é sempre a mais recente da linha principal deste repositório; não há como escolher outra.
+Para atualizar, digite `/tabularium-instalar` de novo. A skill traz a versão mais recente do formato, mantém os seus arquivos e pede o seu aceite antes de ajustar a sua especificação.
 
 ## Primeiros passos
 
-1. Escreva `_produto.md`: o problema e os atores.
-2. Para cada célula central, crie a área, um arquivo que abre com a frase dela, a célula central e o responsável, e escreva os blocos: frase de definição, modelo, regras, capacidades e visões.
-3. Marque cada afirmação com `[x]` ou `[ ]`, e peça cada código novo a `/tabularium-alocar-codigo`, que dá o prefixo da mudança, o número da issue ou um código sorteado, e o número de ordem.
-4. Registre as dúvidas em `_perguntas.md`, em vez de chutar. Ideias vão para o rastreador.
-5. Valide cada mudança com `/tabularium-validar` e corrija o que o validador acusar.
-6. Refaça os índices das pastas com `/tabularium-indexar`: um `README.md` com as áreas e um com as decisões de cada pasta.
+O caminho recomendado é a entrevista: você conversa com o agente, e ele escreve. Editar à mão não é proibido, mas a entrevista confronta cada ideia com o que já está escrito, e o [guia](GUIA.md#a-entrevista) explica como.
 
-Para mudar a especificação junto com o agente, há quatro skills, que você aciona:
+1. Digite `/tabularium-entrevistar` e conte a ideia: o produto, na primeira vez, ou uma mudança nele, depois.
+2. Responda às perguntas do agente, rodada a rodada. Ele grava em `specs/` o que chega ao consenso, na ramificação da ideia.
+3. Digite `/tabularium-aplicar` para conferir a ramificação e entregá-la na linha principal.
 
-- `/tabularium-entrevistar` amadurece uma ideia com você, em rodadas, e grava em `specs/` o que chega ao consenso, na ramificação da ideia. Se a ideia tem issue, guarda nela o andamento, para outra sessão retomar.
-- `/tabularium-sugerir` sugere ideias que complementam a que foi discutida. A que você incorpora volta para a entrevista, e a que fica para depois vira uma issue. É opcional.
-- `/tabularium-registrar` cria no GitHub a issue de uma sugestão ou de uma entrevista em curso, e os rótulos da especificação. É opcional.
-- `/tabularium-aplicar` confere a ramificação da ideia e a entrega na linha principal.
+O agente valida a especificação, aloca os códigos e refaz os índices por conta própria. Duas skills opcionais completam o ciclo: `/tabularium-sugerir` propõe ideias que complementam a discutida, e `/tabularium-registrar` cria no GitHub a issue de uma ideia que fica para depois.
 
 ## Arquitetura, em experimento
 
-A especificação do produto diz o que ele faz, nunca como ele é construído. As escolhas técnicas ficam na especificação de arquitetura, que tem um formato experimental, em [`specs/arquitetura/`](specs/arquitetura/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente**, uma peça da solução, como um programa, um script ou um serviço.
+A arquitetura diz em que o produto é feito, onde cada peça fica e como ele é construído. Fica em [`specs/arquitetura/`](specs/arquitetura/), num formato experimental que usa a mesma gramática da especificação.
 
-- **Só a escolha estratégica.** Entra o que guia a implementação e é caro de trocar depois. O resto é escolha tática e fica no código.
-- **Cada componente diz em que é feito, onde mora e o que cumpre.** A linha `realiza:` aponta as afirmações da especificação que ele atende.
-- **Restrições, limites e contratos.** Um componente tem restrições, limites técnicos e o que oferece aos outros. Os fluxos mostram como os componentes colaboram.
-
-O formato ainda não faz parte da definição do Tabularium, e o validador só confere na pasta as decisões e as citações de decisão. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um exemplo real, abra a [arquitetura do próprio Tabularium](specs/arquitetura/distribuicao.md).
+Para ver um exemplo real, abra a [arquitetura do próprio **Tabularium**](specs/arquitetura/distribuicao.md).
 
 ## Interface, em experimento
 
-A especificação do produto diz o que ele faz, em qualquer meio: web, desktop ou terminal. Como ele se apresenta fica na especificação de interface, que tem um formato experimental, em [`specs/interface/`](specs/interface/), que usa a mesma gramática e troca só a unidade: em vez da célula, o **componente de interface**, um conjunto de controles coordenados para um objetivo.
+A interface diz como o produto se apresenta e como se interage com ele. Fica em [`specs/interface/`](specs/interface/), num formato experimental que usa a mesma gramática da especificação.
 
-- **Componentes, e não desenhos de tela.** Cada componente é escrito uma vez e reusado. A tela é um componente especial, que só lista os componentes de que é feita.
-- **Tipos e padrões.** Um tipo diz o que o componente é, e a aplicação pode definir os seus. Um padrão diz um comportamento que vários componentes seguem.
-- **Estilos e diretrizes.** Cores, fontes e medidas ganham nome e são citadas por ele. As diretrizes valem para a interface inteira.
-- **Só o que precisa ser igual em mais de um lugar.** O detalhe de uma tela só, como um espaçamento, fica no código.
-
-O formato ainda não faz parte da definição do Tabularium, e o validador só confere na pasta as decisões e as citações de decisão. A instalação já traz a legenda, as instruções para agentes e os modelos da pasta. Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
+Para ver um trecho escrito, abra o [exemplo da interface do Pedido](exemplos/interface-pedido.md).
 
 ## Limites
 
-- **Ainda é hipótese.** Duas aplicações reais, Iconula e Abditum, serão especificadas no formato para pôr a ideia à prova.
+- **Ainda é hipótese.** Estamos usando o formato para especificar aplicações reais e pôr a ideia à prova.
+- **Parte do que os valores prometem ainda não existe.** Faltam a redação dos documentos derivados e a verificação de significado por agente; a arquitetura e a interface são experimentais.
 - **O validador não vê tudo.** Ele checa a forma, a unicidade e as referências, mas não o histórico dos números nem a coesão das áreas, que continuam dependendo de disciplina.
-- **O trabalho em equipe não está resolvido.** O formato ainda não diz quem aprova uma mudança, nem sobre qual texto.
+- **O processo de mudança não está definido.** O formato diz quem aceita uma mudança, o responsável de área, mas não como ela é proposta, revisada e aceita.
 - **A marca `[x]` vale o cuidado de quem a mantém.** Nada prova, por ora, que ela continua verdadeira.
-- **A densidade cobra de quem chega.** A resposta são os documentos derivados, que devem ser redigidos de novo, nunca editados.
+- **A densidade cobra de quem chega.** A resposta serão os documentos derivados, redigidos de novo e nunca editados.
 
 Os limites por extenso estão no [guia](GUIA.md#limites-e-cuidados).
 
 ## Para saber mais
 
-- [`exemplos/pedido.md`](exemplos/pedido.md): uma célula de exemplo, comentada.
 - [`GUIA.md`](GUIA.md): o formato explicado em detalhe, com exemplos.
-- [`specs/_convencoes.md`](specs/_convencoes.md): a legenda do formato.
 - [`specs/`](specs/): a definição normativa, escrita no próprio formato. Em caso de divergência, vale o que está lá.
-- [`specs/decisoes/`](specs/decisoes/): o porquê de cada escolha.
-- [`specs/arquitetura/_convencoes.md`](specs/arquitetura/_convencoes.md): a legenda do formato experimental de arquitetura.
-- [`exemplos/interface-pedido.md`](exemplos/interface-pedido.md): um trecho de interface de exemplo, comentado.
-- [`specs/interface/_convencoes.md`](specs/interface/_convencoes.md): a legenda do formato experimental de interface.
+- [`specs/_produto.md`](specs/_produto.md): o que vale para o **Tabularium** inteiro, como o propósito, os atores e o que está fora de escopo.
+
+As legendas, uma por formato:
+
+- [`specs/_convencoes.md`](specs/_convencoes.md): a da especificação.
+- [`specs/decisoes/_convencoes.md`](specs/decisoes/_convencoes.md): a das decisões.
+- [`specs/arquitetura/_convencoes.md`](specs/arquitetura/_convencoes.md): a da arquitetura, experimental.
+- [`specs/interface/_convencoes.md`](specs/interface/_convencoes.md): a da interface, experimental.
+
+Como os dois formatos experimentais nasceram:
+
+- [`specs/arquitetura/ideia.md`](specs/arquitetura/ideia.md): a ideia do formato de arquitetura.
+- [`specs/interface/ideia.md`](specs/interface/ideia.md): a ideia do formato de interface.
+
+O porquê de cada escolha, nos índices de decisões:
+
+- Da especificação: [produto](specs/decisoes/_produto/README.md), [modelagem](specs/decisoes/modelagem/README.md), [organização](specs/decisoes/organizacao/README.md) e [redação](specs/decisoes/redacao/README.md).
+- Da arquitetura: [sistema](specs/arquitetura/decisoes/_sistema/README.md), [distribuição](specs/arquitetura/decisoes/distribuicao/README.md), [indexação](specs/arquitetura/decisoes/indexacao/README.md) e [validação](specs/arquitetura/decisoes/validacao/README.md).
