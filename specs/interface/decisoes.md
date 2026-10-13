@@ -166,3 +166,7 @@ Proposta do Claude, aceita. Cabeçalho, menu de ações, avisos e identidade vis
 ### 20. Só viram decisão os registros que têm alternativa
 
 Proposta do Claude, aceita. Dos registros de decisão de interface do Iconula, convertem-se os que fundamentam um item do recorte e trazem alternativa descartada.
+
+### 21. A interface do Tabularium é a conversa com um agente de IA
+
+Daniel, em 12 de outubro de 2026. O Tabularium não tem tela própria: quem o usa conversa com um agente de IA, que executa as skills e mostra o que os scripts imprimem. Isso passou a ser escrito em `_interface.md`, com dois meios, a conversa e o terminal, e as diretrizes que as skills já seguiam. Componentes e padrões ainda não foram escritos: o vocabulário da legenda foi pensado para telas, e falta ver se ele serve a uma conversa.

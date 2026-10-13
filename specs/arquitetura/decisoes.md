@@ -120,4 +120,4 @@ Daniel, em 10 de outubro de 2026, para a especificação, a arquitetura e a inte
 
 As escolhas que a arquitetura escrita em `_sistema.md`, `distribuicao.md` e `validacao.md` afirma foram registradas em 10 de outubro de 2026 como decisões, em `decisoes/` desta pasta, de `D94` a `D108`. Os motivos foram supostos pelo Claude e confirmados por Daniel, um a um. Daniel acrescentou o motivo de não haver versões: uma tentativa anterior com versões trouxe muita complexidade e ofuscou o objetivo principal.
 
-A interface do Tabularium não foi descrita: o produto só imprime linhas no terminal, e o que há de compromisso sobre essas saídas já está na especificação e na arquitetura.
+A interface do Tabularium foi descrita em 12 de outubro de 2026, em `specs/interface/_interface.md`: o produto não tem tela própria, e quem o usa conversa com um agente de IA.
