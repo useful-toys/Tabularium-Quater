@@ -13,19 +13,19 @@ Como uma **Ideia** amadurece numa **Entrevista**, ganha **Sugestões**, é regis
 - **defeito**: o que o produto não faz, embora uma **afirmação** implementada o diga
 
 ## **Ideia**  `IDE`
-Mudança pretendida numa das três especificações, desde que é proposta até ser entregue ou rejeitada.
+Mudança pretendida numa **Especificação**, desde que é proposta até ser entregue ou rejeitada.
 - **objetivo**: texto
 - **estado**: sugestão | em entrevista | consenso | entregue | rejeitada | virou defeito; inicial: sugestão
 - **prefixo**: **Prefixo de mudança**; imutável
 - [x] IDE-Rp6wh.1  O **objetivo** diz, em palavras do negócio, para que a ideia serve, e não muda durante a **Entrevista**
 - [x] IDE-Rp6wh.2  Está no **estado** sugestão a ideia que ainda não passou por **Entrevista**
-- [x] IDE-Rp6wh.3  Tudo o que a ideia muda nas especificações fica na **ramificação da ideia**, e nunca na linha principal, até a **Entrega**
+- [x] IDE-Rp6wh.3  Tudo o que a ideia muda numa **Especificação** fica na **ramificação da ideia**, e nunca na linha principal, até a **Entrega**
 - [x] IDE-Rp6wh.4  A **issue da ideia** é opcional: a ideia que começa e termina numa só conversa não precisa dela
 - [x] IDE-Rp6wh.5  A ideia que ganha **issue da ideia** depois de começada mantém o **prefixo**
 - [x] IDE-Rp6wh.6  A **issue da ideia** fechada não é reaberta
 - [x] IDE-Rp6wh.7  A ideia que volta depois de fechada é uma ideia nova, que cita a antiga
 - [x] IDE-Rp6wh.8  Só o **Autor** rejeita uma ideia
-- [x] IDE-Rp6wh.9  O **defeito** não é ideia: a especificação está certa, e quem o trata é o processo da equipe
+- [x] IDE-Rp6wh.9  O **defeito** não é ideia: a **Especificação** está certa, e quem o trata é o processo da equipe
 - [x] IDE-Rp6wh.10  A ideia em que nenhuma **parte** pede mudança e alguma é **defeito** passa ao **estado** virou defeito, e nada dela é entregue
 - [x] IDE-Rp6wh.11  O **estado** muda só assim:
 
@@ -61,12 +61,12 @@ Conversa em **rodadas** em que uma **Ideia** amadurece com o **Autor** e em que 
 - [x] ETV-Rp6wh.4  Nada é suposto no lugar de uma resposta que falta
 - [x] ETV-Rp6wh.5  Toda pergunta leva o contexto, um exemplo e a resposta recomendada
 - [x] ETV-Rp6wh.6  Quem decide cada resposta é o **Autor**
-- [x] ETV-Rp6wh.7  O que já está escrito numa das três especificações é buscado, e não perguntado
-- [x] ETV-Rp6wh.8  Fato que não depende do produto é buscado fora das especificações, e a fonte é dita ao **Autor**
+- [x] ETV-Rp6wh.7  O que já está escrito numa **Especificação** é buscado, e não perguntado
+- [x] ETV-Rp6wh.8  Fato que não depende do produto é buscado fora da **Especificação**, e a fonte é dita ao **Autor**
 - [x] ETV-Rp6wh.9  Cada **parte** é dada como da **Especificação do produto**, da **Especificação de arquitetura**, da **Especificação de interface** ou de codificação
 - [x] ETV-Rp6wh.10  **Parte** de codificação não é gravada: fica para quem programa
 - [x] ETV-Rp6wh.11  Cada **parte** é levada às condições de contorno: o limite, o vazio, o simultâneo, o caminho que falha, o depois e quem mais é afetado
-- [x] ETV-Rp6wh.12  Cada **parte** é confrontada com o que já está escrito nas três especificações
+- [x] ETV-Rp6wh.12  Cada **parte** é confrontada com o que já está escrito nas três **Especificações**
 - [x] ETV-Rp6wh.13  No conflito com o que está escrito, os dois lados são mostrados, e o **Autor** escolhe entre retirar a **parte**, ajustá-la ou mudar o existente
 - [x] ETV-Rp6wh.14  Mudar o que já está na linha principal pede a confirmação do **Autor**, item por item
 - [x] ETV-Rp6wh.15  Palavra do **Autor** que não é **Termo** é procurada antes de virar um: presume-se que o termo já existe
@@ -119,12 +119,12 @@ Estado do que a **ramificação da ideia** não guarda: o objetivo da **Ideia**,
 **Ideia** proposta pelo produto, e não pelo **Autor**, que complementa uma funcionalidade já discutida ou já escrita.
 - [x] SUG-Rp6wh.1  É vizinha do que complementa: diz o que mais o produto poderia ter por causa dele
 - [x] SUG-Rp6wh.2  Tem um motivo: a **Linha** que a provoca, ou uma ausência que foi procurada e confirmada
-- [x] SUG-Rp6wh.3  Não se sugere o que uma das três especificações já diz, implementado ou não
+- [x] SUG-Rp6wh.3  Não se sugere o que uma **Especificação** já diz, implementado ou não
 - [x] SUG-Rp6wh.4  Não se sugere o que está fora de escopo no **Arquivo de produto**, nem o que o **Autor** já recusou
 - [x] SUG-Rp6wh.5  Não se sugere condição de contorno, que pertence à **Entrevista**
 - [x] SUG-Rp6wh.6  Não se sugere qualidade geral nem escolha de arquitetura, de interface ou de codificação
 - [x] SUG-Rp6wh.7  São mostradas no máximo cinco de cada vez, as de motivo mais forte
-- [x] SUG-Rp6wh.8  Sugerir não altera nenhuma das três especificações
+- [x] SUG-Rp6wh.8  Sugerir não altera nenhuma **Especificação**
 - [x] SUG-Cp6wh.1  Pedir sugestões
   - exige: o que complementar, que é uma **Área**, uma **Célula** ou a **Ideia** de uma **Entrevista** em curso
   - as sugestões são mostradas de uma vez, cada uma com o motivo e o que acrescentaria
@@ -160,16 +160,16 @@ Passagem para a linha principal do que a **Entrevista** gravou na **ramificaçã
   - se algo pede uma decisão que não foi tomada: a **Ideia** volta ao **Ideia.estado** em entrevista, com o item que parou em **Andamento.em aberto**
 
 ## **Achado**  `ACH`
-Problema de significado de uma das três especificações, que a forma dela não mostra, registrado para ser resolvido.
+Problema de significado de uma **Especificação**, que a forma dela não mostra, registrado para ser resolvido.
 - **criticidade**: alta | média | baixa
 - **situação**: em aberto | resolvido; inicial: em aberto
 - [ ] ACH-Rtcwx.1  É registrado numa revisão feita por um agente de IA, e nunca pelo **Validador** ⟸ [Dtcwx.1]
 - [ ] ACH-Rtcwx.2  Aponta o que duas ou mais **Linhas** bem formadas dizem juntas, como uma contradição entre duas **afirmações**
-- [ ] ACH-Rtcwx.3  Não torna a **Especificação do produto** inválida ⟸ [Dtcwx.1]
+- [ ] ACH-Rtcwx.3  Não torna a **Especificação** inválida ⟸ [Dtcwx.1]
 - [ ] ACH-Rtcwx.4  Fica registrado até ser resolvido, e não depende de a revisão ser feita de novo
 - [ ] ACH-Rtcwx.5  Só é resolvido pela mudança do texto: corrige-se a **afirmação**, ou reescreve-se para a leitura errada deixar de ser possível ⟸ [Dtcwx.2]
 - [ ] ACH-Rtcwx.6  Não é descartado, nem tem a **criticidade** rebaixada ⟸ [Dtcwx.2]
-- [ ] ACH-Ctcwx.1  Revisar o significado de uma das três especificações
+- [ ] ACH-Ctcwx.1  Revisar o significado de uma **Especificação**
   - cada problema encontrado vira um achado, com a **criticidade**
 - [ ] ACH-Ctcwx.2  Resolver um achado
   - exige: o texto que o achado aponta foi corrigido ou reescrito
