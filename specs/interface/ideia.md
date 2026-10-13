@@ -1,6 +1,8 @@
 # A ideia: interface no formato denso
 
-Este arquivo é informal e não faz parte do formato. Ele guarda a memória da conversa de 7 de outubro de 2026 entre Daniel e o Claude, em que a ideia surgiu. O que vale como regra do formato experimental está em `_convencoes.md` e `AGENTS.md`. Este repositório não guarda nenhuma interface escrita no formato: o experimento é feito na especificação do Iconula, que fica no repositório dele.
+Este arquivo é informal e não faz parte do formato. Ele guarda a memória da conversa de 7 de outubro de 2026 entre Daniel e o Claude, em que a ideia surgiu. O que vale como regra do formato experimental está em `_convencoes.md` e `AGENTS.md`. O experimento foi feito na especificação do Iconula, que fica no repositório dele; aqui, a interface do próprio Tabularium está em `_interface.md`.
+
+Desde 12 de outubro de 2026, a interface é uma das três especificações do Tabularium, por `Dv3r6.1`. O que este arquivo conta sobre ela estar fora de escopo é como as coisas eram quando a ideia surgiu, e deixou de valer.
 
 ## De onde veio
 

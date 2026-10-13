@@ -2,6 +2,8 @@
 
 Este arquivo é informal e não faz parte do formato. Ele guarda a memória da conversa de 5 e 6 de outubro de 2026 entre Daniel e o Claude, em que a ideia surgiu. O que vale como arquitetura do Tabularium está em `_sistema.md` e nas áreas; o que vale como regra do formato experimental está em `_convencoes.md` e `AGENTS.md`.
 
+Desde 12 de outubro de 2026, a arquitetura é uma das três especificações do Tabularium, por `Dv3r6.1`. O que este arquivo conta sobre ela estar fora de escopo é como as coisas eram quando a ideia surgiu, e deixou de valer.
+
 ## De onde veio
 
 A especificação do Tabularium é não técnica por decisão (D74): descreve o que o produto é e faz, e manda os assuntos técnicos para "o documento de arquitetura". Esse documento nunca foi definido. `_produto.md` lista "Arquitetura e detalhes técnicos" como fora de escopo permanente, e várias decisões (D06, D29, D40, D46, D48) empurram coisas para a arquitetura sem dizer onde ela mora.
