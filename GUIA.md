@@ -1,6 +1,6 @@
 # Guia do Tabularium
 
-Este guia explica o formato Tabularium em detalhe. Para uma apresentação curta e para instalar, comece pelo [README](README.md).
+Este guia explica o formato **Tabularium** em detalhe. Para uma apresentação curta e para instalar, comece pelo [README](README.md).
 
 O guia é uma explicação derivada da definição normativa do formato, que está em [`specs/`](specs/), escrita no próprio formato. Em caso de divergência, vale o que está lá. Os identificadores entre parênteses, como (TRM-R7), apontam para a regra de origem.
 
@@ -40,7 +40,7 @@ O indexador já produz os índices de cada pasta. As demais partes geradas e as 
 
 As metodologias tradicionais organizam a documentação por tipo de informação: um documento para o glossário, outro para as regras de negócio, outro para os casos de uso, outro para o modelo de dados. Quem quer saber tudo sobre o Pedido precisa percorrer todos eles, e cada mudança num documento precisa ser sincronizada em vários lugares e outros documentos.
 
-O Tabularium faz o contrário. Tudo no formato gira em torno da **célula de conceitos**, ou só **célula**: uma coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a especificação afirma sobre ela e que não pertence a nenhuma outra. Pedido, Cliente, Produto, etc.
+O **Tabularium** faz o contrário. Tudo no formato gira em torno da **célula de conceitos**, ou só **célula**: uma coisa do domínio, nomeada por um substantivo do negócio, com tudo o que a especificação afirma sobre ela e que não pertence a nenhuma outra. Pedido, Cliente, Produto, etc.
 
 Cada célula tem um único bloco e é praticamente autocontida. Tudo o que se sabe sobre ela mora ali: o que é, de que é feita, as regras que valem sobre ela, o que acontece com ela, o que os atores fazem com ela e o que veem dela. O que a liga ao resto são apenas as referências a outras células e as reações aos eventos que elas produzem. Não há uma seção de regras, outra de casos de uso e outra de glossário: há células, cada uma completa no seu lugar.
 
@@ -404,7 +404,7 @@ Uma linha provisória aponta para a pergunta com `⟵ [P3.1]`. Se a lacuna é ju
 
 ## Decisões
 
-O formato das decisões é parte do Tabularium, mas o texto delas nunca entra numa célula, numa área ou em `_produto.md`: ali seria ruído. O que entra é só uma marca no fim do item fundamentado, como o `⟸ [D7.1]` do exemplo do Pedido (REF-R9). Qualquer item de lista pode levar a marca: uma afirmação, uma linha de modelo, um evento, um item de `_produto.md`. Um item pode citar várias decisões, `⟸ [D7.1, D12.1]`, e uma decisão pode ser citada por vários itens. A decisão não cita de volta (REF-R10). Uma afirmação que muda de célula leva consigo as suas citações (REF-R13).
+O formato das decisões é parte do **Tabularium**, mas o texto delas nunca entra numa célula, numa área ou em `_produto.md`: ali seria ruído. O que entra é só uma marca no fim do item fundamentado, como o `⟸ [D7.1]` do exemplo do Pedido (REF-R9). Qualquer item de lista pode levar a marca: uma afirmação, uma linha de modelo, um evento, um item de `_produto.md`. Um item pode citar várias decisões, `⟸ [D7.1, D12.1]`, e uma decisão pode ser citada por vários itens. A decisão não cita de volta (REF-R10). Uma afirmação que muda de célula leva consigo as suas citações (REF-R13).
 
 Uma decisão é um arquivo assim:
 
@@ -502,7 +502,7 @@ Sem nenhum sim, a escolha é tática e fica no código. Também fica no código 
 
 A ligação com a especificação é de mão única, como a das decisões: o componente aponta com `realiza:` as afirmações que ele cumpre, e a especificação nunca aponta de volta. Quem decide o produto não precisa abrir a pasta.
 
-O exemplo real é a arquitetura do próprio Tabularium, em [`specs/arquitetura/`](specs/arquitetura/), e a legenda completa está em [`specs/arquitetura/_convencoes.md`](specs/arquitetura/_convencoes.md). A memória de como o formato nasceu está em `specs/arquitetura/ideia.md`.
+O exemplo real é a arquitetura do próprio **Tabularium**, em [`specs/arquitetura/`](specs/arquitetura/), e a legenda completa está em [`specs/arquitetura/_convencoes.md`](specs/arquitetura/_convencoes.md). A memória de como o formato nasceu está em `specs/arquitetura/ideia.md`.
 
 ### A arquitetura do próprio Tabularium
 
@@ -724,13 +724,13 @@ Cada valor diz o que se quer da especificação. Os sub-itens dizem o que ele pr
 
 ## Diferenciais em relação a RUP, ágil, BDD e DDD
 
-RUP, os métodos ágeis, BDD e DDD são abordagens amplas de processo, de prática e de modelagem. A comparação abaixo trata só de como cada uma documenta o produto. O Tabularium é compatível com as quatro e aproveita ideias de todas.
+RUP, os métodos ágeis, BDD e DDD são abordagens amplas de processo, de prática e de modelagem. A comparação abaixo trata só de como cada uma documenta o produto. O **Tabularium** é compatível com as quatro e aproveita ideias de todas.
 
-Usar o formato Tabularium para guardar a especificação não impede que a equipe adote a metodologia de sua preferência para amadurecer o entendimento do problema de negócio que a aplicação vai atender. O formato também não define, por ora, como uma mudança na especificação é proposta, revisada e aceita: isso fica com o processo da equipe.
+Usar o formato **Tabularium** para guardar a especificação não impede que a equipe adote a metodologia de sua preferência para amadurecer o entendimento do problema de negócio que a aplicação vai atender. O formato também não define, por ora, como uma mudança na especificação é proposta, revisada e aceita: isso fica com o processo da equipe.
 
-Na tabela, a coluna do Tabularium descreve o que o formato pretende; o que já existe está no aviso do início do [README](README.md).
+Na tabela, a coluna do **Tabularium** descreve o que o formato pretende; o que já existe está no aviso do início do [README](README.md).
 
-| Aspecto | RUP | Ágil | BDD | DDD | Tabularium |
+| Aspecto | RUP | Ágil | BDD | DDD | **Tabularium** |
 | --- | --- | --- | --- | --- | --- |
 | Unidade de organização | Artefato por tipo: visão, casos de uso, regras, especificação suplementar | História de usuário, num backlog | Funcionalidade e cenário | Contexto delimitado, ligado a modelo e equipe | Célula de conceitos, agrupada em áreas por relação medida |
 | Onde está tudo sobre uma coisa do domínio | Espalhado por vários artefatos | Espalhado por histórias de várias iterações; o estado atual do produto não está escrito | Espalhado por cenários de várias funcionalidades | No modelo e no código; a documentação é informal | Num único bloco |
@@ -742,14 +742,14 @@ Na tabela, a coluna do Tabularium descreve o que o formato pretende; o que já e
 | Lacunas | Implícitas | Tratadas na conversa, durante o refinamento | Cartões vermelhos do Example Mapping, fora do texto | Ficam na conversa | Perguntas abertas versionadas e linhas provisórias marcadas |
 | Agentes de IA | Não trata | Não trata | Não trata | Não trata | Instruções próprias e gramática que um agente consegue seguir |
 
-O Tabularium adota ideias de cada uma dessas abordagens e deixa outras de fora, de propósito:
+O **Tabularium** adota ideias de cada uma dessas abordagens e deixa outras de fora, de propósito:
 
-| Abordagem | O que o Tabularium adota | O que não adota, e por quê |
+| Abordagem | O que o **Tabularium** adota | O que não adota, e por quê |
 | --- | --- | --- |
 | RUP | Começar a descrição do produto pelo problema que ele resolve. Registrar as organizações e os sistemas de fora que influenciam as regras. Descrever cada ação do usuário com suas pré-condições e exceções. Usar a lista FURPS+ para revisar se falta algum requisito de qualidade. | Um documento para cada tipo de informação, porque isso espalha o mesmo assunto por vários lugares. Casos de uso escritos como passos numerados, porque ficam longos e repetem as regras. |
 | Ágil | Descrever cada ação dizendo quem a faz e o que quer alcançar, com critérios de aceite. Manter as ideias ainda não aprovadas fora da especificação, num backlog. | Guardar as histórias como documentação do produto. Cada história descreve uma mudança pedida num certo momento; juntas, elas não mostram como o produto é hoje. |
-| BDD | Usar exemplos concretos para descobrir regras. Registrar por escrito as dúvidas que aparecem. Fazer cada teste citar a regra que ele verifica. | Escrever a especificação em Dado/Quando/Então. A notação é longa e repete o contexto a cada cenário; no Tabularium, os cenários são derivados da especificação. |
-| DDD | Um vocabulário único, usado por todos, com um só significado por termo. Registrar os fatos importantes do domínio e o que acontece em consequência de cada um. Separar o que o usuário faz do que ele apenas consulta. | Dividir o produto em contextos, cada um com vocabulário próprio. Essa divisão é uma decisão de arquitetura, e o Tabularium mantém um vocabulário só para o produto inteiro. |
+| BDD | Usar exemplos concretos para descobrir regras. Registrar por escrito as dúvidas que aparecem. Fazer cada teste citar a regra que ele verifica. | Escrever a especificação em Dado/Quando/Então. A notação é longa e repete o contexto a cada cenário; no **Tabularium**, os cenários são derivados da especificação. |
+| DDD | Um vocabulário único, usado por todos, com um só significado por termo. Registrar os fatos importantes do domínio e o que acontece em consequência de cada um. Separar o que o usuário faz do que ele apenas consulta. | Dividir o produto em contextos, cada um com vocabulário próprio. Essa divisão é uma decisão de arquitetura, e o **Tabularium** mantém um vocabulário só para o produto inteiro. |
 
 ## Limites e cuidados
 
